@@ -1,23 +1,15 @@
 package ;
 import com.genome2d.project.GProjectConfig;
 import com.genome2d.project.GProject;
-import com.genome2d.components.GScriptComponent;
 import com.genome2d.components.GCameraController;
-import com.genome2d.components.GComponent;
 import com.genome2d.node.GNode;
 import com.genome2d.components.renderable.GShape;
 import com.genome2d.macros.MGDebug;
 import com.genome2d.assets.GAsset;
 import com.genome2d.assets.GStaticAssetManager;
-import com.genome2d.context.GBlendMode;
 import com.genome2d.textures.GTextureManager;
-import com.genome2d.textures.GTexture;
 import com.genome2d.debug.GDebug;
-import js.Browser;
-import com.genome2d.Genome2D;
-import com.genome2d.assets.GAssetManager;
 import com.genome2d.context.GContextConfig;
-import com.genome2d.components.renderable.GSprite;
 class Test extends GProject{
     static public function main() {
         var inst = new Test();
