@@ -118,6 +118,9 @@ _$EnumValue_EnumValue_$Impl_$.match = function(this1,pattern) {
 var com_genome2d_proto_GPrototypeHelper = function() { };
 $hxClasses["com.genome2d.proto.GPrototypeHelper"] = com_genome2d_proto_GPrototypeHelper;
 com_genome2d_proto_GPrototypeHelper.__name__ = "com.genome2d.proto.GPrototypeHelper";
+com_genome2d_proto_GPrototypeHelper.g2d_GComponent = null;
+com_genome2d_proto_GPrototypeHelper.g2d_GCameraController = null;
+com_genome2d_proto_GPrototypeHelper.g2d_CameraController = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GTextureSettings = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GTextureBase = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GTextureAtlas = null;
@@ -142,7 +145,6 @@ com_genome2d_proto_GPrototypeHelper.g2d_GSPHVelocityModule = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GScriptModule = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GParticleEmitter = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GIntRectangle = null;
-com_genome2d_proto_GPrototypeHelper.g2d_GComponent = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GSimpleParticleSystemD = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GParticleSystemD = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GCurve = null;
@@ -162,7 +164,6 @@ com_genome2d_proto_GPrototypeHelper.g2d_GAnimator = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GFrameAnimator = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GFrameAnimation = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GTexture = null;
-com_genome2d_proto_GPrototypeHelper.g2d_GCameraController = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GNode = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GSprite = null;
 com_genome2d_proto_GPrototypeHelper.g2d_GUIFontSkin = null;
@@ -1001,689 +1002,6 @@ StringTools.utf16CodePointAt = function(s,index) {
 	}
 	return c;
 };
-var com_genome2d_project_GProject = function(p_config) {
-	this.g2d_config = p_config;
-	if(com_genome2d_Genome2D.g2d_instance == null) {
-		com_genome2d_Genome2D.g2d_instantiable = true;
-		new com_genome2d_Genome2D();
-		com_genome2d_Genome2D.g2d_instantiable = false;
-	}
-	this.g2d_genome = com_genome2d_Genome2D.g2d_instance;
-	if(this.g2d_config.initGenome) {
-		this.initGenome();
-	} else {
-		this.init();
-	}
-};
-$hxClasses["com.genome2d.project.GProject"] = com_genome2d_project_GProject;
-com_genome2d_project_GProject.__name__ = "com.genome2d.project.GProject";
-com_genome2d_project_GProject.prototype = {
-	g2d_genome: null
-	,getGenome: function() {
-		return this.g2d_genome;
-	}
-	,g2d_config: null
-	,g2d_assetManager: null
-	,initGenome: function() {
-		var p_arg1 = "initGenome";
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/project/GProject.hx", lineNumber : 114, className : "com.genome2d.project.GProject", methodName : "initGenome"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
-		this.g2d_genome.g2d_onFailed.addOnce($bind(this,this.genomeFailed_handler));
-		this.g2d_genome.g2d_onInitialized.addOnce($bind(this,this.genomeInitialized_handler));
-		this.g2d_genome.init(this.g2d_config.contextConfig);
-	}
-	,init: function() {
-	}
-	,genomeInitialized_handler: function() {
-		var p_arg1 = "genomeInitialized";
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/project/GProject.hx", lineNumber : 127, className : "com.genome2d.project.GProject", methodName : "genomeInitialized_handler"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
-		this.g2d_assetManager = new com_genome2d_assets_GAssetManager();
-		this.init();
-	}
-	,genomeFailed_handler: function(p_msg) {
-		var p_arg1 = "genomeFailed";
-		var p_arg2 = p_msg;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/project/GProject.hx", lineNumber : 133, className : "com.genome2d.project.GProject", methodName : "genomeFailed_handler"};
-		var args = [];
-		if(p_arg1 != null) {
-			args.push(p_arg1);
-		}
-		if(p_arg2 != null) {
-			args.push(p_arg2);
-		}
-		if(p_arg3 != null) {
-			args.push(p_arg3);
-		}
-		if(p_arg4 != null) {
-			args.push(p_arg4);
-		}
-		if(p_arg5 != null) {
-			args.push(p_arg5);
-		}
-		if(p_arg6 != null) {
-			args.push(p_arg6);
-		}
-		if(p_arg7 != null) {
-			args.push(p_arg7);
-		}
-		if(p_arg8 != null) {
-			args.push(p_arg8);
-		}
-		if(p_arg9 != null) {
-			args.push(p_arg9);
-		}
-		if(p_arg10 != null) {
-			args.push(p_arg10);
-		}
-		if(p_arg11 != null) {
-			args.push(p_arg11);
-		}
-		if(p_arg12 != null) {
-			args.push(p_arg12);
-		}
-		if(p_arg13 != null) {
-			args.push(p_arg13);
-		}
-		if(p_arg14 != null) {
-			args.push(p_arg14);
-		}
-		if(p_arg15 != null) {
-			args.push(p_arg15);
-		}
-		if(p_arg16 != null) {
-			args.push(p_arg16);
-		}
-		if(p_arg17 != null) {
-			args.push(p_arg17);
-		}
-		if(p_arg18 != null) {
-			args.push(p_arg18);
-		}
-		if(p_arg19 != null) {
-			args.push(p_arg19);
-		}
-		if(p_arg20 != null) {
-			args.push(p_arg20);
-		}
-		if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-			com_genome2d_debug_GDebug.g2d_onDebug.dispatch(5,pos,args);
-		}
-		var msg = "ERROR: ";
-		if(pos != null) {
-			msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-		}
-		if(args.length > 0) {
-			msg += args.toString();
-		}
-		com_genome2d_debug_GDebug.g2d_log += msg;
-		if(com_genome2d_debug_GDebug.useNativeTrace) {
-			window.console.log(msg);
-		}
-		throw new js__$Boot_HaxeError(msg);
-	}
-	,__class__: com_genome2d_project_GProject
-};
-var Test = function(p_init) {
-	if(p_init == null) {
-		p_init = 0;
-	}
-	this.initType = 0;
-	this.initType = p_init;
-	var contextConfig = new com_genome2d_context_GContextConfig(null);
-	var config = new com_genome2d_project_GProjectConfig(contextConfig);
-	config.initGenome = this.initType == 0;
-	com_genome2d_project_GProject.call(this,config);
-};
-$hxClasses["Test"] = Test;
-Test.__name__ = "Test";
-Test.main = function() {
-	var inst = new Test();
-};
-Test.__super__ = com_genome2d_project_GProject;
-Test.prototype = $extend(com_genome2d_project_GProject.prototype,{
-	container: null
-	,containerCamera: null
-	,initType: null
-	,init: function() {
-		if(this.initType != 2) {
-			var p_arg1 = "init 1";
-			var p_arg2 = null;
-			var p_arg3 = null;
-			var p_arg4 = null;
-			var p_arg5 = null;
-			var p_arg6 = null;
-			var p_arg7 = null;
-			var p_arg8 = null;
-			var p_arg9 = null;
-			var p_arg10 = null;
-			var p_arg11 = null;
-			var p_arg12 = null;
-			var p_arg13 = null;
-			var p_arg14 = null;
-			var p_arg15 = null;
-			var p_arg16 = null;
-			var p_arg17 = null;
-			var p_arg18 = null;
-			var p_arg19 = null;
-			var p_arg20 = null;
-			var pos = { fileName : "src/Test.hx", lineNumber : 41, className : "Test", methodName : "init"};
-			if(com_genome2d_debug_GDebug.showPriority <= 4) {
-				var args = [];
-				if(p_arg1 != null) {
-					args.push(p_arg1);
-				}
-				if(p_arg2 != null) {
-					args.push(p_arg2);
-				}
-				if(p_arg3 != null) {
-					args.push(p_arg3);
-				}
-				if(p_arg4 != null) {
-					args.push(p_arg4);
-				}
-				if(p_arg5 != null) {
-					args.push(p_arg5);
-				}
-				if(p_arg6 != null) {
-					args.push(p_arg6);
-				}
-				if(p_arg7 != null) {
-					args.push(p_arg7);
-				}
-				if(p_arg8 != null) {
-					args.push(p_arg8);
-				}
-				if(p_arg9 != null) {
-					args.push(p_arg9);
-				}
-				if(p_arg10 != null) {
-					args.push(p_arg10);
-				}
-				if(p_arg11 != null) {
-					args.push(p_arg11);
-				}
-				if(p_arg12 != null) {
-					args.push(p_arg12);
-				}
-				if(p_arg13 != null) {
-					args.push(p_arg13);
-				}
-				if(p_arg14 != null) {
-					args.push(p_arg14);
-				}
-				if(p_arg15 != null) {
-					args.push(p_arg15);
-				}
-				if(p_arg16 != null) {
-					args.push(p_arg16);
-				}
-				if(p_arg17 != null) {
-					args.push(p_arg17);
-				}
-				if(p_arg18 != null) {
-					args.push(p_arg18);
-				}
-				if(p_arg19 != null) {
-					args.push(p_arg19);
-				}
-				if(p_arg20 != null) {
-					args.push(p_arg20);
-				}
-				if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-					com_genome2d_debug_GDebug.g2d_onDebug.dispatch(4,pos,args);
-				}
-				var msg = "WARNING: ";
-				if(pos != null) {
-					msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-				}
-				if(args.length > 0) {
-					msg += args.toString();
-				}
-				com_genome2d_debug_GDebug.g2d_log += msg;
-				if(com_genome2d_debug_GDebug.useNativeTrace) {
-					window.console.log(msg);
-				}
-			}
-			com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/2048.png");
-			com_genome2d_assets_GStaticAssetManager.loadQueue($bind(this,this.assetsLoaded_handler),$bind(this,this.assetsFailed_handler));
-		} else {
-			var p_arg110 = "init 2";
-			var p_arg21 = null;
-			var p_arg31 = null;
-			var p_arg41 = null;
-			var p_arg51 = null;
-			var p_arg61 = null;
-			var p_arg71 = null;
-			var p_arg81 = null;
-			var p_arg91 = null;
-			var p_arg101 = null;
-			var p_arg111 = null;
-			var p_arg121 = null;
-			var p_arg131 = null;
-			var p_arg141 = null;
-			var p_arg151 = null;
-			var p_arg161 = null;
-			var p_arg171 = null;
-			var p_arg181 = null;
-			var p_arg191 = null;
-			var p_arg201 = null;
-			var pos1 = { fileName : "src/Test.hx", lineNumber : 46, className : "Test", methodName : "init"};
-			if(com_genome2d_debug_GDebug.showPriority <= 4) {
-				var args1 = [];
-				if(p_arg110 != null) {
-					args1.push(p_arg110);
-				}
-				if(p_arg21 != null) {
-					args1.push(p_arg21);
-				}
-				if(p_arg31 != null) {
-					args1.push(p_arg31);
-				}
-				if(p_arg41 != null) {
-					args1.push(p_arg41);
-				}
-				if(p_arg51 != null) {
-					args1.push(p_arg51);
-				}
-				if(p_arg61 != null) {
-					args1.push(p_arg61);
-				}
-				if(p_arg71 != null) {
-					args1.push(p_arg71);
-				}
-				if(p_arg81 != null) {
-					args1.push(p_arg81);
-				}
-				if(p_arg91 != null) {
-					args1.push(p_arg91);
-				}
-				if(p_arg101 != null) {
-					args1.push(p_arg101);
-				}
-				if(p_arg111 != null) {
-					args1.push(p_arg111);
-				}
-				if(p_arg121 != null) {
-					args1.push(p_arg121);
-				}
-				if(p_arg131 != null) {
-					args1.push(p_arg131);
-				}
-				if(p_arg141 != null) {
-					args1.push(p_arg141);
-				}
-				if(p_arg151 != null) {
-					args1.push(p_arg151);
-				}
-				if(p_arg161 != null) {
-					args1.push(p_arg161);
-				}
-				if(p_arg171 != null) {
-					args1.push(p_arg171);
-				}
-				if(p_arg181 != null) {
-					args1.push(p_arg181);
-				}
-				if(p_arg191 != null) {
-					args1.push(p_arg191);
-				}
-				if(p_arg201 != null) {
-					args1.push(p_arg201);
-				}
-				if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-					com_genome2d_debug_GDebug.g2d_onDebug.dispatch(4,pos1,args1);
-				}
-				var msg1 = "WARNING: ";
-				if(pos1 != null) {
-					msg1 += pos1.fileName + ":" + pos1.lineNumber + " : " + pos1.methodName + " : ";
-				}
-				if(args1.length > 0) {
-					msg1 += args1.toString();
-				}
-				com_genome2d_debug_GDebug.g2d_log += msg1;
-				if(com_genome2d_debug_GDebug.useNativeTrace) {
-					window.console.log(msg1);
-				}
-			}
-			this.initWrapper();
-		}
-	}
-	,initWrapper: function() {
-		var root = this.getGenome().g2d_root;
-		this.container = new com_genome2d_node_GNode();
-		this.container.cameraGroup = 1;
-		root.addChild(this.container);
-		this.containerCamera = js_Boot.__cast(com_genome2d_node_GNode.createWithComponent(com_genome2d_components_GCameraController) , com_genome2d_components_GCameraController);
-		this.containerCamera.g2d_node.setPosition(400,300);
-		this.containerCamera.g2d_contextCamera.group = 1;
-		root.addChild(this.containerCamera.g2d_node);
-		var infoCamera = js_Boot.__cast(com_genome2d_node_GNode.createWithComponent(com_genome2d_components_GCameraController) , com_genome2d_components_GCameraController);
-		infoCamera.g2d_node.setPosition(400,300);
-		infoCamera.g2d_contextCamera.group = 128;
-		root.addChild(infoCamera.g2d_node);
-		this.initExample();
-	}
-	,assetsFailed_handler: function(p_asset) {
-		var p_arg1 = p_asset.g2d_id;
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/Test.hx", lineNumber : 76, className : "Test", methodName : "assetsFailed_handler"};
-		var args = [];
-		if(p_arg1 != null) {
-			args.push(p_arg1);
-		}
-		if(p_arg2 != null) {
-			args.push(p_arg2);
-		}
-		if(p_arg3 != null) {
-			args.push(p_arg3);
-		}
-		if(p_arg4 != null) {
-			args.push(p_arg4);
-		}
-		if(p_arg5 != null) {
-			args.push(p_arg5);
-		}
-		if(p_arg6 != null) {
-			args.push(p_arg6);
-		}
-		if(p_arg7 != null) {
-			args.push(p_arg7);
-		}
-		if(p_arg8 != null) {
-			args.push(p_arg8);
-		}
-		if(p_arg9 != null) {
-			args.push(p_arg9);
-		}
-		if(p_arg10 != null) {
-			args.push(p_arg10);
-		}
-		if(p_arg11 != null) {
-			args.push(p_arg11);
-		}
-		if(p_arg12 != null) {
-			args.push(p_arg12);
-		}
-		if(p_arg13 != null) {
-			args.push(p_arg13);
-		}
-		if(p_arg14 != null) {
-			args.push(p_arg14);
-		}
-		if(p_arg15 != null) {
-			args.push(p_arg15);
-		}
-		if(p_arg16 != null) {
-			args.push(p_arg16);
-		}
-		if(p_arg17 != null) {
-			args.push(p_arg17);
-		}
-		if(p_arg18 != null) {
-			args.push(p_arg18);
-		}
-		if(p_arg19 != null) {
-			args.push(p_arg19);
-		}
-		if(p_arg20 != null) {
-			args.push(p_arg20);
-		}
-		if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-			com_genome2d_debug_GDebug.g2d_onDebug.dispatch(5,pos,args);
-		}
-		var msg = "ERROR: ";
-		if(pos != null) {
-			msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-		}
-		if(args.length > 0) {
-			msg += args.toString();
-		}
-		com_genome2d_debug_GDebug.g2d_log += msg;
-		if(com_genome2d_debug_GDebug.useNativeTrace) {
-			window.console.log(msg);
-		}
-		throw new js__$Boot_HaxeError(msg);
-	}
-	,assetsLoaded_handler: function() {
-		com_genome2d_assets_GStaticAssetManager.generate();
-		this.initWrapper();
-	}
-	,initExample: function() {
-		var shape = js_Boot.__cast(com_genome2d_node_GNode.createWithComponent(com_genome2d_components_renderable_GShape) , com_genome2d_components_renderable_GShape);
-		shape.setup([0,0,650,0,0,350,0,350,650,0,650,350],[0,0,1,0,0,1,0,1,1,0,1,1]);
-		shape.texture = com_genome2d_textures_GTextureManager.getTexture("assets/2048.png");
-		shape.g2d_node.setPosition(60,150);
-		this.getGenome().g2d_root.addChild(shape.g2d_node);
-	}
-	,__class__: Test
-});
 var ValueType = $hxEnums["ValueType"] = { __ename__ : "ValueType", __constructs__ : ["TNull","TInt","TFloat","TBool","TObject","TFunction","TClass","TEnum","TUnknown"]
 	,TNull: {_hx_index:0,__enum__:"ValueType",toString:$estr}
 	,TInt: {_hx_index:1,__enum__:"ValueType",toString:$estr}
@@ -2280,6 +1598,2052 @@ Xml.prototype = {
 	,__class__: Xml
 	,__properties__: {set_nodeValue:"set_nodeValue",get_nodeValue:"get_nodeValue",set_nodeName:"set_nodeName",get_nodeName:"get_nodeName"}
 };
+var com_genome2d_project_GProject = function(p_config) {
+	this.g2d_config = p_config;
+	if(com_genome2d_Genome2D.g2d_instance == null) {
+		com_genome2d_Genome2D.g2d_instantiable = true;
+		new com_genome2d_Genome2D();
+		com_genome2d_Genome2D.g2d_instantiable = false;
+	}
+	this.g2d_genome = com_genome2d_Genome2D.g2d_instance;
+	if(this.g2d_config.initGenome) {
+		this.initGenome();
+	} else {
+		this.init();
+	}
+};
+$hxClasses["com.genome2d.project.GProject"] = com_genome2d_project_GProject;
+com_genome2d_project_GProject.__name__ = "com.genome2d.project.GProject";
+com_genome2d_project_GProject.prototype = {
+	g2d_genome: null
+	,getGenome: function() {
+		return this.g2d_genome;
+	}
+	,g2d_config: null
+	,g2d_assetManager: null
+	,initGenome: function() {
+		var p_arg1 = "initGenome";
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/project/GProject.hx", lineNumber : 114, className : "com.genome2d.project.GProject", methodName : "initGenome"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+		this.g2d_genome.g2d_onFailed.addOnce($bind(this,this.genomeFailed_handler));
+		this.g2d_genome.g2d_onInitialized.addOnce($bind(this,this.genomeInitialized_handler));
+		this.g2d_genome.init(this.g2d_config.contextConfig);
+	}
+	,init: function() {
+	}
+	,genomeInitialized_handler: function() {
+		var p_arg1 = "genomeInitialized";
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/project/GProject.hx", lineNumber : 127, className : "com.genome2d.project.GProject", methodName : "genomeInitialized_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+		this.g2d_assetManager = new com_genome2d_assets_GAssetManager();
+		this.init();
+	}
+	,genomeFailed_handler: function(p_msg) {
+		var p_arg1 = "genomeFailed";
+		var p_arg2 = p_msg;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/project/GProject.hx", lineNumber : 133, className : "com.genome2d.project.GProject", methodName : "genomeFailed_handler"};
+		var args = [];
+		if(p_arg1 != null) {
+			args.push(p_arg1);
+		}
+		if(p_arg2 != null) {
+			args.push(p_arg2);
+		}
+		if(p_arg3 != null) {
+			args.push(p_arg3);
+		}
+		if(p_arg4 != null) {
+			args.push(p_arg4);
+		}
+		if(p_arg5 != null) {
+			args.push(p_arg5);
+		}
+		if(p_arg6 != null) {
+			args.push(p_arg6);
+		}
+		if(p_arg7 != null) {
+			args.push(p_arg7);
+		}
+		if(p_arg8 != null) {
+			args.push(p_arg8);
+		}
+		if(p_arg9 != null) {
+			args.push(p_arg9);
+		}
+		if(p_arg10 != null) {
+			args.push(p_arg10);
+		}
+		if(p_arg11 != null) {
+			args.push(p_arg11);
+		}
+		if(p_arg12 != null) {
+			args.push(p_arg12);
+		}
+		if(p_arg13 != null) {
+			args.push(p_arg13);
+		}
+		if(p_arg14 != null) {
+			args.push(p_arg14);
+		}
+		if(p_arg15 != null) {
+			args.push(p_arg15);
+		}
+		if(p_arg16 != null) {
+			args.push(p_arg16);
+		}
+		if(p_arg17 != null) {
+			args.push(p_arg17);
+		}
+		if(p_arg18 != null) {
+			args.push(p_arg18);
+		}
+		if(p_arg19 != null) {
+			args.push(p_arg19);
+		}
+		if(p_arg20 != null) {
+			args.push(p_arg20);
+		}
+		if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+			com_genome2d_debug_GDebug.g2d_onDebug.dispatch(5,pos,args);
+		}
+		var msg = "ERROR: ";
+		if(pos != null) {
+			msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+		}
+		if(args.length > 0) {
+			msg += args.toString();
+		}
+		com_genome2d_debug_GDebug.g2d_log += msg;
+		if(com_genome2d_debug_GDebug.useNativeTrace) {
+			window.console.log(msg);
+		}
+		throw new js__$Boot_HaxeError(msg);
+	}
+	,__class__: com_genome2d_project_GProject
+};
+var com_dinox_Main = function(p_init) {
+	if(p_init == null) {
+		p_init = 0;
+	}
+	this.initType = 0;
+	this.initType = p_init;
+	var contextConfig = new com_genome2d_context_GContextConfig(null);
+	var config = new com_genome2d_project_GProjectConfig(contextConfig);
+	config.initGenome = this.initType == 0;
+	com_genome2d_project_GProject.call(this,config);
+	var p_arg1 = null;
+	var p_arg2 = null;
+	var p_arg3 = null;
+	var p_arg4 = null;
+	var p_arg5 = null;
+	var p_arg6 = null;
+	var p_arg7 = null;
+	var p_arg8 = null;
+	var p_arg9 = null;
+	var p_arg10 = null;
+	var p_arg11 = null;
+	var p_arg12 = null;
+	var p_arg13 = null;
+	var p_arg14 = null;
+	var p_arg15 = null;
+	var p_arg16 = null;
+	var p_arg17 = null;
+	var p_arg18 = null;
+	var p_arg19 = null;
+	var p_arg20 = null;
+	var pos = { fileName : "src/com/dinox/Main.hx", lineNumber : 30, className : "com.dinox.Main", methodName : "new"};
+	if(com_genome2d_debug_GDebug.showPriority <= 3) {
+		var args = [];
+		if(p_arg1 != null) {
+			args.push(p_arg1);
+		}
+		if(p_arg2 != null) {
+			args.push(p_arg2);
+		}
+		if(p_arg3 != null) {
+			args.push(p_arg3);
+		}
+		if(p_arg4 != null) {
+			args.push(p_arg4);
+		}
+		if(p_arg5 != null) {
+			args.push(p_arg5);
+		}
+		if(p_arg6 != null) {
+			args.push(p_arg6);
+		}
+		if(p_arg7 != null) {
+			args.push(p_arg7);
+		}
+		if(p_arg8 != null) {
+			args.push(p_arg8);
+		}
+		if(p_arg9 != null) {
+			args.push(p_arg9);
+		}
+		if(p_arg10 != null) {
+			args.push(p_arg10);
+		}
+		if(p_arg11 != null) {
+			args.push(p_arg11);
+		}
+		if(p_arg12 != null) {
+			args.push(p_arg12);
+		}
+		if(p_arg13 != null) {
+			args.push(p_arg13);
+		}
+		if(p_arg14 != null) {
+			args.push(p_arg14);
+		}
+		if(p_arg15 != null) {
+			args.push(p_arg15);
+		}
+		if(p_arg16 != null) {
+			args.push(p_arg16);
+		}
+		if(p_arg17 != null) {
+			args.push(p_arg17);
+		}
+		if(p_arg18 != null) {
+			args.push(p_arg18);
+		}
+		if(p_arg19 != null) {
+			args.push(p_arg19);
+		}
+		if(p_arg20 != null) {
+			args.push(p_arg20);
+		}
+		if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+			com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+		}
+		var msg = "INFO: ";
+		if(pos != null) {
+			msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+		}
+		if(args.length > 0) {
+			msg += args.toString();
+		}
+		com_genome2d_debug_GDebug.g2d_log += msg;
+		if(com_genome2d_debug_GDebug.useNativeTrace) {
+			window.console.log(msg);
+		}
+	}
+};
+$hxClasses["com.dinox.Main"] = com_dinox_Main;
+com_dinox_Main.__name__ = "com.dinox.Main";
+com_dinox_Main.main = function() {
+	var inst = new com_dinox_Main();
+};
+com_dinox_Main.__super__ = com_genome2d_project_GProject;
+com_dinox_Main.prototype = $extend(com_genome2d_project_GProject.prototype,{
+	initType: null
+	,core: null
+	,container: null
+	,containerCamera: null
+	,init: function() {
+		this.core = new com_dinox_model_Core(this.getGenome().g2d_root);
+	}
+	,__class__: com_dinox_Main
+});
+var com_dinox_model_AssetsWrapper = function(p_assetsLoaded_handler,p_assetFailed_handler) {
+	this.assetsLoaded_handler = p_assetsLoaded_handler;
+	this.assetFailed_handler = p_assetFailed_handler;
+	this.addAssetsFromURL();
+	this.loadAssetsQueue();
+};
+$hxClasses["com.dinox.model.AssetsWrapper"] = com_dinox_model_AssetsWrapper;
+com_dinox_model_AssetsWrapper.__name__ = "com.dinox.model.AssetsWrapper";
+com_dinox_model_AssetsWrapper.prototype = {
+	assetsLoaded_handler: null
+	,assetFailed_handler: null
+	,addAssetsFromURL: function() {
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/2048.png","dinos");
+	}
+	,loadAssetsQueue: function() {
+		com_genome2d_assets_GStaticAssetManager.loadQueue($bind(this,this.assetsLoaded),this.assetFailed_handler);
+	}
+	,assetsLoaded: function() {
+		com_genome2d_textures_GTextureManager.createTexture(com_genome2d_assets_GStaticAssetManager.getImageAssetById("dinos").g2d_id,com_genome2d_assets_GStaticAssetManager.getImageAssetById("dinos"));
+		this.assetsLoaded_handler();
+	}
+	,__class__: com_dinox_model_AssetsWrapper
+};
+var com_genome2d_proto_IGPrototypable = function() { };
+$hxClasses["com.genome2d.proto.IGPrototypable"] = com_genome2d_proto_IGPrototypable;
+com_genome2d_proto_IGPrototypable.__name__ = "com.genome2d.proto.IGPrototypable";
+com_genome2d_proto_IGPrototypable.__isInterface__ = true;
+com_genome2d_proto_IGPrototypable.prototype = {
+	g2d_prototypeStates: null
+	,g2d_currentState: null
+	,getPrototype: null
+	,bindPrototype: null
+	,toReference: null
+	,setPrototypeState: null
+	,__class__: com_genome2d_proto_IGPrototypable
+};
+var com_genome2d_components_GComponent = function() {
+	this.g2d_currentState = "default";
+	this.g2d_started = false;
+	this.g2d_enabled = true;
+	this.g2d_active = true;
+};
+$hxClasses["com.genome2d.components.GComponent"] = com_genome2d_components_GComponent;
+com_genome2d_components_GComponent.__name__ = "com.genome2d.components.GComponent";
+com_genome2d_components_GComponent.__interfaces__ = [com_genome2d_proto_IGPrototypable];
+com_genome2d_components_GComponent.prototype = {
+	g2d_userData: null
+	,get_userData: function() {
+		if(this.g2d_userData == null) {
+			this.g2d_userData = new haxe_ds_StringMap();
+		}
+		return this.g2d_userData;
+	}
+	,g2d_active: null
+	,isActive: function() {
+		return this.g2d_active;
+	}
+	,setActive: function(p_value) {
+		this.g2d_active = p_value;
+	}
+	,g2d_enabled: null
+	,get_enabled: function() {
+		return this.g2d_enabled;
+	}
+	,set_enabled: function(p_value) {
+		this.g2d_enabled = p_value;
+		if(this.g2d_enabled && !this.g2d_started) {
+			this.g2d_start();
+		}
+		return this.g2d_enabled;
+	}
+	,g2d_started: null
+	,g2d_node: null
+	,get_node: function() {
+		return this.g2d_node;
+	}
+	,init: function() {
+	}
+	,g2d_start: function() {
+		if(this.g2d_active && !this.g2d_started) {
+			this.g2d_started = true;
+			this.onStart();
+		}
+	}
+	,onStart: function() {
+	}
+	,g2d_dispose: function() {
+		this.onDispose();
+		this.g2d_active = false;
+		this.g2d_node = null;
+	}
+	,onDispose: function() {
+	}
+	,toReference: function() {
+		return null;
+	}
+	,getPrototype: function(p_prototype) {
+		p_prototype = com_genome2d_proto_GPrototypeFactory.g2d_getPrototype(p_prototype,this,"GComponent");
+		return p_prototype;
+	}
+	,bindPrototype: function(p_prototype) {
+		com_genome2d_proto_GPrototypeFactory.g2d_bindPrototype(this,p_prototype,"GComponent");
+	}
+	,g2d_currentState: null
+	,g2d_prototypeStates: null
+	,setPrototypeState: function(p_stateName) {
+		if(this.g2d_currentState != p_stateName) {
+			var p_stateName1 = p_stateName;
+			if(p_stateName1 == null) {
+				p_stateName1 = "default";
+			}
+			var _this = this.g2d_prototypeStates.g2d_states;
+			var state = __map_reserved[p_stateName1] != null ? _this.getReserved(p_stateName1) : _this.h[p_stateName1];
+			if(state != null) {
+				this.g2d_currentState = p_stateName;
+				var propertyName = state.keys();
+				while(propertyName.hasNext()) {
+					var propertyName1 = propertyName.next();
+					(__map_reserved[propertyName1] != null ? state.getReserved(propertyName1) : state.h[propertyName1]).bind(this);
+				}
+			} else {
+				var p_stateName2 = "na";
+				if(p_stateName2 == null) {
+					p_stateName2 = "default";
+				}
+				var _this1 = this.g2d_prototypeStates.g2d_states;
+				state = __map_reserved[p_stateName2] != null ? _this1.getReserved(p_stateName2) : _this1.h[p_stateName2];
+				if(state != null) {
+					this.g2d_currentState = p_stateName;
+					var propertyName2 = state.keys();
+					while(propertyName2.hasNext()) {
+						var propertyName3 = propertyName2.next();
+						(__map_reserved[propertyName3] != null ? state.getReserved(propertyName3) : state.h[propertyName3]).bind(this);
+					}
+				}
+			}
+		}
+	}
+	,__class__: com_genome2d_components_GComponent
+	,__properties__: {get_node:"get_node",set_enabled:"set_enabled",get_enabled:"get_enabled",get_userData:"get_userData"}
+};
+var com_genome2d_components_GCameraController = function() {
+	this.renderTarget = null;
+	this.backgroundAlpha = 0;
+	this.backgroundBlue = 0;
+	this.backgroundGreen = 0;
+	this.backgroundRed = 0;
+	this.mouseEnabled = true;
+	this.g2d_capturedThisFrame = false;
+	com_genome2d_components_GComponent.call(this);
+};
+$hxClasses["com.genome2d.components.GCameraController"] = com_genome2d_components_GCameraController;
+com_genome2d_components_GCameraController.__name__ = "com.genome2d.components.GCameraController";
+com_genome2d_components_GCameraController.__super__ = com_genome2d_components_GComponent;
+com_genome2d_components_GCameraController.prototype = $extend(com_genome2d_components_GComponent.prototype,{
+	g2d_viewRectangle: null
+	,g2d_capturedThisFrame: null
+	,g2d_renderedNodesCount: null
+	,mouseEnabled: null
+	,g2d_onMouseInput: null
+	,get_onMouseInput: function() {
+		if(this.g2d_onMouseInput == null) {
+			this.g2d_onMouseInput = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+		}
+		return this.g2d_onMouseInput;
+	}
+	,backgroundRed: null
+	,backgroundGreen: null
+	,backgroundBlue: null
+	,backgroundAlpha: null
+	,renderTarget: null
+	,viewport: null
+	,id: null
+	,getBackgroundColor: function() {
+		var alpha = (this.backgroundAlpha * 255 | 0) << 24;
+		var red = (this.backgroundRed * 255 | 0) << 16;
+		var green = (this.backgroundGreen * 255 | 0) << 8;
+		var blue = this.backgroundBlue * 255 | 0;
+		return alpha + red + green + blue;
+	}
+	,g2d_contextCamera: null
+	,get_contextCamera: function() {
+		return this.g2d_contextCamera;
+	}
+	,setView: function(p_normalizedX,p_normalizedY,p_normalizedWidth,p_normalizedHeight) {
+		this.g2d_contextCamera.normalizedViewX = p_normalizedX;
+		this.g2d_contextCamera.normalizedViewY = p_normalizedY;
+		this.g2d_contextCamera.normalizedViewWidth = p_normalizedWidth;
+		this.g2d_contextCamera.normalizedViewHeight = p_normalizedHeight;
+	}
+	,get_zoom: function() {
+		return this.g2d_contextCamera.scaleX;
+	}
+	,set_zoom: function(p_value) {
+		return this.g2d_contextCamera.scaleX = this.g2d_contextCamera.scaleY = p_value;
+	}
+	,init: function() {
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		this.g2d_contextCamera = new com_genome2d_context_GCamera(com_genome2d_node_GNode.g2d_core.g2d_context);
+		this.g2d_viewRectangle = new com_genome2d_geom_GRectangle(0,0,0,0);
+		var tmp = this.g2d_node;
+		var _this1 = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		if(tmp != com_genome2d_node_GNode.g2d_core.g2d_root && this.g2d_node.isOnStage()) {
+			var _this2 = this.g2d_node;
+			if(com_genome2d_node_GNode.g2d_core == null) {
+				if(com_genome2d_Genome2D.g2d_instance == null) {
+					com_genome2d_Genome2D.g2d_instantiable = true;
+					new com_genome2d_Genome2D();
+					com_genome2d_Genome2D.g2d_instantiable = false;
+				}
+				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+			}
+			com_genome2d_node_GNode.g2d_core.g2d_addCameraController(this);
+		}
+		var _this3 = this.g2d_node;
+		if(_this3.g2d_onAddedToStage == null) {
+			_this3.g2d_onAddedToStage = new com_genome2d_callbacks_GCallback0();
+		}
+		_this3.g2d_onAddedToStage.add($bind(this,this.g2d_onAddedToStage));
+		var _this4 = this.g2d_node;
+		if(_this4.g2d_onRemovedFromStage == null) {
+			_this4.g2d_onRemovedFromStage = new com_genome2d_callbacks_GCallback0();
+		}
+		_this4.g2d_onRemovedFromStage.add($bind(this,this.g2d_onRemovedFromStage));
+	}
+	,render: function() {
+		if(!this.g2d_node.g2d_active) {
+			return;
+		}
+		this.g2d_renderedNodesCount = 0;
+		this.g2d_contextCamera.x = this.g2d_node.g2d_worldX;
+		this.g2d_contextCamera.y = this.g2d_node.g2d_worldY;
+		this.g2d_contextCamera.rotation = this.g2d_node.g2d_worldRotation;
+		if(this.g2d_contextCamera.normalizedViewWidth <= 0 || this.g2d_contextCamera.normalizedViewHeight <= 0) {
+			return;
+		}
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		com_genome2d_node_GNode.g2d_core.g2d_context.setActiveCamera(this.g2d_contextCamera);
+		if(this.renderTarget != null) {
+			var _this1 = this.g2d_node;
+			if(com_genome2d_node_GNode.g2d_core == null) {
+				if(com_genome2d_Genome2D.g2d_instance == null) {
+					com_genome2d_Genome2D.g2d_instantiable = true;
+					new com_genome2d_Genome2D();
+					com_genome2d_Genome2D.g2d_instantiable = false;
+				}
+				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+			}
+			var previousRenderTarget = com_genome2d_node_GNode.g2d_core.g2d_context.getRenderTarget();
+			var _this2 = this.g2d_node;
+			if(com_genome2d_node_GNode.g2d_core == null) {
+				if(com_genome2d_Genome2D.g2d_instance == null) {
+					com_genome2d_Genome2D.g2d_instantiable = true;
+					new com_genome2d_Genome2D();
+					com_genome2d_Genome2D.g2d_instantiable = false;
+				}
+				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+			}
+			com_genome2d_node_GNode.g2d_core.g2d_context.setRenderTarget(this.renderTarget);
+			var _this3 = this.g2d_node;
+			if(com_genome2d_node_GNode.g2d_core == null) {
+				if(com_genome2d_Genome2D.g2d_instance == null) {
+					com_genome2d_Genome2D.g2d_instantiable = true;
+					new com_genome2d_Genome2D();
+					com_genome2d_Genome2D.g2d_instantiable = false;
+				}
+				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+			}
+			com_genome2d_node_GNode.g2d_core.g2d_root.render(false,false,this.g2d_contextCamera,false,false);
+			var _this4 = this.g2d_node;
+			if(com_genome2d_node_GNode.g2d_core == null) {
+				if(com_genome2d_Genome2D.g2d_instance == null) {
+					com_genome2d_Genome2D.g2d_instantiable = true;
+					new com_genome2d_Genome2D();
+					com_genome2d_Genome2D.g2d_instantiable = false;
+				}
+				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+			}
+			com_genome2d_node_GNode.g2d_core.g2d_context.setRenderTarget(previousRenderTarget);
+		} else {
+			var _this5 = this.g2d_node;
+			if(com_genome2d_node_GNode.g2d_core == null) {
+				if(com_genome2d_Genome2D.g2d_instance == null) {
+					com_genome2d_Genome2D.g2d_instantiable = true;
+					new com_genome2d_Genome2D();
+					com_genome2d_Genome2D.g2d_instantiable = false;
+				}
+				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+			}
+			com_genome2d_node_GNode.g2d_core.g2d_root.render(false,false,this.g2d_contextCamera,false,false);
+		}
+	}
+	,g2d_invalidateViewRect: function() {
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		var stageRect = com_genome2d_node_GNode.g2d_core.g2d_context.getStageViewRect();
+		this.g2d_viewRectangle.setTo(stageRect.width * this.g2d_contextCamera.normalizedViewX,stageRect.height * this.g2d_contextCamera.normalizedViewY,stageRect.width * this.g2d_contextCamera.normalizedViewWidth,stageRect.height * this.g2d_contextCamera.normalizedViewHeight);
+	}
+	,captureMouseInput: function(p_input) {
+		if(this.g2d_capturedThisFrame || !this.g2d_node.g2d_active) {
+			return;
+		}
+		this.g2d_capturedThisFrame = true;
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		var stageRect = com_genome2d_node_GNode.g2d_core.g2d_context.getStageViewRect();
+		this.g2d_viewRectangle.setTo(stageRect.width * this.g2d_contextCamera.normalizedViewX,stageRect.height * this.g2d_contextCamera.normalizedViewY,stageRect.width * this.g2d_contextCamera.normalizedViewWidth,stageRect.height * this.g2d_contextCamera.normalizedViewHeight);
+		if(!p_input.mouseOut && !this.g2d_viewRectangle.contains(p_input.contextX,p_input.contextY)) {
+			return;
+		}
+		var tx = p_input.contextX - this.g2d_viewRectangle.x - this.g2d_viewRectangle.width / 2;
+		var ty = p_input.contextY - this.g2d_viewRectangle.y - this.g2d_viewRectangle.height / 2;
+		var cos = Math.cos(-this.g2d_node.g2d_worldRotation);
+		var sin = Math.sin(-this.g2d_node.g2d_worldRotation);
+		var rx = tx * cos - ty * sin;
+		var ry = ty * cos + tx * sin;
+		rx /= this.g2d_contextCamera.scaleX;
+		ry /= this.g2d_contextCamera.scaleX;
+		p_input.worldX = rx + this.g2d_node.g2d_worldX;
+		p_input.worldY = ry + this.g2d_node.g2d_worldY;
+		p_input.camera = this;
+		if(!p_input.captured && this.g2d_onMouseInput != null) {
+			this.g2d_onMouseInput.dispatch(p_input);
+		}
+		var _this1 = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		com_genome2d_node_GNode.g2d_core.g2d_root.captureMouseInput(p_input);
+	}
+	,onDispose: function() {
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		com_genome2d_node_GNode.g2d_core.g2d_removeCameraController(this);
+		var _this1 = this.g2d_node;
+		if(_this1.g2d_onAddedToStage == null) {
+			_this1.g2d_onAddedToStage = new com_genome2d_callbacks_GCallback0();
+		}
+		_this1.g2d_onAddedToStage.remove($bind(this,this.g2d_onAddedToStage));
+		var _this2 = this.g2d_node;
+		if(_this2.g2d_onRemovedFromStage == null) {
+			_this2.g2d_onRemovedFromStage = new com_genome2d_callbacks_GCallback0();
+		}
+		_this2.g2d_onRemovedFromStage.remove($bind(this,this.g2d_onRemovedFromStage));
+	}
+	,g2d_onAddedToStage: function() {
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		com_genome2d_node_GNode.g2d_core.g2d_addCameraController(this);
+	}
+	,g2d_onRemovedFromStage: function() {
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		com_genome2d_node_GNode.g2d_core.g2d_removeCameraController(this);
+	}
+	,setViewport: function(p_width,p_height,p_resize) {
+		if(p_resize == null) {
+			p_resize = true;
+		}
+		if(this.viewport != null) {
+			this.viewport.dispose();
+		}
+		this.viewport = new com_genome2d_context_GViewport(this,p_width,p_height,p_resize);
+	}
+	,worldToScreen: function(p_world,p_result) {
+		var tx = p_world.x - this.g2d_node.g2d_worldX;
+		var ty = p_world.y - this.g2d_node.g2d_worldY;
+		tx *= this.g2d_contextCamera.scaleX;
+		ty *= this.g2d_contextCamera.scaleX;
+		var cos = Math.cos(this.g2d_node.g2d_worldRotation);
+		var sin = Math.sin(this.g2d_node.g2d_worldRotation);
+		var rx = tx * cos - ty * sin;
+		var ry = ty * cos + tx * sin;
+		if(p_result == null) {
+			p_result = new com_genome2d_geom_GPoint(0,0);
+		}
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		var stageRect = com_genome2d_node_GNode.g2d_core.g2d_context.getStageViewRect();
+		this.g2d_viewRectangle.setTo(stageRect.width * this.g2d_contextCamera.normalizedViewX,stageRect.height * this.g2d_contextCamera.normalizedViewY,stageRect.width * this.g2d_contextCamera.normalizedViewWidth,stageRect.height * this.g2d_contextCamera.normalizedViewHeight);
+		p_result.x = rx + this.g2d_viewRectangle.x + this.g2d_viewRectangle.width / 2;
+		p_result.y = ry - this.g2d_viewRectangle.y - this.g2d_viewRectangle.height / 2;
+		return p_result;
+	}
+	,screenToWorld: function(p_screen,p_result) {
+		var _this = this.g2d_node;
+		if(com_genome2d_node_GNode.g2d_core == null) {
+			if(com_genome2d_Genome2D.g2d_instance == null) {
+				com_genome2d_Genome2D.g2d_instantiable = true;
+				new com_genome2d_Genome2D();
+				com_genome2d_Genome2D.g2d_instantiable = false;
+			}
+			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
+		}
+		var stageRect = com_genome2d_node_GNode.g2d_core.g2d_context.getStageViewRect();
+		this.g2d_viewRectangle.setTo(stageRect.width * this.g2d_contextCamera.normalizedViewX,stageRect.height * this.g2d_contextCamera.normalizedViewY,stageRect.width * this.g2d_contextCamera.normalizedViewWidth,stageRect.height * this.g2d_contextCamera.normalizedViewHeight);
+		var tx = p_screen.x - this.g2d_viewRectangle.x - this.g2d_viewRectangle.width / 2;
+		var ty = p_screen.y - this.g2d_viewRectangle.y - this.g2d_viewRectangle.height / 2;
+		var cos = Math.cos(-this.g2d_node.g2d_worldRotation);
+		var sin = Math.sin(-this.g2d_node.g2d_worldRotation);
+		var rx = tx * cos - ty * sin;
+		var ry = ty * cos + tx * sin;
+		rx /= this.g2d_contextCamera.scaleX;
+		ry /= this.g2d_contextCamera.scaleX;
+		if(p_result == null) {
+			p_result = new com_genome2d_geom_GPoint(0,0);
+		}
+		p_result.x = rx + this.g2d_node.g2d_worldX;
+		p_result.y = ry + this.g2d_node.g2d_worldY;
+		return p_result;
+	}
+	,getPrototype: function(p_prototype) {
+		p_prototype = com_genome2d_proto_GPrototypeFactory.g2d_getPrototype(p_prototype,this,"GCameraController");
+		return com_genome2d_components_GComponent.prototype.getPrototype.call(this,p_prototype);
+	}
+	,bindPrototype: function(p_prototype) {
+		com_genome2d_components_GComponent.prototype.bindPrototype.call(this,p_prototype);
+		com_genome2d_proto_GPrototypeFactory.g2d_bindPrototype(this,p_prototype,"GCameraController");
+	}
+	,__class__: com_genome2d_components_GCameraController
+	,__properties__: $extend(com_genome2d_components_GComponent.prototype.__properties__,{set_zoom:"set_zoom",get_zoom:"get_zoom",get_contextCamera:"get_contextCamera",get_onMouseInput:"get_onMouseInput"})
+});
+var com_dinox_model_CameraController = function() {
+	com_genome2d_components_GCameraController.call(this);
+};
+$hxClasses["com.dinox.model.CameraController"] = com_dinox_model_CameraController;
+com_dinox_model_CameraController.__name__ = "com.dinox.model.CameraController";
+com_dinox_model_CameraController.__super__ = com_genome2d_components_GCameraController;
+com_dinox_model_CameraController.prototype = $extend(com_genome2d_components_GCameraController.prototype,{
+	getPrototype: function(p_prototype) {
+		p_prototype = com_genome2d_proto_GPrototypeFactory.g2d_getPrototype(p_prototype,this,"CameraController");
+		return com_genome2d_components_GCameraController.prototype.getPrototype.call(this,p_prototype);
+	}
+	,bindPrototype: function(p_prototype) {
+		com_genome2d_components_GCameraController.prototype.bindPrototype.call(this,p_prototype);
+		com_genome2d_proto_GPrototypeFactory.g2d_bindPrototype(this,p_prototype,"CameraController");
+	}
+	,__class__: com_dinox_model_CameraController
+});
+var com_dinox_model_Core = function(p_root) {
+	this.rootNode = p_root;
+	this.initContainer();
+	this.initCameraController();
+	this.initAssetsWrapper();
+};
+$hxClasses["com.dinox.model.Core"] = com_dinox_model_Core;
+com_dinox_model_Core.__name__ = "com.dinox.model.Core";
+com_dinox_model_Core.prototype = {
+	rootNode: null
+	,container: null
+	,cameraController: null
+	,assetsWrapper: null
+	,landMap: null
+	,initContainer: function() {
+		this.container = new com_genome2d_node_GNode();
+		this.container.cameraGroup = 1;
+		this.rootNode.addChild(this.container);
+	}
+	,initCameraController: function() {
+		this.cameraController = js_Boot.__cast(com_genome2d_node_GNode.createWithComponent(com_dinox_model_CameraController) , com_dinox_model_CameraController);
+		this.cameraController.g2d_node.setPosition(400,300);
+		this.cameraController.g2d_contextCamera.group = 1;
+		this.rootNode.addChild(this.cameraController.g2d_node);
+	}
+	,initAssetsWrapper: function() {
+		this.assetsWrapper = new com_dinox_model_AssetsWrapper($bind(this,this.assetsLoader_handler),$bind(this,this.assetsFailed_hanled));
+	}
+	,initLandMap: function() {
+		this.landMap = new com_dinox_model_LandMap(this.container);
+	}
+	,getContainer: function() {
+		return this.container;
+	}
+	,assetsLoader_handler: function() {
+		var p_arg1 = null;
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/Core.hx", lineNumber : 56, className : "com.dinox.model.Core", methodName : "assetsLoader_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+		this.initLandMap();
+	}
+	,assetsFailed_hanled: function(p_asset) {
+		var p_arg1 = "Core.assetsFailed_hanlder: failed to load asset ";
+		var p_arg2 = p_asset.g2d_id;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/Core.hx", lineNumber : 61, className : "com.dinox.model.Core", methodName : "assetsFailed_hanled"};
+		var args = [];
+		if(p_arg1 != null) {
+			args.push(p_arg1);
+		}
+		if(p_arg2 != null) {
+			args.push(p_arg2);
+		}
+		if(p_arg3 != null) {
+			args.push(p_arg3);
+		}
+		if(p_arg4 != null) {
+			args.push(p_arg4);
+		}
+		if(p_arg5 != null) {
+			args.push(p_arg5);
+		}
+		if(p_arg6 != null) {
+			args.push(p_arg6);
+		}
+		if(p_arg7 != null) {
+			args.push(p_arg7);
+		}
+		if(p_arg8 != null) {
+			args.push(p_arg8);
+		}
+		if(p_arg9 != null) {
+			args.push(p_arg9);
+		}
+		if(p_arg10 != null) {
+			args.push(p_arg10);
+		}
+		if(p_arg11 != null) {
+			args.push(p_arg11);
+		}
+		if(p_arg12 != null) {
+			args.push(p_arg12);
+		}
+		if(p_arg13 != null) {
+			args.push(p_arg13);
+		}
+		if(p_arg14 != null) {
+			args.push(p_arg14);
+		}
+		if(p_arg15 != null) {
+			args.push(p_arg15);
+		}
+		if(p_arg16 != null) {
+			args.push(p_arg16);
+		}
+		if(p_arg17 != null) {
+			args.push(p_arg17);
+		}
+		if(p_arg18 != null) {
+			args.push(p_arg18);
+		}
+		if(p_arg19 != null) {
+			args.push(p_arg19);
+		}
+		if(p_arg20 != null) {
+			args.push(p_arg20);
+		}
+		if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+			com_genome2d_debug_GDebug.g2d_onDebug.dispatch(5,pos,args);
+		}
+		var msg = "ERROR: ";
+		if(pos != null) {
+			msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+		}
+		if(args.length > 0) {
+			msg += args.toString();
+		}
+		com_genome2d_debug_GDebug.g2d_log += msg;
+		if(com_genome2d_debug_GDebug.useNativeTrace) {
+			window.console.log(msg);
+		}
+		throw new js__$Boot_HaxeError(msg);
+	}
+	,__class__: com_dinox_model_Core
+};
+var com_dinox_model_LandMap = function(p_graphicsContainer) {
+	this.isDragging = false;
+	this.graphicsContainer = p_graphicsContainer;
+	var graphics = js_Boot.__cast(com_genome2d_node_GNode.createWithComponent(com_genome2d_components_renderable_GSprite) , com_genome2d_components_renderable_GSprite);
+	var texture = com_genome2d_textures_GTextureManager.getTexture("dinos");
+	var sprite = js_Boot.__cast(com_genome2d_node_GNode.createWithComponent(com_genome2d_components_renderable_GSprite) , com_genome2d_components_renderable_GSprite);
+	sprite.texture = com_genome2d_textures_GTextureManager.getTexture("dinos");
+	sprite.g2d_node.setPosition(400,300);
+	sprite.g2d_node.mouseEnabled = true;
+	var _this = sprite.g2d_node;
+	if(_this.g2d_onMouseClick == null) {
+		_this.g2d_onMouseClick = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+	}
+	_this.g2d_onMouseClick.add($bind(this,this.mouseClick_handler));
+	var _this1 = sprite.g2d_node;
+	if(_this1.g2d_onMouseOver == null) {
+		_this1.g2d_onMouseOver = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+	}
+	_this1.g2d_onMouseOver.add($bind(this,this.mouseOver_handler));
+	var _this2 = sprite.g2d_node;
+	if(_this2.g2d_onMouseOut == null) {
+		_this2.g2d_onMouseOut = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+	}
+	_this2.g2d_onMouseOut.add($bind(this,this.mouseOut_handler));
+	var _this3 = sprite.g2d_node;
+	if(_this3.g2d_onMouseDown == null) {
+		_this3.g2d_onMouseDown = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+	}
+	_this3.g2d_onMouseDown.add($bind(this,this.mouseDown_handler));
+	var _this4 = sprite.g2d_node;
+	if(_this4.g2d_onMouseUp == null) {
+		_this4.g2d_onMouseUp = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+	}
+	_this4.g2d_onMouseUp.add($bind(this,this.mouseUp_handler));
+	var _this5 = sprite.g2d_node;
+	if(_this5.g2d_onMouseWheel == null) {
+		_this5.g2d_onMouseWheel = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+	}
+	_this5.g2d_onMouseWheel.add($bind(this,this.mouseWheel_handler));
+	var _this6 = sprite.g2d_node;
+	if(_this6.g2d_onMouseMove == null) {
+		_this6.g2d_onMouseMove = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+	}
+	_this6.g2d_onMouseMove.add($bind(this,this.mouseMove_handler));
+	this.graphicsContainer.addChild(sprite.g2d_node);
+};
+$hxClasses["com.dinox.model.LandMap"] = com_dinox_model_LandMap;
+com_dinox_model_LandMap.__name__ = "com.dinox.model.LandMap";
+com_dinox_model_LandMap.prototype = {
+	graphicsContainer: null
+	,isDragging: null
+	,lastX: null
+	,lastY: null
+	,mouseClick_handler: function(signal) {
+		var p_arg1 = null;
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 50, className : "com.dinox.model.LandMap", methodName : "mouseClick_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+	}
+	,mouseOver_handler: function(signal) {
+		var node = signal.target;
+		var _g = node;
+		var p_value = _g.g2d_localRotation + Math.PI / 80;
+		if(_g.g2d_localRotation == 0 && p_value != 0 && _g.g2d_localScaleX != _g.g2d_localScaleY && _g.g2d_childCount > 0) {
+			var _g1 = _g;
+			var p_value1 = _g1.g2d_localUseMatrix + 1;
+			if(_g1.g2d_parent != null) {
+				var _g2 = _g1.g2d_parent;
+				var p_value2 = _g2.g2d_localUseMatrix + (p_value1 - _g1.g2d_localUseMatrix);
+				if(_g2.g2d_parent != null) {
+					var _g3 = _g2.g2d_parent;
+					_g3.set_g2d_useMatrix(_g3.g2d_localUseMatrix + (p_value2 - _g2.g2d_localUseMatrix));
+				}
+				_g2.g2d_localUseMatrix = p_value2;
+			}
+			_g1.g2d_localUseMatrix = p_value1;
+		}
+		if(_g.g2d_localRotation != 0 && p_value == 0 && _g.g2d_localScaleX != _g.g2d_localScaleY && _g.g2d_childCount > 0) {
+			var _g4 = _g;
+			var p_value3 = _g4.g2d_localUseMatrix - 1;
+			if(_g4.g2d_parent != null) {
+				var _g5 = _g4.g2d_parent;
+				var p_value4 = _g5.g2d_localUseMatrix + (p_value3 - _g4.g2d_localUseMatrix);
+				if(_g5.g2d_parent != null) {
+					var _g6 = _g5.g2d_parent;
+					_g6.set_g2d_useMatrix(_g6.g2d_localUseMatrix + (p_value4 - _g5.g2d_localUseMatrix));
+				}
+				_g5.g2d_localUseMatrix = p_value4;
+			}
+			_g4.g2d_localUseMatrix = p_value3;
+		}
+		_g.g2d_transformDirty = _g.g2d_matrixDirty = true;
+		_g.g2d_localRotation = _g.g2d_worldRotation = p_value;
+		var p_arg1 = null;
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 61, className : "com.dinox.model.LandMap", methodName : "mouseOver_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+	}
+	,mouseOut_handler: function(signal) {
+		var node = signal.target;
+		var _g = node;
+		var p_value = _g.g2d_localRotation + Math.PI / 80;
+		if(_g.g2d_localRotation == 0 && p_value != 0 && _g.g2d_localScaleX != _g.g2d_localScaleY && _g.g2d_childCount > 0) {
+			var _g1 = _g;
+			var p_value1 = _g1.g2d_localUseMatrix + 1;
+			if(_g1.g2d_parent != null) {
+				var _g2 = _g1.g2d_parent;
+				var p_value2 = _g2.g2d_localUseMatrix + (p_value1 - _g1.g2d_localUseMatrix);
+				if(_g2.g2d_parent != null) {
+					var _g3 = _g2.g2d_parent;
+					_g3.set_g2d_useMatrix(_g3.g2d_localUseMatrix + (p_value2 - _g2.g2d_localUseMatrix));
+				}
+				_g2.g2d_localUseMatrix = p_value2;
+			}
+			_g1.g2d_localUseMatrix = p_value1;
+		}
+		if(_g.g2d_localRotation != 0 && p_value == 0 && _g.g2d_localScaleX != _g.g2d_localScaleY && _g.g2d_childCount > 0) {
+			var _g4 = _g;
+			var p_value3 = _g4.g2d_localUseMatrix - 1;
+			if(_g4.g2d_parent != null) {
+				var _g5 = _g4.g2d_parent;
+				var p_value4 = _g5.g2d_localUseMatrix + (p_value3 - _g4.g2d_localUseMatrix);
+				if(_g5.g2d_parent != null) {
+					var _g6 = _g5.g2d_parent;
+					_g6.set_g2d_useMatrix(_g6.g2d_localUseMatrix + (p_value4 - _g5.g2d_localUseMatrix));
+				}
+				_g5.g2d_localUseMatrix = p_value4;
+			}
+			_g4.g2d_localUseMatrix = p_value3;
+		}
+		_g.g2d_transformDirty = _g.g2d_matrixDirty = true;
+		_g.g2d_localRotation = _g.g2d_worldRotation = p_value;
+		node.g2d_colorDirty = true;
+		node.g2d_localRed = node.g2d_worldRed = 1.;
+		node.g2d_colorDirty = true;
+		node.g2d_localGreen = node.g2d_worldGreen = 1.;
+		node.g2d_colorDirty = true;
+		node.g2d_localBlue = node.g2d_worldBlue = 1.;
+		var p_arg1 = null;
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 72, className : "com.dinox.model.LandMap", methodName : "mouseOut_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+	}
+	,mouseDown_handler: function(signal) {
+		var p_arg1 = null;
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 79, className : "com.dinox.model.LandMap", methodName : "mouseDown_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+		this.lastX = signal.contextX;
+		this.lastY = signal.contextY;
+		this.isDragging = true;
+	}
+	,mouseUp_handler: function(signal) {
+		var p_arg1 = null;
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 89, className : "com.dinox.model.LandMap", methodName : "mouseUp_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+		this.isDragging = false;
+	}
+	,mouseWheel_handler: function(signal) {
+		var p_arg1 = signal.delta == null ? "null" : "" + signal.delta;
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 97, className : "com.dinox.model.LandMap", methodName : "mouseWheel_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+		var node = signal.target;
+		var change = signal.delta / 20;
+		if(node.g2d_localScaleX + change < com_dinox_model_LandMap.MAX_SCALE && node.g2d_localScaleY + change < com_dinox_model_LandMap.MAX_SCALE && node.g2d_localScaleX + change > com_dinox_model_LandMap.MIN_SCALE && node.g2d_localScaleY + change > com_dinox_model_LandMap.MIN_SCALE) {
+			node.setScale(node.g2d_localScaleX + change,node.g2d_localScaleY + change);
+		}
+	}
+	,mouseMove_handler: function(signal) {
+		if(this.isDragging) {
+			var node = signal.target;
+			var deltaX = this.lastX - signal.contextX;
+			var deltaY = this.lastY - signal.contextY;
+			this.lastX = signal.contextX;
+			this.lastY = signal.contextY;
+			var p_arg1 = deltaX == null ? "null" : "" + deltaX;
+			var p_arg2 = deltaY == null ? "null" : "" + deltaY;
+			var p_arg3 = null;
+			var p_arg4 = null;
+			var p_arg5 = null;
+			var p_arg6 = null;
+			var p_arg7 = null;
+			var p_arg8 = null;
+			var p_arg9 = null;
+			var p_arg10 = null;
+			var p_arg11 = null;
+			var p_arg12 = null;
+			var p_arg13 = null;
+			var p_arg14 = null;
+			var p_arg15 = null;
+			var p_arg16 = null;
+			var p_arg17 = null;
+			var p_arg18 = null;
+			var p_arg19 = null;
+			var p_arg20 = null;
+			var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 118, className : "com.dinox.model.LandMap", methodName : "mouseMove_handler"};
+			if(com_genome2d_debug_GDebug.showPriority <= 3) {
+				var args = [];
+				if(p_arg1 != null) {
+					args.push(p_arg1);
+				}
+				if(p_arg2 != null) {
+					args.push(p_arg2);
+				}
+				if(p_arg3 != null) {
+					args.push(p_arg3);
+				}
+				if(p_arg4 != null) {
+					args.push(p_arg4);
+				}
+				if(p_arg5 != null) {
+					args.push(p_arg5);
+				}
+				if(p_arg6 != null) {
+					args.push(p_arg6);
+				}
+				if(p_arg7 != null) {
+					args.push(p_arg7);
+				}
+				if(p_arg8 != null) {
+					args.push(p_arg8);
+				}
+				if(p_arg9 != null) {
+					args.push(p_arg9);
+				}
+				if(p_arg10 != null) {
+					args.push(p_arg10);
+				}
+				if(p_arg11 != null) {
+					args.push(p_arg11);
+				}
+				if(p_arg12 != null) {
+					args.push(p_arg12);
+				}
+				if(p_arg13 != null) {
+					args.push(p_arg13);
+				}
+				if(p_arg14 != null) {
+					args.push(p_arg14);
+				}
+				if(p_arg15 != null) {
+					args.push(p_arg15);
+				}
+				if(p_arg16 != null) {
+					args.push(p_arg16);
+				}
+				if(p_arg17 != null) {
+					args.push(p_arg17);
+				}
+				if(p_arg18 != null) {
+					args.push(p_arg18);
+				}
+				if(p_arg19 != null) {
+					args.push(p_arg19);
+				}
+				if(p_arg20 != null) {
+					args.push(p_arg20);
+				}
+				if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+					com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+				}
+				var msg = "INFO: ";
+				if(pos != null) {
+					msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+				}
+				if(args.length > 0) {
+					msg += args.toString();
+				}
+				com_genome2d_debug_GDebug.g2d_log += msg;
+				if(com_genome2d_debug_GDebug.useNativeTrace) {
+					window.console.log(msg);
+				}
+			}
+			node.setPosition(node.g2d_localX - deltaX,node.g2d_localY - deltaY);
+		}
+	}
+	,__class__: com_dinox_model_LandMap
+};
 var com_genome2d_debug_IGDebuggableInternal = function() { };
 $hxClasses["com.genome2d.debug.IGDebuggableInternal"] = com_genome2d_debug_IGDebuggableInternal;
 com_genome2d_debug_IGDebuggableInternal.__name__ = "com.genome2d.debug.IGDebuggableInternal";
@@ -2801,19 +4165,6 @@ com_genome2d_Genome2D.prototype = {
 var com_genome2d_animation_GAnimatorController = function() { };
 $hxClasses["com.genome2d.animation.GAnimatorController"] = com_genome2d_animation_GAnimatorController;
 com_genome2d_animation_GAnimatorController.__name__ = "com.genome2d.animation.GAnimatorController";
-var com_genome2d_proto_IGPrototypable = function() { };
-$hxClasses["com.genome2d.proto.IGPrototypable"] = com_genome2d_proto_IGPrototypable;
-com_genome2d_proto_IGPrototypable.__name__ = "com.genome2d.proto.IGPrototypable";
-com_genome2d_proto_IGPrototypable.__isInterface__ = true;
-com_genome2d_proto_IGPrototypable.prototype = {
-	g2d_prototypeStates: null
-	,g2d_currentState: null
-	,getPrototype: null
-	,bindPrototype: null
-	,toReference: null
-	,setPrototypeState: null
-	,__class__: com_genome2d_proto_IGPrototypable
-};
 var com_genome2d_animation_GFrameAnimation = function() {
 	this.g2d_currentState = "default";
 	this.g2d_currentFrame = -1;
@@ -5664,111 +7015,6 @@ com_genome2d_callbacks_GCallback3.prototype = $extend(com_genome2d_callbacks_GCa
 	}
 	,__class__: com_genome2d_callbacks_GCallback3
 });
-var com_genome2d_components_GComponent = function() {
-	this.g2d_currentState = "default";
-	this.g2d_started = false;
-	this.g2d_enabled = true;
-	this.g2d_active = true;
-};
-$hxClasses["com.genome2d.components.GComponent"] = com_genome2d_components_GComponent;
-com_genome2d_components_GComponent.__name__ = "com.genome2d.components.GComponent";
-com_genome2d_components_GComponent.__interfaces__ = [com_genome2d_proto_IGPrototypable];
-com_genome2d_components_GComponent.prototype = {
-	g2d_userData: null
-	,get_userData: function() {
-		if(this.g2d_userData == null) {
-			this.g2d_userData = new haxe_ds_StringMap();
-		}
-		return this.g2d_userData;
-	}
-	,g2d_active: null
-	,isActive: function() {
-		return this.g2d_active;
-	}
-	,setActive: function(p_value) {
-		this.g2d_active = p_value;
-	}
-	,g2d_enabled: null
-	,get_enabled: function() {
-		return this.g2d_enabled;
-	}
-	,set_enabled: function(p_value) {
-		this.g2d_enabled = p_value;
-		if(this.g2d_enabled && !this.g2d_started) {
-			this.g2d_start();
-		}
-		return this.g2d_enabled;
-	}
-	,g2d_started: null
-	,g2d_node: null
-	,get_node: function() {
-		return this.g2d_node;
-	}
-	,init: function() {
-	}
-	,g2d_start: function() {
-		if(this.g2d_active && !this.g2d_started) {
-			this.g2d_started = true;
-			this.onStart();
-		}
-	}
-	,onStart: function() {
-	}
-	,g2d_dispose: function() {
-		this.onDispose();
-		this.g2d_active = false;
-		this.g2d_node = null;
-	}
-	,onDispose: function() {
-	}
-	,toReference: function() {
-		return null;
-	}
-	,getPrototype: function(p_prototype) {
-		p_prototype = com_genome2d_proto_GPrototypeFactory.g2d_getPrototype(p_prototype,this,"GComponent");
-		return p_prototype;
-	}
-	,bindPrototype: function(p_prototype) {
-		com_genome2d_proto_GPrototypeFactory.g2d_bindPrototype(this,p_prototype,"GComponent");
-	}
-	,g2d_currentState: null
-	,g2d_prototypeStates: null
-	,setPrototypeState: function(p_stateName) {
-		if(this.g2d_currentState != p_stateName) {
-			var p_stateName1 = p_stateName;
-			if(p_stateName1 == null) {
-				p_stateName1 = "default";
-			}
-			var _this = this.g2d_prototypeStates.g2d_states;
-			var state = __map_reserved[p_stateName1] != null ? _this.getReserved(p_stateName1) : _this.h[p_stateName1];
-			if(state != null) {
-				this.g2d_currentState = p_stateName;
-				var propertyName = state.keys();
-				while(propertyName.hasNext()) {
-					var propertyName1 = propertyName.next();
-					(__map_reserved[propertyName1] != null ? state.getReserved(propertyName1) : state.h[propertyName1]).bind(this);
-				}
-			} else {
-				var p_stateName2 = "na";
-				if(p_stateName2 == null) {
-					p_stateName2 = "default";
-				}
-				var _this1 = this.g2d_prototypeStates.g2d_states;
-				state = __map_reserved[p_stateName2] != null ? _this1.getReserved(p_stateName2) : _this1.h[p_stateName2];
-				if(state != null) {
-					this.g2d_currentState = p_stateName;
-					var propertyName2 = state.keys();
-					while(propertyName2.hasNext()) {
-						var propertyName3 = propertyName2.next();
-						(__map_reserved[propertyName3] != null ? state.getReserved(propertyName3) : state.h[propertyName3]).bind(this);
-					}
-				}
-			}
-		}
-	}
-	,__class__: com_genome2d_components_GComponent
-	,__properties__: {get_node:"get_node",set_enabled:"set_enabled",get_enabled:"get_enabled",get_userData:"get_userData"}
-};
 var com_genome2d_components_GAnimator = function() {
 	com_genome2d_components_GComponent.call(this);
 };
@@ -5785,358 +7031,6 @@ com_genome2d_components_GAnimator.prototype = $extend(com_genome2d_components_GC
 		com_genome2d_proto_GPrototypeFactory.g2d_bindPrototype(this,p_prototype,"GAnimator");
 	}
 	,__class__: com_genome2d_components_GAnimator
-});
-var com_genome2d_components_GCameraController = function() {
-	this.renderTarget = null;
-	this.backgroundAlpha = 0;
-	this.backgroundBlue = 0;
-	this.backgroundGreen = 0;
-	this.backgroundRed = 0;
-	this.mouseEnabled = true;
-	this.g2d_capturedThisFrame = false;
-	com_genome2d_components_GComponent.call(this);
-};
-$hxClasses["com.genome2d.components.GCameraController"] = com_genome2d_components_GCameraController;
-com_genome2d_components_GCameraController.__name__ = "com.genome2d.components.GCameraController";
-com_genome2d_components_GCameraController.__super__ = com_genome2d_components_GComponent;
-com_genome2d_components_GCameraController.prototype = $extend(com_genome2d_components_GComponent.prototype,{
-	g2d_viewRectangle: null
-	,g2d_capturedThisFrame: null
-	,g2d_renderedNodesCount: null
-	,mouseEnabled: null
-	,g2d_onMouseInput: null
-	,get_onMouseInput: function() {
-		if(this.g2d_onMouseInput == null) {
-			this.g2d_onMouseInput = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
-		}
-		return this.g2d_onMouseInput;
-	}
-	,backgroundRed: null
-	,backgroundGreen: null
-	,backgroundBlue: null
-	,backgroundAlpha: null
-	,renderTarget: null
-	,viewport: null
-	,id: null
-	,getBackgroundColor: function() {
-		var alpha = (this.backgroundAlpha * 255 | 0) << 24;
-		var red = (this.backgroundRed * 255 | 0) << 16;
-		var green = (this.backgroundGreen * 255 | 0) << 8;
-		var blue = this.backgroundBlue * 255 | 0;
-		return alpha + red + green + blue;
-	}
-	,g2d_contextCamera: null
-	,get_contextCamera: function() {
-		return this.g2d_contextCamera;
-	}
-	,setView: function(p_normalizedX,p_normalizedY,p_normalizedWidth,p_normalizedHeight) {
-		this.g2d_contextCamera.normalizedViewX = p_normalizedX;
-		this.g2d_contextCamera.normalizedViewY = p_normalizedY;
-		this.g2d_contextCamera.normalizedViewWidth = p_normalizedWidth;
-		this.g2d_contextCamera.normalizedViewHeight = p_normalizedHeight;
-	}
-	,get_zoom: function() {
-		return this.g2d_contextCamera.scaleX;
-	}
-	,set_zoom: function(p_value) {
-		return this.g2d_contextCamera.scaleX = this.g2d_contextCamera.scaleY = p_value;
-	}
-	,init: function() {
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		this.g2d_contextCamera = new com_genome2d_context_GCamera(com_genome2d_node_GNode.g2d_core.g2d_context);
-		this.g2d_viewRectangle = new com_genome2d_geom_GRectangle(0,0,0,0);
-		var tmp = this.g2d_node;
-		var _this1 = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		if(tmp != com_genome2d_node_GNode.g2d_core.g2d_root && this.g2d_node.isOnStage()) {
-			var _this2 = this.g2d_node;
-			if(com_genome2d_node_GNode.g2d_core == null) {
-				if(com_genome2d_Genome2D.g2d_instance == null) {
-					com_genome2d_Genome2D.g2d_instantiable = true;
-					new com_genome2d_Genome2D();
-					com_genome2d_Genome2D.g2d_instantiable = false;
-				}
-				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-			}
-			com_genome2d_node_GNode.g2d_core.g2d_addCameraController(this);
-		}
-		var _this3 = this.g2d_node;
-		if(_this3.g2d_onAddedToStage == null) {
-			_this3.g2d_onAddedToStage = new com_genome2d_callbacks_GCallback0();
-		}
-		_this3.g2d_onAddedToStage.add($bind(this,this.g2d_onAddedToStage));
-		var _this4 = this.g2d_node;
-		if(_this4.g2d_onRemovedFromStage == null) {
-			_this4.g2d_onRemovedFromStage = new com_genome2d_callbacks_GCallback0();
-		}
-		_this4.g2d_onRemovedFromStage.add($bind(this,this.g2d_onRemovedFromStage));
-	}
-	,render: function() {
-		if(!this.g2d_node.g2d_active) {
-			return;
-		}
-		this.g2d_renderedNodesCount = 0;
-		this.g2d_contextCamera.x = this.g2d_node.g2d_worldX;
-		this.g2d_contextCamera.y = this.g2d_node.g2d_worldY;
-		this.g2d_contextCamera.rotation = this.g2d_node.g2d_worldRotation;
-		if(this.g2d_contextCamera.normalizedViewWidth <= 0 || this.g2d_contextCamera.normalizedViewHeight <= 0) {
-			return;
-		}
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		com_genome2d_node_GNode.g2d_core.g2d_context.setActiveCamera(this.g2d_contextCamera);
-		if(this.renderTarget != null) {
-			var _this1 = this.g2d_node;
-			if(com_genome2d_node_GNode.g2d_core == null) {
-				if(com_genome2d_Genome2D.g2d_instance == null) {
-					com_genome2d_Genome2D.g2d_instantiable = true;
-					new com_genome2d_Genome2D();
-					com_genome2d_Genome2D.g2d_instantiable = false;
-				}
-				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-			}
-			var previousRenderTarget = com_genome2d_node_GNode.g2d_core.g2d_context.getRenderTarget();
-			var _this2 = this.g2d_node;
-			if(com_genome2d_node_GNode.g2d_core == null) {
-				if(com_genome2d_Genome2D.g2d_instance == null) {
-					com_genome2d_Genome2D.g2d_instantiable = true;
-					new com_genome2d_Genome2D();
-					com_genome2d_Genome2D.g2d_instantiable = false;
-				}
-				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-			}
-			com_genome2d_node_GNode.g2d_core.g2d_context.setRenderTarget(this.renderTarget);
-			var _this3 = this.g2d_node;
-			if(com_genome2d_node_GNode.g2d_core == null) {
-				if(com_genome2d_Genome2D.g2d_instance == null) {
-					com_genome2d_Genome2D.g2d_instantiable = true;
-					new com_genome2d_Genome2D();
-					com_genome2d_Genome2D.g2d_instantiable = false;
-				}
-				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-			}
-			com_genome2d_node_GNode.g2d_core.g2d_root.render(false,false,this.g2d_contextCamera,false,false);
-			var _this4 = this.g2d_node;
-			if(com_genome2d_node_GNode.g2d_core == null) {
-				if(com_genome2d_Genome2D.g2d_instance == null) {
-					com_genome2d_Genome2D.g2d_instantiable = true;
-					new com_genome2d_Genome2D();
-					com_genome2d_Genome2D.g2d_instantiable = false;
-				}
-				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-			}
-			com_genome2d_node_GNode.g2d_core.g2d_context.setRenderTarget(previousRenderTarget);
-		} else {
-			var _this5 = this.g2d_node;
-			if(com_genome2d_node_GNode.g2d_core == null) {
-				if(com_genome2d_Genome2D.g2d_instance == null) {
-					com_genome2d_Genome2D.g2d_instantiable = true;
-					new com_genome2d_Genome2D();
-					com_genome2d_Genome2D.g2d_instantiable = false;
-				}
-				com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-			}
-			com_genome2d_node_GNode.g2d_core.g2d_root.render(false,false,this.g2d_contextCamera,false,false);
-		}
-	}
-	,g2d_invalidateViewRect: function() {
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		var stageRect = com_genome2d_node_GNode.g2d_core.g2d_context.getStageViewRect();
-		this.g2d_viewRectangle.setTo(stageRect.width * this.g2d_contextCamera.normalizedViewX,stageRect.height * this.g2d_contextCamera.normalizedViewY,stageRect.width * this.g2d_contextCamera.normalizedViewWidth,stageRect.height * this.g2d_contextCamera.normalizedViewHeight);
-	}
-	,captureMouseInput: function(p_input) {
-		if(this.g2d_capturedThisFrame || !this.g2d_node.g2d_active) {
-			return;
-		}
-		this.g2d_capturedThisFrame = true;
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		var stageRect = com_genome2d_node_GNode.g2d_core.g2d_context.getStageViewRect();
-		this.g2d_viewRectangle.setTo(stageRect.width * this.g2d_contextCamera.normalizedViewX,stageRect.height * this.g2d_contextCamera.normalizedViewY,stageRect.width * this.g2d_contextCamera.normalizedViewWidth,stageRect.height * this.g2d_contextCamera.normalizedViewHeight);
-		if(!p_input.mouseOut && !this.g2d_viewRectangle.contains(p_input.contextX,p_input.contextY)) {
-			return;
-		}
-		var tx = p_input.contextX - this.g2d_viewRectangle.x - this.g2d_viewRectangle.width / 2;
-		var ty = p_input.contextY - this.g2d_viewRectangle.y - this.g2d_viewRectangle.height / 2;
-		var cos = Math.cos(-this.g2d_node.g2d_worldRotation);
-		var sin = Math.sin(-this.g2d_node.g2d_worldRotation);
-		var rx = tx * cos - ty * sin;
-		var ry = ty * cos + tx * sin;
-		rx /= this.g2d_contextCamera.scaleX;
-		ry /= this.g2d_contextCamera.scaleX;
-		p_input.worldX = rx + this.g2d_node.g2d_worldX;
-		p_input.worldY = ry + this.g2d_node.g2d_worldY;
-		p_input.camera = this;
-		if(!p_input.captured && this.g2d_onMouseInput != null) {
-			this.g2d_onMouseInput.dispatch(p_input);
-		}
-		var _this1 = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		com_genome2d_node_GNode.g2d_core.g2d_root.captureMouseInput(p_input);
-	}
-	,onDispose: function() {
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		com_genome2d_node_GNode.g2d_core.g2d_removeCameraController(this);
-		var _this1 = this.g2d_node;
-		if(_this1.g2d_onAddedToStage == null) {
-			_this1.g2d_onAddedToStage = new com_genome2d_callbacks_GCallback0();
-		}
-		_this1.g2d_onAddedToStage.remove($bind(this,this.g2d_onAddedToStage));
-		var _this2 = this.g2d_node;
-		if(_this2.g2d_onRemovedFromStage == null) {
-			_this2.g2d_onRemovedFromStage = new com_genome2d_callbacks_GCallback0();
-		}
-		_this2.g2d_onRemovedFromStage.remove($bind(this,this.g2d_onRemovedFromStage));
-	}
-	,g2d_onAddedToStage: function() {
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		com_genome2d_node_GNode.g2d_core.g2d_addCameraController(this);
-	}
-	,g2d_onRemovedFromStage: function() {
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		com_genome2d_node_GNode.g2d_core.g2d_removeCameraController(this);
-	}
-	,setViewport: function(p_width,p_height,p_resize) {
-		if(p_resize == null) {
-			p_resize = true;
-		}
-		if(this.viewport != null) {
-			this.viewport.dispose();
-		}
-		this.viewport = new com_genome2d_context_GViewport(this,p_width,p_height,p_resize);
-	}
-	,worldToScreen: function(p_world,p_result) {
-		var tx = p_world.x - this.g2d_node.g2d_worldX;
-		var ty = p_world.y - this.g2d_node.g2d_worldY;
-		tx *= this.g2d_contextCamera.scaleX;
-		ty *= this.g2d_contextCamera.scaleX;
-		var cos = Math.cos(this.g2d_node.g2d_worldRotation);
-		var sin = Math.sin(this.g2d_node.g2d_worldRotation);
-		var rx = tx * cos - ty * sin;
-		var ry = ty * cos + tx * sin;
-		if(p_result == null) {
-			p_result = new com_genome2d_geom_GPoint(0,0);
-		}
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		var stageRect = com_genome2d_node_GNode.g2d_core.g2d_context.getStageViewRect();
-		this.g2d_viewRectangle.setTo(stageRect.width * this.g2d_contextCamera.normalizedViewX,stageRect.height * this.g2d_contextCamera.normalizedViewY,stageRect.width * this.g2d_contextCamera.normalizedViewWidth,stageRect.height * this.g2d_contextCamera.normalizedViewHeight);
-		p_result.x = rx + this.g2d_viewRectangle.x + this.g2d_viewRectangle.width / 2;
-		p_result.y = ry - this.g2d_viewRectangle.y - this.g2d_viewRectangle.height / 2;
-		return p_result;
-	}
-	,screenToWorld: function(p_screen,p_result) {
-		var _this = this.g2d_node;
-		if(com_genome2d_node_GNode.g2d_core == null) {
-			if(com_genome2d_Genome2D.g2d_instance == null) {
-				com_genome2d_Genome2D.g2d_instantiable = true;
-				new com_genome2d_Genome2D();
-				com_genome2d_Genome2D.g2d_instantiable = false;
-			}
-			com_genome2d_node_GNode.g2d_core = com_genome2d_Genome2D.g2d_instance;
-		}
-		var stageRect = com_genome2d_node_GNode.g2d_core.g2d_context.getStageViewRect();
-		this.g2d_viewRectangle.setTo(stageRect.width * this.g2d_contextCamera.normalizedViewX,stageRect.height * this.g2d_contextCamera.normalizedViewY,stageRect.width * this.g2d_contextCamera.normalizedViewWidth,stageRect.height * this.g2d_contextCamera.normalizedViewHeight);
-		var tx = p_screen.x - this.g2d_viewRectangle.x - this.g2d_viewRectangle.width / 2;
-		var ty = p_screen.y - this.g2d_viewRectangle.y - this.g2d_viewRectangle.height / 2;
-		var cos = Math.cos(-this.g2d_node.g2d_worldRotation);
-		var sin = Math.sin(-this.g2d_node.g2d_worldRotation);
-		var rx = tx * cos - ty * sin;
-		var ry = ty * cos + tx * sin;
-		rx /= this.g2d_contextCamera.scaleX;
-		ry /= this.g2d_contextCamera.scaleX;
-		if(p_result == null) {
-			p_result = new com_genome2d_geom_GPoint(0,0);
-		}
-		p_result.x = rx + this.g2d_node.g2d_worldX;
-		p_result.y = ry + this.g2d_node.g2d_worldY;
-		return p_result;
-	}
-	,getPrototype: function(p_prototype) {
-		p_prototype = com_genome2d_proto_GPrototypeFactory.g2d_getPrototype(p_prototype,this,"GCameraController");
-		return com_genome2d_components_GComponent.prototype.getPrototype.call(this,p_prototype);
-	}
-	,bindPrototype: function(p_prototype) {
-		com_genome2d_components_GComponent.prototype.bindPrototype.call(this,p_prototype);
-		com_genome2d_proto_GPrototypeFactory.g2d_bindPrototype(this,p_prototype,"GCameraController");
-	}
-	,__class__: com_genome2d_components_GCameraController
-	,__properties__: $extend(com_genome2d_components_GComponent.prototype.__properties__,{set_zoom:"set_zoom",get_zoom:"get_zoom",get_contextCamera:"get_contextCamera",get_onMouseInput:"get_onMouseInput"})
 });
 var com_genome2d_components_GFrameAnimator = function() {
 	this.g2d_currentFrame = -1;
@@ -48174,6 +49068,12 @@ if(ArrayBuffer.prototype.slice == null) {
 	ArrayBuffer.prototype.slice = js_lib__$ArrayBuffer_ArrayBufferCompat.sliceImpl;
 }
 EReg.escapeRe = new RegExp("[.*+?^${}()|[\\]\\\\]","g");
+com_genome2d_proto_GPrototypeHelper.GComponent = "com.genome2d.components.GComponent";
+com_genome2d_proto_GPrototypeHelper.com_genome2d_components_GComponent = "com.genome2d.components.GComponent";
+com_genome2d_proto_GPrototypeHelper.GCameraController = "com.genome2d.components.GCameraController";
+com_genome2d_proto_GPrototypeHelper.com_genome2d_components_GCameraController = "com.genome2d.components.GCameraController";
+com_genome2d_proto_GPrototypeHelper.CameraController = "com.dinox.model.CameraController";
+com_genome2d_proto_GPrototypeHelper.com_dinox_model_CameraController = "com.dinox.model.CameraController";
 com_genome2d_proto_GPrototypeHelper.GTextureSettings = "com.genome2d.textures.GTextureSettings";
 com_genome2d_proto_GPrototypeHelper.com_genome2d_textures_GTextureSettings = "com.genome2d.textures.GTextureSettings";
 com_genome2d_proto_GPrototypeHelper.GTextureBase = "com.genome2d.textures.GTextureBase";
@@ -48228,8 +49128,6 @@ com_genome2d_proto_GPrototypeHelper.com_genome2d_particles_GParticleEmitter = "c
 com_genome2d_proto_GPrototypeHelper.particle_emitter = "com.genome2d.particles.GParticleEmitter";
 com_genome2d_proto_GPrototypeHelper.GIntRectangle = "com.genome2d.geom.GIntRectangle";
 com_genome2d_proto_GPrototypeHelper.com_genome2d_geom_GIntRectangle = "com.genome2d.geom.GIntRectangle";
-com_genome2d_proto_GPrototypeHelper.GComponent = "com.genome2d.components.GComponent";
-com_genome2d_proto_GPrototypeHelper.com_genome2d_components_GComponent = "com.genome2d.components.GComponent";
 com_genome2d_proto_GPrototypeHelper.GSimpleParticleSystemD = "com.genome2d.deprecated.components.renderable.particles.GSimpleParticleSystemD";
 com_genome2d_proto_GPrototypeHelper.com_genome2d_deprecated_components_renderable_particles_GSimpleParticleSystemD = "com.genome2d.deprecated.components.renderable.particles.GSimpleParticleSystemD";
 com_genome2d_proto_GPrototypeHelper.GParticleSystemD = "com.genome2d.deprecated.components.renderable.particles.GParticleSystemD";
@@ -48269,8 +49167,6 @@ com_genome2d_proto_GPrototypeHelper.GFrameAnimation = "com.genome2d.animation.GF
 com_genome2d_proto_GPrototypeHelper.com_genome2d_animation_GFrameAnimation = "com.genome2d.animation.GFrameAnimation";
 com_genome2d_proto_GPrototypeHelper.GTexture = "com.genome2d.textures.GTexture";
 com_genome2d_proto_GPrototypeHelper.com_genome2d_textures_GTexture = "com.genome2d.textures.GTexture";
-com_genome2d_proto_GPrototypeHelper.GCameraController = "com.genome2d.components.GCameraController";
-com_genome2d_proto_GPrototypeHelper.com_genome2d_components_GCameraController = "com.genome2d.components.GCameraController";
 com_genome2d_proto_GPrototypeHelper.GNode = "com.genome2d.node.GNode";
 com_genome2d_proto_GPrototypeHelper.com_genome2d_node_GNode = "com.genome2d.node.GNode";
 com_genome2d_proto_GPrototypeHelper.node = "com.genome2d.node.GNode";
@@ -48315,9 +49211,30 @@ Xml.Comment = 3;
 Xml.DocType = 4;
 Xml.ProcessingInstruction = 5;
 Xml.Document = 6;
+com_genome2d_components_GComponent.PROTOTYPE_PROPERTY_DEFAULTS = [];
+com_genome2d_components_GComponent.PROTOTYPE_PROPERTY_NAMES = [];
+com_genome2d_components_GComponent.PROTOTYPE_PROPERTY_TYPES = [];
+com_genome2d_components_GComponent.PROTOTYPE_PROPERTY_EXTRAS = [];
+com_genome2d_components_GComponent.PROTOTYPE_NAME = "GComponent";
+com_genome2d_components_GComponent.PROTOTYPE_DEFAULT_CHILD_GROUP = "default";
+com_genome2d_components_GCameraController.__meta__ = { fields : { mouseEnabled : { prototype : null}}};
+com_genome2d_components_GCameraController.PROTOTYPE_PROPERTY_DEFAULTS = [true];
+com_genome2d_components_GCameraController.PROTOTYPE_PROPERTY_NAMES = ["mouseEnabled"];
+com_genome2d_components_GCameraController.PROTOTYPE_PROPERTY_TYPES = ["Bool"];
+com_genome2d_components_GCameraController.PROTOTYPE_PROPERTY_EXTRAS = [0];
+com_genome2d_components_GCameraController.PROTOTYPE_NAME = "GCameraController";
+com_genome2d_components_GCameraController.PROTOTYPE_DEFAULT_CHILD_GROUP = "default";
+com_dinox_model_CameraController.PROTOTYPE_PROPERTY_DEFAULTS = [];
+com_dinox_model_CameraController.PROTOTYPE_PROPERTY_NAMES = [];
+com_dinox_model_CameraController.PROTOTYPE_PROPERTY_TYPES = [];
+com_dinox_model_CameraController.PROTOTYPE_PROPERTY_EXTRAS = [];
+com_dinox_model_CameraController.PROTOTYPE_NAME = "CameraController";
+com_dinox_model_CameraController.PROTOTYPE_DEFAULT_CHILD_GROUP = "default";
+com_dinox_model_LandMap.MAX_SCALE = 2;
+com_dinox_model_LandMap.MIN_SCALE = 0.1;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "08cdc23c76b3b0d9188fbdaf5e68c8f1";
-com_genome2d_Genome2D.DATE = "2022-04-28 16:37:48";
+com_genome2d_Genome2D.BUILD = "7630e6dc9de7fb0b31260b5b213a8cb4";
+com_genome2d_Genome2D.DATE = "2022-05-04 14:16:38";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];
@@ -48329,25 +49246,12 @@ com_genome2d_animation_GFrameAnimation.PROTOTYPE_DEFAULT_CHILD_GROUP = "default"
 com_genome2d_assets_GAsset.__meta__ = { obj : { prototypeName : ["asset"]}, fields : { id : { prototype : null}, url : { prototype : null}}};
 com_genome2d_assets_GAssetManager.PATH_REGEX = new EReg("([^\\?/\\\\]+?)(?:\\.([\\w\\-]+))?(?:\\?.*)?$","");
 com_genome2d_assets_GAssetManager.URL_TO_ID_REGEX = new EReg("\\\\","g");
-com_genome2d_components_GComponent.PROTOTYPE_PROPERTY_DEFAULTS = [];
-com_genome2d_components_GComponent.PROTOTYPE_PROPERTY_NAMES = [];
-com_genome2d_components_GComponent.PROTOTYPE_PROPERTY_TYPES = [];
-com_genome2d_components_GComponent.PROTOTYPE_PROPERTY_EXTRAS = [];
-com_genome2d_components_GComponent.PROTOTYPE_NAME = "GComponent";
-com_genome2d_components_GComponent.PROTOTYPE_DEFAULT_CHILD_GROUP = "default";
 com_genome2d_components_GAnimator.PROTOTYPE_PROPERTY_DEFAULTS = [];
 com_genome2d_components_GAnimator.PROTOTYPE_PROPERTY_NAMES = [];
 com_genome2d_components_GAnimator.PROTOTYPE_PROPERTY_TYPES = [];
 com_genome2d_components_GAnimator.PROTOTYPE_PROPERTY_EXTRAS = [];
 com_genome2d_components_GAnimator.PROTOTYPE_NAME = "GAnimator";
 com_genome2d_components_GAnimator.PROTOTYPE_DEFAULT_CHILD_GROUP = "default";
-com_genome2d_components_GCameraController.__meta__ = { fields : { mouseEnabled : { prototype : null}}};
-com_genome2d_components_GCameraController.PROTOTYPE_PROPERTY_DEFAULTS = [true];
-com_genome2d_components_GCameraController.PROTOTYPE_PROPERTY_NAMES = ["mouseEnabled"];
-com_genome2d_components_GCameraController.PROTOTYPE_PROPERTY_TYPES = ["Bool"];
-com_genome2d_components_GCameraController.PROTOTYPE_PROPERTY_EXTRAS = [0];
-com_genome2d_components_GCameraController.PROTOTYPE_NAME = "GCameraController";
-com_genome2d_components_GCameraController.PROTOTYPE_DEFAULT_CHILD_GROUP = "default";
 com_genome2d_components_GFrameAnimator.PROTOTYPE_PROPERTY_DEFAULTS = [];
 com_genome2d_components_GFrameAnimator.PROTOTYPE_PROPERTY_NAMES = [];
 com_genome2d_components_GFrameAnimator.PROTOTYPE_PROPERTY_TYPES = [];
@@ -48884,7 +49788,7 @@ haxe_xml_Parser.escapes = (function($this) {
 hscript_Parser.p1 = 0;
 hscript_Parser.tokenMin = 0;
 hscript_Parser.tokenMax = 0;
-Test.main();
+com_dinox_Main.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 
 //# sourceMappingURL=test.js.map

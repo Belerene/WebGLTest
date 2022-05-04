@@ -4,7 +4,7 @@
     <option name="buildConfig" value="1" />
     <option name="haxeTarget" value="JavaScript" />
     <option name="hxmlPath" value="$MODULE_DIR$/build.hxml" />
-    <option name="outputFolder" value="$MODULE_DIR$/production/WebGLTest" />
+    <option name="outputFolder" value="$MODULE_DIR$/out/production/WebGLTest" />
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -17,5 +17,6 @@
     <orderEntry type="library" name="Genome2D-Spine" level="project" />
     <orderEntry type="library" name="Genome2D-ContextCommon" level="project" />
     <orderEntry type="library" name="Genome2D-Core" level="project" />
+    <orderEntry type="library" name="Genome2D-Examples" level="project" />
   </component>
 </module>
