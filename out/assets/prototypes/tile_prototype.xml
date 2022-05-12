@@ -1,0 +1,1 @@
+<element name="tile" preferredWidth="60" preferredHeight="60" skin.normal="@tile_n" skin.small="@tile_s" skin.large="@tile_l"/>

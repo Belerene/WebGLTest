@@ -8,6 +8,9 @@ import com.genome2d.project.GProjectConfig;
 import com.genome2d.project.GProject;
 class Main extends GProject{
 
+    public static var  stageWidth: Int = 0;
+    public static var  stageHeight: Int = 0;
+
     private var initType:Int = 0;
 
     private var core: Core;
@@ -23,11 +26,11 @@ class Main extends GProject{
     public function new(?p_init:Int = 0) {
         initType = p_init;
         var contextConfig:GContextConfig = new GContextConfig(null);
+        stageWidth = contextConfig.nativeStage.width;
+        stageHeight = contextConfig.nativeStage.height;
         var config:GProjectConfig = new GProjectConfig(contextConfig);
         config.initGenome = initType == 0;
         super(config);
-
-        GDebug.info();
     }
 
     override private function init():Void {

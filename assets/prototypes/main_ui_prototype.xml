@@ -1,0 +1,3 @@
+<element name="uiHolder" anchorLeft="0" anchorRight="1" anchorTop="0" anchorBottom="1" anchorY="0" anchorX="0" mouseEnabled="false">
+    <element name="ui" skin="@ui" preferredHeight="650" preferredWidth="1423" anchorLeft="0" anchorRight="1" anchorTop="0" anchorBottom="1" flushBatch="true" sliceTop="230" sliceBottom="232" sliceLeft="409" sliceRigt="411" mouseEnabled="false"/>
+</element>
