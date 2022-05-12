@@ -11,6 +11,7 @@ class Tile {
 
     public var iIndex: Int;
     public var jIndex: Int;
+    public var tileIsInGroup: Bool = false;
 
     private static var ZOOM_BREAKPOINT_SMALL: Float = 0.85;
     private static var ZOOM_BREAKPOINT_LARGE: Float = 1.25;

@@ -13,6 +13,8 @@ class LandMap {
     private static var MAX_SCALE: Float = 2;
     private static var MIN_SCALE: Float = 0.5;
 
+    public static var TILE_COUNT: Int = 16; // real tile count is TILE_COUNT x TILE_COUNT
+
     private var mainMapScreen: MainMapScreen;
 
     private var canChangeZoom: Bool = true;
@@ -27,23 +29,56 @@ class LandMap {
     private var uiGui: GUI;
     private var mapGui: GUI;
 
+    private var tiles: Array<Array<Tile>>;
+
     public function new(p_uiGui: GUI, p_mapGui: GUI, p_core: Core) {
         core = p_core;
         uiGui = p_uiGui;
         mapGui = p_mapGui;
         mainMapScreen = new MainMapScreen(uiGui, mapGui);
+        tiles = mainMapScreen.setupTiles();
         addMainMapScreenListeners();
+        setupTileGroup(3,3,6);
     }
 
     private function addMainMapScreenListeners(): Void {
-        mainMapScreen.addMouseWheelListener(mouseWheel_handler);
-        mainMapScreen.addMouseMoveListener(mouseMove_handler);
-        mainMapScreen.addMouseOverListener(mouseOver_handler);
-        mainMapScreen.addMouseOutListener(mouseOut_handler);
-        mainMapScreen.addMouseDownListener(mouseDown_handler);
-        mainMapScreen.addMouseUpListener(mouseUp_handler);
-        mainMapScreen.addMouseClickListener(mouseClick_handler);
+        addMouseWheelListener(mouseWheel_handler);
+        addMouseMoveListener(mouseMove_handler);
+        addMouseOverListener(mouseOver_handler);
+        addMouseOutListener(mouseOut_handler);
+        addMouseDownListener(mouseDown_handler);
+        addMouseUpListener(mouseUp_handler);
+        addMouseClickListener(mouseClick_handler);
     }
+
+    public function setupTileGroup(p_i: Int, p_j: Int, p_size: Int): TileGroup {
+        if(p_i + p_size <= LandMap.TILE_COUNT &&
+        p_j + p_size <= LandMap.TILE_COUNT) {
+            var canAddTileGroup: Bool = true;
+            var tilesForGroup: Array<Tile> = new Array<Tile>();
+            for(i in p_i...p_size-1) {
+                for(j in p_j...p_size-1) {
+                    if(tiles[i][j].tileIsInGroup) {
+                        canAddTileGroup = false;
+                    }
+                }
+            }
+            if(canAddTileGroup) {
+                var dataToPropagate: String  = cast tiles[p_i][p_j].getTileElement().userData;
+                for(i in p_i...p_size-1) {
+                    for(j in p_j...p_size-1) {
+                        tiles[i][j].tileIsInGroup = true;
+                        tiles[i][j].getTileElement().userData = cast dataToPropagate;
+                        tilesForGroup.push(tiles[i][j]);
+                    }
+                }
+                var res: TileGroup = new TileGroup(tilesForGroup);
+                return res;
+            }
+        }
+        return null;
+    }
+
 
     private function mouseClick_handler(signal: GMouseInput): Void {
 
@@ -109,7 +144,7 @@ class LandMap {
 
 
     private function onCompleteZoom(scaleAfterChange: Float):Void {
-        mainMapScreen.zoomChanged(scaleAfterChange);
+        zoomChanged(scaleAfterChange);
         GDebug.info("scaleAfterChange: " + Std.string(scaleAfterChange + " zoom: " + Std.string(core.getMapCamera().zoom)));
         canChangeZoom = true;
     }
@@ -174,6 +209,72 @@ class LandMap {
                 if(p_openNewPopup) {
                     handleInfoPopupOpen(p_x, p_y);
                 }
+            }
+        }
+    }
+
+    public function addMouseWheelListener(p_handler: GMouseInput->Void): Void {
+        for(tileRow in tiles) {
+            for(tile in tileRow) {
+                tile.getTileElement().onMouseWheel.add(p_handler);
+            }
+        }
+    }
+
+    public function addMouseMoveListener(p_handler: GMouseInput->Void): Void {
+        for(tileRow in tiles) {
+            for(tile in tileRow) {
+                tile.getTileElement().onMouseMove.add(p_handler);
+            }
+        }
+    }
+
+    public function addMouseOverListener(p_handler: GMouseInput->Void): Void {
+        for(tileRow in tiles) {
+            for(tile in tileRow) {
+                tile.getTileElement().onMouseOver.add(p_handler);
+            }
+        }
+    }
+
+    public function addMouseOutListener(p_handler: GMouseInput->Void): Void {
+        for(tileRow in tiles) {
+            for(tile in tileRow) {
+                tile.getTileElement().onMouseOut.add(p_handler);
+            }
+        }
+    }
+
+    public function addMouseDownListener(p_handler: GMouseInput->Void): Void {
+        for(tileRow in tiles) {
+            for(tile in tileRow) {
+                tile.getTileElement().onMouseDown.add(p_handler);
+            }
+        }
+    }
+
+    public function addMouseUpListener(p_handler: GMouseInput->Void): Void {
+        for(tileRow in tiles) {
+            for(tile in tileRow) {
+                tile.getTileElement().onMouseUp.add(p_handler);
+            }
+        }
+    }
+
+    public function addMouseClickListener(p_handler: GMouseInput->Void): Void {
+        for(tileRow in tiles) {
+            for(tile in tileRow) {
+                tile.getTileElement().onMouseClick.add(p_handler);
+            }
+        }
+    }
+
+    public function zoomChanged(p_scale: Float): Void {
+        var tileRow: Array<Tile>;
+        for(i in 0...tiles.length) {
+            tileRow = tiles[i];
+            for(j in 0...tileRow.length) {
+                tileRow[j].zoomChanged(p_scale);
             }
         }
     }

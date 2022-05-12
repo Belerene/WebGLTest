@@ -17,19 +17,10 @@ class TileRenderer {
 
 
     private var assetState: String;
-    private var tileAsset_n: GTexture;
-    private var tileAsset_s: GTexture;
-    private var tileAsset_l: GTexture;
-    private var tileSprite: GSprite;
     public function new(p_assetId_n: String, p_assetId_s: String, p_assetId_l: String) {
-        tileAsset_n = GTextureManager.getTexture(p_assetId_n);
-        tileAsset_s = GTextureManager.getTexture(p_assetId_s);
-        tileAsset_l = GTextureManager.getTexture(p_assetId_l);
 
         tileElement = cast GXmlPrototypeParser.createPrototypeFromXmlString(tileXml.toString());
 
-        tileSprite = cast(GNode.createWithComponent(GSprite), GSprite);
-        tileSprite.node.mouseEnabled = true;
         renderNormalTexture();
     }
 
@@ -41,7 +32,6 @@ class TileRenderer {
 
     public function renderNormalTexture(): Void {
         if(assetState!= NORMAL_STATE) {
-            tileSprite.texture = tileAsset_n;
             assetState = NORMAL_STATE;
             tileElement.setState(NORMAL_STATE);
         }
@@ -49,7 +39,6 @@ class TileRenderer {
 
     public function renderLargeTexture(): Void {
         if(assetState!= LARGE_STATE) {
-            tileSprite.texture = tileAsset_l;
             assetState = LARGE_STATE;
             tileElement.setState(LARGE_STATE);
         }
@@ -57,7 +46,6 @@ class TileRenderer {
 
     public function renderSmallTexture(): Void {
         if(assetState!= SMALL_STATE) {
-            tileSprite.texture = tileAsset_s;
             assetState = SMALL_STATE;
             tileElement.setState(SMALL_STATE);
         }
