@@ -1,1 +1,3 @@
-<element name="info_popup" preferredWidth="400" preferredHeight="200" skin="@dev"/>
+<element name="info_popup" preferredWidth="400" preferredHeight="200" skin="@dev">
+    <element name="info_popup_title" skin="@fontSkin" model="123" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER"/>
+</element>
