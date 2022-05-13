@@ -1980,19 +1980,12 @@ com_dinox_model_AssetsWrapper.prototype = {
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/map_prototype.xml","map_element");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/tile_prototype.xml","tile");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/info_popup_prototype.xml","popup_element");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/skin_sheet.xml","skin_sheet");
 	}
 	,assetsLoaded: function() {
-		com_genome2d_textures_GTextureManager.createTexture(com_genome2d_assets_GStaticAssetManager.getImageAssetById("dinos").g2d_id,com_genome2d_assets_GStaticAssetManager.getImageAssetById("dinos"));
-		com_genome2d_textures_GTextureManager.createTexture(com_genome2d_assets_GStaticAssetManager.getImageAssetById("tile_n").g2d_id,com_genome2d_assets_GStaticAssetManager.getImageAssetById("tile_n"));
-		com_genome2d_textures_GTextureManager.createTexture(com_genome2d_assets_GStaticAssetManager.getImageAssetById("tile_l").g2d_id,com_genome2d_assets_GStaticAssetManager.getImageAssetById("tile_l"));
-		com_genome2d_textures_GTextureManager.createTexture(com_genome2d_assets_GStaticAssetManager.getImageAssetById("tile_s").g2d_id,com_genome2d_assets_GStaticAssetManager.getImageAssetById("tile_s"));
-		com_genome2d_textures_GTextureManager.createTexture(com_genome2d_assets_GStaticAssetManager.getImageAssetById("ui").g2d_id,com_genome2d_assets_GStaticAssetManager.getImageAssetById("ui"));
-		com_genome2d_textures_GTextureManager.createTexture(com_genome2d_assets_GStaticAssetManager.getImageAssetById("dev").g2d_id,com_genome2d_assets_GStaticAssetManager.getImageAssetById("dev"));
-		new com_genome2d_ui_skin_GUITextureSkin("ui",com_genome2d_textures_GTextureManager.getTexture("ui"));
-		new com_genome2d_ui_skin_GUITextureSkin("tile_n",com_genome2d_textures_GTextureManager.getTexture("tile_n"));
-		new com_genome2d_ui_skin_GUITextureSkin("tile_l",com_genome2d_textures_GTextureManager.getTexture("tile_l"));
-		new com_genome2d_ui_skin_GUITextureSkin("tile_s",com_genome2d_textures_GTextureManager.getTexture("tile_s"));
-		new com_genome2d_ui_skin_GUITextureSkin("dev",com_genome2d_textures_GTextureManager.getTexture("dev"));
+		com_genome2d_assets_GStaticAssetManager.generate();
+		var skinSheetXml = com_genome2d_assets_GStaticAssetManager.getXmlAssetById("skin_sheet").xml;
+		com_genome2d_proto_parsers_GXmlPrototypeParser.createPrototypeFromXmlString(haxe_xml_Printer.print(skinSheetXml));
 		this.assetsLoaded_handler();
 	}
 	,loadAssetsQueue: function() {
@@ -49316,8 +49309,8 @@ com_dinox_view_TileRenderer.SMALL_STATE = "small";
 com_dinox_view_TileRenderer.LARGE_STATE = "large";
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "0a26aa81df8aadf7b1bab6fc5a2fcbbc";
-com_genome2d_Genome2D.DATE = "2022-05-13 09:51:42";
+com_genome2d_Genome2D.BUILD = "ff7411fc569536108b76e9b4262d7b88";
+com_genome2d_Genome2D.DATE = "2022-05-13 09:53:39";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

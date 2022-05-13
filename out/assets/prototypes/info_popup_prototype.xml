@@ -1,1 +1,1 @@
-<element name="info_popup" preferredWidth="400" preferredHeight="200" skin="@dev" sliceLeft="2" sliceRight="3" sliceTop="2" sliceBottom="3"/>
+<element name="info_popup" preferredWidth="400" preferredHeight="200" skin="@dev"/>

@@ -1,4 +1,5 @@
 package com.dinox.model;
+import com.genome2d.proto.parsers.GXmlPrototypeParser;
 import com.genome2d.ui.skin.GUITextureSkin;
 import com.genome2d.ui.skin.GUISkin;
 import com.genome2d.ui.skin.GUISkinManager;
@@ -28,32 +29,41 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/ui.png", "ui");
         GStaticAssetManager.addFromUrl("assets/dev.png", "dev");
 
+        // FONTS
+//        GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");
+//        GStaticAssetManager.addFromUrl("assets/fonts/font.fnt", "font_fnt");
 
         // PROTOTYPES
         GStaticAssetManager.addFromUrl("assets/prototypes/main_ui_prototype.xml", "ui_element");
         GStaticAssetManager.addFromUrl("assets/prototypes/map_prototype.xml", "map_element");
         GStaticAssetManager.addFromUrl("assets/prototypes/tile_prototype.xml", "tile");
         GStaticAssetManager.addFromUrl("assets/prototypes/info_popup_prototype.xml", "popup_element");
+        GStaticAssetManager.addFromUrl("assets/skin_sheet.xml", "skin_sheet");
     }
 
     private function assetsLoaded(): Void {
         // create textures to be later used from loaded assets
+        GStaticAssetManager.generate();
 
-        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("dinos").id, cast GStaticAssetManager.getImageAssetById("dinos"));
-        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_n").id, cast GStaticAssetManager.getImageAssetById("tile_n"));
-        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_l").id, cast GStaticAssetManager.getImageAssetById("tile_l"));
-        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_s").id, cast GStaticAssetManager.getImageAssetById("tile_s"));
-        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("ui").id, cast GStaticAssetManager.getImageAssetById("ui"));
-        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("dev").id, cast GStaticAssetManager.getImageAssetById("dev"));
+//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("dinos").id, cast GStaticAssetManager.getImageAssetById("dinos"));
+//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_n").id, cast GStaticAssetManager.getImageAssetById("tile_n"));
+//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_l").id, cast GStaticAssetManager.getImageAssetById("tile_l"));
+//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_s").id, cast GStaticAssetManager.getImageAssetById("tile_s"));
+//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("ui").id, cast GStaticAssetManager.getImageAssetById("ui"));
+//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("dev").id, cast GStaticAssetManager.getImageAssetById("dev"));
 
 
-
+        var skinSheetXml: Xml = GStaticAssetManager.getXmlAssetById("skin_sheet").xml;
+        GXmlPrototypeParser.createPrototypeFromXmlString(skinSheetXml.toString());
         // create skins to be used with GUIElements
-        new GUITextureSkin("ui", GTextureManager.getTexture("ui"));
-        new GUITextureSkin("tile_n", GTextureManager.getTexture("tile_n"));
-        new GUITextureSkin("tile_l", GTextureManager.getTexture("tile_l"));
-        new GUITextureSkin("tile_s", GTextureManager.getTexture("tile_s"));
-        new GUITextureSkin("dev", GTextureManager.getTexture("dev"));
+//
+//        new GUITextureSkin("ui", GTextureManager.getTexture("ui"));
+//        new GUITextureSkin("tile_n", GTextureManager.getTexture("tile_n"));
+//        new GUITextureSkin("tile_l", GTextureManager.getTexture("tile_l"));
+//        new GUITextureSkin("tile_s", GTextureManager.getTexture("tile_s"));
+//        new GUITextureSkin("dev", GTextureManager.getTexture("dev"));
+//        new GUITextureSkin("font_png", GTextureManager.getTexture("font_png"));
+//        new GUITextureSkin("font_fnt", GTextureManager.getTexture("font_fnt"));
 
         assetsLoaded_handler();
     }
