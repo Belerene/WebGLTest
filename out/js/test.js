@@ -2512,8 +2512,8 @@ com_dinox_model_Core.prototype = {
 	}
 	,setupUIGUI: function() {
 		this.uiGui = js_Boot.__cast(com_genome2d_node_GNode.createWithComponent(com_genome2d_components_renderable_ui_GUI) , com_genome2d_components_renderable_ui_GUI);
-		this.uiGui.g2d_node.mouseEnabled = true;
-		this.uiGui.root.mouseEnabled = true;
+		this.uiGui.g2d_node.mouseEnabled = false;
+		this.uiGui.root.mouseEnabled = false;
 		this.uiGui.setBounds(new com_genome2d_geom_GRectangle(0,0,com_dinox_Main.stageWidth,com_dinox_Main.stageHeight));
 		this.uiGui.g2d_node.cameraGroup = com_dinox_model_Core.UI_CAMERA_GROUP;
 		this.rootNode.addChild(this.uiGui.g2d_node);
@@ -49309,8 +49309,8 @@ com_dinox_view_TileRenderer.SMALL_STATE = "small";
 com_dinox_view_TileRenderer.LARGE_STATE = "large";
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "ff7411fc569536108b76e9b4262d7b88";
-com_genome2d_Genome2D.DATE = "2022-05-13 09:53:39";
+com_genome2d_Genome2D.BUILD = "64f893e1bab2b0e526b62edc5e53bffd";
+com_genome2d_Genome2D.DATE = "2022-05-13 12:23:02";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

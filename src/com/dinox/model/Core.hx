@@ -47,8 +47,8 @@ class Core {
 
     private function setupUIGUI(): Void {
         uiGui = cast(GNode.createWithComponent(GUI), GUI);
-        uiGui.node.mouseEnabled = true;
-        uiGui.root.mouseEnabled = true;
+        uiGui.node.mouseEnabled = false;
+        uiGui.root.mouseEnabled = false;
         uiGui.setBounds(new GRectangle(0,0, Main.stageWidth,Main.stageHeight));
         uiGui.node.cameraGroup = UI_CAMERA_GROUP;
         rootNode.addChild(uiGui.node);
