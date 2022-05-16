@@ -3234,10 +3234,10 @@ com_dinox_model_LandMap.prototype = {
 	,handleInfoPopupOpen: function(p_x,p_y) {
 		this.openInfoPopup = new com_dinox_view_InfoPopupElement();
 		var _this = this.openInfoPopup.getGuiElement();
-		_this.g2d_anchorX = p_x + 5;
+		_this.g2d_anchorX = com_dinox_Main.stageWidth - this.openInfoPopup.getGuiElement().g2d_preferredWidth;
 		_this.setDirty();
 		var _this1 = this.openInfoPopup.getGuiElement();
-		_this1.g2d_anchorY = p_y + 5;
+		_this1.g2d_anchorY = 0;
 		_this1.setDirty();
 		this.uiGui.root.addChild(this.openInfoPopup.getGuiElement());
 		this.openInfoPopup.getGuiElement().alpha = 0;
@@ -49509,8 +49509,8 @@ com_dinox_view_TileRenderer.SMALL_STATE = "small";
 com_dinox_view_TileRenderer.LARGE_STATE = "large";
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "79133cff6ae5509d2a5d51deb312bb5a";
-com_genome2d_Genome2D.DATE = "2022-05-16 12:45:44";
+com_genome2d_Genome2D.BUILD = "2528e898dac0607e525eb457fc37be94";
+com_genome2d_Genome2D.DATE = "2022-05-16 13:03:57";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

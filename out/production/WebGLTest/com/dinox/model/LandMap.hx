@@ -193,8 +193,8 @@ class LandMap {
 
     private function handleInfoPopupOpen(p_x: Float, p_y: Float): Void {
         openInfoPopup = new InfoPopupElement();
-        openInfoPopup.getGuiElement().anchorX = p_x + 5;
-        openInfoPopup.getGuiElement().anchorY = p_y + 5;
+        openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
+        openInfoPopup.getGuiElement().anchorY = 0;
         uiGui.root.addChild(openInfoPopup.getGuiElement());
         openInfoPopup.getGuiElement().alpha = 0;
         canHideInfoPopup = false;

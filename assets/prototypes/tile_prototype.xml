@@ -1,6 +1,6 @@
 <element name="tile" preferredWidth="60" preferredHeight="60" skin.normal="@tile_n" skin.small="@tile_s" skin.large="@tile_l" mouseEnabled="true">
-    <element name="tile_border_t" preferredHeight="5" preferredWidth="60" skin="@dev" anchorAlignt="TOP_CENTER"/>
-    <element name="tile_border_b" preferredHeight="5" preferredWidth="60" skin="@dev" anchorAlignt="BOTTOM_CENTER"/>
-    <element name="tile_border_l" preferredHeight="60" preferredWidth="5" skin="@dev" anchorAlignt="MIDDLE_LEFT"/>
-    <element name="tile_border_r" preferredHeight="60" preferredWidth="5" skin="@dev" anchorAlignt="MIDDLE_RIGHT"/>
+    <element name="tile_border_t" preferredHeight="5" preferredWidth="60" skin="@dev" anchorAlign="TOP_CENTER" anchorX="-30"/>
+    <element name="tile_border_b" preferredHeight="5" preferredWidth="60" skin="@dev" anchorAlign="BOTTOM_CENTER" anchorX="-30"/>
+    <element name="tile_border_l" preferredHeight="60" preferredWidth="5" skin="@dev" anchorAlign="MIDDLE_LEFT" anchorY="-30"/>
+    <element name="tile_border_r" preferredHeight="60" preferredWidth="5" skin="@dev" anchorAlign="MIDDLE_RIGHT" anchorY="-30"/>
 </element>
