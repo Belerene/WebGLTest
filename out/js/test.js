@@ -1976,6 +1976,9 @@ com_dinox_model_AssetsWrapper.prototype = {
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/tile_s.png","tile_s");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/ui.png","ui");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/dev.png","dev");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/dev_black.png","dev_black");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/font.png","font_png");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/font.fnt","font_fnt");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/main_ui_prototype.xml","ui_element");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/map_prototype.xml","map_element");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/tile_prototype.xml","tile");
@@ -1984,6 +1987,7 @@ com_dinox_model_AssetsWrapper.prototype = {
 	}
 	,assetsLoaded: function() {
 		com_genome2d_assets_GStaticAssetManager.generate();
+		com_genome2d_text_GFontManager.createTextureFont("font_fnt",com_genome2d_textures_GTextureManager.getTexture("font_png"),com_genome2d_assets_GStaticAssetManager.getXmlAssetById("font_fnt").xml);
 		var skinSheetXml = com_genome2d_assets_GStaticAssetManager.getXmlAssetById("skin_sheet").xml;
 		com_genome2d_proto_parsers_GXmlPrototypeParser.createPrototypeFromXmlString(haxe_xml_Printer.print(skinSheetXml));
 		this.assetsLoaded_handler();
@@ -5323,6 +5327,104 @@ com_genome2d_assets_GAssetManager.prototype = {
 		var asset = new haxe_ds__$StringMap_StringMapIterator(_this,_this.arrayKeys());
 		while(asset.hasNext()) {
 			var asset1 = asset.next();
+			var p_arg1 = "CREATE TEXTURE 1 --------- : " + asset1.g2d_id;
+			var p_arg2 = null;
+			var p_arg3 = null;
+			var p_arg4 = null;
+			var p_arg5 = null;
+			var p_arg6 = null;
+			var p_arg7 = null;
+			var p_arg8 = null;
+			var p_arg9 = null;
+			var p_arg10 = null;
+			var p_arg11 = null;
+			var p_arg12 = null;
+			var p_arg13 = null;
+			var p_arg14 = null;
+			var p_arg15 = null;
+			var p_arg16 = null;
+			var p_arg17 = null;
+			var p_arg18 = null;
+			var p_arg19 = null;
+			var p_arg20 = null;
+			var pos = { fileName : "../Genome2D/Genome2D-ContextCommon/src/com/genome2d/assets/GAssetManager.hx", lineNumber : 208, className : "com.genome2d.assets.GAssetManager", methodName : "generate"};
+			if(com_genome2d_debug_GDebug.showPriority <= 3) {
+				var args = [];
+				if(p_arg1 != null) {
+					args.push(p_arg1);
+				}
+				if(p_arg2 != null) {
+					args.push(p_arg2);
+				}
+				if(p_arg3 != null) {
+					args.push(p_arg3);
+				}
+				if(p_arg4 != null) {
+					args.push(p_arg4);
+				}
+				if(p_arg5 != null) {
+					args.push(p_arg5);
+				}
+				if(p_arg6 != null) {
+					args.push(p_arg6);
+				}
+				if(p_arg7 != null) {
+					args.push(p_arg7);
+				}
+				if(p_arg8 != null) {
+					args.push(p_arg8);
+				}
+				if(p_arg9 != null) {
+					args.push(p_arg9);
+				}
+				if(p_arg10 != null) {
+					args.push(p_arg10);
+				}
+				if(p_arg11 != null) {
+					args.push(p_arg11);
+				}
+				if(p_arg12 != null) {
+					args.push(p_arg12);
+				}
+				if(p_arg13 != null) {
+					args.push(p_arg13);
+				}
+				if(p_arg14 != null) {
+					args.push(p_arg14);
+				}
+				if(p_arg15 != null) {
+					args.push(p_arg15);
+				}
+				if(p_arg16 != null) {
+					args.push(p_arg16);
+				}
+				if(p_arg17 != null) {
+					args.push(p_arg17);
+				}
+				if(p_arg18 != null) {
+					args.push(p_arg18);
+				}
+				if(p_arg19 != null) {
+					args.push(p_arg19);
+				}
+				if(p_arg20 != null) {
+					args.push(p_arg20);
+				}
+				if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+					com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+				}
+				var msg = "INFO: ";
+				if(pos != null) {
+					msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+				}
+				if(args.length > 0) {
+					msg += args.toString();
+				}
+				com_genome2d_debug_GDebug.g2d_log += msg;
+				if(com_genome2d_debug_GDebug.useNativeTrace) {
+					window.console.log(msg);
+				}
+			}
 			if(!((asset1) instanceof com_genome2d_assets_GImageAsset) || !asset1.isLoaded()) {
 				continue;
 			}
@@ -28785,6 +28887,104 @@ com_genome2d_text_GFontManager.createTextureFont = function(p_id,p_texture,p_fon
 	if(p_regionOffsetX == null) {
 		p_regionOffsetX = 0;
 	}
+	var p_arg1 = "CREATE TEXTURE 3 --------- : " + p_id;
+	var p_arg2 = null;
+	var p_arg3 = null;
+	var p_arg4 = null;
+	var p_arg5 = null;
+	var p_arg6 = null;
+	var p_arg7 = null;
+	var p_arg8 = null;
+	var p_arg9 = null;
+	var p_arg10 = null;
+	var p_arg11 = null;
+	var p_arg12 = null;
+	var p_arg13 = null;
+	var p_arg14 = null;
+	var p_arg15 = null;
+	var p_arg16 = null;
+	var p_arg17 = null;
+	var p_arg18 = null;
+	var p_arg19 = null;
+	var p_arg20 = null;
+	var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/text/GFontManager.hx", lineNumber : 43, className : "com.genome2d.text.GFontManager", methodName : "createTextureFont"};
+	if(com_genome2d_debug_GDebug.showPriority <= 3) {
+		var args = [];
+		if(p_arg1 != null) {
+			args.push(p_arg1);
+		}
+		if(p_arg2 != null) {
+			args.push(p_arg2);
+		}
+		if(p_arg3 != null) {
+			args.push(p_arg3);
+		}
+		if(p_arg4 != null) {
+			args.push(p_arg4);
+		}
+		if(p_arg5 != null) {
+			args.push(p_arg5);
+		}
+		if(p_arg6 != null) {
+			args.push(p_arg6);
+		}
+		if(p_arg7 != null) {
+			args.push(p_arg7);
+		}
+		if(p_arg8 != null) {
+			args.push(p_arg8);
+		}
+		if(p_arg9 != null) {
+			args.push(p_arg9);
+		}
+		if(p_arg10 != null) {
+			args.push(p_arg10);
+		}
+		if(p_arg11 != null) {
+			args.push(p_arg11);
+		}
+		if(p_arg12 != null) {
+			args.push(p_arg12);
+		}
+		if(p_arg13 != null) {
+			args.push(p_arg13);
+		}
+		if(p_arg14 != null) {
+			args.push(p_arg14);
+		}
+		if(p_arg15 != null) {
+			args.push(p_arg15);
+		}
+		if(p_arg16 != null) {
+			args.push(p_arg16);
+		}
+		if(p_arg17 != null) {
+			args.push(p_arg17);
+		}
+		if(p_arg18 != null) {
+			args.push(p_arg18);
+		}
+		if(p_arg19 != null) {
+			args.push(p_arg19);
+		}
+		if(p_arg20 != null) {
+			args.push(p_arg20);
+		}
+		if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+			com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+		}
+		var msg = "INFO: ";
+		if(pos != null) {
+			msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+		}
+		if(args.length > 0) {
+			msg += args.toString();
+		}
+		com_genome2d_debug_GDebug.g2d_log += msg;
+		if(com_genome2d_debug_GDebug.useNativeTrace) {
+			window.console.log(msg);
+		}
+	}
 	var textureFont = new com_genome2d_text_GTextureFont();
 	if(p_id != textureFont.g2d_id) {
 		com_genome2d_text_GFontManager.g2d_removeFont(textureFont);
@@ -49309,8 +49509,8 @@ com_dinox_view_TileRenderer.SMALL_STATE = "small";
 com_dinox_view_TileRenderer.LARGE_STATE = "large";
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "62fcbeb53647dfc36f8854cad5ba20af";
-com_genome2d_Genome2D.DATE = "2022-05-13 12:36:07";
+com_genome2d_Genome2D.BUILD = "79133cff6ae5509d2a5d51deb312bb5a";
+com_genome2d_Genome2D.DATE = "2022-05-16 12:45:44";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

@@ -1,4 +1,7 @@
 package com.dinox.model;
+import com.genome2d.textures.GTexture;
+import com.genome2d.assets.GAssetManager;
+import com.genome2d.text.GFontManager;
 import com.genome2d.proto.parsers.GXmlPrototypeParser;
 import com.genome2d.ui.skin.GUITextureSkin;
 import com.genome2d.ui.skin.GUISkin;
@@ -28,10 +31,11 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/tile_s.png", "tile_s");
         GStaticAssetManager.addFromUrl("assets/ui.png", "ui");
         GStaticAssetManager.addFromUrl("assets/dev.png", "dev");
+        GStaticAssetManager.addFromUrl("assets/dev_black.png", "dev_black");
 
         // FONTS
-//        GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");
-//        GStaticAssetManager.addFromUrl("assets/fonts/font.fnt", "font_fnt");
+        GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");
+        GStaticAssetManager.addFromUrl("assets/fonts/font.fnt", "font_fnt");
 
         // PROTOTYPES
         GStaticAssetManager.addFromUrl("assets/prototypes/main_ui_prototype.xml", "ui_element");
@@ -45,25 +49,12 @@ class AssetsWrapper {
         // create textures to be later used from loaded assets
         GStaticAssetManager.generate();
 
-//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("dinos").id, cast GStaticAssetManager.getImageAssetById("dinos"));
-//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_n").id, cast GStaticAssetManager.getImageAssetById("tile_n"));
-//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_l").id, cast GStaticAssetManager.getImageAssetById("tile_l"));
-//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("tile_s").id, cast GStaticAssetManager.getImageAssetById("tile_s"));
-//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("ui").id, cast GStaticAssetManager.getImageAssetById("ui"));
-//        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("dev").id, cast GStaticAssetManager.getImageAssetById("dev"));
+        // create fonts
+        GFontManager.createTextureFont("font_fnt", GTextureManager.getTexture("font_png"), GStaticAssetManager.getXmlAssetById("font_fnt").xml);
 
-
+        // create skins to be used with GUIElements
         var skinSheetXml: Xml = GStaticAssetManager.getXmlAssetById("skin_sheet").xml;
         GXmlPrototypeParser.createPrototypeFromXmlString(skinSheetXml.toString());
-        // create skins to be used with GUIElements
-//
-//        new GUITextureSkin("ui", GTextureManager.getTexture("ui"));
-//        new GUITextureSkin("tile_n", GTextureManager.getTexture("tile_n"));
-//        new GUITextureSkin("tile_l", GTextureManager.getTexture("tile_l"));
-//        new GUITextureSkin("tile_s", GTextureManager.getTexture("tile_s"));
-//        new GUITextureSkin("dev", GTextureManager.getTexture("dev"));
-//        new GUITextureSkin("font_png", GTextureManager.getTexture("font_png"));
-//        new GUITextureSkin("font_fnt", GTextureManager.getTexture("font_fnt"));
 
         assetsLoaded_handler();
     }

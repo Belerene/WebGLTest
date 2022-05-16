@@ -1,12 +1,14 @@
 <skinSheet>
 <!--textures-->
     <textureSkin id="dev" texture="@dev" sliceLeft="2" sliceTop="2" sliceRight="3" sliceBottom="3"/>
+    <textureSkin id="dev_black" texture="@dev_black" sliceLeft="2" sliceTop="2" sliceRight="3" sliceBottom="3"/>
     <textureSkin id="ui" texture="@ui"/>
     <textureSkin id="tile_n" texture="@tile_n"/>
     <textureSkin id="tile_l" texture="@tile_l"/>
     <textureSkin id="tile_s" texture="@tile_s"/>
+    <textureSkin id="font_png" texture="@font_png"/>
 
 <!--fonts-->
-    <fontSkin id="fontSkin" font="@font_fnt" color="0xFFFFFF" autoSize="true"/>
+    <fontSkin id="font_fnt" font="@font_fnt" color="0xFFFFFF" autoSize="true"/>
 
 </skinSheet>
