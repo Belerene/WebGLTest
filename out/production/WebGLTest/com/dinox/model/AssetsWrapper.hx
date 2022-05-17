@@ -36,6 +36,10 @@ class AssetsWrapper {
         // FONTS
         GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");
         GStaticAssetManager.addFromUrl("assets/fonts/font.fnt", "font_fnt");
+        GStaticAssetManager.addFromUrl("assets/fonts/chopin_medium.fnt", "font_normal");
+        GStaticAssetManager.addFromUrl("assets/fonts/chopin_medium.png", "font_normal_png");
+        GStaticAssetManager.addFromUrl("assets/fonts/chopin_semibold.fnt", "font_semibold");
+        GStaticAssetManager.addFromUrl("assets/fonts/chopin_semibold.png", "font_semibold_png");
 
         // PROTOTYPES
         GStaticAssetManager.addFromUrl("assets/prototypes/main_ui_prototype.xml", "ui_element");
@@ -51,6 +55,8 @@ class AssetsWrapper {
 
         // create fonts
         GFontManager.createTextureFont("font_fnt", GTextureManager.getTexture("font_png"), GStaticAssetManager.getXmlAssetById("font_fnt").xml);
+        GFontManager.createTextureFont("font_normal", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
+        GFontManager.createTextureFont("font_semibold", GTextureManager.getTexture("font_semibold_png"), GStaticAssetManager.getXmlAssetById("font_semibold").xml);
 
         // create skins to be used with GUIElements
         var skinSheetXml: Xml = GStaticAssetManager.getXmlAssetById("skin_sheet").xml;

@@ -1979,6 +1979,10 @@ com_dinox_model_AssetsWrapper.prototype = {
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/dev_black.png","dev_black");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/font.png","font_png");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/font.fnt","font_fnt");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/chopin_medium.fnt","font_normal");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/chopin_medium.png","font_normal_png");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/chopin_semibold.fnt","font_semibold");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/chopin_semibold.png","font_semibold_png");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/main_ui_prototype.xml","ui_element");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/map_prototype.xml","map_element");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/prototypes/tile_prototype.xml","tile");
@@ -1988,6 +1992,8 @@ com_dinox_model_AssetsWrapper.prototype = {
 	,assetsLoaded: function() {
 		com_genome2d_assets_GStaticAssetManager.generate();
 		com_genome2d_text_GFontManager.createTextureFont("font_fnt",com_genome2d_textures_GTextureManager.getTexture("font_png"),com_genome2d_assets_GStaticAssetManager.getXmlAssetById("font_fnt").xml);
+		com_genome2d_text_GFontManager.createTextureFont("font_normal",com_genome2d_textures_GTextureManager.getTexture("font_normal_png"),com_genome2d_assets_GStaticAssetManager.getXmlAssetById("font_normal").xml);
+		com_genome2d_text_GFontManager.createTextureFont("font_semibold",com_genome2d_textures_GTextureManager.getTexture("font_semibold_png"),com_genome2d_assets_GStaticAssetManager.getXmlAssetById("font_semibold").xml);
 		var skinSheetXml = com_genome2d_assets_GStaticAssetManager.getXmlAssetById("skin_sheet").xml;
 		com_genome2d_proto_parsers_GXmlPrototypeParser.createPrototypeFromXmlString(haxe_xml_Printer.print(skinSheetXml));
 		this.assetsLoaded_handler();
@@ -49509,8 +49515,8 @@ com_dinox_view_TileRenderer.SMALL_STATE = "small";
 com_dinox_view_TileRenderer.LARGE_STATE = "large";
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "2528e898dac0607e525eb457fc37be94";
-com_genome2d_Genome2D.DATE = "2022-05-16 13:03:57";
+com_genome2d_Genome2D.BUILD = "0ce6ab41229a5d4e2218937890a44c2d";
+com_genome2d_Genome2D.DATE = "2022-05-17 10:43:08";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

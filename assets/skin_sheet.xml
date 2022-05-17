@@ -10,5 +10,7 @@
 
 <!--fonts-->
     <fontSkin id="font_fnt" font="@font_fnt" color="0xFFFFFF" autoSize="true"/>
+    <fontSkin id="font_normal" font="@font_normal" color="0xFFFFFF" autoSize="true"/>
+    <fontSkin id="font_semibold" font="@font_semibold" color="0xFFFFFF" autoSize="true"/>
 
 </skinSheet>
