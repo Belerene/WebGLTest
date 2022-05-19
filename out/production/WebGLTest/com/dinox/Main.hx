@@ -29,7 +29,8 @@ class Main extends GProject{
         stageWidth = contextConfig.nativeStage.width;
         stageHeight = contextConfig.nativeStage.height;
         var config:GProjectConfig = new GProjectConfig(contextConfig);
-        config.initGenome = initType == 0;
+        config.initGenome = true;
+//        config.initGenome = initType == 0;
         super(config);
     }
 

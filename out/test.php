@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<canvas tabindex="0" id="canvas" width="1423" height="650" style="outline: none; width: 1423px; height: 650px; cursor: auto;"></canvas>
+<!--<canvas tabindex="0" id="canvas" width="650" height="650" style="outline: none; width: 650px; height: 650px; cursor: auto;"></canvas>-->
+<canvas tabindex="0" id="canvas" width="1400" height="650" style="outline: none; width: 1423px; height: 650px; cursor: auto;"></canvas>
 
 <script crossorigin="anonymous" type="text/javascript" src="js/test.js"></script>
 

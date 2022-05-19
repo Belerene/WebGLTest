@@ -1,0 +1,1 @@
+copy folders to Genome2D folder

@@ -1,4 +1,5 @@
 package com.dinox.view;
+import com.genome2d.debug.GDebug;
 import com.genome2d.ui.element.GUIElement;
 import com.genome2d.proto.parsers.GXmlPrototypeParser;
 import com.genome2d.assets.GStaticAssetManager;
@@ -10,7 +11,7 @@ class TileRenderer {
     public static var NORMAL_STATE: String = "normal";
     public static var SMALL_STATE: String = "small";
     public static var LARGE_STATE: String = "large";
-    public static var BASE_TILE_SIZE: Float = 60;
+    public static var BASE_TILE_SIZE: Int = 60;
 
     private var tileXml: Xml = GStaticAssetManager.getXmlAssetById("tile").xml;
     private var tileElement: GUIElement;
@@ -25,9 +26,9 @@ class TileRenderer {
     }
 
     public function setPosition(p_x: Float, p_y: Float): Void {
+//        GDebug.info("tile x: " + Std.string(p_x), "tile y: " + Std.string(p_y));
         tileElement.anchorX = p_x;
         tileElement.anchorY = p_y;
-//        tileSprite.node.setPosition(p_x, p_y);
     }
 
     public function renderNormalTexture(): Void {

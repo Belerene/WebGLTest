@@ -24,6 +24,7 @@ class Core {
 
     public function new(p_root: GNode) {
         rootNode = p_root;
+//        rootNode.setPosition(0, 0);
         rootNode.setPosition((Main.stageWidth/2), (Main.stageHeight/2));
 
         setupMapGUI();
@@ -47,8 +48,8 @@ class Core {
 
     private function setupUIGUI(): Void {
         uiGui = cast(GNode.createWithComponent(GUI), GUI);
-        uiGui.node.mouseEnabled = false;
-        uiGui.root.mouseEnabled = false;
+        uiGui.node.mouseEnabled = true;
+        uiGui.root.mouseEnabled = true;
         uiGui.setBounds(new GRectangle(0,0, Main.stageWidth,Main.stageHeight));
         uiGui.node.cameraGroup = UI_CAMERA_GROUP;
         rootNode.addChild(uiGui.node);
@@ -58,6 +59,8 @@ class Core {
     private function initMapCamera(): Void {
         mapCamera = cast(GNode.createWithComponent(CameraController), CameraController);
         mapCamera.node.setPosition(0, 0);
+        mapCamera.setView(0, 0, 1, 1);
+//        mapCamera.setView(0, 0, 1, 1);
         mapCamera.contextCamera.group = MAP_CAMERA_GROUP;
         rootNode.addChild(mapCamera.node);
     }
@@ -65,6 +68,7 @@ class Core {
     private function initUICamera(): Void {
         uiCamera = cast(GNode.createWithComponent(CameraController), CameraController);
         uiCamera.node.setPosition(0, 0);
+        uiCamera.setView(0, 0, 1, 1);
         uiCamera.contextCamera.group = UI_CAMERA_GROUP;
         rootNode.addChild(uiCamera.node);
     }
