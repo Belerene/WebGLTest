@@ -4353,6 +4353,11 @@ com_genome2d_tilemap_GTile.prototype = {
 	,__properties__: {set_frameRate:"set_frameRate",get_frameRate:"get_frameRate",set_frameTextures:"set_frameTextures",get_frameCount:"get_frameCount",get_currentFrame:"get_currentFrame",get_lastFrameRendered:"get_lastFrameRendered",get_userData:"get_userData",set_color:"set_color",get_color:"get_color"}
 };
 var com_dinox_model_Tile = function(p_x,p_y,p_rarity,p_size) {
+	this.mythicalColor = [.63,.34,.63];
+	this.legendaryColor = [.83,.55,.16];
+	this.rareColor = [.24,.46,.73];
+	this.uncommonColor = [.07,.61,.28];
+	this.commonColor = [.48,.48,.46];
 	this.tileIsInGroup = false;
 	this.tmpTileId_s = "tile_s";
 	this.tmpTileId_l = "tile_l";
@@ -4374,18 +4379,56 @@ com_dinox_model_Tile.prototype = $extend(com_genome2d_tilemap_GTile.prototype,{
 	,iIndex: null
 	,jIndex: null
 	,tileIsInGroup: null
+	,commonColor: null
+	,uncommonColor: null
+	,rareColor: null
+	,legendaryColor: null
+	,mythicalColor: null
 	,tileRenderer: null
 	,dimHighlight: function() {
 		this.alpha = 0.5;
 	}
 	,highlightTile: function() {
 		this.alpha = 1.5;
-		this.red = (155 | 0) / 255;
-		this.green = (31 | 0) / 255;
-		this.blue = (232 | 0) / 255;
+		var r = 0;
+		var g = 0;
+		var b = 0;
+		switch(this.rarity) {
+		case "common":
+			r = this.commonColor[0];
+			g = this.commonColor[1];
+			b = this.commonColor[2];
+			break;
+		case "legendary":
+			r = this.legendaryColor[0];
+			g = this.legendaryColor[1];
+			b = this.legendaryColor[2];
+			break;
+		case "mythical":
+			r = this.mythicalColor[0];
+			g = this.mythicalColor[1];
+			b = this.mythicalColor[2];
+			break;
+		case "rare":
+			r = this.rareColor[0];
+			g = this.rareColor[1];
+			b = this.rareColor[2];
+			break;
+		case "uncommon":
+			r = this.uncommonColor[0];
+			g = this.uncommonColor[1];
+			b = this.uncommonColor[2];
+			break;
+		}
+		this.red = r;
+		this.green = g;
+		this.blue = b;
 	}
 	,resetHighlight: function() {
 		this.alpha = 1;
+		this.red = 1;
+		this.blue = 1;
+		this.green = 1;
 	}
 	,handleFilter: function(p_filters) {
 		if(p_filters.length == 0) {
@@ -50279,8 +50322,8 @@ com_dinox_view_TileRenderer.SMALL_STATE = "small";
 com_dinox_view_TileRenderer.LARGE_STATE = "large";
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "456d6317cf9ad942bf175aeb602d0578";
-com_genome2d_Genome2D.DATE = "2022-05-19 15:57:41";
+com_genome2d_Genome2D.BUILD = "fdab88a5b00628c03d6b005301541803";
+com_genome2d_Genome2D.DATE = "2022-05-20 13:55:34";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

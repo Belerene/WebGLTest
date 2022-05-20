@@ -20,6 +20,12 @@ class Tile extends GTile{
     public static var ZOOM_BREAKPOINT_LARGE: Float = 1.25;
     public static var BASE_TILE_SIZE: Int = 60;
 
+    private var commonColor: Array<Float> = [.48, .48, .46];
+    private var uncommonColor: Array<Float> = [.07, .61, .28];
+    private var rareColor: Array<Float> = [.24, .46, .73];
+    private var legendaryColor: Array<Float> = [.83, .55, .16];
+    private var mythicalColor: Array<Float> = [.63, .34, .63];
+
 
     private var tileRenderer: TileRenderer;
     public function new(p_x: Int, p_y: Int, p_rarity: String, p_size: String) {
@@ -35,11 +41,41 @@ class Tile extends GTile{
 
     private function highlightTile(): Void {
         alpha = 1.5;
-        color = 0x9B1FE8;
+        var r: Float = 0;
+        var g: Float = 0;
+        var b: Float = 0;
+        switch(rarity) {
+            case TileRarityType.COMMON:
+                r = commonColor[0];
+                g = commonColor[1];
+                b = commonColor[2];
+            case TileRarityType.UNCOMMON:
+                r = uncommonColor[0];
+                g = uncommonColor[1];
+                b = uncommonColor[2];
+            case TileRarityType.RARE:
+                r = rareColor[0];
+                g = rareColor[1];
+                b = rareColor[2];
+            case TileRarityType.LEGENDARY:
+                r = legendaryColor[0];
+                g = legendaryColor[1];
+                b = legendaryColor[2];
+            case TileRarityType.MYTHICAL:
+                r = mythicalColor[0];
+                g = mythicalColor[1];
+                b = mythicalColor[2];
+        }
+        red = r;
+        green = g;
+        blue = b;
     }
 
     private function resetHighlight(): Void {
         alpha = 1;
+        red = 1;
+        blue = 1;
+        green = 1;
     }
 
     public function handleFilter(p_filters: Array<String>): Void {
