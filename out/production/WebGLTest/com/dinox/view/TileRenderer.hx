@@ -11,7 +11,6 @@ class TileRenderer {
     public static var NORMAL_STATE: String = "normal";
     public static var SMALL_STATE: String = "small";
     public static var LARGE_STATE: String = "large";
-    public static var BASE_TILE_SIZE: Int = 60;
 
     private var tileXml: Xml = GStaticAssetManager.getXmlAssetById("tile").xml;
     private var tileElement: GUIElement;
@@ -22,35 +21,8 @@ class TileRenderer {
 
         tileElement = cast GXmlPrototypeParser.createPrototypeFromXmlString(tileXml.toString());
 
-        renderNormalTexture();
     }
 
-    public function setPosition(p_x: Float, p_y: Float): Void {
-//        GDebug.info("tile x: " + Std.string(p_x), "tile y: " + Std.string(p_y));
-        tileElement.anchorX = p_x;
-        tileElement.anchorY = p_y;
-    }
-
-    public function renderNormalTexture(): Void {
-        if(assetState!= NORMAL_STATE) {
-            assetState = NORMAL_STATE;
-            tileElement.setState(NORMAL_STATE);
-        }
-    }
-
-    public function renderLargeTexture(): Void {
-        if(assetState!= LARGE_STATE) {
-            assetState = LARGE_STATE;
-            tileElement.setState(LARGE_STATE);
-        }
-    }
-
-    public function renderSmallTexture(): Void {
-        if(assetState!= SMALL_STATE) {
-            assetState = SMALL_STATE;
-            tileElement.setState(SMALL_STATE);
-        }
-    }
 
     public function getTileElement(): GUIElement {
         return tileElement;

@@ -11,6 +11,7 @@ class InfoPopupElement {
     public function new() {
         popupElement = new GUIElement();
         popupElement = cast GXmlPrototypeParser.createPrototypeFromXmlString(popupXml.toString());
+        popupElement.flushBatch = true;
     }
 
     public function getGuiElement(): GUIElement {

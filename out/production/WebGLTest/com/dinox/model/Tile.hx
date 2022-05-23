@@ -1,11 +1,14 @@
 package com.dinox.model;
+import com.genome2d.context.IGContext;
+import com.genome2d.context.GBlendMode;
+import com.genome2d.node.GNode;
 import com.genome2d.debug.GDebug;
 import com.genome2d.textures.GTexture;
 import com.genome2d.textures.GTextureManager;
 import com.genome2d.tilemap.GTile;
 import com.genome2d.ui.element.GUIElement;
 import com.dinox.view.TileRenderer;
-class Tile extends GTile{
+class Tile {
     private var tmpTileId_n: String = "tile_n";
     private var tmpTileId_l: String = "tile_l";
     private var tmpTileId_s: String = "tile_s";
@@ -26,21 +29,72 @@ class Tile extends GTile{
     private var legendaryColor: Array<Float> = [.83, .55, .16];
     private var mythicalColor: Array<Float> = [.63, .34, .63];
 
+    private var l_separator: GTexture;
+    private var r_separator: GTexture;
+    private var t_separator: GTexture;
+    private var b_separator: GTexture;
+
+    private var  node: GNode;
+    private var  gTile: GTile;
+
 
     private var tileRenderer: TileRenderer;
-    public function new(p_x: Int, p_y: Int, p_rarity: String, p_size: String) {
-        super(TileRenderer.BASE_TILE_SIZE, TileRenderer.BASE_TILE_SIZE, p_x, p_y);
+    public function new(p_x: Int, p_y: Int, p_rarity: String, p_size: String, p_node: GNode) {
+        node = p_node;
+        gTile = new GTile(BASE_TILE_SIZE, BASE_TILE_SIZE, p_x, p_y);
+        // TMP data
+        gTile.userData = cast Std.string(p_x) + ", " + Std.string(p_y);
         rarity = p_rarity;
         landSize = p_size;
-        texture = GTextureManager.getTexture("tile_n");
+        gTile.texture = GTextureManager.getTexture("tile_n");
+        prepareSeparators();
     }
 
+    private function prepareSeparators(): Void {
+        l_separator = GTextureManager.getTexture("dev");
+//        l_separator.width = 5;
+//        l_separator.height = 65;
+        l_separator.pivotX = 0;
+        l_separator.pivotY = 0.5;
+
+        r_separator = GTextureManager.getTexture("dev");
+//        r_separator.width = 5;
+//        r_separator.height = 65;
+        r_separator.pivotX = 1;
+        r_separator.pivotY = 0.5;
+
+        t_separator = GTextureManager.getTexture("dev");
+//        t_separator.width = 65;
+//        t_separator.height = 5;
+        t_separator.pivotX = 0.5;
+        t_separator.pivotY = 0;
+
+        b_separator = GTextureManager.getTexture("dev");
+//        b_separator.width = 65;
+//        b_separator.height = 5;
+        b_separator.pivotX = 0.5;
+        b_separator.pivotY = 1;
+
+//        renderSeparators();
+    }
+
+//    override public function renderSeparators(p_context: IGContext): Void {
+////        GDebug.info();
+//        p_context.draw(l_separator, GBlendMode.NORMAL, mapX, mapY, scaleX, scaleY, rotation, red, green, blue, alpha, null);
+//        p_context.draw(r_separator, GBlendMode.NORMAL, mapX, mapY, scaleX, scaleY, rotation, red, green, blue, alpha, null);
+//        p_context.draw(t_separator, GBlendMode.NORMAL, mapX, mapY, scaleX, scaleY, rotation, red, green, blue, alpha, null);
+//        p_context.draw(b_separator, GBlendMode.NORMAL, mapX, mapY, scaleX, scaleY, rotation, red, green, blue, alpha, null);
+//    }
+
     private function dimHighlight(): Void {
-        alpha = 0.5;
+        gTile.alpha = 0.5;
+        gTile.red = 1;
+        gTile.blue = 1;
+        gTile.green = 1;
     }
 
     private function highlightTile(): Void {
-        alpha = 1.5;
+        gTile.alpha = 1.5;
         var r: Float = 0;
         var g: Float = 0;
         var b: Float = 0;
@@ -66,16 +120,18 @@ class Tile extends GTile{
                 g = mythicalColor[1];
                 b = mythicalColor[2];
         }
-        red = r;
-        green = g;
-        blue = b;
+        gTile.red = r;
+        gTile.green = g;
+        gTile.blue = b;
+
+        prepareSeparators();
     }
 
     private function resetHighlight(): Void {
-        alpha = 1;
-        red = 1;
-        blue = 1;
-        green = 1;
+        gTile.alpha = 1;
+        gTile.red = 1;
+        gTile.blue = 1;
+        gTile.green = 1;
     }
 
     public function handleFilter(p_filters: Array<String>): Void {
@@ -95,15 +151,19 @@ class Tile extends GTile{
 
     public function zoomChanged(p_zoom: Float): Void {
         if(p_zoom <= ZOOM_BREAKPOINT_SMALL) {
-            texture = GTextureManager.getTexture("tile_s");
+            gTile.texture = GTextureManager.getTexture("tile_s");
         } else if (p_zoom > ZOOM_BREAKPOINT_SMALL && p_zoom < ZOOM_BREAKPOINT_LARGE) {
-            texture = GTextureManager.getTexture("tile_n");
+            gTile.texture = GTextureManager.getTexture("tile_n");
         } else if (p_zoom >= ZOOM_BREAKPOINT_LARGE) {
-            texture = GTextureManager.getTexture("tile_l");
+            gTile.texture = GTextureManager.getTexture("tile_l");
         }
     }
 
-    public function getTileElement(): GUIElement {
-        return tileRenderer.getTileElement();
+    public function getGTile(): GTile {
+        return gTile;
+    }
+
+    public static function getIndexFromCoordinates(p_x: Int, p_y: Int): Int {
+        return p_y*LandMap.TILE_COUNT+p_x;
     }
 }

@@ -41,7 +41,7 @@ class MainMapScreen {
         var tiles = new Array<Array<Tile>>();
         var tileRow: Array<Tile>;
         var tile: Tile;
-        var xOffset: Float = (LandMap.TILE_COUNT / 2) * TileRenderer.BASE_TILE_SIZE;
+        var xOffset: Float = (LandMap.TILE_COUNT / 2) * Tile.BASE_TILE_SIZE;
         var yOffset: Float = xOffset;
         GDebug.info("x: " + Std.string(xOffset), "y: " + Std.string(yOffset));
         GDebug.info("START ---- " + Std.string(Date.now().toString()));
