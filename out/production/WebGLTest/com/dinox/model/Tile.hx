@@ -51,31 +51,44 @@ class Tile {
         gTile.texture = GTextureManager.getTexture("tile_n");
     }
 
-    private function prepareSeparators(): Void {
+    public function addTopSeparator(): Void {
         l_separator = GTextureManager.getTexture("separator_v");
         l_separator.pivotX = 0;
         l_separator.pivotY = 0.5;
+    }
 
+    public function addBottomSeparator(): Void {
         r_separator = GTextureManager.getTexture("separator_v");
         r_separator.pivotX = 1;
         r_separator.pivotY = 0.5;
+    }
 
+    public function addLeftSeparator(): Void {
         t_separator = GTextureManager.getTexture("separator_h");
         t_separator.pivotX = 0.5;
         t_separator.pivotY = 0;
+    }
 
+    public function addRightSeparator(): Void {
         b_separator = GTextureManager.getTexture("separator_h");
         b_separator.pivotX = 0.5;
         b_separator.pivotY = 1;
     }
 
     public function renderSeparators(p_context:IGContext, p_x:Float, p_y:Float, p_blendMode:GBlendMode): Void {
-        if(l_separator == null || r_separator == null || t_separator == null || b_separator == null) prepareSeparators();
 
-        p_context.draw(l_separator, p_blendMode, p_x - BASE_TILE_SIZE/2, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        if(l_separator != null) {
+            p_context.draw(l_separator, p_blendMode, p_x - BASE_TILE_SIZE/2, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        }
+        if(r_separator != null) {
         p_context.draw(r_separator, p_blendMode, p_x + BASE_TILE_SIZE/2, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
-        p_context.draw(t_separator, p_blendMode, p_x, p_y - BASE_TILE_SIZE/2, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
-        p_context.draw(b_separator, p_blendMode, p_x, p_y + BASE_TILE_SIZE/2, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        }
+        if(t_separator != null) {
+            p_context.draw(t_separator, p_blendMode, p_x, p_y - BASE_TILE_SIZE/2, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        }
+        if(b_separator != null) {
+            p_context.draw(b_separator, p_blendMode, p_x, p_y + BASE_TILE_SIZE/2, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        }
     }
 
     private function dimHighlight(): Void {

@@ -53,8 +53,6 @@ class LandMap {
         mainMapScreen = new MainMapScreen(uiGui, mapGui);
         filterAsRadioButtons = true;
         addUiFilterListeners();
-//        addMainMapScreenListeners();
-//        gtiles = mainMapScreen.setupTiles();
         setupTiles();
         gtileMap = cast(GNode.createWithComponent(GTileMap), GTileMap);
         gtileMap.setTiles(TILE_COUNT, TILE_COUNT, Tile.BASE_TILE_SIZE, Tile.BASE_TILE_SIZE, tiles);
@@ -62,13 +60,10 @@ class LandMap {
         addMainGMapScreenListeners();
 
         setupTileGroup(3,3,6);
-
-        tmpAddTileSeparators();
     }
 
     private function addMainGMapScreenListeners(): Void {
         core.getMapCamera().onMouseInput.add(handleMapCameraMouseInput);
-//        core.getMapCamera().onMouseInput.add(handleMapCameraMouseInput);
     }
 
     private function handleMapCameraMouseInput(p_input: GMouseInput):Void {
@@ -127,14 +122,6 @@ class LandMap {
         mainMapScreen.addRarityFilterListener(rarityFilterClicked_handler);
     }
 
-    private function tmpAddTileSeparators(): Void {
-//        for(i in 0...tiles.length) {
-//            GDebug.info(i);
-//            tiles[i].renderSeparators(tiles[i].getGTile().node);
-////            tiles[i].renderSeparators(gtileMap.node);
-//        }
-    }
-
     public function setupTileGroup(p_i: Int, p_j: Int, p_size: Int): TileGroup {
         GDebug.info(Tile.getIndexFromCoordinates(p_i, p_j), "i: " + p_i, "j: " + p_j, "size: " + p_size, "tiles: " + tiles.length);
         if(p_i + p_size <= LandMap.TILE_COUNT &&
@@ -150,12 +137,26 @@ class LandMap {
             }
             if(canAddTileGroup) {
                 var dataToPropagate: String  = cast tiles[p_j*LandMap.TILE_COUNT+p_i].getGTile().userData;
+                var index: Int;
                 for(i in p_i...p_i+p_size-1) {
                     for(j in p_j...p_j+p_size-1) {
+                        index = Tile.getIndexFromCoordinates(i, j);
                         GDebug.info("i: " + i, "j: " + j, Tile.getIndexFromCoordinates(i, j));
-                        tiles[Tile.getIndexFromCoordinates(i, j)].tileIsInGroup = true;
-                        tiles[Tile.getIndexFromCoordinates(i, j)].getGTile().userData = cast dataToPropagate;
-                        tilesForGroup.push(tiles[Tile.getIndexFromCoordinates(i, j)]);
+                        tiles[index].tileIsInGroup = true;
+                        tiles[index].getGTile().userData = cast dataToPropagate;
+                        tilesForGroup.push(tiles[index]);
+                        if(i == p_i) {
+                            tiles[index].addTopSeparator();
+                        }
+                        if(i == p_i+p_size-2) {
+                            tiles[index].addBottomSeparator();
+                        }
+                        if(j == p_j) {
+                            tiles[index].addLeftSeparator();
+                        }
+                        if(j == p_j+p_size-2) {
+                            tiles[index].addRightSeparator();
+                        }
                     }
                 }
                 var res: TileGroup = new TileGroup(tilesForGroup);
