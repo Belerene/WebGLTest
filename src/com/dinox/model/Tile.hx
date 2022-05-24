@@ -1,4 +1,6 @@
 package com.dinox.model;
+import com.genome2d.context.GCamera;
+import com.genome2d.components.renderable.GSprite;
 import com.genome2d.context.IGContext;
 import com.genome2d.context.GBlendMode;
 import com.genome2d.node.GNode;
@@ -29,10 +31,10 @@ class Tile {
     private var legendaryColor: Array<Float> = [.83, .55, .16];
     private var mythicalColor: Array<Float> = [.63, .34, .63];
 
-    private var l_separator: GTexture;
-    private var r_separator: GTexture;
-    private var t_separator: GTexture;
-    private var b_separator: GTexture;
+    private var l_separator: GTexture = null;
+    private var r_separator: GTexture = null;
+    private var t_separator: GTexture = null;
+    private var b_separator: GTexture = null;
 
     private var  node: GNode;
     private var  gTile: GTile;
@@ -47,44 +49,34 @@ class Tile {
         rarity = p_rarity;
         landSize = p_size;
         gTile.texture = GTextureManager.getTexture("tile_n");
-        prepareSeparators();
     }
 
     private function prepareSeparators(): Void {
-        l_separator = GTextureManager.getTexture("dev");
-//        l_separator.width = 5;
-//        l_separator.height = 65;
+        l_separator = GTextureManager.getTexture("separator_v");
         l_separator.pivotX = 0;
         l_separator.pivotY = 0.5;
 
-        r_separator = GTextureManager.getTexture("dev");
-//        r_separator.width = 5;
-//        r_separator.height = 65;
+        r_separator = GTextureManager.getTexture("separator_v");
         r_separator.pivotX = 1;
         r_separator.pivotY = 0.5;
 
-        t_separator = GTextureManager.getTexture("dev");
-//        t_separator.width = 65;
-//        t_separator.height = 5;
+        t_separator = GTextureManager.getTexture("separator_h");
         t_separator.pivotX = 0.5;
         t_separator.pivotY = 0;
 
-        b_separator = GTextureManager.getTexture("dev");
-//        b_separator.width = 65;
-//        b_separator.height = 5;
+        b_separator = GTextureManager.getTexture("separator_h");
         b_separator.pivotX = 0.5;
         b_separator.pivotY = 1;
-
-//        renderSeparators();
     }
 
-//    override public function renderSeparators(p_context: IGContext): Void {
-////        GDebug.info();
-//        p_context.draw(l_separator, GBlendMode.NORMAL, mapX, mapY, scaleX, scaleY, rotation, red, green, blue, alpha, null);
-//        p_context.draw(r_separator, GBlendMode.NORMAL, mapX, mapY, scaleX, scaleY, rotation, red, green, blue, alpha, null);
-//        p_context.draw(t_separator, GBlendMode.NORMAL, mapX, mapY, scaleX, scaleY, rotation, red, green, blue, alpha, null);
-//        p_context.draw(b_separator, GBlendMode.NORMAL, mapX, mapY, scaleX, scaleY, rotation, red, green, blue, alpha, null);
-//    }
+    public function renderSeparators(p_context:IGContext, p_x:Float, p_y:Float, p_blendMode:GBlendMode): Void {
+        if(l_separator == null || r_separator == null || t_separator == null || b_separator == null) prepareSeparators();
+
+        p_context.draw(l_separator, p_blendMode, p_x - BASE_TILE_SIZE/2, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        p_context.draw(r_separator, p_blendMode, p_x + BASE_TILE_SIZE/2, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        p_context.draw(t_separator, p_blendMode, p_x, p_y - BASE_TILE_SIZE/2, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        p_context.draw(b_separator, p_blendMode, p_x, p_y + BASE_TILE_SIZE/2, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+    }
 
     private function dimHighlight(): Void {
         gTile.alpha = 0.5;
@@ -124,7 +116,6 @@ class Tile {
         gTile.green = g;
         gTile.blue = b;
 
-        prepareSeparators();
     }
 
     private function resetHighlight(): Void {
@@ -165,5 +156,11 @@ class Tile {
 
     public static function getIndexFromCoordinates(p_x: Int, p_y: Int): Int {
         return p_y*LandMap.TILE_COUNT+p_x;
+    }
+
+    public function render(p_context:IGContext, p_x:Float, p_y:Float, p_frameId:Int, p_time:Float, p_blendMode:GBlendMode): Void {
+        gTile.render(p_context, p_x, p_y, p_frameId, p_time, p_blendMode);
+        renderSeparators(p_context, p_x, p_y, p_blendMode);
+
     }
 }

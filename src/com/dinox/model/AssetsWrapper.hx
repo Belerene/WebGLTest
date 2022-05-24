@@ -32,6 +32,8 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/ui.png", "ui");
         GStaticAssetManager.addFromUrl("assets/dev.png", "dev");
         GStaticAssetManager.addFromUrl("assets/dev_black.png", "dev_black");
+        GStaticAssetManager.addFromUrl("assets/separator_h.png", "separator_h");
+        GStaticAssetManager.addFromUrl("assets/separator_v.png", "separator_v");
 
         // FONTS
         GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");

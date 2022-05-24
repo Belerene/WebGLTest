@@ -1,5 +1,6 @@
 package com.genome2d.components.renderable.tilemap;
 
+import com.dinox.model.Tile;
 import com.genome2d.tilemap.GTile;
 import com.genome2d.input.GMouseInput;
 import com.genome2d.context.GBlendMode;
@@ -13,8 +14,8 @@ class GTileMap extends GComponent implements IGRenderable
 
     private var g2d_width:Int;
     private var g2d_height:Int;
-    private var g2d_tiles:Array<GTile>;
-    public function getTiles():Array<GTile> {
+    private var g2d_tiles:Array<Tile>;
+    public function getTiles():Array<Tile> {
         return g2d_tiles;
     }
 
@@ -31,7 +32,7 @@ class GTileMap extends GComponent implements IGRenderable
         blendMode = GBlendMode.NORMAL;
     }
 
-    public function setTiles(p_mapWidth:Int, p_mapHeight:Int, p_tileWidth:Int, p_tileHeight:Int, p_tiles:Array<GTile> = null,  p_iso:Bool = false):Void {
+    public function setTiles(p_mapWidth:Int, p_mapHeight:Int, p_tileWidth:Int, p_tileHeight:Int, p_tiles:Array<Tile> = null,  p_iso:Bool = false):Void {
         if (p_tiles != null && p_mapWidth*p_mapHeight != p_tiles.length) GDebug.error("Incorrect number of tiles provided for that map size.");
 
         g2d_width = p_mapWidth;
@@ -41,24 +42,24 @@ class GTileMap extends GComponent implements IGRenderable
         if (p_tiles != null) {
             g2d_tiles = p_tiles;
         } else {
-            g2d_tiles = new Array<GTile>();
+            g2d_tiles = new Array<Tile>();
             for (i in 0...g2d_width*g2d_height) g2d_tiles.push(null);
         }
         g2d_iso = p_iso;
     }
-	
-	public function getTile(p_tileIndex:Int):GTile {
-		if (p_tileIndex < 0 || p_tileIndex >= g2d_tiles.length) GDebug.error("Tile index out of bounds.");
-		return g2d_tiles[p_tileIndex];
-	}
 
-    public function setTile(p_tileIndex:Int, p_tile:GTile):Void {
+    public function getTile(p_tileIndex:Int):Tile {
+        if (p_tileIndex < 0 || p_tileIndex >= g2d_tiles.length) GDebug.error("Tile index out of bounds.");
+        return g2d_tiles[p_tileIndex];
+    }
+
+    public function setTile(p_tileIndex:Int, p_tile:Tile):Void {
         if (p_tileIndex<0 || p_tileIndex>= g2d_tiles.length) GDebug.error("Tile index out of bounds.");
-        if (p_tile != null && (p_tile.mapX!=-1 || p_tile.mapY!=-1) && (p_tile.mapX+p_tile.mapY*g2d_width != p_tileIndex)) GDebug.error("Tile map position doesn't match its index.");
+        if (p_tile != null && (p_tile.getGTile().mapX!=-1 || p_tile.getGTile().mapY!=-1) && (p_tile.getGTile().mapX+p_tile.getGTile().mapY*g2d_width != p_tileIndex)) GDebug.error("Tile map position doesn't match its index.");
 
         if (p_tile != null) {
-            for (i in 0...p_tile.sizeX) {
-                for (j in 0...p_tile.sizeY) {
+            for (i in 0...p_tile.getGTile().sizeX) {
+                for (j in 0...p_tile.getGTile().sizeY) {
                     if (g2d_tiles[p_tileIndex+i+j*g2d_width] != null) removeTile(p_tileIndex+i+j*g2d_width);
                     g2d_tiles[p_tileIndex+i+j*g2d_width] = p_tile;
                 }
@@ -70,12 +71,12 @@ class GTileMap extends GComponent implements IGRenderable
 
     public function removeTile(p_tileIndex:Int):Void {
         if (p_tileIndex<0 || p_tileIndex>= g2d_tiles.length) GDebug.error("Tile index out of bounds.");
-        var tile:GTile = g2d_tiles[p_tileIndex];
+        var tile:Tile = g2d_tiles[p_tileIndex];
         if (tile != null) {
-            if (tile.mapX != -1 && tile.mapY != -1) {
-                for (i in 0...tile.sizeX) {
-                    for (j in 0...tile.sizeY) {
-                        if (g2d_tiles[tile.mapX+i+(tile.mapY+j)*g2d_width] == tile) g2d_tiles[tile.mapX+i+(tile.mapY+j)*g2d_width] = null;
+            if (tile.getGTile().mapX != -1 && tile.getGTile().mapY != -1) {
+                for (i in 0...tile.getGTile().sizeX) {
+                    for (j in 0...tile.getGTile().sizeY) {
+                        if (g2d_tiles[tile.getGTile().mapX+i+(tile.getGTile().mapY+j)*g2d_width] == tile) g2d_tiles[tile.getGTile().mapX+i+(tile.getGTile().mapY+j)*g2d_width] = null;
                     }
                 }
             } else {
@@ -125,13 +126,13 @@ class GTileMap extends GComponent implements IGRenderable
 
 
             var index:Int = indexY * g2d_width + indexX + Std.int(i / indexWidth) * g2d_width + i % indexWidth;
-            var tile:GTile = g2d_tiles[index];
+            var tile:Tile = g2d_tiles[index];
             // TODO: All transforms
-            if (tile != null && tile.texture != null) {
+            if (tile != null && tile.getGTile().texture != null) {
                 var frameId:Int = node.core.getCurrentFrameId();
                 var time:Float = node.core.getRunTime();
-                if (tile.sizeX != 1 || tile.sizeY != 1) {
-                    if (tile.lastFrameRendered != frameId) {
+                if (tile.getGTile().sizeX != 1 || tile.getGTile().sizeY != 1) {
+                    if (tile.getGTile().lastFrameRendered != frameId) {
 //                        x -= (indexX +  i % indexWidth - tile.mapX) * g2d_tileWidth;// - (tile.sizeX - 1) * g2d_tileWidth / 2;
 //                        y -= (indexY + row - tile.mapY) * g2d_tileHeight;// - (tile.sizeY - 1) * g2d_tileHeight / 2;
                         tile.render(node.core.getContext(), x, y, frameId, time, blendMode);
@@ -143,7 +144,7 @@ class GTileMap extends GComponent implements IGRenderable
         }
     }
 
-    public function getTileAt(p_x:Float, p_y:Float, p_camera:GCamera = null):GTile {
+    public function getTileAt(p_x:Float, p_y:Float, p_camera:GCamera = null):Tile {
         if (p_camera == null) p_camera = node.core.getContext().getDefaultCamera();
 
         var viewRect:GRectangle = node.core.getContext().getStageViewRect();
@@ -173,16 +174,16 @@ class GTileMap extends GComponent implements IGRenderable
     public function getBounds(p_bounds:GRectangle = null):GRectangle {
         return null;
     }
-	
-	public function hitTest(p_x:Float, p_y:Float):Bool {
-		p_x = p_x / (g2d_width * g2d_tileWidth) + .5;
+
+    public function hitTest(p_x:Float, p_y:Float):Bool {
+        p_x = p_x / (g2d_width * g2d_tileWidth) + .5;
         p_y = p_y / (g2d_height * g2d_tileHeight) + .5;
 
         return (p_x >= 0 && p_x <= 1 && p_y >= 0 && p_y <= 1);
     }
-	
-	@:dox(hide)
-	public function captureMouseInput(p_input:GMouseInput):Void {
+
+    @:dox(hide)
+    public function captureMouseInput(p_input:GMouseInput):Void {
         p_input.captured = p_input.captured || hitTest(p_input.localX, p_input.localY);
-	}
+    }
 }

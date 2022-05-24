@@ -55,13 +55,15 @@ class LandMap {
         addUiFilterListeners();
 //        addMainMapScreenListeners();
 //        gtiles = mainMapScreen.setupTiles();
-        var gtiles: Array<GTile> = setupGTiles();
+        setupTiles();
         gtileMap = cast(GNode.createWithComponent(GTileMap), GTileMap);
-        gtileMap.setTiles(TILE_COUNT, TILE_COUNT, Tile.BASE_TILE_SIZE, Tile.BASE_TILE_SIZE, gtiles);
+        gtileMap.setTiles(TILE_COUNT, TILE_COUNT, Tile.BASE_TILE_SIZE, Tile.BASE_TILE_SIZE, tiles);
         mapGui.node.addChild(gtileMap.node);
         addMainGMapScreenListeners();
 
         setupTileGroup(3,3,6);
+
+        tmpAddTileSeparators();
     }
 
     private function addMainGMapScreenListeners(): Void {
@@ -90,18 +92,15 @@ class LandMap {
         }
     }
 
-    public function setupGTiles(): Array<GTile> {
-        var gtiles = new Array<GTile>();
-        var tile: Tile;
+    public function setupTiles(): Void {
         tiles = new Array<Tile>();
+        var tile: Tile;
         for(i in 0...TILE_COUNT) {
             for(j in 0...LandMap.TILE_COUNT) {
                 tile = new Tile(i, j, addRandomRarity(), addRandomSize(), mapGui.node);
-                gtiles.push(tile.getGTile());
                 tiles.push(tile);
             }
         }
-        return  gtiles;
     }
 
     //TMP
@@ -126,6 +125,14 @@ class LandMap {
     private function addUiFilterListeners(): Void {
         mainMapScreen.addSizeFilterListener(sizeFilterClicked_handler);
         mainMapScreen.addRarityFilterListener(rarityFilterClicked_handler);
+    }
+
+    private function tmpAddTileSeparators(): Void {
+//        for(i in 0...tiles.length) {
+//            GDebug.info(i);
+//            tiles[i].renderSeparators(tiles[i].getGTile().node);
+////            tiles[i].renderSeparators(gtileMap.node);
+//        }
     }
 
     public function setupTileGroup(p_i: Int, p_j: Int, p_size: Int): TileGroup {
