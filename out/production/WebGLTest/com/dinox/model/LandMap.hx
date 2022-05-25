@@ -1,7 +1,10 @@
 package com.dinox.model;
-import com.genome2d.input.GMouseInputType;
-import com.genome2d.tilemap.GTile;
 import com.dinox.view.TileRenderer;
+import com.dinox.model.tile.TileGroup;
+import com.dinox.model.tile.TileSizeType;
+import com.dinox.model.tile.TileRarityType;
+import com.dinox.model.tile.Tile;
+import com.genome2d.input.GMouseInputType;
 import com.genome2d.node.GNode;
 import com.genome2d.components.renderable.tilemap.GTileMap;
 import com.dinox.view.InfoPopupElement;
@@ -11,7 +14,6 @@ import com.genome2d.tween.easing.GLinear;
 import com.genome2d.tween.GTween;
 import com.genome2d.tween.GTweenStep;
 import com.dinox.view.MainMapScreen;
-import com.genome2d.macros.MGDebug;
 import com.genome2d.input.GMouseInput;
 import com.genome2d.debug.GDebug;
 class LandMap {
@@ -55,7 +57,7 @@ class LandMap {
         addUiFilterListeners();
         setupTiles();
         gtileMap = cast(GNode.createWithComponent(GTileMap), GTileMap);
-        gtileMap.setTiles(TILE_COUNT, TILE_COUNT, Tile.BASE_TILE_SIZE, Tile.BASE_TILE_SIZE, tiles);
+        gtileMap.setTiles(TILE_COUNT, TILE_COUNT, TileRenderer.BASE_TILE_SIZE, TileRenderer.BASE_TILE_SIZE, tiles);
         mapGui.node.addChild(gtileMap.node);
         addMainGMapScreenListeners();
 
@@ -110,10 +112,10 @@ class LandMap {
 
     private function addRandomSize(): String {
         var rnd: Float = Math.random();
-        if(rnd < 0.5) return LandSizeType.ONEXONE;
-        if(rnd < 0.75) return LandSizeType.TWOXTWO;
-        if(rnd < 0.9) return LandSizeType.THREEXTHREE;
-        return LandSizeType.FOURXFOUR;
+        if(rnd < 0.5) return TileSizeType.ONEXONE;
+        if(rnd < 0.75) return TileSizeType.TWOXTWO;
+        if(rnd < 0.9) return TileSizeType.THREEXTHREE;
+        return TileSizeType.FOURXFOUR;
     }
     //TMP
 
@@ -334,8 +336,8 @@ class LandMap {
     }
 
     private function handleRadiobuttonFilterClick(p_target: String): Void {
-        if(p_target == LandSizeType.ONEXONE || p_target == LandSizeType.TWOXTWO
-        || p_target == LandSizeType.THREEXTHREE || p_target == LandSizeType.FOURXFOUR) {
+        if(p_target == TileSizeType.ONEXONE || p_target == TileSizeType.TWOXTWO
+        || p_target == TileSizeType.THREEXTHREE || p_target == TileSizeType.FOURXFOUR) {
             if(sizeFilterSelected == p_target) {
                 // size filter is already selected, unselect it
                 sizeFilterSelected = "";

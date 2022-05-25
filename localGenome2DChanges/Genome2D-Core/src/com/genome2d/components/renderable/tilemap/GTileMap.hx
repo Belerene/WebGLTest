@@ -1,6 +1,6 @@
 package com.genome2d.components.renderable.tilemap;
 
-import com.dinox.model.Tile;
+import com.dinox.model.tile.Tile;
 import com.genome2d.tilemap.GTile;
 import com.genome2d.input.GMouseInput;
 import com.genome2d.context.GBlendMode;

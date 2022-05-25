@@ -15,8 +15,6 @@ class UIElement {
         uiElement.getChildByName("ui", true).preferredWidth = Main.stageWidth;
         uiElement.preferredHeight = Main.stageHeight;
         uiElement.getChildByName("ui", true).preferredHeight = Main.stageHeight;
-//        uiElement.anchorX = -(uiElement.preferredWidth/2);
-//        uiElement.anchorY = -(uiElement.preferredHeight/2);
     }
 
     public function getGuiElement(): GUIElement {

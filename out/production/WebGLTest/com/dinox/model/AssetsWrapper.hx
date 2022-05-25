@@ -1,12 +1,6 @@
 package com.dinox.model;
-import com.genome2d.textures.GTexture;
-import com.genome2d.assets.GAssetManager;
 import com.genome2d.text.GFontManager;
 import com.genome2d.proto.parsers.GXmlPrototypeParser;
-import com.genome2d.ui.skin.GUITextureSkin;
-import com.genome2d.ui.skin.GUISkin;
-import com.genome2d.ui.skin.GUISkinManager;
-import com.genome2d.debug.GDebug;
 import com.genome2d.textures.GTextureManager;
 import com.genome2d.assets.GAsset;
 import com.genome2d.assets.GStaticAssetManager;

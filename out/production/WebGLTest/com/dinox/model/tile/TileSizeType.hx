@@ -1,5 +1,5 @@
-package com.dinox.model;
-class LandSizeType {
+package com.dinox.model.tile;
+class TileSizeType {
     inline static public var ONEXONE:String = "one";
     inline static public var TWOXTWO:String = "two";
     inline static public var THREEXTHREE:String = "three";

@@ -1,4 +1,4 @@
-package com.dinox.model;
+package com.dinox.model.tile;
 class TileRarityType {
     inline static public var COMMON:String = "common";
     inline static public var UNCOMMON:String = "uncommon";
