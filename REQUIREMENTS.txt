@@ -1,0 +1,4 @@
+1. what assets are needed? How many types of lands are necessary? (Number + descriptions are needed for Snarky)
+2. assets for separators (are there different types of separators?
+3. assets for UI elements
+4. who will handle land map definitions/how will the data be handled?

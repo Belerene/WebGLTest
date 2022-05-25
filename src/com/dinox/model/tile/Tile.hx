@@ -9,7 +9,18 @@ class Tile {
     private var rarity: String;
     private var landSize: String;
 
-    private var userData:Map<String, Dynamic>;
+    private var _userData:Map<String, Dynamic>;
+    public var userData(get, set):Map<String, Dynamic>;
+    #if swc @:getter(userData) #end
+    inline private function get_userData():Map<String, Dynamic> {
+        if (_userData == null) _userData = new Map<String,Dynamic>();
+        return _userData;
+    }
+    inline private function set_userData(p_data: Map<String, Dynamic>):Map<String, Dynamic> {
+        if (_userData == null) _userData = new Map<String,Dynamic>();
+        _userData = p_data;
+        return _userData;
+    }
 
     public var tileIsInGroup: Bool = false;
 
@@ -21,7 +32,7 @@ class Tile {
         tileRenderer = new TileRenderer(p_x, p_y);
 
         // TMP data
-        userData = cast Std.string(p_x) + ", " + Std.string(p_y);
+        _userData = cast "x: "+ Std.string(p_x) + ", y: " + Std.string(p_y);
         rarity = p_rarity;
         landSize = p_size;
 

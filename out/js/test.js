@@ -2410,11 +2410,11 @@ com_dinox_model_LandMap.prototype = {
 				}
 			}
 			if(canAddTileGroup) {
-				var _this = this.tiles[p_j * com_dinox_model_LandMap.TILE_COUNT + p_i].getGTile();
-				if(_this.g2d_userData == null) {
-					_this.g2d_userData = new haxe_ds_StringMap();
+				var _this = this.tiles[p_j * com_dinox_model_LandMap.TILE_COUNT + p_i];
+				if(_this._userData == null) {
+					_this._userData = new haxe_ds_StringMap();
 				}
-				var dataToPropagate = _this.g2d_userData;
+				var dataToPropagate = _this._userData;
 				var index;
 				var _g21 = p_i;
 				var _g3 = p_i + p_size - 1;
@@ -2425,110 +2425,12 @@ com_dinox_model_LandMap.prototype = {
 					while(_g22 < _g31) {
 						var j1 = _g22++;
 						index = com_dinox_model_tile_Tile.getIndexFromCoordinates(i1,j1);
-						var p_arg110 = "i: " + i1;
-						var p_arg21 = "j: " + j1;
-						var p_arg31 = com_dinox_model_tile_Tile.getIndexFromCoordinates(i1,j1);
-						var p_arg41 = null;
-						var p_arg51 = null;
-						var p_arg61 = null;
-						var p_arg71 = null;
-						var p_arg81 = null;
-						var p_arg91 = null;
-						var p_arg101 = null;
-						var p_arg111 = null;
-						var p_arg121 = null;
-						var p_arg131 = null;
-						var p_arg141 = null;
-						var p_arg151 = null;
-						var p_arg161 = null;
-						var p_arg171 = null;
-						var p_arg181 = null;
-						var p_arg191 = null;
-						var p_arg201 = null;
-						var pos1 = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 146, className : "com.dinox.model.LandMap", methodName : "setupTileGroup"};
-						if(com_genome2d_debug_GDebug.showPriority <= 3) {
-							var args1 = [];
-							if(p_arg110 != null) {
-								args1.push(p_arg110);
-							}
-							if(p_arg21 != null) {
-								args1.push(p_arg21);
-							}
-							if(p_arg31 != null) {
-								args1.push(p_arg31);
-							}
-							if(p_arg41 != null) {
-								args1.push(p_arg41);
-							}
-							if(p_arg51 != null) {
-								args1.push(p_arg51);
-							}
-							if(p_arg61 != null) {
-								args1.push(p_arg61);
-							}
-							if(p_arg71 != null) {
-								args1.push(p_arg71);
-							}
-							if(p_arg81 != null) {
-								args1.push(p_arg81);
-							}
-							if(p_arg91 != null) {
-								args1.push(p_arg91);
-							}
-							if(p_arg101 != null) {
-								args1.push(p_arg101);
-							}
-							if(p_arg111 != null) {
-								args1.push(p_arg111);
-							}
-							if(p_arg121 != null) {
-								args1.push(p_arg121);
-							}
-							if(p_arg131 != null) {
-								args1.push(p_arg131);
-							}
-							if(p_arg141 != null) {
-								args1.push(p_arg141);
-							}
-							if(p_arg151 != null) {
-								args1.push(p_arg151);
-							}
-							if(p_arg161 != null) {
-								args1.push(p_arg161);
-							}
-							if(p_arg171 != null) {
-								args1.push(p_arg171);
-							}
-							if(p_arg181 != null) {
-								args1.push(p_arg181);
-							}
-							if(p_arg191 != null) {
-								args1.push(p_arg191);
-							}
-							if(p_arg201 != null) {
-								args1.push(p_arg201);
-							}
-							if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-								com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos1,args1);
-							}
-							var msg1 = "INFO: ";
-							if(pos1 != null) {
-								msg1 += pos1.fileName + ":" + pos1.lineNumber + " : " + pos1.methodName + " : ";
-							}
-							if(args1.length > 0) {
-								msg1 += args1.toString();
-							}
-							com_genome2d_debug_GDebug.g2d_log += msg1;
-							if(com_genome2d_debug_GDebug.useNativeTrace) {
-								window.console.log(msg1);
-							}
-						}
 						this.tiles[index].tileIsInGroup = true;
-						var _this1 = this.tiles[index].getGTile();
-						if(_this1.g2d_userData == null) {
-							_this1.g2d_userData = new haxe_ds_StringMap();
+						var _this1 = this.tiles[index];
+						if(_this1._userData == null) {
+							_this1._userData = new haxe_ds_StringMap();
 						}
-						_this1.g2d_userData = dataToPropagate;
+						_this1._userData = dataToPropagate;
 						tilesForGroup.push(this.tiles[index]);
 						if(i1 == p_i) {
 							this.tiles[index].addTopSeparator();
@@ -2561,6 +2463,107 @@ com_dinox_model_LandMap.prototype = {
 		var y = signal.contextY;
 		this.lastX = x;
 		this.lastY = y;
+		var tile = this.gtileMap.getTileAt(x,y);
+		if(tile != null) {
+			var p_arg1 = tile.getGTile().mapX;
+			var p_arg2 = tile.getGTile().mapY;
+			var p_arg3 = x;
+			var p_arg4 = y;
+			var p_arg5 = null;
+			var p_arg6 = null;
+			var p_arg7 = null;
+			var p_arg8 = null;
+			var p_arg9 = null;
+			var p_arg10 = null;
+			var p_arg11 = null;
+			var p_arg12 = null;
+			var p_arg13 = null;
+			var p_arg14 = null;
+			var p_arg15 = null;
+			var p_arg16 = null;
+			var p_arg17 = null;
+			var p_arg18 = null;
+			var p_arg19 = null;
+			var p_arg20 = null;
+			var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 201, className : "com.dinox.model.LandMap", methodName : "mouseDown_handler"};
+			if(com_genome2d_debug_GDebug.showPriority <= 3) {
+				var args = [];
+				if(p_arg1 != null) {
+					args.push(p_arg1);
+				}
+				if(p_arg2 != null) {
+					args.push(p_arg2);
+				}
+				if(p_arg3 != null) {
+					args.push(p_arg3);
+				}
+				if(p_arg4 != null) {
+					args.push(p_arg4);
+				}
+				if(p_arg5 != null) {
+					args.push(p_arg5);
+				}
+				if(p_arg6 != null) {
+					args.push(p_arg6);
+				}
+				if(p_arg7 != null) {
+					args.push(p_arg7);
+				}
+				if(p_arg8 != null) {
+					args.push(p_arg8);
+				}
+				if(p_arg9 != null) {
+					args.push(p_arg9);
+				}
+				if(p_arg10 != null) {
+					args.push(p_arg10);
+				}
+				if(p_arg11 != null) {
+					args.push(p_arg11);
+				}
+				if(p_arg12 != null) {
+					args.push(p_arg12);
+				}
+				if(p_arg13 != null) {
+					args.push(p_arg13);
+				}
+				if(p_arg14 != null) {
+					args.push(p_arg14);
+				}
+				if(p_arg15 != null) {
+					args.push(p_arg15);
+				}
+				if(p_arg16 != null) {
+					args.push(p_arg16);
+				}
+				if(p_arg17 != null) {
+					args.push(p_arg17);
+				}
+				if(p_arg18 != null) {
+					args.push(p_arg18);
+				}
+				if(p_arg19 != null) {
+					args.push(p_arg19);
+				}
+				if(p_arg20 != null) {
+					args.push(p_arg20);
+				}
+				if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+					com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+				}
+				var msg = "INFO: ";
+				if(pos != null) {
+					msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+				}
+				if(args.length > 0) {
+					msg += args.toString();
+				}
+				com_genome2d_debug_GDebug.g2d_log += msg;
+				if(com_genome2d_debug_GDebug.useNativeTrace) {
+					window.console.log(msg);
+				}
+			}
+		}
 		this.isDragging = true;
 		if(this.mapDistanceDragged >= 20) {
 			this.closeInfoPopup(false);
@@ -2569,207 +2572,114 @@ com_dinox_model_LandMap.prototype = {
 	,mouseUp_handler: function(signal) {
 		this.isDragging = false;
 		if(this.mapDistanceDragged < 20) {
-			this.closeInfoPopup(true,signal.contextX,signal.contextY);
-		}
-		var p_arg1 = "view rect x: " + Std.string(this.core.getMapCamera().g2d_node.g2d_localX);
-		var p_arg2 = "view rect y: " + Std.string(this.core.getMapCamera().g2d_node.g2d_localY);
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 213, className : "com.dinox.model.LandMap", methodName : "mouseUp_handler"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
+			var x = signal.contextX;
+			var y = signal.contextY;
+			var tile = this.gtileMap.getTileAt(x,y);
+			if(tile != null) {
+				var p_arg1 = tile.getGTile().mapX;
+				var p_arg2 = tile.getGTile().mapY;
+				var p_arg3 = x;
+				var p_arg4 = y;
+				var p_arg5 = null;
+				var p_arg6 = null;
+				var p_arg7 = null;
+				var p_arg8 = null;
+				var p_arg9 = null;
+				var p_arg10 = null;
+				var p_arg11 = null;
+				var p_arg12 = null;
+				var p_arg13 = null;
+				var p_arg14 = null;
+				var p_arg15 = null;
+				var p_arg16 = null;
+				var p_arg17 = null;
+				var p_arg18 = null;
+				var p_arg19 = null;
+				var p_arg20 = null;
+				var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 220, className : "com.dinox.model.LandMap", methodName : "mouseUp_handler"};
+				if(com_genome2d_debug_GDebug.showPriority <= 3) {
+					var args = [];
+					if(p_arg1 != null) {
+						args.push(p_arg1);
+					}
+					if(p_arg2 != null) {
+						args.push(p_arg2);
+					}
+					if(p_arg3 != null) {
+						args.push(p_arg3);
+					}
+					if(p_arg4 != null) {
+						args.push(p_arg4);
+					}
+					if(p_arg5 != null) {
+						args.push(p_arg5);
+					}
+					if(p_arg6 != null) {
+						args.push(p_arg6);
+					}
+					if(p_arg7 != null) {
+						args.push(p_arg7);
+					}
+					if(p_arg8 != null) {
+						args.push(p_arg8);
+					}
+					if(p_arg9 != null) {
+						args.push(p_arg9);
+					}
+					if(p_arg10 != null) {
+						args.push(p_arg10);
+					}
+					if(p_arg11 != null) {
+						args.push(p_arg11);
+					}
+					if(p_arg12 != null) {
+						args.push(p_arg12);
+					}
+					if(p_arg13 != null) {
+						args.push(p_arg13);
+					}
+					if(p_arg14 != null) {
+						args.push(p_arg14);
+					}
+					if(p_arg15 != null) {
+						args.push(p_arg15);
+					}
+					if(p_arg16 != null) {
+						args.push(p_arg16);
+					}
+					if(p_arg17 != null) {
+						args.push(p_arg17);
+					}
+					if(p_arg18 != null) {
+						args.push(p_arg18);
+					}
+					if(p_arg19 != null) {
+						args.push(p_arg19);
+					}
+					if(p_arg20 != null) {
+						args.push(p_arg20);
+					}
+					if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+						com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+					}
+					var msg = "INFO: ";
+					if(pos != null) {
+						msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+					}
+					if(args.length > 0) {
+						msg += args.toString();
+					}
+					com_genome2d_debug_GDebug.g2d_log += msg;
+					if(com_genome2d_debug_GDebug.useNativeTrace) {
+						window.console.log(msg);
+					}
+				}
 			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
+			this.closeInfoPopup(true,tile,signal.contextX,signal.contextY);
 		}
 		this.mapDistanceDragged = 0;
 	}
 	,mouseWheel_handler: function(signal) {
-		var p_arg1 = Std.string(signal);
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 223, className : "com.dinox.model.LandMap", methodName : "mouseWheel_handler"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
 		var change = signal.delta / 15;
 		if(this.canChangeZoom) {
 			if(this.core.getMapCamera().g2d_contextCamera.scaleX + change < com_dinox_model_LandMap.MAX_SCALE && this.core.getMapCamera().g2d_contextCamera.scaleX + change > com_dinox_model_LandMap.MIN_SCALE) {
@@ -2796,208 +2706,12 @@ com_dinox_model_LandMap.prototype = {
 	}
 	,onCompleteZoom: function(scaleAfterChange) {
 		this.zoomChanged(scaleAfterChange);
-		var p_arg1 = "scaleAfterChange: " + Std.string(scaleAfterChange + " zoom: " + Std.string(this.core.getMapCamera().g2d_contextCamera.scaleX));
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 238, className : "com.dinox.model.LandMap", methodName : "onCompleteZoom"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
 		this.canChangeZoom = true;
 	}
 	,onCompleteShowInfoPopup: function() {
-		var p_arg1 = null;
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 243, className : "com.dinox.model.LandMap", methodName : "onCompleteShowInfoPopup"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
 		this.canHideInfoPopup = true;
 	}
-	,onCompleteHideInfoPopup: function(p_openNew,p_x,p_y) {
+	,onCompleteHideInfoPopup: function(p_openNew,p_tile,p_x,p_y) {
 		if(p_y == null) {
 			p_y = 0;
 		}
@@ -3015,7 +2729,7 @@ com_dinox_model_LandMap.prototype = {
 			this.openInfoPopup = null;
 		}
 		if(p_openNew) {
-			this.handleInfoPopupOpen(p_x,p_y);
+			this.handleInfoPopupOpen(p_x,p_y,p_tile);
 		}
 	}
 	,mouseMove_handler: function(signal) {
@@ -3037,106 +2751,14 @@ com_dinox_model_LandMap.prototype = {
 		var distance = Math.sqrt(Math.pow(p_x - this.lastX,2) + Math.pow(p_y - this.lastY,2));
 		this.mapDistanceDragged += distance;
 	}
-	,handleInfoPopupOpen: function(p_x,p_y) {
-		var p_arg1 = null;
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 285, className : "com.dinox.model.LandMap", methodName : "handleInfoPopupOpen"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
+	,handleInfoPopupOpen: function(p_x,p_y,p_tile) {
+		if(p_tile == null) {
+			return;
 		}
-		this.openInfoPopup = new com_dinox_view_InfoPopupElement();
+		if(p_tile._userData == null) {
+			p_tile._userData = new haxe_ds_StringMap();
+		}
+		this.openInfoPopup = new com_dinox_view_InfoPopupElement(p_tile._userData);
 		var _this = this.openInfoPopup.getGuiElement();
 		_this.g2d_anchorX = com_dinox_Main.stageWidth - this.openInfoPopup.getGuiElement().g2d_preferredWidth;
 		_this.setDirty();
@@ -3163,7 +2785,7 @@ com_dinox_model_LandMap.prototype = {
 		_this3.g2d_onComplete = $bind(this,this.onCompleteShowInfoPopup);
 		var step = _this3;
 	}
-	,closeInfoPopup: function(p_openNewPopup,p_x,p_y) {
+	,closeInfoPopup: function(p_openNewPopup,p_tile,p_x,p_y) {
 		if(p_y == null) {
 			p_y = 0;
 		}
@@ -3187,12 +2809,12 @@ com_dinox_model_LandMap.prototype = {
 					}
 				}
 				var _this1 = _this.propF("alpha",0,0.1,false);
-				var p_args = [p_openNewPopup,p_x,p_y];
+				var p_args = [p_openNewPopup,p_tile,p_x,p_y];
 				_this1.g2d_onCompleteArgs = p_args == null ? [] : p_args;
 				_this1.g2d_onComplete = $bind(this,this.onCompleteHideInfoPopup);
 				var step = _this1;
 			} else if(p_openNewPopup) {
-				this.handleInfoPopupOpen(p_x,p_y);
+				this.handleInfoPopupOpen(p_x,p_y,p_tile);
 			}
 		}
 	}
@@ -3218,7 +2840,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 309, className : "com.dinox.model.LandMap", methodName : "sizeFilterClicked_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 316, className : "com.dinox.model.LandMap", methodName : "sizeFilterClicked_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -3320,7 +2942,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 315, className : "com.dinox.model.LandMap", methodName : "rarityFilterClicked_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 322, className : "com.dinox.model.LandMap", methodName : "rarityFilterClicked_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -3440,104 +3062,6 @@ com_dinox_model_LandMap.prototype = {
 		}
 	}
 	,invalidateTilesHighlight: function() {
-		var p_arg1 = "START ---- " + Std.string(HxOverrides.dateStr(new Date()));
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 372, className : "com.dinox.model.LandMap", methodName : "invalidateTilesHighlight"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
 		this.handleFilterRadioButtons();
 		var _g = 0;
 		var _g1 = this.tiles.length;
@@ -3545,307 +3069,13 @@ com_dinox_model_LandMap.prototype = {
 			var i = _g++;
 			this.tiles[i].handleFilter(this.selectedFilters);
 		}
-		var p_arg110 = "END ---- " + Std.string(HxOverrides.dateStr(new Date()));
-		var p_arg21 = null;
-		var p_arg31 = null;
-		var p_arg41 = null;
-		var p_arg51 = null;
-		var p_arg61 = null;
-		var p_arg71 = null;
-		var p_arg81 = null;
-		var p_arg91 = null;
-		var p_arg101 = null;
-		var p_arg111 = null;
-		var p_arg121 = null;
-		var p_arg131 = null;
-		var p_arg141 = null;
-		var p_arg151 = null;
-		var p_arg161 = null;
-		var p_arg171 = null;
-		var p_arg181 = null;
-		var p_arg191 = null;
-		var p_arg201 = null;
-		var pos1 = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 377, className : "com.dinox.model.LandMap", methodName : "invalidateTilesHighlight"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args1 = [];
-			if(p_arg110 != null) {
-				args1.push(p_arg110);
-			}
-			if(p_arg21 != null) {
-				args1.push(p_arg21);
-			}
-			if(p_arg31 != null) {
-				args1.push(p_arg31);
-			}
-			if(p_arg41 != null) {
-				args1.push(p_arg41);
-			}
-			if(p_arg51 != null) {
-				args1.push(p_arg51);
-			}
-			if(p_arg61 != null) {
-				args1.push(p_arg61);
-			}
-			if(p_arg71 != null) {
-				args1.push(p_arg71);
-			}
-			if(p_arg81 != null) {
-				args1.push(p_arg81);
-			}
-			if(p_arg91 != null) {
-				args1.push(p_arg91);
-			}
-			if(p_arg101 != null) {
-				args1.push(p_arg101);
-			}
-			if(p_arg111 != null) {
-				args1.push(p_arg111);
-			}
-			if(p_arg121 != null) {
-				args1.push(p_arg121);
-			}
-			if(p_arg131 != null) {
-				args1.push(p_arg131);
-			}
-			if(p_arg141 != null) {
-				args1.push(p_arg141);
-			}
-			if(p_arg151 != null) {
-				args1.push(p_arg151);
-			}
-			if(p_arg161 != null) {
-				args1.push(p_arg161);
-			}
-			if(p_arg171 != null) {
-				args1.push(p_arg171);
-			}
-			if(p_arg181 != null) {
-				args1.push(p_arg181);
-			}
-			if(p_arg191 != null) {
-				args1.push(p_arg191);
-			}
-			if(p_arg201 != null) {
-				args1.push(p_arg201);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos1,args1);
-			}
-			var msg1 = "INFO: ";
-			if(pos1 != null) {
-				msg1 += pos1.fileName + ":" + pos1.lineNumber + " : " + pos1.methodName + " : ";
-			}
-			if(args1.length > 0) {
-				msg1 += args1.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg1;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg1);
-			}
-		}
 	}
 	,zoomChanged: function(p_scale) {
-		var p_arg1 = "START ---- " + Std.string(HxOverrides.dateStr(new Date()));
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 381, className : "com.dinox.model.LandMap", methodName : "zoomChanged"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
 		var _g = 0;
 		var _g1 = this.tiles.length;
 		while(_g < _g1) {
 			var i = _g++;
 			this.tiles[i].zoomChanged(p_scale);
-		}
-		var p_arg110 = "END ---- " + Std.string(HxOverrides.dateStr(new Date()));
-		var p_arg21 = null;
-		var p_arg31 = null;
-		var p_arg41 = null;
-		var p_arg51 = null;
-		var p_arg61 = null;
-		var p_arg71 = null;
-		var p_arg81 = null;
-		var p_arg91 = null;
-		var p_arg101 = null;
-		var p_arg111 = null;
-		var p_arg121 = null;
-		var p_arg131 = null;
-		var p_arg141 = null;
-		var p_arg151 = null;
-		var p_arg161 = null;
-		var p_arg171 = null;
-		var p_arg181 = null;
-		var p_arg191 = null;
-		var p_arg201 = null;
-		var pos1 = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 385, className : "com.dinox.model.LandMap", methodName : "zoomChanged"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args1 = [];
-			if(p_arg110 != null) {
-				args1.push(p_arg110);
-			}
-			if(p_arg21 != null) {
-				args1.push(p_arg21);
-			}
-			if(p_arg31 != null) {
-				args1.push(p_arg31);
-			}
-			if(p_arg41 != null) {
-				args1.push(p_arg41);
-			}
-			if(p_arg51 != null) {
-				args1.push(p_arg51);
-			}
-			if(p_arg61 != null) {
-				args1.push(p_arg61);
-			}
-			if(p_arg71 != null) {
-				args1.push(p_arg71);
-			}
-			if(p_arg81 != null) {
-				args1.push(p_arg81);
-			}
-			if(p_arg91 != null) {
-				args1.push(p_arg91);
-			}
-			if(p_arg101 != null) {
-				args1.push(p_arg101);
-			}
-			if(p_arg111 != null) {
-				args1.push(p_arg111);
-			}
-			if(p_arg121 != null) {
-				args1.push(p_arg121);
-			}
-			if(p_arg131 != null) {
-				args1.push(p_arg131);
-			}
-			if(p_arg141 != null) {
-				args1.push(p_arg141);
-			}
-			if(p_arg151 != null) {
-				args1.push(p_arg151);
-			}
-			if(p_arg161 != null) {
-				args1.push(p_arg161);
-			}
-			if(p_arg171 != null) {
-				args1.push(p_arg171);
-			}
-			if(p_arg181 != null) {
-				args1.push(p_arg181);
-			}
-			if(p_arg191 != null) {
-				args1.push(p_arg191);
-			}
-			if(p_arg201 != null) {
-				args1.push(p_arg201);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos1,args1);
-			}
-			var msg1 = "INFO: ";
-			if(pos1 != null) {
-				msg1 += pos1.fileName + ":" + pos1.lineNumber + " : " + pos1.methodName + " : ";
-			}
-			if(args1.length > 0) {
-				msg1 += args1.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg1;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg1);
-			}
 		}
 	}
 	,__class__: com_dinox_model_LandMap
@@ -3854,7 +3084,7 @@ var com_dinox_model_tile_Tile = function(p_x,p_y,p_rarity,p_size,p_node) {
 	this.tileIsInGroup = false;
 	this.node = p_node;
 	this.tileRenderer = new com_dinox_view_TileRenderer(p_x,p_y);
-	this.userData = (p_x == null ? "null" : "" + p_x) + ", " + (p_y == null ? "null" : "" + p_y);
+	this._userData = "x: " + (p_x == null ? "null" : "" + p_x) + ", y: " + (p_y == null ? "null" : "" + p_y);
 	this.rarity = p_rarity;
 	this.landSize = p_size;
 };
@@ -3866,7 +3096,20 @@ com_dinox_model_tile_Tile.getIndexFromCoordinates = function(p_x,p_y) {
 com_dinox_model_tile_Tile.prototype = {
 	rarity: null
 	,landSize: null
-	,userData: null
+	,_userData: null
+	,get_userData: function() {
+		if(this._userData == null) {
+			this._userData = new haxe_ds_StringMap();
+		}
+		return this._userData;
+	}
+	,set_userData: function(p_data) {
+		if(this._userData == null) {
+			this._userData = new haxe_ds_StringMap();
+		}
+		this._userData = p_data;
+		return this._userData;
+	}
 	,tileIsInGroup: null
 	,node: null
 	,tileRenderer: null
@@ -3912,6 +3155,7 @@ com_dinox_model_tile_Tile.prototype = {
 		this.tileRenderer.render(p_context,p_x,p_y,p_frameId,p_time,p_blendMode);
 	}
 	,__class__: com_dinox_model_tile_Tile
+	,__properties__: {set_userData:"set_userData",get_userData:"get_userData"}
 };
 var com_dinox_model_tile_TileGroup = function(p_tiles) {
 	this.tiles = p_tiles;
@@ -3928,10 +3172,17 @@ com_dinox_model_tile_TileRarityType.__name__ = "com.dinox.model.tile.TileRarityT
 var com_dinox_model_tile_TileSizeType = function() { };
 $hxClasses["com.dinox.model.tile.TileSizeType"] = com_dinox_model_tile_TileSizeType;
 com_dinox_model_tile_TileSizeType.__name__ = "com.dinox.model.tile.TileSizeType";
-var com_dinox_view_InfoPopupElement = function() {
+var com_dinox_view_InfoPopupElement = function(p_data) {
 	this.popupXml = com_genome2d_assets_GStaticAssetManager.getXmlAssetById("popup_element").xml;
 	this.popupElement = new com_genome2d_ui_element_GUIElement();
 	this.popupElement = com_genome2d_proto_parsers_GXmlPrototypeParser.createPrototypeFromXmlString(haxe_xml_Printer.print(this.popupXml));
+	var _this = this.popupElement.getChildByName("info_popup_title",true);
+	var p_value = p_data;
+	if(com_genome2d_ui_element_GUIElement.setModelHook != null) {
+		p_value = com_genome2d_ui_element_GUIElement.setModelHook(p_value);
+	}
+	_this.g2d_model = Std.string(p_value);
+	_this.g2d_onModelChanged.dispatch(_this);
 	this.popupElement.flushBatch = true;
 };
 $hxClasses["com.dinox.view.InfoPopupElement"] = com_dinox_view_InfoPopupElement;
@@ -50244,7 +49495,7 @@ com_dinox_model_Core.UI_NODE_NAME = "ui_node";
 com_dinox_model_Core.MAP_NODE_NAME = "map_node";
 com_dinox_model_LandMap.MAX_SCALE = 2;
 com_dinox_model_LandMap.MIN_SCALE = 0.2;
-com_dinox_model_LandMap.TILE_COUNT = 256;
+com_dinox_model_LandMap.TILE_COUNT = 16;
 com_dinox_model_tile_TileRarityType.COMMON = "common";
 com_dinox_model_tile_TileRarityType.UNCOMMON = "uncommon";
 com_dinox_model_tile_TileRarityType.RARE = "rare";
@@ -50261,8 +49512,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.85;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "fa2ab1ec167f6f8f6cff19e633d907b6";
-com_genome2d_Genome2D.DATE = "2022-05-25 09:26:01";
+com_genome2d_Genome2D.BUILD = "3e7122f0bb5a9592fcc6da89bbb6450e";
+com_genome2d_Genome2D.DATE = "2022-05-25 14:25:43";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

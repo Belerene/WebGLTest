@@ -141,6 +141,8 @@ class TileRenderer {
 
     public function render(p_context:IGContext, p_x:Float, p_y:Float, p_frameId:Int, p_time:Float, p_blendMode:GBlendMode): Void {
         gTile.render(p_context, p_x, p_y, p_frameId, p_time, p_blendMode);
+//        gTile.render(p_context, p_x - BASE_TILE_SIZE/2, p_y - BASE_TILE_SIZE/2, p_frameId, p_time, p_blendMode);
+//        renderSeparators(p_context, p_x - BASE_TILE_SIZE/2, p_y - BASE_TILE_SIZE/2, p_blendMode);
         renderSeparators(p_context, p_x, p_y, p_blendMode);
     }
 }

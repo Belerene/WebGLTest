@@ -20,8 +20,8 @@ class LandMap {
     private static var MAX_SCALE: Float = 2;
     private static var MIN_SCALE: Float = 0.2;
 
-//    public static var TILE_COUNT: Int = 16; // real tile count is TILE_COUNT x TILE_COUNT
-    public static var TILE_COUNT: Int = 256; // real tile count is TILE_COUNT x TILE_COUNT
+    public static var TILE_COUNT: Int = 16; // real tile count is TILE_COUNT x TILE_COUNT
+//    public static var TILE_COUNT: Int = 256; // real tile count is TILE_COUNT x TILE_COUNT
 
     private var mainMapScreen: MainMapScreen;
 
@@ -138,14 +138,13 @@ class LandMap {
                 }
             }
             if(canAddTileGroup) {
-                var dataToPropagate: String  = cast tiles[p_j*LandMap.TILE_COUNT+p_i].getGTile().userData;
+                var dataToPropagate: String  = cast tiles[p_j*LandMap.TILE_COUNT+p_i].userData;
                 var index: Int;
                 for(i in p_i...p_i+p_size-1) {
                     for(j in p_j...p_j+p_size-1) {
                         index = Tile.getIndexFromCoordinates(i, j);
-                        GDebug.info("i: " + i, "j: " + j, Tile.getIndexFromCoordinates(i, j));
                         tiles[index].tileIsInGroup = true;
-                        tiles[index].getGTile().userData = cast dataToPropagate;
+                        tiles[index].userData = cast dataToPropagate;
                         tilesForGroup.push(tiles[index]);
                         if(i == p_i) {
                             tiles[index].addTopSeparator();
@@ -196,6 +195,12 @@ class LandMap {
 
         lastX = x;
         lastY = y;
+
+        var tile: Tile = gtileMap.getTileAt(x,y);
+        if(tile != null) {
+            GDebug.info(tile.getGTile().mapX, tile.getGTile().mapY, x, y);
+        }
+
         isDragging = true;
         if(mapDistanceDragged >= 20) {
             closeInfoPopup(false);
@@ -208,9 +213,14 @@ class LandMap {
     private function mouseUp_handler(signal: GMouseInput): Void {
         isDragging = false;
         if(mapDistanceDragged < 20) {
-            closeInfoPopup(true, signal.contextX, signal.contextY);
+            var x: Float = signal.contextX;
+            var y: Float = signal.contextY;
+            var tile: Tile = gtileMap.getTileAt(x,y);
+            if(tile != null) {
+                GDebug.info(tile.getGTile().mapX, tile.getGTile().mapY, x , y);
+            }
+            closeInfoPopup(true, tile, signal.contextX, signal.contextY);
         }
-        GDebug.info("view rect x: " + Std.string(core.getMapCamera().node.x),"view rect y: " + Std.string(core.getMapCamera().node.y));
 
 
         mapDistanceDragged = 0;
@@ -220,7 +230,6 @@ class LandMap {
         Mouse wheel handler
      **/
     private function mouseWheel_handler(signal: GMouseInput): Void {
-        GDebug.info(Std.string(signal));
         var change: Float = signal.delta/15;
         if(canChangeZoom) {
             if(core.getMapCamera().zoom + change < MAX_SCALE &&
@@ -235,16 +244,14 @@ class LandMap {
 
     private function onCompleteZoom(scaleAfterChange: Float):Void {
         zoomChanged(scaleAfterChange);
-        GDebug.info("scaleAfterChange: " + Std.string(scaleAfterChange + " zoom: " + Std.string(core.getMapCamera().zoom)));
         canChangeZoom = true;
     }
 
     private function onCompleteShowInfoPopup(): Void {
-        GDebug.info();
         canHideInfoPopup = true;
     }
 
-    private function onCompleteHideInfoPopup(p_openNew: Bool = false, p_x: Float = 0, p_y: Float = 0): Void {
+    private function onCompleteHideInfoPopup(p_openNew: Bool = false, p_tile: Tile = null, p_x: Float = 0, p_y: Float = 0): Void {
         if(openInfoPopup != null) {
             openInfoPopup.getGuiElement().visible = false;
             uiGui.root.removeChild(openInfoPopup.getGuiElement());
@@ -252,7 +259,7 @@ class LandMap {
             openInfoPopup = null;
         }
         if(p_openNew) {
-            handleInfoPopupOpen(p_x, p_y);
+            handleInfoPopupOpen(p_x, p_y, p_tile);
         }
     }
 
@@ -281,9 +288,9 @@ class LandMap {
         mapDistanceDragged += distance;
     }
 
-    private function handleInfoPopupOpen(p_x: Float, p_y: Float): Void {
-        GDebug.info();
-        openInfoPopup = new InfoPopupElement();
+    private function handleInfoPopupOpen(p_x: Float, p_y: Float, p_tile: Tile): Void {
+        if(p_tile == null) return;
+        openInfoPopup = new InfoPopupElement(p_tile.userData);
         openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
         openInfoPopup.getGuiElement().anchorY = 0;
         uiGui.root.addChild(openInfoPopup.getGuiElement());
@@ -292,13 +299,13 @@ class LandMap {
         var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 1, 0.1, false).onComplete(onCompleteShowInfoPopup);
     }
 
-    private function closeInfoPopup(p_openNewPopup: Bool = false, p_x: Float = 0, p_y: Float = 0): Void {
+    private function closeInfoPopup(p_openNewPopup: Bool = false, p_tile: Tile = null, p_x: Float = 0, p_y: Float = 0): Void {
         if(canHideInfoPopup) {
             if(openInfoPopup != null) {
-                var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup, [p_openNewPopup, p_x, p_y]);
+                var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup, [p_openNewPopup, p_tile, p_x, p_y]);
             } else {
                 if(p_openNewPopup) {
-                    handleInfoPopupOpen(p_x, p_y);
+                    handleInfoPopupOpen(p_x, p_y, p_tile);
                 }
             }
         }
@@ -369,19 +376,19 @@ class LandMap {
     }
 
     private function invalidateTilesHighlight(): Void {
-        GDebug.info("START ---- " + Std.string(Date.now().toString()));
+//        GDebug.info("START ---- " + Std.string(Date.now().toString()));
         handleFilterRadioButtons();
         for(i in 0...tiles.length) {
             tiles[i].handleFilter(selectedFilters);
         }
-        GDebug.info("END ---- " + Std.string(Date.now().toString()));
+//        GDebug.info("END ---- " + Std.string(Date.now().toString()));
     }
 
     public function zoomChanged(p_scale: Float): Void {
-        GDebug.info("START ---- " + Std.string(Date.now().toString()));
+//        GDebug.info("START ---- " + Std.string(Date.now().toString()));
         for(i in 0...tiles.length) {
             tiles[i].zoomChanged(p_scale);
         }
-        GDebug.info("END ---- " + Std.string(Date.now().toString()));
+//        GDebug.info("END ---- " + Std.string(Date.now().toString()));
     }
 }
