@@ -2,3 +2,4 @@
 2. assets for separators (are there different types of separators?
 3. assets for UI elements
 4. who will handle land map definitions/how will the data be handled?
+5. what sort of biomes/types of lands will there be?
