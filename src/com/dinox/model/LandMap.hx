@@ -94,7 +94,7 @@ class LandMap {
         var tile: Tile;
         for(i in 0...TILE_COUNT) {
             for(j in 0...LandMap.TILE_COUNT) {
-                tile = new Tile(i, j, addRandomRarity(), addRandomSize(), mapGui.node);
+                tile = new Tile(j, i, addRandomRarity(), addRandomSize(), mapGui.node);
                 tiles.push(tile);
             }
         }
