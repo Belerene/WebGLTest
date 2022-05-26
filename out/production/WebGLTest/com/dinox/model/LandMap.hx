@@ -20,8 +20,8 @@ class LandMap {
     private static var MAX_SCALE: Float = 2;
     private static var MIN_SCALE: Float = 0.2;
 
-    public static var TILE_COUNT: Int = 16; // real tile count is TILE_COUNT x TILE_COUNT
-//    public static var TILE_COUNT: Int = 256; // real tile count is TILE_COUNT x TILE_COUNT
+//    public static var TILE_COUNT: Int = 16; // real tile count is TILE_COUNT x TILE_COUNT
+    public static var TILE_COUNT: Int = 256; // real tile count is TILE_COUNT x TILE_COUNT
 
     private var mainMapScreen: MainMapScreen;
 
@@ -196,11 +196,6 @@ class LandMap {
         lastX = x;
         lastY = y;
 
-        var tile: Tile = gtileMap.getTileAt(x,y);
-        if(tile != null) {
-            GDebug.info(tile.getGTile().mapX, tile.getGTile().mapY, x, y);
-        }
-
         isDragging = true;
         if(mapDistanceDragged >= 20) {
             closeInfoPopup(false);
@@ -213,12 +208,10 @@ class LandMap {
     private function mouseUp_handler(signal: GMouseInput): Void {
         isDragging = false;
         if(mapDistanceDragged < 20) {
-            var x: Float = signal.contextX;
-            var y: Float = signal.contextY;
-            var tile: Tile = gtileMap.getTileAt(x,y);
-            if(tile != null) {
-                GDebug.info(tile.getGTile().mapX, tile.getGTile().mapY, x , y);
-            }
+            var x: Float = signal.worldX;
+            var y: Float = signal.worldY;
+            var tile: Tile = gtileMap.getTileAt(x,y, signal.camera.contextCamera);
+
             closeInfoPopup(true, tile, signal.contextX, signal.contextY);
         }
 

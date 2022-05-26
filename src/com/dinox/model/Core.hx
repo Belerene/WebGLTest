@@ -58,6 +58,7 @@ class Core {
     private function initMapCamera(): Void {
         mapCamera = cast(GNode.createWithComponent(GCameraController), GCameraController);
         mapCamera.node.setPosition(0, 0);
+        mapCamera.node.name = "mapCamera";
         mapCamera.setView(0, 0, 1, 1);
         mapCamera.contextCamera.group = MAP_CAMERA_GROUP;
         rootNode.addChild(mapCamera.node);
@@ -66,6 +67,7 @@ class Core {
     private function initUICamera(): Void {
         uiCamera = cast(GNode.createWithComponent(GCameraController), GCameraController);
         uiCamera.node.setPosition(0, 0);
+        uiCamera.node.name = "uiCamera";
         uiCamera.setView(0, 0, 1, 1);
         uiCamera.contextCamera.group = UI_CAMERA_GROUP;
         rootNode.addChild(uiCamera.node);
