@@ -167,113 +167,26 @@ class LandMap {
         return null;
     }
 
-
-    private function mouseClick_handler(signal: GMouseInput): Void {
-
-    }
-
-    /**
-        Mouse over handler
-     **/
-    private function mouseOver_handler(signal: GMouseInput): Void {
-
-    }
-
-    /**
-        Mouse out handler
-     **/
-    private function mouseOut_handler(signal: GMouseInput): Void {
-
-    }
-
-    /**
-        Mouse down handler
-     **/
-    private function mouseDown_handler(signal: GMouseInput): Void {
-        var x: Float = signal.contextX;
-        var y: Float = signal.contextY;
-
-        lastX = x;
-        lastY = y;
-
-        isDragging = true;
-        if(mapDistanceDragged >= 20) {
-            closeInfoPopup(false);
+    private function invalidateTilesHighlight(): Void {
+//        GDebug.info("START ---- " + Std.string(Date.now().toString()));
+        handleFilterRadioButtons();
+        for(i in 0...tiles.length) {
+            tiles[i].handleFilter(selectedFilters);
         }
+//        GDebug.info("END ---- " + Std.string(Date.now().toString()));
     }
 
-    /**
-        Mouse up handler
-     **/
-    private function mouseUp_handler(signal: GMouseInput): Void {
-        isDragging = false;
-        if(mapDistanceDragged < 20) {
-            var x: Float = signal.worldX;
-            var y: Float = signal.worldY;
-            var tile: Tile = gtileMap.getTileAt(x,y, signal.camera.contextCamera);
-
-            closeInfoPopup(true, tile, signal.contextX, signal.contextY);
+    public function zoomChanged(p_scale: Float): Void {
+//        GDebug.info("START ---- " + Std.string(Date.now().toString()));
+        for(i in 0...tiles.length) {
+            tiles[i].zoomChanged(p_scale);
         }
-
-
-        mapDistanceDragged = 0;
+//        GDebug.info("END ---- " + Std.string(Date.now().toString()));
     }
-
-    /**
-        Mouse wheel handler
-     **/
-    private function mouseWheel_handler(signal: GMouseInput): Void {
-        var change: Float = signal.delta/15;
-        if(canChangeZoom) {
-            if(core.getMapCamera().zoom + change < MAX_SCALE &&
-                core.getMapCamera().zoom + change > MIN_SCALE) {
-                canChangeZoom = false;
-                var changedScale: Float = core.getMapCamera().zoom + change;
-                var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", core.getMapCamera().zoom + change, 0.1, false).onComplete(onCompleteZoom, [changedScale]);
-            }
-        }
-    }
-
 
     private function onCompleteZoom(scaleAfterChange: Float):Void {
         zoomChanged(scaleAfterChange);
         canChangeZoom = true;
-    }
-
-    private function onCompleteShowInfoPopup(): Void {
-        canHideInfoPopup = true;
-    }
-
-    private function onCompleteHideInfoPopup(p_openNew: Bool = false, p_tile: Tile = null, p_x: Float = 0, p_y: Float = 0): Void {
-        if(openInfoPopup != null) {
-            openInfoPopup.getGuiElement().visible = false;
-            uiGui.root.removeChild(openInfoPopup.getGuiElement());
-            openInfoPopup.getGuiElement().dispose();
-            openInfoPopup = null;
-        }
-        if(p_openNew) {
-            handleInfoPopupOpen(p_x, p_y, p_tile);
-        }
-    }
-
-    /**
-        Mouse move handler
-     **/
-    private function mouseMove_handler(signal: GMouseInput): Void {
-        if(isDragging){
-            var x: Float = signal.contextX;
-            var y: Float = signal.contextY;
-            handleDragDistance(x, y);
-            var deltaX: Float = (lastX - x) / core.getMapCamera().zoom;
-            var deltaY: Float = (lastY - y) / core.getMapCamera().zoom;
-            lastX = x;
-            lastY = y;
-            gtileMap.node.setPosition(gtileMap.node.x - deltaX, gtileMap.node.y - deltaY);
-
-            if(mapDistanceDragged > 50) {
-                closeInfoPopup(false);
-            }
-        }
     }
 
     private function handleDragDistance(p_x: Float, p_y: Float): Void {
@@ -281,58 +194,41 @@ class LandMap {
         mapDistanceDragged += distance;
     }
 
-    private function handleInfoPopupOpen(p_x: Float, p_y: Float, p_tile: Tile): Void {
+    private function onCompleteShowInfoPopup(): Void {
+        canHideInfoPopup = true;
+    }
+
+    private function onCompleteHideInfoPopup(p_openNewPopupAfterClosing: Bool = false, p_tile: Tile = null): Void {
+        if(openInfoPopup != null) {
+            openInfoPopup.getGuiElement().visible = false;
+            uiGui.root.removeChild(openInfoPopup.getGuiElement());
+            openInfoPopup.getGuiElement().dispose();
+            openInfoPopup = null;
+        }
+        if(p_openNewPopupAfterClosing) {
+            handleInfoPopupOpen(p_tile);
+        }
+    }
+
+    private function handleInfoPopupOpen(p_tile: Tile): Void {
         if(p_tile == null) return;
-        openInfoPopup = new InfoPopupElement(p_tile.userData);
-        openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
-        openInfoPopup.getGuiElement().anchorY = 0;
-        uiGui.root.addChild(openInfoPopup.getGuiElement());
-        openInfoPopup.getGuiElement().alpha = 0;
-        canHideInfoPopup = false;
-        var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 1, 0.1, false).onComplete(onCompleteShowInfoPopup);
+        if(openInfoPopup != null) {
+            // infoPopup already open, close it first!
+            var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup, [true, p_tile]);
+        } else {
+            openInfoPopup = new InfoPopupElement(p_tile.userData);
+            openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
+            openInfoPopup.getGuiElement().anchorY = 0;
+            openInfoPopup.getGuiElement().getChildByName("infoPopup_closeBtn", true).onMouseUp.add(onCloseInfoPopup_handler);
+            uiGui.root.addChild(openInfoPopup.getGuiElement());
+            openInfoPopup.getGuiElement().alpha = 0;
+            canHideInfoPopup = false;
+            var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 1, 0.1, false).onComplete(onCompleteShowInfoPopup);
+        }
     }
 
     private function closeInfoPopup(p_openNewPopup: Bool = false, p_tile: Tile = null, p_x: Float = 0, p_y: Float = 0): Void {
-        if(canHideInfoPopup) {
-            if(openInfoPopup != null) {
-                var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup, [p_openNewPopup, p_tile, p_x, p_y]);
-            } else {
-                if(p_openNewPopup) {
-                    handleInfoPopupOpen(p_x, p_y, p_tile);
-                }
-            }
-        }
-    }
 
-    private function sizeFilterClicked_handler(signal: GMouseInput): Void {
-        var target: GUIElement = cast signal.target;
-        GDebug.info(target.name);
-        handleFilterClick(target.name);
-    }
-
-    private function rarityFilterClicked_handler(signal: GMouseInput): Void {
-        var target: GUIElement = cast signal.target;
-        GDebug.info(target.name);
-        handleFilterClick(target.name);
-    }
-
-    private function handleFilterClick(p_target: String): Void {
-        if(filterAsRadioButtons) {
-            handleRadiobuttonFilterClick(p_target);
-        } else {
-            handleCheckboxFilterClick(p_target);
-        }
-        invalidateTilesHighlight();
-    }
-
-    private function handleCheckboxFilterClick(p_target: String): Void {
-        // filter is already selected, unselect it
-        if(selectedFilters.indexOf(p_target) >= 0) {
-            selectedFilters.remove(p_target);
-        } else {
-            // filter is not yet slected, select it
-            selectedFilters.push(p_target);
-        }
     }
 
     private function handleRadiobuttonFilterClick(p_target: String): Void {
@@ -368,20 +264,108 @@ class LandMap {
         }
     }
 
-    private function invalidateTilesHighlight(): Void {
-//        GDebug.info("START ---- " + Std.string(Date.now().toString()));
-        handleFilterRadioButtons();
-        for(i in 0...tiles.length) {
-            tiles[i].handleFilter(selectedFilters);
-        }
-//        GDebug.info("END ---- " + Std.string(Date.now().toString()));
+    /**
+    * MOUSE HANDLERS
+    **/
+
+    private function mouseClick_handler(signal: GMouseInput): Void {
+
     }
 
-    public function zoomChanged(p_scale: Float): Void {
-//        GDebug.info("START ---- " + Std.string(Date.now().toString()));
-        for(i in 0...tiles.length) {
-            tiles[i].zoomChanged(p_scale);
+    private function mouseOver_handler(signal: GMouseInput): Void {
+
+    }
+
+    private function mouseOut_handler(signal: GMouseInput): Void {
+
+    }
+
+    private function mouseDown_handler(signal: GMouseInput): Void {
+        var x: Float = signal.contextX;
+        var y: Float = signal.contextY;
+
+        lastX = x;
+        lastY = y;
+
+        isDragging = true;
+//        if(mapDistanceDragged >= 20) {
+//            closeInfoPopup(false);
+//        }
+    }
+
+    private function mouseUp_handler(signal: GMouseInput): Void {
+        isDragging = false;
+        if(mapDistanceDragged < 20) {
+            var x: Float = signal.worldX;
+            var y: Float = signal.worldY;
+            var tile: Tile = gtileMap.getTileAt(x,y, signal.camera.contextCamera);
+            handleInfoPopupOpen(tile);
         }
-//        GDebug.info("END ---- " + Std.string(Date.now().toString()));
+        mapDistanceDragged = 0;
+    }
+
+    private function mouseWheel_handler(signal: GMouseInput): Void {
+        var change: Float = signal.delta/15;
+        if(canChangeZoom) {
+            if(core.getMapCamera().zoom + change < MAX_SCALE &&
+                core.getMapCamera().zoom + change > MIN_SCALE) {
+                canChangeZoom = false;
+                var changedScale: Float = core.getMapCamera().zoom + change;
+                var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", core.getMapCamera().zoom + change, 0.1, false).onComplete(onCompleteZoom, [changedScale]);
+            }
+        }
+    }
+
+    private function mouseMove_handler(signal: GMouseInput): Void {
+        if(isDragging){
+            var x: Float = signal.contextX;
+            var y: Float = signal.contextY;
+            handleDragDistance(x, y);
+            var deltaX: Float = (lastX - x) / core.getMapCamera().zoom;
+            var deltaY: Float = (lastY - y) / core.getMapCamera().zoom;
+            lastX = x;
+            lastY = y;
+            gtileMap.node.setPosition(gtileMap.node.x - deltaX, gtileMap.node.y - deltaY);
+        }
+    }
+
+    private function sizeFilterClicked_handler(signal: GMouseInput): Void {
+        var target: GUIElement = cast signal.target;
+        GDebug.info(target.name);
+        handleFilterClick(target.name);
+    }
+
+    private function rarityFilterClicked_handler(signal: GMouseInput): Void {
+        var target: GUIElement = cast signal.target;
+        GDebug.info(target.name);
+        handleFilterClick(target.name);
+    }
+
+    private function onCloseInfoPopup_handler(signal: GMouseInput): Void {
+        GDebug.info("--------------------");
+        if(canHideInfoPopup) {
+            if(openInfoPopup != null) {
+                var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup);
+            }
+        }
+    }
+
+    private function handleFilterClick(p_target: String): Void {
+        if(filterAsRadioButtons) {
+            handleRadiobuttonFilterClick(p_target);
+        } else {
+            handleCheckboxFilterClick(p_target);
+        }
+        invalidateTilesHighlight();
+    }
+
+    private function handleCheckboxFilterClick(p_target: String): Void {
+        // filter is already selected, unselect it
+        if(selectedFilters.indexOf(p_target) >= 0) {
+            selectedFilters.remove(p_target);
+        } else {
+            // filter is not yet slected, select it
+            selectedFilters.push(p_target);
+        }
     }
 }

@@ -2454,6 +2454,142 @@ com_dinox_model_LandMap.prototype = {
 		}
 		return null;
 	}
+	,invalidateTilesHighlight: function() {
+		this.handleFilterRadioButtons();
+		var _g = 0;
+		var _g1 = this.tiles.length;
+		while(_g < _g1) {
+			var i = _g++;
+			this.tiles[i].handleFilter(this.selectedFilters);
+		}
+	}
+	,zoomChanged: function(p_scale) {
+		var _g = 0;
+		var _g1 = this.tiles.length;
+		while(_g < _g1) {
+			var i = _g++;
+			this.tiles[i].zoomChanged(p_scale);
+		}
+	}
+	,onCompleteZoom: function(scaleAfterChange) {
+		this.zoomChanged(scaleAfterChange);
+		this.canChangeZoom = true;
+	}
+	,handleDragDistance: function(p_x,p_y) {
+		var distance = Math.sqrt(Math.pow(p_x - this.lastX,2) + Math.pow(p_y - this.lastY,2));
+		this.mapDistanceDragged += distance;
+	}
+	,onCompleteShowInfoPopup: function() {
+		this.canHideInfoPopup = true;
+	}
+	,onCompleteHideInfoPopup: function(p_openNewPopupAfterClosing,p_tile) {
+		if(p_openNewPopupAfterClosing == null) {
+			p_openNewPopupAfterClosing = false;
+		}
+		if(this.openInfoPopup != null) {
+			var _this = this.openInfoPopup.getGuiElement();
+			_this.g2d_visible = false;
+			this.uiGui.root.removeChild(this.openInfoPopup.getGuiElement());
+			this.openInfoPopup.getGuiElement().dispose();
+			this.openInfoPopup = null;
+		}
+		if(p_openNewPopupAfterClosing) {
+			this.handleInfoPopupOpen(p_tile);
+		}
+	}
+	,handleInfoPopupOpen: function(p_tile) {
+		if(p_tile == null) {
+			return;
+		}
+		if(this.openInfoPopup != null) {
+			var _this = com_genome2d_tween_GTween.create(this.openInfoPopup.getGuiElement(),true);
+			var p_ease = com_genome2d_tween_easing_GLinear.none;
+			if(_this.g2d_interps != null) {
+				var _g = 0;
+				var _g1 = _this.g2d_interps;
+				while(_g < _g1.length) {
+					var interp = _g1[_g];
+					++_g;
+					interp.ease = p_ease;
+				}
+			}
+			var _this1 = _this.propF("alpha",0,0.1,false);
+			var p_args = [true,p_tile];
+			_this1.g2d_onCompleteArgs = p_args == null ? [] : p_args;
+			_this1.g2d_onComplete = $bind(this,this.onCompleteHideInfoPopup);
+			var step = _this1;
+		} else {
+			if(p_tile._userData == null) {
+				p_tile._userData = new haxe_ds_StringMap();
+			}
+			this.openInfoPopup = new com_dinox_view_InfoPopupElement(p_tile._userData);
+			var _this2 = this.openInfoPopup.getGuiElement();
+			_this2.g2d_anchorX = com_dinox_Main.stageWidth - this.openInfoPopup.getGuiElement().g2d_preferredWidth;
+			_this2.setDirty();
+			var _this3 = this.openInfoPopup.getGuiElement();
+			_this3.g2d_anchorY = 0;
+			_this3.setDirty();
+			var _this4 = this.openInfoPopup.getGuiElement().getChildByName("infoPopup_closeBtn",true);
+			if(_this4.g2d_onMouseUp == null) {
+				_this4.g2d_onMouseUp = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
+			}
+			_this4.g2d_onMouseUp.add($bind(this,this.onCloseInfoPopup_handler));
+			this.uiGui.root.addChild(this.openInfoPopup.getGuiElement());
+			this.openInfoPopup.getGuiElement().alpha = 0;
+			this.canHideInfoPopup = false;
+			var _this5 = com_genome2d_tween_GTween.create(this.openInfoPopup.getGuiElement(),true);
+			var p_ease1 = com_genome2d_tween_easing_GLinear.none;
+			if(_this5.g2d_interps != null) {
+				var _g2 = 0;
+				var _g11 = _this5.g2d_interps;
+				while(_g2 < _g11.length) {
+					var interp1 = _g11[_g2];
+					++_g2;
+					interp1.ease = p_ease1;
+				}
+			}
+			var _this6 = _this5.propF("alpha",1,0.1,false);
+			var p_args1 = null;
+			_this6.g2d_onCompleteArgs = p_args1 == null ? [] : p_args1;
+			_this6.g2d_onComplete = $bind(this,this.onCompleteShowInfoPopup);
+			var step1 = _this6;
+		}
+	}
+	,closeInfoPopup: function(p_openNewPopup,p_tile,p_x,p_y) {
+		if(p_y == null) {
+			p_y = 0;
+		}
+		if(p_x == null) {
+			p_x = 0;
+		}
+		if(p_openNewPopup == null) {
+			p_openNewPopup = false;
+		}
+	}
+	,handleRadiobuttonFilterClick: function(p_target) {
+		if(p_target == "one" || p_target == "two" || p_target == "three" || p_target == "four") {
+			if(this.sizeFilterSelected == p_target) {
+				this.sizeFilterSelected = "";
+			} else {
+				this.sizeFilterSelected = p_target;
+			}
+		} else if(this.rarityFilterSelected == p_target) {
+			this.rarityFilterSelected = "";
+		} else {
+			this.rarityFilterSelected = p_target;
+		}
+	}
+	,handleFilterRadioButtons: function() {
+		if(this.filterAsRadioButtons) {
+			this.selectedFilters = [];
+			if(this.rarityFilterSelected != "") {
+				this.selectedFilters.push(this.rarityFilterSelected);
+			}
+			if(this.sizeFilterSelected != "") {
+				this.selectedFilters.push(this.sizeFilterSelected);
+			}
+		}
+	}
 	,mouseClick_handler: function(signal) {
 	}
 	,mouseOver_handler: function(signal) {
@@ -2466,9 +2602,6 @@ com_dinox_model_LandMap.prototype = {
 		this.lastX = x;
 		this.lastY = y;
 		this.isDragging = true;
-		if(this.mapDistanceDragged >= 20) {
-			this.closeInfoPopup(false);
-		}
 	}
 	,mouseUp_handler: function(signal) {
 		this.isDragging = false;
@@ -2476,7 +2609,7 @@ com_dinox_model_LandMap.prototype = {
 			var x = signal.worldX;
 			var y = signal.worldY;
 			var tile = this.gtileMap.getTileAt(x,y,signal.camera.g2d_contextCamera);
-			this.closeInfoPopup(true,tile,signal.contextX,signal.contextY);
+			this.handleInfoPopupOpen(tile);
 		}
 		this.mapDistanceDragged = 0;
 	}
@@ -2505,34 +2638,6 @@ com_dinox_model_LandMap.prototype = {
 			}
 		}
 	}
-	,onCompleteZoom: function(scaleAfterChange) {
-		this.zoomChanged(scaleAfterChange);
-		this.canChangeZoom = true;
-	}
-	,onCompleteShowInfoPopup: function() {
-		this.canHideInfoPopup = true;
-	}
-	,onCompleteHideInfoPopup: function(p_openNew,p_tile,p_x,p_y) {
-		if(p_y == null) {
-			p_y = 0;
-		}
-		if(p_x == null) {
-			p_x = 0;
-		}
-		if(p_openNew == null) {
-			p_openNew = false;
-		}
-		if(this.openInfoPopup != null) {
-			var _this = this.openInfoPopup.getGuiElement();
-			_this.g2d_visible = false;
-			this.uiGui.root.removeChild(this.openInfoPopup.getGuiElement());
-			this.openInfoPopup.getGuiElement().dispose();
-			this.openInfoPopup = null;
-		}
-		if(p_openNew) {
-			this.handleInfoPopupOpen(p_x,p_y,p_tile);
-		}
-	}
 	,mouseMove_handler: function(signal) {
 		if(this.isDragging) {
 			var x = signal.contextX;
@@ -2543,80 +2648,6 @@ com_dinox_model_LandMap.prototype = {
 			this.lastX = x;
 			this.lastY = y;
 			this.gtileMap.g2d_node.setPosition(this.gtileMap.g2d_node.g2d_localX - deltaX,this.gtileMap.g2d_node.g2d_localY - deltaY);
-			if(this.mapDistanceDragged > 50) {
-				this.closeInfoPopup(false);
-			}
-		}
-	}
-	,handleDragDistance: function(p_x,p_y) {
-		var distance = Math.sqrt(Math.pow(p_x - this.lastX,2) + Math.pow(p_y - this.lastY,2));
-		this.mapDistanceDragged += distance;
-	}
-	,handleInfoPopupOpen: function(p_x,p_y,p_tile) {
-		if(p_tile == null) {
-			return;
-		}
-		if(p_tile._userData == null) {
-			p_tile._userData = new haxe_ds_StringMap();
-		}
-		this.openInfoPopup = new com_dinox_view_InfoPopupElement(p_tile._userData);
-		var _this = this.openInfoPopup.getGuiElement();
-		_this.g2d_anchorX = com_dinox_Main.stageWidth - this.openInfoPopup.getGuiElement().g2d_preferredWidth;
-		_this.setDirty();
-		var _this1 = this.openInfoPopup.getGuiElement();
-		_this1.g2d_anchorY = 0;
-		_this1.setDirty();
-		this.uiGui.root.addChild(this.openInfoPopup.getGuiElement());
-		this.openInfoPopup.getGuiElement().alpha = 0;
-		this.canHideInfoPopup = false;
-		var _this2 = com_genome2d_tween_GTween.create(this.openInfoPopup.getGuiElement(),true);
-		var p_ease = com_genome2d_tween_easing_GLinear.none;
-		if(_this2.g2d_interps != null) {
-			var _g = 0;
-			var _g1 = _this2.g2d_interps;
-			while(_g < _g1.length) {
-				var interp = _g1[_g];
-				++_g;
-				interp.ease = p_ease;
-			}
-		}
-		var _this3 = _this2.propF("alpha",1,0.1,false);
-		var p_args = null;
-		_this3.g2d_onCompleteArgs = p_args == null ? [] : p_args;
-		_this3.g2d_onComplete = $bind(this,this.onCompleteShowInfoPopup);
-		var step = _this3;
-	}
-	,closeInfoPopup: function(p_openNewPopup,p_tile,p_x,p_y) {
-		if(p_y == null) {
-			p_y = 0;
-		}
-		if(p_x == null) {
-			p_x = 0;
-		}
-		if(p_openNewPopup == null) {
-			p_openNewPopup = false;
-		}
-		if(this.canHideInfoPopup) {
-			if(this.openInfoPopup != null) {
-				var _this = com_genome2d_tween_GTween.create(this.openInfoPopup.getGuiElement(),true);
-				var p_ease = com_genome2d_tween_easing_GLinear.none;
-				if(_this.g2d_interps != null) {
-					var _g = 0;
-					var _g1 = _this.g2d_interps;
-					while(_g < _g1.length) {
-						var interp = _g1[_g];
-						++_g;
-						interp.ease = p_ease;
-					}
-				}
-				var _this1 = _this.propF("alpha",0,0.1,false);
-				var p_args = [p_openNewPopup,p_tile,p_x,p_y];
-				_this1.g2d_onCompleteArgs = p_args == null ? [] : p_args;
-				_this1.g2d_onComplete = $bind(this,this.onCompleteHideInfoPopup);
-				var step = _this1;
-			} else if(p_openNewPopup) {
-				this.handleInfoPopupOpen(p_x,p_y,p_tile);
-			}
 		}
 	}
 	,sizeFilterClicked_handler: function(signal) {
@@ -2641,7 +2672,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 309, className : "com.dinox.model.LandMap", methodName : "sizeFilterClicked_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 334, className : "com.dinox.model.LandMap", methodName : "sizeFilterClicked_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -2743,7 +2774,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 315, className : "com.dinox.model.LandMap", methodName : "rarityFilterClicked_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 340, className : "com.dinox.model.LandMap", methodName : "rarityFilterClicked_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -2823,6 +2854,126 @@ com_dinox_model_LandMap.prototype = {
 		}
 		this.handleFilterClick(target.name);
 	}
+	,onCloseInfoPopup_handler: function(signal) {
+		var p_arg1 = "--------------------";
+		var p_arg2 = null;
+		var p_arg3 = null;
+		var p_arg4 = null;
+		var p_arg5 = null;
+		var p_arg6 = null;
+		var p_arg7 = null;
+		var p_arg8 = null;
+		var p_arg9 = null;
+		var p_arg10 = null;
+		var p_arg11 = null;
+		var p_arg12 = null;
+		var p_arg13 = null;
+		var p_arg14 = null;
+		var p_arg15 = null;
+		var p_arg16 = null;
+		var p_arg17 = null;
+		var p_arg18 = null;
+		var p_arg19 = null;
+		var p_arg20 = null;
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 345, className : "com.dinox.model.LandMap", methodName : "onCloseInfoPopup_handler"};
+		if(com_genome2d_debug_GDebug.showPriority <= 3) {
+			var args = [];
+			if(p_arg1 != null) {
+				args.push(p_arg1);
+			}
+			if(p_arg2 != null) {
+				args.push(p_arg2);
+			}
+			if(p_arg3 != null) {
+				args.push(p_arg3);
+			}
+			if(p_arg4 != null) {
+				args.push(p_arg4);
+			}
+			if(p_arg5 != null) {
+				args.push(p_arg5);
+			}
+			if(p_arg6 != null) {
+				args.push(p_arg6);
+			}
+			if(p_arg7 != null) {
+				args.push(p_arg7);
+			}
+			if(p_arg8 != null) {
+				args.push(p_arg8);
+			}
+			if(p_arg9 != null) {
+				args.push(p_arg9);
+			}
+			if(p_arg10 != null) {
+				args.push(p_arg10);
+			}
+			if(p_arg11 != null) {
+				args.push(p_arg11);
+			}
+			if(p_arg12 != null) {
+				args.push(p_arg12);
+			}
+			if(p_arg13 != null) {
+				args.push(p_arg13);
+			}
+			if(p_arg14 != null) {
+				args.push(p_arg14);
+			}
+			if(p_arg15 != null) {
+				args.push(p_arg15);
+			}
+			if(p_arg16 != null) {
+				args.push(p_arg16);
+			}
+			if(p_arg17 != null) {
+				args.push(p_arg17);
+			}
+			if(p_arg18 != null) {
+				args.push(p_arg18);
+			}
+			if(p_arg19 != null) {
+				args.push(p_arg19);
+			}
+			if(p_arg20 != null) {
+				args.push(p_arg20);
+			}
+			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+			}
+			var msg = "INFO: ";
+			if(pos != null) {
+				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+			}
+			if(args.length > 0) {
+				msg += args.toString();
+			}
+			com_genome2d_debug_GDebug.g2d_log += msg;
+			if(com_genome2d_debug_GDebug.useNativeTrace) {
+				window.console.log(msg);
+			}
+		}
+		if(this.canHideInfoPopup) {
+			if(this.openInfoPopup != null) {
+				var _this = com_genome2d_tween_GTween.create(this.openInfoPopup.getGuiElement(),true);
+				var p_ease = com_genome2d_tween_easing_GLinear.none;
+				if(_this.g2d_interps != null) {
+					var _g = 0;
+					var _g1 = _this.g2d_interps;
+					while(_g < _g1.length) {
+						var interp = _g1[_g];
+						++_g;
+						interp.ease = p_ease;
+					}
+				}
+				var _this1 = _this.propF("alpha",0,0.1,false);
+				var p_args = null;
+				_this1.g2d_onCompleteArgs = p_args == null ? [] : p_args;
+				_this1.g2d_onComplete = $bind(this,this.onCompleteHideInfoPopup);
+				var step = _this1;
+			}
+		}
+	}
 	,handleFilterClick: function(p_target) {
 		if(this.filterAsRadioButtons) {
 			this.handleRadiobuttonFilterClick(p_target);
@@ -2836,47 +2987,6 @@ com_dinox_model_LandMap.prototype = {
 			HxOverrides.remove(this.selectedFilters,p_target);
 		} else {
 			this.selectedFilters.push(p_target);
-		}
-	}
-	,handleRadiobuttonFilterClick: function(p_target) {
-		if(p_target == "one" || p_target == "two" || p_target == "three" || p_target == "four") {
-			if(this.sizeFilterSelected == p_target) {
-				this.sizeFilterSelected = "";
-			} else {
-				this.sizeFilterSelected = p_target;
-			}
-		} else if(this.rarityFilterSelected == p_target) {
-			this.rarityFilterSelected = "";
-		} else {
-			this.rarityFilterSelected = p_target;
-		}
-	}
-	,handleFilterRadioButtons: function() {
-		if(this.filterAsRadioButtons) {
-			this.selectedFilters = [];
-			if(this.rarityFilterSelected != "") {
-				this.selectedFilters.push(this.rarityFilterSelected);
-			}
-			if(this.sizeFilterSelected != "") {
-				this.selectedFilters.push(this.sizeFilterSelected);
-			}
-		}
-	}
-	,invalidateTilesHighlight: function() {
-		this.handleFilterRadioButtons();
-		var _g = 0;
-		var _g1 = this.tiles.length;
-		while(_g < _g1) {
-			var i = _g++;
-			this.tiles[i].handleFilter(this.selectedFilters);
-		}
-	}
-	,zoomChanged: function(p_scale) {
-		var _g = 0;
-		var _g1 = this.tiles.length;
-		while(_g < _g1) {
-			var i = _g++;
-			this.tiles[i].zoomChanged(p_scale);
 		}
 	}
 	,__class__: com_dinox_model_LandMap
@@ -49313,8 +49423,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.85;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "acd759db5694c81c9a9b5646b9597cba";
-com_genome2d_Genome2D.DATE = "2022-05-26 15:54:06";
+com_genome2d_Genome2D.BUILD = "23489c1be60dd36fcfc45237a752eab6";
+com_genome2d_Genome2D.DATE = "2022-05-27 15:25:01";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];
