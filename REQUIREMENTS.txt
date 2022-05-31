@@ -4,3 +4,7 @@
 4. who will handle land map definitions/how will the data be handled?
 5. what sort of biomes/types of lands will there be?
 6. need lands map icon for portal
+
+
+
+moc to nehrotit, staci prakticky jedna farba ked je uplne zoomout

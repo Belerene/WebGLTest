@@ -61,7 +61,8 @@ class LandMap {
         mapGui.node.addChild(gtileMap.node);
         addMainGMapScreenListeners();
 
-        setupTileGroup(3,3,6);
+        // TMP
+        setupTileGroup(3,3,4, ["tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile"], TileRarityType.MYTHICAL, 123);
     }
 
     private function addMainGMapScreenListeners(): Void {
@@ -110,7 +111,7 @@ class LandMap {
         return TileRarityType.MYTHICAL;
     }
 
-    private function addRandomSize(): String {
+    private function addRandomSize(): Int {
         var rnd: Float = Math.random();
         if(rnd < 0.5) return TileSizeType.ONEXONE;
         if(rnd < 0.75) return TileSizeType.TWOXTWO;
@@ -124,40 +125,48 @@ class LandMap {
         mainMapScreen.addRarityFilterListener(rarityFilterClicked_handler);
     }
 
-    public function setupTileGroup(p_i: Int, p_j: Int, p_size: Int): TileGroup {
+    public function setupTileGroup(p_i: Int, p_j: Int, p_size: Int, p_assets: Array<String>, p_rarity: String, p_id: Int): TileGroup {
         GDebug.info(Tile.getIndexFromCoordinates(p_i, p_j), "i: " + p_i, "j: " + p_j, "size: " + p_size, "tiles: " + tiles.length);
         if(p_i + p_size <= LandMap.TILE_COUNT &&
             p_j + p_size <= LandMap.TILE_COUNT) {
             var canAddTileGroup: Bool = true;
             var tilesForGroup: Array<Tile> = new Array<Tile>();
-            for(i in p_i...p_i+p_size-1) {
-                for(j in p_j...p_j+p_size-1) {
+            for(i in p_i...p_i+p_size) {
+                for(j in p_j...p_j+p_size) {
                     if(tiles[Tile.getIndexFromCoordinates(i, j)].tileIsInGroup) {
                         canAddTileGroup = false;
                     }
                 }
             }
             if(canAddTileGroup) {
-                var dataToPropagate: String  = cast tiles[p_j*LandMap.TILE_COUNT+p_i].userData;
+
+
+                var dataToPropagate: Map<String, Dynamic>  = tiles[Tile.getIndexFromCoordinates(p_i, p_j)].userData;
                 var index: Int;
-                for(i in p_i...p_i+p_size-1) {
-                    for(j in p_j...p_j+p_size-1) {
+                var assetIndex: Int = 0;
+                for(i in p_i...p_i+p_size) {
+                    for(j in p_j...p_j+p_size) {
                         index = Tile.getIndexFromCoordinates(i, j);
                         tiles[index].tileIsInGroup = true;
                         tiles[index].userData = cast dataToPropagate;
+                        tiles[index].id = p_id;
+                        tiles[index].setTileAssetData(p_assets[assetIndex]);
+                        tiles[index].setTileLandRarity(p_rarity);
+                        tiles[index].setTileLandSize(p_size);
                         tilesForGroup.push(tiles[index]);
                         if(i == p_i) {
                             tiles[index].addTopSeparator();
                         }
-                        if(i == p_i+p_size-2) {
+                        if(i == p_i+p_size-1) {
                             tiles[index].addBottomSeparator();
                         }
                         if(j == p_j) {
                             tiles[index].addLeftSeparator();
                         }
-                        if(j == p_j+p_size-2) {
+                        if(j == p_j+p_size-1) {
                             tiles[index].addRightSeparator();
                         }
+                        assetIndex++;
                     }
                 }
                 var res: TileGroup = new TileGroup(tilesForGroup);
@@ -168,20 +177,16 @@ class LandMap {
     }
 
     private function invalidateTilesHighlight(): Void {
-//        GDebug.info("START ---- " + Std.string(Date.now().toString()));
         handleFilterRadioButtons();
         for(i in 0...tiles.length) {
             tiles[i].handleFilter(selectedFilters);
         }
-//        GDebug.info("END ---- " + Std.string(Date.now().toString()));
     }
 
     public function zoomChanged(p_scale: Float): Void {
-//        GDebug.info("START ---- " + Std.string(Date.now().toString()));
         for(i in 0...tiles.length) {
             tiles[i].zoomChanged(p_scale);
         }
-//        GDebug.info("END ---- " + Std.string(Date.now().toString()));
     }
 
     private function onCompleteZoom(scaleAfterChange: Float):Void {
@@ -232,8 +237,8 @@ class LandMap {
     }
 
     private function handleRadiobuttonFilterClick(p_target: String): Void {
-        if(p_target == TileSizeType.ONEXONE || p_target == TileSizeType.TWOXTWO
-        || p_target == TileSizeType.THREEXTHREE || p_target == TileSizeType.FOURXFOUR) {
+        if(p_target == "one" || p_target == "two"
+        || p_target == "three" || p_target == "four") {
             if(sizeFilterSelected == p_target) {
                 // size filter is already selected, unselect it
                 sizeFilterSelected = "";
@@ -288,9 +293,6 @@ class LandMap {
         lastY = y;
 
         isDragging = true;
-//        if(mapDistanceDragged >= 20) {
-//            closeInfoPopup(false);
-//        }
     }
 
     private function mouseUp_handler(signal: GMouseInput): Void {
@@ -342,7 +344,6 @@ class LandMap {
     }
 
     private function onCloseInfoPopup_handler(signal: GMouseInput): Void {
-        GDebug.info("--------------------");
         if(canHideInfoPopup) {
             if(openInfoPopup != null) {
                 var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup);

@@ -51,10 +51,10 @@ class MainMapScreen {
 
 
     public function addSizeFilterListener(p_handler: GMouseInput->Void): Void {
-        ui.getGuiElement().getChildByName(TileSizeType.ONEXONE, true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName(TileSizeType.TWOXTWO, true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName(TileSizeType.THREEXTHREE, true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName(TileSizeType.FOURXFOUR, true).onMouseDown.add(p_handler);
+        ui.getGuiElement().getChildByName("one", true).onMouseDown.add(p_handler);
+        ui.getGuiElement().getChildByName("two", true).onMouseDown.add(p_handler);
+        ui.getGuiElement().getChildByName("three", true).onMouseDown.add(p_handler);
+        ui.getGuiElement().getChildByName("four", true).onMouseDown.add(p_handler);
     }
 
     public function addRarityFilterListener(p_handler: GMouseInput->Void): Void {

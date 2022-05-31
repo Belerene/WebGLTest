@@ -23,11 +23,22 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/tile_n.png", "tile_n");
         GStaticAssetManager.addFromUrl("assets/tile_l.png", "tile_l");
         GStaticAssetManager.addFromUrl("assets/tile_s.png", "tile_s");
+        GStaticAssetManager.addFromUrl("assets/default_s.png", "default_s");
+        GStaticAssetManager.addFromUrl("assets/default_n.png", "default_n");
+        GStaticAssetManager.addFromUrl("assets/default_l.png", "default_l");
         GStaticAssetManager.addFromUrl("assets/ui.png", "ui");
         GStaticAssetManager.addFromUrl("assets/dev.png", "dev");
         GStaticAssetManager.addFromUrl("assets/dev_black.png", "dev_black");
-        GStaticAssetManager.addFromUrl("assets/separator_h.png", "separator_h");
-        GStaticAssetManager.addFromUrl("assets/separator_v.png", "separator_v");
+        GStaticAssetManager.addFromUrl("assets/separator_h_common.png", "separator_h_common");
+        GStaticAssetManager.addFromUrl("assets/separator_h_uncommon.png", "separator_h_uncommon");
+        GStaticAssetManager.addFromUrl("assets/separator_h_rare.png", "separator_h_rare");
+        GStaticAssetManager.addFromUrl("assets/separator_h_legendary.png", "separator_h_legendary");
+        GStaticAssetManager.addFromUrl("assets/separator_h_mythical.png", "separator_h_mythical");
+        GStaticAssetManager.addFromUrl("assets/separator_v_common.png", "separator_v_common");
+        GStaticAssetManager.addFromUrl("assets/separator_v_uncommon.png", "separator_v_uncommon");
+        GStaticAssetManager.addFromUrl("assets/separator_v_rare.png", "separator_v_rare");
+        GStaticAssetManager.addFromUrl("assets/separator_v_legendary.png", "separator_v_legendary");
+        GStaticAssetManager.addFromUrl("assets/separator_v_mythical.png", "separator_v_mythical");
 
         // FONTS
         GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");

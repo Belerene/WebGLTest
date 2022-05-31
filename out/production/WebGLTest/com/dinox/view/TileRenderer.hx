@@ -10,9 +10,10 @@ class TileRenderer {
     public static var SMALL_STATE: String = "small";
     public static var LARGE_STATE: String = "large";
 
-    private var tmpTileId_n: String = "tile_n";
-    private var tmpTileId_l: String = "tile_l";
-    private var tmpTileId_s: String = "tile_s";
+    private var tileAsset_n: GTexture = null;
+    private var tileAsset_l: GTexture = null;
+    private var tileAsset_s: GTexture = null;
+    private var asset: String = "";
 
     public static var ZOOM_BREAKPOINT_SMALL: Float = 0.85;
     public static var ZOOM_BREAKPOINT_LARGE: Float = 1.25;
@@ -25,6 +26,8 @@ class TileRenderer {
     private var t_separator: GTexture = null;
     private var b_separator: GTexture = null;
 
+    private var currentZoom: Float = 1;
+
     private var commonColor: Array<Float> = [.48, .48, .46];
     private var uncommonColor: Array<Float> = [.07, .61, .28];
     private var rareColor: Array<Float> = [.24, .46, .73];
@@ -35,29 +38,35 @@ class TileRenderer {
     public function new(p_x: Int, p_y: Int) {
         gTile = new GTile(BASE_TILE_SIZE, BASE_TILE_SIZE, p_x, p_y);
 
-        gTile.texture = GTextureManager.getTexture("tile_n");
+        setNewTileAssets("default");
+
+//        tileAsset_n = GTextureManager.getTexture("default_n");
+//        tileAsset_l = GTextureManager.getTexture("default_l");
+//        tileAsset_s = GTextureManager.getTexture("default_s");
+
+//        gTile.texture = tileAsset_n;
     }
 
-    public function addTopSeparator(): Void {
-        l_separator = GTextureManager.getTexture("separator_v");
+    public function addTopSeparator(p_rarity: String): Void {
+        l_separator = GTextureManager.getTexture("separator_v_" + p_rarity);
         l_separator.pivotX = 0;
         l_separator.pivotY = 0.5;
     }
 
-    public function addBottomSeparator(): Void {
-        r_separator = GTextureManager.getTexture("separator_v");
+    public function addBottomSeparator(p_rarity: String): Void {
+        r_separator = GTextureManager.getTexture("separator_v_" + p_rarity);
         r_separator.pivotX = 1;
         r_separator.pivotY = 0.5;
     }
 
-    public function addLeftSeparator(): Void {
-        t_separator = GTextureManager.getTexture("separator_h");
+    public function addLeftSeparator(p_rarity: String): Void {
+        t_separator = GTextureManager.getTexture("separator_h_" + p_rarity);
         t_separator.pivotX = 0.5;
         t_separator.pivotY = 0;
     }
 
-    public function addRightSeparator(): Void {
-        b_separator = GTextureManager.getTexture("separator_h");
+    public function addRightSeparator(p_rarity: String): Void {
+        b_separator = GTextureManager.getTexture("separator_h_" + p_rarity);
         b_separator.pivotX = 0.5;
         b_separator.pivotY = 1;
     }
@@ -126,12 +135,24 @@ class TileRenderer {
     }
 
     public function zoomChanged(p_zoom: Float): Void {
-        if(p_zoom <= ZOOM_BREAKPOINT_SMALL) {
-            gTile.texture = GTextureManager.getTexture("tile_s");
-        } else if (p_zoom > ZOOM_BREAKPOINT_SMALL && p_zoom < ZOOM_BREAKPOINT_LARGE) {
-            gTile.texture = GTextureManager.getTexture("tile_n");
-        } else if (p_zoom >= ZOOM_BREAKPOINT_LARGE) {
-            gTile.texture = GTextureManager.getTexture("tile_l");
+        currentZoom = p_zoom;
+        if(currentZoom <= ZOOM_BREAKPOINT_SMALL) {
+            gTile.texture = tileAsset_s;
+        } else if (currentZoom > ZOOM_BREAKPOINT_SMALL && currentZoom < ZOOM_BREAKPOINT_LARGE) {
+            gTile.texture = tileAsset_n;
+        } else if (currentZoom >= ZOOM_BREAKPOINT_LARGE) {
+            gTile.texture = tileAsset_l;
+        }
+    }
+
+    public function setNewTileAssets(p_asset: String): Void {
+        if(p_asset != asset) {
+            tileAsset_n = GTextureManager.getTexture(p_asset + "_n");
+            tileAsset_l = GTextureManager.getTexture(p_asset + "_l");
+            tileAsset_s = GTextureManager.getTexture(p_asset + "_s");
+            // just to  re-render the tile with new graphics
+            zoomChanged(currentZoom);
+            asset = p_asset;
         }
     }
 
@@ -141,8 +162,6 @@ class TileRenderer {
 
     public function render(p_context:IGContext, p_x:Float, p_y:Float, p_frameId:Int, p_time:Float, p_blendMode:GBlendMode): Void {
         gTile.render(p_context, p_x, p_y, p_frameId, p_time, p_blendMode);
-//        gTile.render(p_context, p_x - BASE_TILE_SIZE/2, p_y - BASE_TILE_SIZE/2, p_frameId, p_time, p_blendMode);
-//        renderSeparators(p_context, p_x - BASE_TILE_SIZE/2, p_y - BASE_TILE_SIZE/2, p_blendMode);
         renderSeparators(p_context, p_x, p_y, p_blendMode);
     }
 }
