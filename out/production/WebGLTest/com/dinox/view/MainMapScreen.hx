@@ -1,4 +1,5 @@
 package com.dinox.view;
+import com.genome2d.ui.element.GUIElement;
 import com.dinox.model.tile.TileRarityType;
 import com.dinox.model.tile.TileSizeType;
 import com.genome2d.components.renderable.ui.GUI;
@@ -49,19 +50,10 @@ class MainMapScreen {
         }
     }
 
-
-    public function addSizeFilterListener(p_handler: GMouseInput->Void): Void {
-        ui.getGuiElement().getChildByName("one", true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName("two", true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName("three", true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName("four", true).onMouseDown.add(p_handler);
+    public function getUiElement(): UIElement {
+        return ui;
     }
 
-    public function addRarityFilterListener(p_handler: GMouseInput->Void): Void {
-        ui.getGuiElement().getChildByName(TileRarityType.COMMON, true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName(TileRarityType.UNCOMMON, true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName(TileRarityType.RARE, true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName(TileRarityType.LEGENDARY, true).onMouseDown.add(p_handler);
-        ui.getGuiElement().getChildByName(TileRarityType.MYTHICAL, true).onMouseDown.add(p_handler);
-    }
+
+
 }

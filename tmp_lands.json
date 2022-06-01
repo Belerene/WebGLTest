@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "629707e891762df49181cadc",
+    "x": 0,
+    "y": 4,
+    "size": 1,
+    "rarity": "common",
+    "assets": "[<ReferenceError: string is not defined>]"
+  },
+  {
+    "_id": "629707e85a3c4b3c94ebf085",
+    "x": 8,
+    "y": 1,
+    "size": 2,
+    "rarity": "uncommon",
+    "assets": "[<ReferenceError: string is not defined>]"
+  },
+  {
+    "_id": "629707e8f2e33a88107dffd7",
+    "x": 4,
+    "y": 4,
+    "size": 3,
+    "rarity": "rare",
+    "assets": "[<ReferenceError: string is not defined>]"
+  },
+  {
+    "_id": "629707e821c3d3f190d0d167",
+    "x": 1,
+    "y": 3,
+    "size": 4,
+    "rarity": "legendary",
+    "assets": "[<ReferenceError: string is not defined>]"
+  },
+  {
+    "_id": "629707e88dc816116c715e9d",
+    "x": 5,
+    "y": 3,
+    "size": 4,
+    "rarity": "mythical",
+    "assets": "[<ReferenceError: string is not defined>]"
+  }
+]
