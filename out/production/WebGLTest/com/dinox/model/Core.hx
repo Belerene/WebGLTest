@@ -1,4 +1,7 @@
 package com.dinox.model;
+import haxe.format.JsonParser;
+import haxe.Json;
+import com.genome2d.debug.GDebug;
 import com.genome2d.components.GCameraController;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.components.renderable.ui.GUI;
@@ -32,6 +35,23 @@ class Core {
         initUICamera();
 
         initAssetsWrapper();
+
+
+    }
+
+    public function tmpTest(): Void {
+        GDebug.info();
+        var tmp: LandLoader = new LandLoader("http://localhost/out/tmp_lands.json");
+        tmp.addOnStatusReceived();
+        tmp.addOnDataReceived(parseJson);
+        tmp.addOnErrorReceived();
+//        tmp.addOnBytesReceived();
+        tmp.makeRequest();
+    }
+
+    private function parseJson(p_data: String): Void {
+        var json: Dynamic  = JsonParser.parse(p_data);
+        landMap.addTileGroupsFromJson(json);
     }
 
 

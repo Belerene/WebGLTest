@@ -1,8 +1,9 @@
 package com.dinox.model;
+import haxe.Json;
 import com.dinox.controller.MainController;
 import com.genome2d.context.GCamera;
 import com.dinox.view.TileRenderer;
-import com.dinox.model.tile.TileGroup;
+import com.dinox.model.tile.Land;
 import com.dinox.model.tile.TileSizeType;
 import com.dinox.model.tile.TileRarityType;
 import com.dinox.model.tile.Tile;
@@ -60,9 +61,24 @@ class LandMap {
 
 
         // TMP
-        setupTileGroup(3,3,4, ["tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile"], TileRarityType.MYTHICAL, 123);
+        core.tmpTest();
+
+        // TMP
+//        setupTileGroup(3,3,4, ["tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile"], TileRarityType.MYTHICAL, 123);
     }
 
+    public function addTileGroupsFromJson(p_json: Dynamic): Void {
+        for(field in Reflect.fields(p_json)) {
+            var landElement: Dynamic = Reflect.getProperty(p_json, field);
+            var assets: String = Std.string(Reflect.getProperty(landElement, "assets"));
+            setupLand(Reflect.getProperty(landElement, "_id"),
+                        Reflect.getProperty(landElement, "x"),
+                        Reflect.getProperty(landElement, "y"),
+                        Reflect.getProperty(landElement, "size"),
+                        Reflect.getProperty(landElement, "rarity"),
+                        assets.split(","));
+        }
+    }
 
 
     public function setupTiles(): Void {
@@ -95,53 +111,27 @@ class LandMap {
     }
     //TMP
 
-    public function setupTileGroup(p_i: Int, p_j: Int, p_size: Int, p_assets: Array<String>, p_rarity: String, p_id: Int): TileGroup {
-        GDebug.info(Tile.getIndexFromCoordinates(p_i, p_j), "i: " + p_i, "j: " + p_j, "size: " + p_size, "tiles: " + tiles.length);
+    public function setupLand(p_id: Int, p_i: Int, p_j: Int, p_size: Int, p_rarity: String, p_assets: Array<String>): Land {
         if(p_i + p_size <= LandMap.TILE_COUNT &&
             p_j + p_size <= LandMap.TILE_COUNT) {
             var canAddTileGroup: Bool = true;
             var tilesForGroup: Array<Tile> = new Array<Tile>();
             for(i in p_i...p_i+p_size) {
                 for(j in p_j...p_j+p_size) {
-                    if(tiles[Tile.getIndexFromCoordinates(i, j)].tileIsInGroup) {
+                    if(tiles[Tile.getIndexFromCoordinates(i, j)].tileIsInLand) {
                         canAddTileGroup = false;
                     }
+                    tilesForGroup.push(tiles[Tile.getIndexFromCoordinates(i, j)]);
                 }
             }
             if(canAddTileGroup) {
-
-
-                var dataToPropagate: Map<String, Dynamic>  = tiles[Tile.getIndexFromCoordinates(p_i, p_j)].userData;
-                var index: Int;
-                var assetIndex: Int = 0;
-                for(i in p_i...p_i+p_size) {
-                    for(j in p_j...p_j+p_size) {
-                        index = Tile.getIndexFromCoordinates(i, j);
-                        tiles[index].tileIsInGroup = true;
-                        tiles[index].userData = cast dataToPropagate;
-                        tiles[index].id = p_id;
-                        tiles[index].setTileAssetData(p_assets[assetIndex]);
-                        tiles[index].setTileLandRarity(p_rarity);
-                        tiles[index].setTileLandSize(p_size);
-                        tilesForGroup.push(tiles[index]);
-                        if(i == p_i) {
-                            tiles[index].addTopSeparator();
-                        }
-                        if(i == p_i+p_size-1) {
-                            tiles[index].addBottomSeparator();
-                        }
-                        if(j == p_j) {
-                            tiles[index].addLeftSeparator();
-                        }
-                        if(j == p_j+p_size-1) {
-                            tiles[index].addRightSeparator();
-                        }
-                        assetIndex++;
-                    }
-                }
-                var res: TileGroup = new TileGroup(tilesForGroup);
+                var res: Land = new Land(p_id, p_i, p_j, p_size, p_rarity, p_assets,tilesForGroup);
                 return res;
+            } else {
+                GDebug.warning("Cannot add land at x: " + Std.string(p_i) + " y: " + Std.string(p_j) + " of size: " + Std.string(p_size) + ", tiles are already in another land!");
             }
+        } else {
+            GDebug.warning("Cannot add land at x: " + Std.string(p_i) + " y: " + Std.string(p_j) + " of size: " + Std.string(p_size) + ", land would be out of maps bounds!");
         }
         return null;
     }

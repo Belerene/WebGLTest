@@ -1,4 +1,5 @@
 package com.dinox.model.tile;
+import com.genome2d.debug.GDebug;
 import com.genome2d.context.IGContext;
 import com.genome2d.context.GBlendMode;
 import com.genome2d.node.GNode;
@@ -23,7 +24,7 @@ class Tile {
         return _userData;
     }
 
-    public var tileIsInGroup: Bool = false;
+    public var tileIsInLand: Bool = false;
 
     private var  node: GNode;
 
@@ -40,6 +41,7 @@ class Tile {
     }
 
     public function setTileAssetData(p_asset: String): Void {
+        GDebug.info(p_asset);
         if(p_asset != null) {
             if(p_asset != "") {
                 tileRenderer.setNewTileAssets(p_asset);
