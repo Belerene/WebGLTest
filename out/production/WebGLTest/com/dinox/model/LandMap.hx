@@ -42,8 +42,13 @@ class LandMap {
     private var sizeFilterSelected: String = "";
     private var filterAsRadioButtons: Bool = false;
 
+    private var DEVMoveEnabled: Bool = false;
+    private var DEVClickedTile: Tile;
+
     private var gtileMap: GTileMap;
+    private var lands: Array<Land>;
     private var controller: MainController;
+
 
     public function new(p_uiGui: GUI, p_mapGui: GUI, p_core: Core) {
         core = p_core;
@@ -52,13 +57,18 @@ class LandMap {
         mainMapScreen = new MainMapScreen(uiGui, mapGui);
         filterAsRadioButtons = true;
         setupTiles();
+        lands = new Array<Land>();
         gtileMap = cast(GNode.createWithComponent(GTileMap), GTileMap);
         gtileMap.setTiles(TILE_COUNT, TILE_COUNT, TileRenderer.BASE_TILE_SIZE, TileRenderer.BASE_TILE_SIZE, tiles);
         mapGui.node.addChild(gtileMap.node);
         controller = new MainController(p_core);
         controller.addMapScreenListeners(mapDragged_handler, infoPopupOpen_handler, zoomChanged_handler);
-        controller.addUiFilterListeners(sizeFilterClicked_handler, rarityFilterClicked_handler, mainMapScreen.getUiElement().getGuiElement());
+        controller.addUiFilterListeners(mainMapScreen.getUiElement().getGuiElement(), sizeFilterClicked_handler, rarityFilterClicked_handler, devUiClicked_handler);
 
+        if(Main.IS_DEV) {
+            controller.addDevMapScreenListeners(DEV_mapDragged_handler, DEV_mapMouseDownHandler);
+            controller.addDevUIListener(devUiClicked_handler, mainMapScreen.getUiElement().getGuiElement());
+        }
 
         // TMP
         core.tmpTest();
@@ -71,12 +81,12 @@ class LandMap {
         for(field in Reflect.fields(p_json)) {
             var landElement: Dynamic = Reflect.getProperty(p_json, field);
             var assets: String = Std.string(Reflect.getProperty(landElement, "assets"));
-            setupLand(Reflect.getProperty(landElement, "_id"),
+            lands.push(setupLand(Reflect.getProperty(landElement, "_id"),
                         Reflect.getProperty(landElement, "x"),
                         Reflect.getProperty(landElement, "y"),
                         Reflect.getProperty(landElement, "size"),
                         Reflect.getProperty(landElement, "rarity"),
-                        assets.split(","));
+                        assets.split(",")));
         }
     }
 
@@ -86,7 +96,7 @@ class LandMap {
         var tile: Tile;
         for(i in 0...TILE_COUNT) {
             for(j in 0...LandMap.TILE_COUNT) {
-                tile = new Tile(j, i, addRandomRarity(), addRandomSize(), mapGui.node);
+                tile = new Tile(j, i, addRandomRarity(), addRandomSize());
                 tiles.push(tile);
             }
         }
@@ -149,10 +159,6 @@ class LandMap {
         }
     }
 
-
-
-
-
     private function onCompleteHideInfoPopup(p_openNewPopupAfterClosing: Bool = false, p_tile: Tile = null): Void {
         if(openInfoPopup != null) {
             openInfoPopup.getGuiElement().visible = false;
@@ -179,6 +185,27 @@ class LandMap {
             openInfoPopup.getGuiElement().alpha = 0;
             controller.canHideInfoPopup = false;
             var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 1, 0.1, false).onComplete(controller.onCompleteShowInfoPopup);
+        }
+    }
+
+    private function handleDevLandMove(p_moveByX: Int, p_moveByY: Int): Void {
+        var landToMove: Land = getLandByTile(DEVClickedTile);
+        if(landToMove == null) return;
+        var tiles: Array<Tile> = landToMove.getTiles();
+        var newTiles: Array<Tile> = new Array<Tile>();
+        var tile: Tile;
+        var defaultTile: Tile;
+        for(i in 0...tiles.length) {
+            tile = tiles[i];
+            newTiles.push(tile);
+            defaultTile = new Tile(tile.getGTile().mapX, tile.getGTile().mapY, TileRarityType.COMMON, TileSizeType.ONEXONE);
+            gtileMap.setTile(Tile.getIndexFromCoordinates(tile.getGTile().mapX, tile.getGTile().mapY), defaultTile);
+            newTiles[i].getGTile().mapX += p_moveByX;
+            newTiles[i].getGTile().mapY += p_moveByY;
+        }
+        for(i in 0...newTiles.length) {
+            tile = newTiles[i];
+            gtileMap.setTile(Tile.getIndexFromCoordinates(tile.getGTile().mapX, tile.getGTile().mapY), tile);
         }
     }
 
@@ -215,17 +242,47 @@ class LandMap {
         }
     }
 
+    private function getLandByTile(p_tile: Tile): Land {
+        for(i in 0...lands.length) {
+            if(lands[i].containsTile(p_tile)) {
+                return lands[i];
+            }
+        }
+        return null;
+    }
+
     /**
     * MOUSE HANDLERS
     **/
 
     private function infoPopupOpen_handler(p_x: Float, p_y: Float, p_contextCamera: GCamera): Void {
         var tile: Tile = gtileMap.getTileAt(p_x, p_y, p_contextCamera);
+//        GDebug.info("------- X: " + tile.getGTile().mapX + " ---- Y: " + tile.getGTile().mapY);
         handleInfoPopupOpen(tile);
     }
 
     private function mapDragged_handler(p_deltaX: Float, p_deltaY: Float): Void {
-        gtileMap.node.setPosition(gtileMap.node.x - p_deltaX, gtileMap.node.y - p_deltaY);
+        if(DEVMoveEnabled == false) {
+            gtileMap.node.setPosition(gtileMap.node.x - p_deltaX, gtileMap.node.y - p_deltaY);
+        }
+    }
+
+    private function DEV_mapDragged_handler(p_deltaX: Float, p_deltaY: Float,p_x: Float, p_y: Float, p_contextCamera: GCamera): Void {
+        if(DEVMoveEnabled) {
+            var tile: Tile = gtileMap.getTileAt(p_x, p_y, p_contextCamera);
+//            GDebug.info("tile: " + Std.string(tile) + " X: " + p_x + " Y: " + p_y);
+            if(tile != DEVClickedTile) {
+                handleDevLandMove(tile.getGTile().mapX - DEVClickedTile.getGTile().mapX, tile.getGTile().mapY - DEVClickedTile.getGTile().mapY);
+                tile = gtileMap.getTileAt(p_x, p_y, p_contextCamera);
+                DEVClickedTile = tile;
+            }
+        }
+    }
+
+    private function DEV_mapMouseDownHandler(p_x: Float, p_y: Float, p_camera: GCamera): Void {
+        if(DEVMoveEnabled) {
+            DEVClickedTile = gtileMap.getTileAt(p_x, p_y, p_camera);
+        }
     }
 
     private function sizeFilterClicked_handler(signal: GMouseInput): Void {
@@ -238,6 +295,13 @@ class LandMap {
         var target: GUIElement = cast signal.target;
         GDebug.info(target.name);
         handleFilterClick(target.name);
+    }
+
+    private function devUiClicked_handler(signal: GMouseInput): Void {
+        var target: GUIElement = cast signal.target;
+        switch(target.name) {
+            case "move_enabled": DEV_moveEnabledToggle();
+        }
     }
 
     private function onCloseInfoPopup_handler(signal: GMouseInput): Void {
@@ -255,6 +319,10 @@ class LandMap {
             handleCheckboxFilterClick(p_target);
         }
         invalidateTilesHighlight();
+    }
+
+    private function DEV_moveEnabledToggle(): Void {
+        DEVMoveEnabled = !DEVMoveEnabled;
     }
 
     private function handleCheckboxFilterClick(p_target: String): Void {

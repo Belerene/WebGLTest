@@ -26,11 +26,9 @@ class Tile {
 
     public var tileIsInLand: Bool = false;
 
-    private var  node: GNode;
 
     private var tileRenderer: TileRenderer;
-    public function new(p_x: Int, p_y: Int, p_rarity: String, p_size: Int, p_node: GNode) {
-        node = p_node;
+    public function new(p_x: Int, p_y: Int, p_rarity: String, p_size: Int) {
         tileRenderer = new TileRenderer(p_x, p_y);
 
         rarity = p_rarity;
@@ -41,7 +39,6 @@ class Tile {
     }
 
     public function setTileAssetData(p_asset: String): Void {
-        GDebug.info(p_asset);
         if(p_asset != null) {
             if(p_asset != "") {
                 tileRenderer.setNewTileAssets(p_asset);

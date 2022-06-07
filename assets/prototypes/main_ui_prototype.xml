@@ -14,4 +14,8 @@
         <element name="three" preferredWidth="20" preferredHeight="20" anchorX="30" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
         <element name="four" preferredWidth="20" preferredHeight="20" anchorX="85" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
     </element>
+
+    <element name="dev_tools" visible="true" visible.dev="true" preferredWidth="50" preferredHeight="50" skin="@dev" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" anchorX="400" anchorY="-50" mouseEnabled="true">
+        <element name="move_enabled" preferredWidth="20" preferredHeight="20" anchorX="0" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+    </element>
 </element>

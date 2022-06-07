@@ -15,6 +15,8 @@ class UIElement {
         uiElement.getChildByName("ui", true).preferredWidth = Main.stageWidth;
         uiElement.preferredHeight = Main.stageHeight;
         uiElement.getChildByName("ui", true).preferredHeight = Main.stageHeight;
+
+        if(Main.IS_DEV) uiElement.setState("dev");
     }
 
     public function getGuiElement(): GUIElement {

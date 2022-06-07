@@ -47,6 +47,34 @@ class Land {
         }
     }
 
+    public function containsTile(p_tile: Tile): Bool {
+        for(i in 0...tiles.length) {
+            if(p_tile == tiles[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getTiles(): Array<Tile>{
+        if(tiles == null) {
+            tiles = new Array<Tile>();
+        }
+        return tiles;
+    }
+
+    public function setTiles(p_tiles: Array<Tile>): Void {
+        tiles = p_tiles;
+    }
+
+    public function moveTiles(p_moveByX: Int, p_moveByY: Int): Void {
+        GDebug.info("moveByX: " + p_moveByX + " moveByY: " + p_moveByY);
+        for(i in 0...tiles.length) {
+            tiles[i].getGTile().mapX += p_moveByX;
+            tiles[i].getGTile().mapY += p_moveByY;
+        }
+    }
+
     public static function TrimAssetString(p_asset: String): String {
         var res: String = StringTools.replace(p_asset,"'","");
         res = StringTools.replace(res,"[","");

@@ -1,4 +1,5 @@
 package com.dinox.controller;
+import com.genome2d.debug.GDebug;
 import com.genome2d.context.GCamera;
 import com.genome2d.tween.GTween;
 import com.genome2d.tween.easing.GLinear;
@@ -28,18 +29,27 @@ class MainController {
     }
 
     private var core: Core;
-    private var mouseDragCompleted: Float->Float->Void;
+    private var mouseDragHandler: Float->Float->Void;
     private var infoPopupHandler: Float->Float->GCamera->Void;
+
+    private var DEV_mouseDragHandler: Float->Float->Float->Float->GCamera->Void;
+    private var DEV_mouseDownHandler: Float->Float->GCamera->Void;
+
     private var zoomCompletedHandler: Float->Void;
     public function new(p_core: Core) {
         core = p_core;
     }
 
-    public function addMapScreenListeners(p_mouseDragCompleted: Float->Float->Void, p_infoPopupHandler: Float->Float->GCamera->Void, p_zoomCompletedHandler: Float->Void): Void {
-        mouseDragCompleted = p_mouseDragCompleted;
+    public function addMapScreenListeners(p_mouseDragHandler: Float->Float->Void, p_infoPopupHandler: Float->Float->GCamera->Void, p_zoomCompletedHandler: Float->Void): Void {
+        mouseDragHandler = p_mouseDragHandler;
         infoPopupHandler = p_infoPopupHandler;
         zoomCompletedHandler = p_zoomCompletedHandler;
         core.getMapCamera().onMouseInput.add(handleMapCameraMouseInput);
+    }
+
+    public function addDevMapScreenListeners(p_DEV_mouseDragHandler: Float->Float->Float->Float->GCamera->Void, p_DEV_mouseDownHandler: Float->Float->GCamera->Void): Void {
+        DEV_mouseDragHandler = p_DEV_mouseDragHandler;
+        DEV_mouseDownHandler = p_DEV_mouseDownHandler;
     }
 
     private function handleMapCameraMouseInput(p_input: GMouseInput):Void {
@@ -62,24 +72,28 @@ class MainController {
         }
     }
 
-    public function addUiFilterListeners(p_sizeFilterHandler: GMouseInput->Void, p_rarityFilterHandler: GMouseInput->Void, p_uiElement: GUIElement): Void {
-        addSizeFilterListener(p_sizeFilterHandler, p_uiElement);
-        addRarityFilterListener(p_rarityFilterHandler, p_uiElement);
+    public function addUiFilterListeners(p_uiElement: GUIElement, p_sizeFilterHandler: GMouseInput->Void, p_rarityFilterHandler: GMouseInput->Void, p_devUiHandler: GMouseInput->Void = null): Void {
+        addSizeFilterListeners(p_sizeFilterHandler, p_uiElement);
+        addRarityFilterListeners(p_rarityFilterHandler, p_uiElement);
     }
 
-    public function addSizeFilterListener(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {
+    public function addSizeFilterListeners(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {
         p_uiElement.getChildByName("one", true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName("two", true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName("three", true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName("four", true).onMouseDown.add(p_handler);
     }
 
-    public function addRarityFilterListener(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {
+    public function addRarityFilterListeners(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {
         p_uiElement.getChildByName(TileRarityType.COMMON, true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName(TileRarityType.UNCOMMON, true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName(TileRarityType.RARE, true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName(TileRarityType.LEGENDARY, true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName(TileRarityType.MYTHICAL, true).onMouseDown.add(p_handler);
+    }
+
+    public function addDevUIListener(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {
+        p_uiElement.getChildByName("move_enabled", true).onMouseDown.add(p_handler);
     }
 
     private function mouseClick_handler(signal: GMouseInput): Void {
@@ -100,6 +114,14 @@ class MainController {
 
         lastX = x;
         lastY = y;
+
+        if(Main.IS_DEV) {
+            if(DEV_mouseDownHandler != null) {
+                var x: Float = signal.worldX;
+                var y: Float = signal.worldY;
+                DEV_mouseDownHandler(x, y, signal.camera.contextCamera);
+            }
+        }
 
         isDragging = true;
     }
@@ -135,8 +157,13 @@ class MainController {
             var deltaY: Float = (lastY - y) / core.getMapCamera().zoom;
             lastX = x;
             lastY = y;
-            if(mouseDragCompleted != null) {
-                mouseDragCompleted(deltaX, deltaY);
+            if(mouseDragHandler != null) {
+                mouseDragHandler(deltaX, deltaY);
+            }
+            if(Main.IS_DEV) {
+                if(DEV_mouseDragHandler != null) {
+                    DEV_mouseDragHandler(deltaX, deltaY, signal.worldX, signal.worldY, signal.camera.contextCamera);
+                }
             }
         }
     }

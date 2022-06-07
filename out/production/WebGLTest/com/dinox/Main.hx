@@ -7,8 +7,9 @@ import com.genome2d.project.GProjectConfig;
 import com.genome2d.project.GProject;
 class Main extends GProject{
 
-    public static var  stageWidth: Int = 0;
-    public static var  stageHeight: Int = 0;
+    public static var stageWidth: Int = 0;
+    public static var stageHeight: Int = 0;
+    public static var IS_DEV: Bool = true;
 
     private var initType:Int = 0;
 

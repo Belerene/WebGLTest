@@ -39,12 +39,6 @@ class TileRenderer {
         gTile = new GTile(BASE_TILE_SIZE, BASE_TILE_SIZE, p_x, p_y);
 
         setNewTileAssets("default");
-
-//        tileAsset_n = GTextureManager.getTexture("default_n");
-//        tileAsset_l = GTextureManager.getTexture("default_l");
-//        tileAsset_s = GTextureManager.getTexture("default_s");
-
-//        gTile.texture = tileAsset_n;
     }
 
     public function addTopSeparator(p_rarity: String): Void {

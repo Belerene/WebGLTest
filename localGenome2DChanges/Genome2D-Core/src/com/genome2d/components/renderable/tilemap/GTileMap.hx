@@ -55,15 +55,13 @@ class GTileMap extends GComponent implements IGRenderable
 
     public function setTile(p_tileIndex:Int, p_tile:Tile):Void {
         if (p_tileIndex<0 || p_tileIndex>= g2d_tiles.length) GDebug.error("Tile index out of bounds.");
-        if (p_tile != null && (p_tile.getGTile().mapX!=-1 || p_tile.getGTile().mapY!=-1) && (p_tile.getGTile().mapX+p_tile.getGTile().mapY*g2d_width != p_tileIndex)) GDebug.error("Tile map position doesn't match its index.");
+        if (p_tile != null && (p_tile.getGTile().mapX!=-1 || p_tile.getGTile().mapY!=-1) && (p_tile.getGTile().mapX+p_tile.getGTile().mapY*g2d_width != p_tileIndex)) GDebug.error("Tile map position doesn't match its index. MapX: " + p_tile.getGTile().mapX + " mapY: " +p_tile.getGTile().mapY);
 
         if (p_tile != null) {
-            for (i in 0...p_tile.getGTile().sizeX) {
-                for (j in 0...p_tile.getGTile().sizeY) {
-                    if (g2d_tiles[p_tileIndex+i+j*g2d_width] != null) removeTile(p_tileIndex+i+j*g2d_width);
-                    g2d_tiles[p_tileIndex+i+j*g2d_width] = p_tile;
-                }
+            if (g2d_tiles[p_tileIndex] != null) {
+                removeTile(p_tileIndex);
             }
+            g2d_tiles[p_tileIndex] = p_tile;
         } else {
             removeTile(p_tileIndex);
         }
@@ -74,11 +72,7 @@ class GTileMap extends GComponent implements IGRenderable
         var tile:Tile = g2d_tiles[p_tileIndex];
         if (tile != null) {
             if (tile.getGTile().mapX != -1 && tile.getGTile().mapY != -1) {
-                for (i in 0...tile.getGTile().sizeX) {
-                    for (j in 0...tile.getGTile().sizeY) {
-                        if (g2d_tiles[tile.getGTile().mapX+i+(tile.getGTile().mapY+j)*g2d_width] == tile) g2d_tiles[tile.getGTile().mapX+i+(tile.getGTile().mapY+j)*g2d_width] = null;
-                    }
-                }
+                if (g2d_tiles[p_tileIndex] == tile) g2d_tiles[p_tileIndex] = null;
             } else {
                 g2d_tiles[p_tileIndex] = null;
             }
@@ -124,7 +118,6 @@ class GTileMap extends GComponent implements IGRenderable
             var x:Float = g2d_node.g2d_worldX + (indexX + (i % indexWidth)) * g2d_tileWidth - mapHalfWidth + (g2d_iso && (indexY+row)%2 == 1 ? g2d_tileWidth : g2d_tileWidth/2);
             var y:Float = g2d_node.g2d_worldY + (indexY + row) * (g2d_iso ? g2d_tileHeight/2 : g2d_tileHeight) - mapHalfHeight + g2d_tileHeight/2;
 
-
             var index:Int = indexY * g2d_width + indexX + Std.int(i / indexWidth) * g2d_width + i % indexWidth;
             var tile:Tile = g2d_tiles[index];
             // TODO: All transforms
@@ -133,8 +126,6 @@ class GTileMap extends GComponent implements IGRenderable
                 var time:Float = node.core.getRunTime();
                 if (tile.getGTile().sizeX != 1 || tile.getGTile().sizeY != 1) {
                     if (tile.getGTile().lastFrameRendered != frameId) {
-//                        x -= (indexX +  i % indexWidth - tile.mapX) * g2d_tileWidth;// - (tile.sizeX - 1) * g2d_tileWidth / 2;
-//                        y -= (indexY + row - tile.mapY) * g2d_tileHeight;// - (tile.sizeY - 1) * g2d_tileHeight / 2;
                         tile.render(node.core.getContext(), x, y, frameId, time, blendMode);
                     }
                 } else {
@@ -144,7 +135,10 @@ class GTileMap extends GComponent implements IGRenderable
         }
     }
 
-    public function getTileAt(p_x:Float, p_y:Float, p_camera:GCamera = null):Tile {
+    /**
+    * return Map of "x" and "y" coordinates on GTileMap from world coordinates
+     */
+    public function getMapCoordinatesAt(p_x: Float, p_y: Float, p_camera:  GCamera = null): Map<String, Float> {
         if (p_camera == null) p_camera = node.core.getContext().getDefaultCamera();
 
         var viewRect:GRectangle = node.core.getContext().getStageViewRect();
@@ -154,18 +148,71 @@ class GTileMap extends GComponent implements IGRenderable
         var cameraHeight:Float = viewRect.height*p_camera.normalizedViewHeight;
         p_x -= cameraX + cameraWidth*.5;
         p_y -= cameraY + cameraHeight*.5;
+        var tx:Float = (p_camera.x - g2d_node.g2d_worldX + p_x);
+        var ty:Float = (p_camera.y - g2d_node.g2d_worldY + p_y);
+
+        var res: Map<String, Float> = new Map<String, Float>();
+        res.set("x", p_x);
+        res.set("y", p_y);
+        return res;
+    }
+
+//    public function getTileAt(p_x:Float, p_y:Float, p_camera:GCamera = null):Tile {
+//        if (p_camera == null) p_camera = node.core.getContext().getDefaultCamera();
+//
+//        var viewRect:GRectangle = node.core.getContext().getStageViewRect();
+//        var cameraX:Float = viewRect.width*p_camera.normalizedViewX;
+//        var cameraY:Float = viewRect.height*p_camera.normalizedViewY;
+//        var cameraWidth:Float = viewRect.width*p_camera.normalizedViewWidth;
+//        var cameraHeight:Float = viewRect.height*p_camera.normalizedViewHeight;
+//        p_x -= cameraX + cameraWidth*.5;
+//        p_y -= cameraY + cameraHeight*.5;
+//
+//        var mapHalfWidth:Float = (g2d_tileWidth * p_camera.scaleX) * g2d_width * .5;
+//        var mapHalfHeight:Float = (g2d_tileHeight * p_camera.scaleY) * g2d_height * (g2d_iso ? .25 : .5);
+//
+//        var firstX:Float = -mapHalfWidth + (g2d_iso ? (g2d_tileWidth * p_camera.scaleX) / 2 : 0);
+//        var firstY:Float = -mapHalfHeight + (g2d_iso ? (g2d_tileHeight * p_camera.scaleY) / 2 : 0);
+//
+//        var tx:Float = p_camera.x*p_camera.scaleX - g2d_node.g2d_worldX + p_x;
+//        var ty:Float = p_camera.y*p_camera.scaleY - g2d_node.g2d_worldY + p_y;
+//
+//        var indexX:Int = Math.floor((tx - firstX) / (g2d_tileWidth * p_camera.scaleX));
+//        var indexY:Int = Math.floor((ty - firstY) / (g2d_tileHeight * p_camera.scaleY));
+//
+//        if (indexX<0 || indexX>=g2d_width || indexY<0 || indexY>=g2d_height) return null;
+//        return g2d_tiles[indexY*g2d_width+indexX];
+//    }
+
+    public function getTileAt(p_x:Float, p_y:Float, p_camera:GCamera = null):Tile {
+        var coords: Map<String, Float> = getMapCoordinatesAt(p_x, p_y, p_camera);
+        /////////////////
+        var viewRect:GRectangle = node.core.getContext().getStageViewRect();
+        var cameraX:Float = viewRect.width*p_camera.normalizedViewX;
+        var cameraY:Float = viewRect.height*p_camera.normalizedViewY;
+        var cameraWidth:Float = viewRect.width*p_camera.normalizedViewWidth;
+        var cameraHeight:Float = viewRect.height*p_camera.normalizedViewHeight;
+        p_x -= cameraX + cameraWidth*.5;
+        p_y -= cameraY + cameraHeight*.5;
+        /////////////////
+//        var x: Float = coords.get("x");
+//        var y: Float = coords.get("y");
+
 
         var mapHalfWidth:Float = (g2d_tileWidth) * g2d_width * .5;
         var mapHalfHeight:Float = (g2d_tileHeight) * g2d_height * (g2d_iso ? .25 : .5);
 
         var firstX:Float = -mapHalfWidth + (g2d_iso ? (g2d_tileWidth) / 2 : 0);
         var firstY:Float = -mapHalfHeight + (g2d_iso ? (g2d_tileHeight) / 2 : 0);
-
+////////////////////////
         var tx:Float = (p_camera.x - g2d_node.g2d_worldX + p_x);
         var ty:Float = (p_camera.y - g2d_node.g2d_worldY + p_y);
-
+////////////////////////
+//        GDebug.info(" X: " + x + " Y: " + y + " FIRST X: " + firstX + " FIRST Y: " + firstY);
         var indexX:Int = Math.floor((tx - firstX) / (g2d_tileWidth ));
+//        var indexX:Int = Math.floor((tx - firstX) / (g2d_tileWidth ));
         var indexY:Int = Math.floor((ty - firstY) / (g2d_tileHeight ));
+//        var indexY:Int = Math.floor((ty - firstY) / (g2d_tileHeight ));
 
         if (indexX<0 || indexX>=g2d_width || indexY<0 || indexY>=g2d_height) return null;
         return g2d_tiles[indexY*g2d_width+indexX];

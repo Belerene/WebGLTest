@@ -41,7 +41,7 @@ class Core {
 
     public function tmpTest(): Void {
         GDebug.info();
-        var tmp: LandLoader = new LandLoader("http://localhost/out/tmp_lands.json");
+        var tmp: LandLoader = new LandLoader(LandLoader.LandJsonPath);
         tmp.addOnStatusReceived();
         tmp.addOnDataReceived(parseJson);
         tmp.addOnErrorReceived();
