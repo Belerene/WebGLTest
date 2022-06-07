@@ -2147,7 +2147,7 @@ com_dinox_controller_MainController.prototype = {
 			}
 			if(com_dinox_Main.IS_DEV) {
 				if(this.DEV_mouseDragHandler != null) {
-					this.DEV_mouseDragHandler(deltaX,deltaY,signal.worldX,signal.worldY,signal.camera.g2d_contextCamera);
+					this.DEV_mouseDragHandler(signal.worldX,signal.worldY,signal.camera.g2d_contextCamera);
 				}
 			}
 		}
@@ -3458,7 +3458,7 @@ com_dinox_model_LandMap.prototype = {
 			this.gtileMap.g2d_node.setPosition(this.gtileMap.g2d_node.g2d_localX - p_deltaX,this.gtileMap.g2d_node.g2d_localY - p_deltaY);
 		}
 	}
-	,DEV_mapDragged_handler: function(p_deltaX,p_deltaY,p_x,p_y,p_contextCamera) {
+	,DEV_mapDragged_handler: function(p_x,p_y,p_contextCamera) {
 		if(this.DEVMoveEnabled) {
 			var tile = this.gtileMap.getTileAt(p_x,p_y,p_contextCamera);
 			if(tile != this.DEVClickedTile) {
@@ -10429,7 +10429,7 @@ com_genome2d_components_renderable_tilemap_GTileMap.prototype = $extend(com_geno
 			var p_arg18 = null;
 			var p_arg19 = null;
 			var p_arg20 = null;
-			var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/components/renderable/tilemap/GTileMap.hx", lineNumber : 77, className : "com.genome2d.components.renderable.tilemap.GTileMap", methodName : "removeTile"};
+			var pos = { fileName : "../Genome2D/Genome2D-Core/src/com/genome2d/components/renderable/tilemap/GTileMap.hx", lineNumber : 71, className : "com.genome2d.components.renderable.tilemap.GTileMap", methodName : "removeTile"};
 			var args = [];
 			if(p_arg1 != null) {
 				args.push(p_arg1);
@@ -50758,8 +50758,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.85;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "29f5ae9ee28cea35adb759f4c6c674b5";
-com_genome2d_Genome2D.DATE = "2022-06-07 11:53:49";
+com_genome2d_Genome2D.BUILD = "8a31974579e510a729bc4d65d68e658d";
+com_genome2d_Genome2D.DATE = "2022-06-07 14:30:27";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

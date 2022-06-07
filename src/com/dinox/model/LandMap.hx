@@ -267,10 +267,10 @@ class LandMap {
         }
     }
 
-    private function DEV_mapDragged_handler(p_deltaX: Float, p_deltaY: Float,p_x: Float, p_y: Float, p_contextCamera: GCamera): Void {
+    private function DEV_mapDragged_handler(p_x: Float, p_y: Float, p_contextCamera: GCamera): Void {
         if(DEVMoveEnabled) {
+//            gtileMap = DevHandler.getInstance().mapDragged_handler(p_x, p_y, p_contextCamera, gtileMap, lands);
             var tile: Tile = gtileMap.getTileAt(p_x, p_y, p_contextCamera);
-//            GDebug.info("tile: " + Std.string(tile) + " X: " + p_x + " Y: " + p_y);
             if(tile != DEVClickedTile) {
                 handleDevLandMove(tile.getGTile().mapX - DEVClickedTile.getGTile().mapX, tile.getGTile().mapY - DEVClickedTile.getGTile().mapY);
                 tile = gtileMap.getTileAt(p_x, p_y, p_contextCamera);

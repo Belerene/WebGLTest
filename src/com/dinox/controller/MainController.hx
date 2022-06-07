@@ -32,7 +32,7 @@ class MainController {
     private var mouseDragHandler: Float->Float->Void;
     private var infoPopupHandler: Float->Float->GCamera->Void;
 
-    private var DEV_mouseDragHandler: Float->Float->Float->Float->GCamera->Void;
+    private var DEV_mouseDragHandler: Float->Float->GCamera->Void;
     private var DEV_mouseDownHandler: Float->Float->GCamera->Void;
 
     private var zoomCompletedHandler: Float->Void;
@@ -47,7 +47,7 @@ class MainController {
         core.getMapCamera().onMouseInput.add(handleMapCameraMouseInput);
     }
 
-    public function addDevMapScreenListeners(p_DEV_mouseDragHandler: Float->Float->Float->Float->GCamera->Void, p_DEV_mouseDownHandler: Float->Float->GCamera->Void): Void {
+    public function addDevMapScreenListeners(p_DEV_mouseDragHandler: Float->Float->GCamera->Void, p_DEV_mouseDownHandler: Float->Float->GCamera->Void): Void {
         DEV_mouseDragHandler = p_DEV_mouseDragHandler;
         DEV_mouseDownHandler = p_DEV_mouseDownHandler;
     }
@@ -162,7 +162,7 @@ class MainController {
             }
             if(Main.IS_DEV) {
                 if(DEV_mouseDragHandler != null) {
-                    DEV_mouseDragHandler(deltaX, deltaY, signal.worldX, signal.worldY, signal.camera.contextCamera);
+                    DEV_mouseDragHandler(signal.worldX, signal.worldY, signal.camera.contextCamera);
                 }
             }
         }

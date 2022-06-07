@@ -3,6 +3,8 @@ import com.genome2d.callbacks.GCallback.GCallback1;
 class DevHandler {
     private static var  instance: DevHandler = null;
     private var _onJsonEdited: GCallback1<Bool>;
+
+
     private function new() {
         instance = this;
 
