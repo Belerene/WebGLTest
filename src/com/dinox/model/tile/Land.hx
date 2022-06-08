@@ -21,30 +21,112 @@ class Land {
         var dataToPropagate: Map<String, Dynamic>  = tiles[0].userData;
         var index: Int = 0;
         var assetIndex: Int = 0;
-        for(i in p_x...p_x+p_size) {
-            for(j in p_y...p_y+p_size) {
+        for(i in x...x+size) {
+            for(j in y...y+size) {
                 tiles[index].tileIsInLand = true;
                 tiles[index].userData = cast dataToPropagate;
                 tiles[index].id = p_id;
-                tiles[index].setTileAssetData(TrimAssetString(assets[assetIndex]));
+                tiles[index].setTileAssetData(assets[assetIndex]);
                 tiles[index].setTileLandRarity(p_rarity);
-                tiles[index].setTileLandSize(p_size);
-                if(i == p_x) {
-                    tiles[index].addTopSeparator();
-                }
-                if(i == p_x+p_size-1) {
-                    tiles[index].addBottomSeparator();
-                }
-                if(j == p_y) {
-                    tiles[index].addLeftSeparator();
-                }
-                if(j == p_y+p_size-1) {
-                    tiles[index].addRightSeparator();
-                }
+                tiles[index].setTileLandSize(size);
                 index++;
                 assetIndex++;
             }
         }
+        invalidateSeparators();
+    }
+
+    private function invalidateSeparators(): Void {
+        var index: Int = 0;
+        for(i in x...x+size) {
+            for(j in y...y+size) {
+                if(i == x) {
+                    tiles[index].addTopSeparator();
+                }
+                if(i == x+size-1) {
+                    tiles[index].addBottomSeparator();
+                }
+                if(j == y) {
+                    tiles[index].addLeftSeparator();
+                }
+                if(j == y+size-1) {
+                    tiles[index].addRightSeparator();
+                }
+                index++;
+            }
+        }
+    }
+
+    public function setRarity(p_rarity: String): Void {
+        GDebug.info("SETTING RARITY: " + p_rarity);
+        if(p_rarity == rarity) return;
+        rarity = p_rarity;
+        for(i in 0...tiles.length) {
+            tiles[i].setTileLandRarity(rarity);
+        }
+        invalidateSeparators();
+    }
+
+    public function getRarity(): String {
+        return rarity;
+    }
+
+    public function getX(): Int {
+        return x;
+    }
+
+    public function getY(): Int {
+        return y;
+    }
+
+    public function setSize(p_size: Int): Void {
+        if(p_size == size) return;
+        var originalSize: Int = size;
+        size = p_size;
+        var defaultTile: Tile;
+        var originalTiles: Array<Tile> = tiles.copy();
+        for(i in 0...tiles.length) {
+            GDebug.info("Setting default at x: " + tiles[i].getGTile().mapX + " y: " + tiles[i].getGTile().mapY);
+            defaultTile = new Tile(tiles[i].getGTile().mapX, tiles[i].getGTile().mapY, TileRarityType.COMMON, size);
+            tiles[i] = defaultTile;
+        }
+        var index: Int = 0;
+        var originalIndex: Int = 0;
+        assets.resize(tiles.length);
+        tiles = new Array<Tile>();
+        for(i in x...x+size) {
+            for(j in y...y+size) {
+                GDebug.info("i: " + i + " x+size: " + (x+originalSize) + " j: " + j + " y+size: " + (y+originalSize));
+                if(i >= x+originalSize || j >= y+originalSize) {
+//                }
+                    tiles.push(originalTiles[originalTiles.length-1].clone());
+                    tiles[index].setX(i);
+                    tiles[index].setY(j);
+                    tiles[index].setTileAssetData(assets[originalTiles.length-1]);
+                    assets.push(assets[originalTiles.length-1]);
+                } else {
+                    tiles.push(originalTiles[originalIndex].clone());
+                    tiles[index].setTileAssetData(originalTiles[originalIndex].getAsset());
+                    originalIndex++;
+                }
+                tiles[index].tileIsInLand = true;
+                index++;
+            }
+        }
+        invalidateSeparators();
+//        GDebug.info("LAND TILES: " + Std.string(tiles));
+    }
+
+    public function getSize(): Int {
+        return size;
+    }
+
+    public function getAssets(): Array<String> {
+        return assets;
+    }
+
+    public function getId(): Int {
+        return id;
     }
 
     public function containsTile(p_tile: Tile): Bool {

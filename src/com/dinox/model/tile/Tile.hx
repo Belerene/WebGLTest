@@ -40,15 +40,22 @@ class Tile {
 
     public function setTileAssetData(p_asset: String): Void {
         if(p_asset != null) {
+            p_asset = Land.TrimAssetString(p_asset);
             if(p_asset != "") {
                 tileRenderer.setNewTileAssets(p_asset);
+                _userData.set("asset", p_asset);
             }
         }
+    }
+
+    public function getAsset(): String {
+        return  _userData.get("asset");
     }
 
     public function setTileLandSize(p_size: Int): Void {
         if(p_size != null) {
             landSize = p_size;
+            _userData.set("size", landSize);
         }
     }
 
@@ -56,8 +63,19 @@ class Tile {
         if(p_rarity != null) {
             if(p_rarity != "") {
                 rarity = p_rarity;
+                _userData.set("rarity", rarity);
             }
         }
+    }
+
+    public function setX(p_x: Int): Void {
+        _userData.set("x", p_x);
+        getGTile().mapX = p_x;
+    }
+
+    public function setY(p_y: Int): Void {
+        _userData.set("y", p_y);
+        getGTile().mapY = p_y;
     }
 
     public function addTopSeparator(): Void {
@@ -115,5 +133,11 @@ class Tile {
 
     public static function getIndexFromCoordinates(p_x: Int, p_y: Int): Int {
         return p_y*LandMap.TILE_COUNT+p_x;
+    }
+
+    public function clone(): Tile {
+        var res: Tile = new Tile(tileRenderer.getGTile().mapX, tileRenderer.getGTile().mapY, rarity, landSize);
+        res.set_userData(_userData);
+        return res;
     }
 }
