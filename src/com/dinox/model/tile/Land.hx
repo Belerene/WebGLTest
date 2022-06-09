@@ -83,6 +83,7 @@ class Land {
         if(p_size == size) return;
         var originalSize: Int = size;
         size = p_size;
+        var sizeDiff: Int = originalSize - size;
         var defaultTile: Tile;
         var originalTiles: Array<Tile> = tiles.copy();
         for(i in 0...tiles.length) {
@@ -105,12 +106,21 @@ class Land {
                     tiles[index].setTileAssetData(assets[originalTiles.length-1]);
                     assets.push(assets[originalTiles.length-1]);
                 } else {
+                    GDebug.info("SETTING CLONE OF ORIGINAL INDEX: " + originalIndex + " X: " + i + " Y: " + j + " INDEX: " + index);
                     tiles.push(originalTiles[originalIndex].clone());
                     tiles[index].setTileAssetData(originalTiles[originalIndex].getAsset());
                     originalIndex++;
                 }
+                tiles[index].setTileLandSize(size);
                 tiles[index].tileIsInLand = true;
                 index++;
+
+                if(j == (y+size-1)) {
+//                    GDebug.info("Y: ")
+                    if(sizeDiff > 0) {
+                        originalIndex += sizeDiff;
+                    }
+                }
             }
         }
         invalidateSeparators();
@@ -162,6 +172,11 @@ class Land {
         res = StringTools.replace(res,"[","");
         res = StringTools.replace(res,"]","");
         res = StringTools.trim(res);
+        return res;
+    }
+
+    public function clone(): Land {
+        var res: Land = new Land(id, x, y, size, rarity, assets, tiles.copy());
         return res;
     }
 }

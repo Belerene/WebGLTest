@@ -258,16 +258,16 @@ class LandMap {
     private function updateLand(p_land: Land, p_gtileMapIsDirty: Bool = false, p_originalSize: Int = 0): Void {
         for(i in 0...lands.length) {
             if(lands[i].getId() == p_land.getId()) {
-//                if(p_land.getTiles().length < lands[i].getTiles().length){
-//                    var defaultTile: Tile;
-//                    for(j in 0...lands[i].getTiles().length) {
-//                        GDebug.info("Setting default at x: " + lands[i].getTiles()[j].getGTile().mapX + " y: " + lands[i].getTiles()[j].getGTile().mapY);
-//                        defaultTile = new Tile(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY, TileRarityType.COMMON, lands[i].getSize());
-//                        gtileMap.setTile(Tile.getIndexFromCoordinates(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY), defaultTile);
-//                    }
-//                }
+                if(p_land.getTiles().length != lands[i].getTiles().length){
+                    var defaultTile: Tile;
+                    for(j in 0...lands[i].getTiles().length) {
+                        GDebug.info("Setting default at x: " + lands[i].getTiles()[j].getGTile().mapX + " y: " + lands[i].getTiles()[j].getGTile().mapY);
+                        defaultTile = new Tile(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY, TileRarityType.COMMON, lands[i].getSize());
+                        gtileMap.setTile(Tile.getIndexFromCoordinates(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY), defaultTile);
+                    }
+                }
 
-
+                GDebug.info("ORIGINAL LENGTH: " + lands[i].getTiles().length + " NEW LENGTH: " + p_land.getTiles().length + " I: " + i);
                 if(p_gtileMapIsDirty) {
 //                    var land: Land = lands[i];
                     var land: Land = p_land;
@@ -275,33 +275,35 @@ class LandMap {
                     var startYIndex: Int = land.getY();
                     var endXIndex: Int = startXIndex;
                     var endYIndex: Int = startYIndex;
-                    if(p_land.getTiles().length < lands[i].getTiles().length) {
-                        endXIndex = lands[i].getX() + lands[i].getSize();
-                        endYIndex = lands[i].getY()+ lands[i].getSize();
-                    } else {
+//                    if(p_land.getTiles().length < lands[i].getTiles().length) {
+//                        GDebug.info("SETTING ENDINDEX X AND Y X: " + lands[i].getX() + " Y: " + lands[i].getY() + " SIZE: " +lands[i].getSize());
+//                        endXIndex = lands[i].getX() + lands[i].getSize();
+//                        endYIndex = lands[i].getY() + lands[i].getSize();
+//                    } else {
                         endXIndex = p_land.getX()+ p_land.getSize();
                         endYIndex = p_land.getY()+ p_land.getSize();
-                    }
+//                    }
 //                    var endIndex: Int = Tile.getIndexFromCoordinates(land.getX() + land.getSize(), land.getY()) + land.getSize();
                     GDebug.info("START X: " + startXIndex + " START Y: " + startYIndex + " END X: " + endXIndex + " END Y: " + endYIndex);
                     var index: Int  = 0;
                     var tile: Tile;
-                    for(i in startXIndex...endXIndex+1) {
-                        for(j in startYIndex...endYIndex+1) {
-                            GDebug.info("SETTING TILE INDEX: " + index);
+                    for(j in startXIndex...endXIndex) {
+                        for(k in startYIndex...endYIndex) {
+//                            GDebug.info("SETTING TILE INDEX: " + index);
                             if(land.getTiles()[index] == null) {
-                                tile = new Tile(i, j, TileRarityType.COMMON, 1);
+                                tile = new Tile(j, k, TileRarityType.COMMON, 1);
                             } else {
                                 tile = land.getTiles()[index];
                             }
-                            GDebug.info("SETTING TILE: " + Std.string(tile) + " at X: " + i + " Y: " + j);
-                            gtileMap.setTile(Tile.getIndexFromCoordinates(i, j), tile);
+                            GDebug.info("SETTING TILE: " + Std.string(tile) + " at X: " + j + " Y: " + k);
+                            gtileMap.setTile(Tile.getIndexFromCoordinates(j, k), tile);
 //                            gtileMap.setTile(Tile.getIndexFromCoordinates(land.getTiles()[index].getGTile().mapX, land.getTiles()[index].getGTile().mapY), land.getTiles()[index]);
                             index++;
                         }
                     }
                 }
                 lands[i] = p_land;
+                GDebug.info("LAND END: --- " + Std.string(lands[i]));
                 return;
             }
         }
@@ -359,14 +361,18 @@ class LandMap {
     }
 
     private function DEV_infoPopupSize_handler(signal: GMouseInput): Void {
-        var land: Land = openInfoPopup.getLand();
+        var land: Land = openInfoPopup.getLand().clone();
         GDebug.info(cast(signal.target, GUIElement).name);
         switch(cast(signal.target, GUIElement).name) {
             case "info_popup_size_l":
+                GDebug.info("SMALLER BEFORE LENGTH: " + land.getTiles().length + " ORIGINAL: " + lands[1].getTiles().length);
                 land.setSize(TileSizeType.lowerSize(land.getSize()));
+                GDebug.info("SMALLER AFTER LENGTH: " + land.getTiles().length + " ORIGINAL: " + lands[1].getTiles().length);
 //                openInfoPopup.invalidate(land);
             case "info_popup_size_r":
+                GDebug.info("LARGER BEFORE LENGTH: " + land.getTiles().length + " ORIGINAL: " + lands[1].getTiles().length);
                 land.setSize(TileSizeType.higherSize(land.getSize()));
+                GDebug.info("LARGER AFTER LENGTH: " + land.getTiles().length + " ORIGINAL: " + lands[1].getTiles().length);
 //                openInfoPopup.invalidate(land);
         }
 
