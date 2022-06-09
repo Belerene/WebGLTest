@@ -15,7 +15,9 @@ class Land {
         y = p_y;
         size = p_size;
         rarity = p_rarity;
-        assets = p_assets;
+        GDebug.info("1 ASSETS: " + Std.string(p_assets));
+        processAssets(p_assets);
+        GDebug.info("2 ASSETS: " + Std.string(assets));
         tiles = p_tiles;
 
         var dataToPropagate: Map<String, Dynamic>  = tiles[0].userData;
@@ -26,7 +28,7 @@ class Land {
                 tiles[index].tileIsInLand = true;
                 tiles[index].userData = cast dataToPropagate;
                 tiles[index].id = p_id;
-                tiles[index].setTileAssetData(assets[assetIndex]);
+                tiles[index].setTileAssetData(TrimAssetString(assets[assetIndex]));
                 tiles[index].setTileLandRarity(p_rarity);
                 tiles[index].setTileLandSize(size);
                 index++;
@@ -34,6 +36,13 @@ class Land {
             }
         }
         invalidateSeparators();
+    }
+
+    private function processAssets(p_assets: Array<String>): Void {
+        assets = new Array<String>();
+        for(i in 0...p_assets.length) {
+            assets.push(TrimAssetString(p_assets[i]));
+        }
     }
 
     private function invalidateSeparators(): Void {
@@ -58,7 +67,6 @@ class Land {
     }
 
     public function setRarity(p_rarity: String): Void {
-        GDebug.info("SETTING RARITY: " + p_rarity);
         if(p_rarity == rarity) return;
         rarity = p_rarity;
         for(i in 0...tiles.length) {
@@ -81,33 +89,31 @@ class Land {
 
     public function setSize(p_size: Int): Void {
         if(p_size == size) return;
+        var originalAssets: Array<String> = assets;
         var originalSize: Int = size;
         size = p_size;
         var sizeDiff: Int = originalSize - size;
         var defaultTile: Tile;
         var originalTiles: Array<Tile> = tiles.copy();
         for(i in 0...tiles.length) {
-            GDebug.info("Setting default at x: " + tiles[i].getGTile().mapX + " y: " + tiles[i].getGTile().mapY);
             defaultTile = new Tile(tiles[i].getGTile().mapX, tiles[i].getGTile().mapY, TileRarityType.COMMON, size);
             tiles[i] = defaultTile;
         }
         var index: Int = 0;
         var originalIndex: Int = 0;
-        assets.resize(tiles.length);
+        assets = new Array<String>();
         tiles = new Array<Tile>();
         for(i in x...x+size) {
             for(j in y...y+size) {
-                GDebug.info("i: " + i + " x+size: " + (x+originalSize) + " j: " + j + " y+size: " + (y+originalSize));
                 if(i >= x+originalSize || j >= y+originalSize) {
-//                }
                     tiles.push(originalTiles[originalTiles.length-1].clone());
                     tiles[index].setX(i);
                     tiles[index].setY(j);
                     tiles[index].setTileAssetData(assets[originalTiles.length-1]);
-                    assets.push(assets[originalTiles.length-1]);
+                    assets.push(originalAssets[originalTiles.length-1]);
                 } else {
-                    GDebug.info("SETTING CLONE OF ORIGINAL INDEX: " + originalIndex + " X: " + i + " Y: " + j + " INDEX: " + index);
                     tiles.push(originalTiles[originalIndex].clone());
+                    assets.push(originalAssets[originalIndex]);
                     tiles[index].setTileAssetData(originalTiles[originalIndex].getAsset());
                     originalIndex++;
                 }
@@ -116,7 +122,6 @@ class Land {
                 index++;
 
                 if(j == (y+size-1)) {
-//                    GDebug.info("Y: ")
                     if(sizeDiff > 0) {
                         originalIndex += sizeDiff;
                     }
@@ -124,7 +129,6 @@ class Land {
             }
         }
         invalidateSeparators();
-//        GDebug.info("LAND TILES: " + Std.string(tiles));
     }
 
     public function getSize(): Int {
