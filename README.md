@@ -1,5 +1,5 @@
 1. Clone https://github.com/pshtif/Genome2D
-2. Download Haxe 4 set it as Project and Module SDK https://haxe.org/
+2. Download Haxe 4 set it as Project and Module SDK https://haxe.org/ (latest intellij version supporting haxe is 2020.3.4)
 3. Project language level: plain old Java
 4. Set Project SDK, Neko executable HaxeToolkit\neko\neko.exe, Haxelib executable HaxeToolkit\haxe\haxelib.exe
 5. Setup your project libraries:
