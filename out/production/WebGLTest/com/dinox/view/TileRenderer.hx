@@ -15,7 +15,7 @@ class TileRenderer {
     private var tileAsset_s: GTexture = null;
     private var asset: String = "";
 
-    public static var ZOOM_BREAKPOINT_SMALL: Float = 0.85;
+    public static var ZOOM_BREAKPOINT_SMALL: Float = 0.25;
     public static var ZOOM_BREAKPOINT_LARGE: Float = 1.25;
     public static var BASE_TILE_SIZE: Int = 60;
 
@@ -66,7 +66,7 @@ class TileRenderer {
     }
 
     public function renderSeparators(p_context:IGContext, p_x:Float, p_y:Float, p_blendMode:GBlendMode): Void {
-        if(l_separator != null) {
+        /*if(l_separator != null) {
             p_context.draw(l_separator, p_blendMode, (p_x + 2) - BASE_TILE_SIZE/2, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
         }
         if(r_separator != null) {
@@ -77,7 +77,7 @@ class TileRenderer {
         }
         if(b_separator != null) {
             p_context.draw(b_separator, p_blendMode, p_x, p_y + BASE_TILE_SIZE/2, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
-        }
+        }*/
     }
 
     public function dimHighlight(): Void {

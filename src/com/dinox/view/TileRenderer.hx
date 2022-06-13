@@ -15,7 +15,7 @@ class TileRenderer {
     private var tileAsset_s: GTexture = null;
     private var asset: String = "";
 
-    public static var ZOOM_BREAKPOINT_SMALL: Float = 0.85;
+    public static var ZOOM_BREAKPOINT_SMALL: Float = 0.25;
     public static var ZOOM_BREAKPOINT_LARGE: Float = 1.25;
     public static var BASE_TILE_SIZE: Int = 60;
 

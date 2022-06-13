@@ -3,7 +3,7 @@ import haxe.io.Bytes;
 import com.genome2d.debug.GDebug;
 import haxe.Http;
 class LandLoader {
-    public static var LandJsonPath: String = "http://localhost/out/tmp_lands.json";
+    public static var LandJsonPath: String = "./tmp_lands.json";
 
     private var request: Http = null;
     public function new(p_url: String) {

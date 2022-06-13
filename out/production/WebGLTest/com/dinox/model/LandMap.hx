@@ -20,8 +20,9 @@ import com.genome2d.input.GMouseInput;
 import com.genome2d.debug.GDebug;
 class LandMap {
 
+    public static var ZOOM_LEVELS: Array<Float> = [2, 1.6, 1.2, 1, 0.8, 0.6, 0.4, 0.2, 0.1, 0.09, 0.07, 0.05, 0.04, 0.03, 0.02];
 
-    public static var TILE_COUNT: Int = 16; // real tile count is TILE_COUNT x TILE_COUNT
+    public static var TILE_COUNT: Int = 300; // real tile count is TILE_COUNT x TILE_COUNT
 //    public static var TILE_COUNT: Int = 256; // real tile count is TILE_COUNT x TILE_COUNT
 
     private var mainMapScreen: MainMapScreen;
@@ -96,28 +97,28 @@ class LandMap {
         var tile: Tile;
         for(i in 0...TILE_COUNT) {
             for(j in 0...LandMap.TILE_COUNT) {
-                tile = new Tile(j, i, addRandomRarity(), addRandomSize());
+                tile = new Tile(j, i, addDefaultRarity(), addDefaultSize());
                 tiles.push(tile);
             }
         }
     }
 
     //TMP
-    private function addRandomRarity(): String {
-        var rnd: Float = Math.random();
-        if(rnd < 0.5) return TileRarityType.COMMON;
-        if(rnd < 0.7) return TileRarityType.UNCOMMON;
-        if(rnd < 0.8) return TileRarityType.RARE;
-        if(rnd < 0.9) return TileRarityType.LEGENDARY;
-        return TileRarityType.MYTHICAL;
+    private function addDefaultRarity(): String {
+//        var rnd: Float = Math.random();
+//        if(rnd < 0.5) return TileRarityType.COMMON;
+//        if(rnd < 0.7) return TileRarityType.UNCOMMON;
+//        if(rnd < 0.8) return TileRarityType.RARE;
+//        if(rnd < 0.9) return TileRarityType.LEGENDARY;
+        return TileRarityType.DEFAULT;
     }
 
-    private function addRandomSize(): Int {
-        var rnd: Float = Math.random();
-        if(rnd < 0.5) return TileSizeType.ONEXONE;
-        if(rnd < 0.75) return TileSizeType.TWOXTWO;
-        if(rnd < 0.9) return TileSizeType.THREEXTHREE;
-        return TileSizeType.FOURXFOUR;
+    private function addDefaultSize(): Int {
+//        var rnd: Float = Math.random();
+//        if(rnd < 0.5) return TileSizeType.ONEXONE;
+//        if(rnd < 0.75) return TileSizeType.TWOXTWO;
+//        if(rnd < 0.9) return TileSizeType.THREEXTHREE;
+        return TileSizeType.DEFAULT;
     }
     //TMP
 
@@ -407,5 +408,10 @@ class LandMap {
             // filter is not yet slected, select it
             selectedFilters.push(p_target);
         }
+    }
+
+    public static function getChangedZoomLevel(p_change: Int, p_current: Float): Float {
+        var index: Int = ZOOM_LEVELS.indexOf(p_current);
+        return ZOOM_LEVELS[index+p_change];
     }
 }
