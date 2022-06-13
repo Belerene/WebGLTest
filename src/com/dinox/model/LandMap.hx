@@ -21,7 +21,7 @@ import com.genome2d.debug.GDebug;
 class LandMap {
 
 
-    public static var TILE_COUNT: Int = 16; // real tile count is TILE_COUNT x TILE_COUNT
+    public static var TILE_COUNT: Int = 300; // real tile count is TILE_COUNT x TILE_COUNT
 //    public static var TILE_COUNT: Int = 256; // real tile count is TILE_COUNT x TILE_COUNT
 
     private var mainMapScreen: MainMapScreen;

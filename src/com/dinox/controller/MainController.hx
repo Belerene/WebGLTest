@@ -11,7 +11,7 @@ import com.genome2d.input.GMouseInput;
 import com.dinox.model.Core;
 class MainController {
     private static var MAX_SCALE: Float = 2;
-    private static var MIN_SCALE: Float = 0.2;
+    private static var MIN_SCALE: Float = 0.02;
 
     private var canChangeZoom: Bool = true;
     private var isDragging: Bool = false;
@@ -157,10 +157,17 @@ class MainController {
     private function mouseWheel_handler(signal: GMouseInput): Void {
         var change: Float = signal.delta/15;
         if(canChangeZoom) {
+
+            trace(core.getMapCamera().zoom);
+            if (core.getMapCamera().zoom < 0.21) {
+                change = change/10;
+            }
+            trace(change);
             if(core.getMapCamera().zoom + change < MAX_SCALE &&
             core.getMapCamera().zoom + change > MIN_SCALE) {
                 canChangeZoom = false;
                 var changedScale: Float = core.getMapCamera().zoom + change;
+                trace(changedScale);
                 var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", core.getMapCamera().zoom + change, 0.1, false).onComplete(onCompleteZoom, [changedScale]);
             }
         }

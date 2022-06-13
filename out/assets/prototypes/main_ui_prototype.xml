@@ -1,0 +1,21 @@
+<element name="uiHolder" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" mouseEnabled="false">
+    <element name="ui" skin="@ui" flushBatch="true" mouseEnabled="false"/>
+    <element name="filters_rarity" preferredWidth="200" preferredHeight="50" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" skin="@dev" anchorX="-150" anchorY="-50" mouseEnabled="true">
+        <element name="common" preferredWidth="15" preferredHeight="15" anchorX="-90" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+        <element name="uncommon" preferredWidth="15" preferredHeight="15" anchorX="-45" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+        <element name="rare" preferredWidth="15" preferredHeight="15" anchorX="0" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+        <element name="legendary" preferredWidth="15" preferredHeight="15" anchorX="45" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+        <element name="mythical" preferredWidth="15" preferredHeight="15" anchorX="90" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+    </element>
+
+    <element name="filters_size" preferredWidth="200" preferredHeight="50" skin="@dev" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" anchorX="150" anchorY="-50" mouseEnabled="true">
+        <element name="one" preferredWidth="20" preferredHeight="20" anchorX="-85" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+        <element name="two" preferredWidth="20" preferredHeight="20" anchorX="-30" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+        <element name="three" preferredWidth="20" preferredHeight="20" anchorX="30" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+        <element name="four" preferredWidth="20" preferredHeight="20" anchorX="85" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+    </element>
+
+    <element name="dev_tools" visible="true" visible.dev="true" preferredWidth="50" preferredHeight="50" skin="@dev" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" anchorX="400" anchorY="-50" mouseEnabled="true">
+        <element name="move_enabled" preferredWidth="20" preferredHeight="20" anchorX="0" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+    </element>
+</element>
