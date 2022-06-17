@@ -21,7 +21,7 @@ class InfoPopupElement {
         popupElement.getChildByName("info_popup_title", true).model = "X: " + land.getX() + " Y: " + land.getY();
         popupElement.getChildByName("info_popup_rarity", true).model = "rarity: " + land.getRarity();
         popupElement.getChildByName("info_popup_size", true).model = "size: " + land.getSize();
-        popupElement.getChildByName("info_popup_asset", true).model = "asset: " + Std.string(land.getAssets());
+//        popupElement.getChildByName("info_popup_asset", true).model = "asset: " + Std.string(land.getAssets());
         if(Main.IS_DEV) popupElement.setState("dev");
         popupElement.flushBatch = true;
     }

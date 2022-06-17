@@ -20,7 +20,7 @@ import com.genome2d.input.GMouseInput;
 import com.genome2d.debug.GDebug;
 class LandMap {
 
-    public static var ZOOM_LEVELS: Array<Float> = [2, 1.6, 1.2, 1, 0.8, 0.6, 0.4, 0.2, 0.1, 0.09, 0.07, 0.05, 0.04, 0.03, 0.02];
+    public static var ZOOM_LEVELS: Array<Float> = [2, 1.6, 1.2, 1, 0.8, 0.6, 0.4, 0.2, 0.1, 0.09, 0.07, 0.05, 0.04, 0.03];
 
     public static var TILE_COUNT: Int = 300; // real tile count is TILE_COUNT x TILE_COUNT
 //    public static var TILE_COUNT: Int = 256; // real tile count is TILE_COUNT x TILE_COUNT

@@ -39,6 +39,8 @@ class Tile {
     }
 
     public function setTileAssetData(p_asset: String): Void {
+        p_asset = TMP_generaterRandomAssetName();
+        GDebug.info("setTileAsset p_asset: " + p_asset);
         if(p_asset != null) {
             p_asset = Land.TrimAssetString(p_asset);
             if(p_asset != "") {
@@ -46,6 +48,11 @@ class Tile {
                 _userData.set("asset", p_asset);
             }
         }
+    }
+
+    private function TMP_generaterRandomAssetName(): String {
+        var tileNumber: Int = Std.random(9) + 1;
+        return "tile_" + Std.string(tileNumber);
     }
 
     public function getAsset(): String {

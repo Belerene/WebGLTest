@@ -12,7 +12,7 @@ import com.genome2d.input.GMouseInput;
 import com.dinox.model.Core;
 class MainController {
     private static var MAX_SCALE: Float = 2;
-    private static var MIN_SCALE: Float = 0.02;
+    private static var MIN_SCALE: Float = 0.03;
 
     private var canChangeZoom: Bool = true;
     private var isDragging: Bool = false;
@@ -162,12 +162,12 @@ class MainController {
         (signal.delta > 0)? diff = -1: diff = 1;
         if(canChangeZoom) {
 
-            trace(core.getMapCamera().zoom);
-            if (core.getMapCamera().zoom < 0.21) {
-                change = change/10;
-            }
+//            trace(core.getMapCamera().zoom);
+//            if (core.getMapCamera().zoom < 0.21) {
+//                change = change/10;
+//            }
             change = LandMap.getChangedZoomLevel(diff, core.getMapCamera().zoom);
-            trace(change);
+//            trace(change);
 //            if(core.getMapCamera().zoom + change < MAX_SCALE &&
 //            core.getMapCamera().zoom + change > MIN_SCALE) {
                 if(change <= MAX_SCALE &&
@@ -176,8 +176,8 @@ class MainController {
 //                var changedScale: Float = core.getMapCamera().zoom / change;
                 var changedScale: Float = change;
 //                var changedScale: Float = core.getMapCamera().zoom + change;
-                trace(changedScale);
-                var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", changedScale, 0.1, false).onComplete(onCompleteZoom, [changedScale]);
+//                trace(changedScale);
+                var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", change, 0.1, false).onComplete(onCompleteZoom, [change]);
 //                var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", core.getMapCamera().zoom + change, 0.1, false).onComplete(onCompleteZoom, [changedScale]);
             }
         }

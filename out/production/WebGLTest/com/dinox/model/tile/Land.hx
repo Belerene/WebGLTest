@@ -15,9 +15,7 @@ class Land {
         y = p_y;
         size = p_size;
         rarity = p_rarity;
-        GDebug.info("1 ASSETS: " + Std.string(p_assets));
         processAssets(p_assets);
-        GDebug.info("2 ASSETS: " + Std.string(assets));
         tiles = p_tiles;
 
         var dataToPropagate: Map<String, Dynamic>  = tiles[0].userData;
