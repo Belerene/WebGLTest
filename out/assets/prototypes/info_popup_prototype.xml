@@ -15,7 +15,7 @@
 <!--        <element name="info_popup_asset_l" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="232" anchorX="10" model="<="/>-->
 <!--        <element name="info_popup_asset_r" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="232" anchorX="-10" model="=>"/>-->
     </element>
-    <element name="infoPopup_closeBtn" skin="@dev_black" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="5" anchorX="5" preferredWidth="160" preferredHeight="60">
+    <element name="infoPopup_closeBtn" skin="@dev_black" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="5" anchorX="40" preferredWidth="160" preferredHeight="60">
         <element name="infoPopup_closeBtn_X" model="X" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" skin="@font_semibold"/>
     </element>
 </element>
