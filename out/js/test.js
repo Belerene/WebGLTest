@@ -2100,16 +2100,6 @@ com_dinox_controller_MainController.prototype = {
 			_this3.g2d_onMouseDown = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
 		}
 		_this3.g2d_onMouseDown.add(p_size_handler);
-		var _this4 = p_infoPopupElement.getChildByName("info_popup_asset_l",true);
-		if(_this4.g2d_onMouseDown == null) {
-			_this4.g2d_onMouseDown = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
-		}
-		_this4.g2d_onMouseDown.add(p_asset_handler);
-		var _this5 = p_infoPopupElement.getChildByName("info_popup_asset_r",true);
-		if(_this5.g2d_onMouseDown == null) {
-			_this5.g2d_onMouseDown = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
-		}
-		_this5.g2d_onMouseDown.add(p_asset_handler);
 	}
 	,removeDevInfoPopupHandlers: function(p_infoPopupElement) {
 		var _this = p_infoPopupElement.getChildByName("info_popup_rarity_l",true);
@@ -2132,16 +2122,6 @@ com_dinox_controller_MainController.prototype = {
 			_this3.g2d_onMouseDown = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
 		}
 		_this3.g2d_onMouseDown.removeAll();
-		var _this4 = p_infoPopupElement.getChildByName("info_popup_asset_l",true);
-		if(_this4.g2d_onMouseDown == null) {
-			_this4.g2d_onMouseDown = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
-		}
-		_this4.g2d_onMouseDown.removeAll();
-		var _this5 = p_infoPopupElement.getChildByName("info_popup_asset_r",true);
-		if(_this5.g2d_onMouseDown == null) {
-			_this5.g2d_onMouseDown = new com_genome2d_callbacks_GCallback1(com_genome2d_input_GMouseInput);
-		}
-		_this5.g2d_onMouseDown.removeAll();
 	}
 	,mouseClick_handler: function(signal) {
 	}
@@ -51543,8 +51523,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "db29988791a9832fabb3180dddaad436";
-com_genome2d_Genome2D.DATE = "2022-06-17 15:19:27";
+com_genome2d_Genome2D.BUILD = "e3373cca185cf30527bab23a282e9c2d";
+com_genome2d_Genome2D.DATE = "2022-06-20 09:13:31";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

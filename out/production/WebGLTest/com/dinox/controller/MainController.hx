@@ -102,8 +102,8 @@ class MainController {
         p_infoPopupElement.getChildByName("info_popup_rarity_r", true).onMouseDown.add(p_rarity_handler);
         p_infoPopupElement.getChildByName("info_popup_size_l", true).onMouseDown.add(p_size_handler);
         p_infoPopupElement.getChildByName("info_popup_size_r", true).onMouseDown.add(p_size_handler);
-        p_infoPopupElement.getChildByName("info_popup_asset_l", true).onMouseDown.add(p_asset_handler);
-        p_infoPopupElement.getChildByName("info_popup_asset_r", true).onMouseDown.add(p_asset_handler);
+//        p_infoPopupElement.getChildByName("info_popup_asset_l", true).onMouseDown.add(p_asset_handler);
+//        p_infoPopupElement.getChildByName("info_popup_asset_r", true).onMouseDown.add(p_asset_handler);
     }
 
     public function removeDevInfoPopupHandlers(p_infoPopupElement: GUIElement): Void {
@@ -111,8 +111,8 @@ class MainController {
         p_infoPopupElement.getChildByName("info_popup_rarity_r", true).onMouseDown.removeAll();
         p_infoPopupElement.getChildByName("info_popup_size_l", true).onMouseDown.removeAll();
         p_infoPopupElement.getChildByName("info_popup_size_r", true).onMouseDown.removeAll();
-        p_infoPopupElement.getChildByName("info_popup_asset_l", true).onMouseDown.removeAll();
-        p_infoPopupElement.getChildByName("info_popup_asset_r", true).onMouseDown.removeAll();
+//        p_infoPopupElement.getChildByName("info_popup_asset_l", true).onMouseDown.removeAll();
+//        p_infoPopupElement.getChildByName("info_popup_asset_r", true).onMouseDown.removeAll();
     }
 
     private function mouseClick_handler(signal: GMouseInput): Void {
