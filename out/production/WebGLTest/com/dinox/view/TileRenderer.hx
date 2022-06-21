@@ -140,9 +140,15 @@ class TileRenderer {
 
     public function setNewTileAssets(p_asset: String): Void {
         if(p_asset != asset) {
-            tileAsset_n = GTextureManager.getTexture(p_asset + "_n");
-            tileAsset_l = GTextureManager.getTexture(p_asset + "_l");
-            tileAsset_s = GTextureManager.getTexture(p_asset + "_s");
+            if(p_asset == "default") {
+                tileAsset_n = GTextureManager.getTexture(p_asset + "_n");
+                tileAsset_l = GTextureManager.getTexture(getRandomLargeDefaultAsset());
+                tileAsset_s = GTextureManager.getTexture(p_asset + "_s");
+            } else {
+                tileAsset_n = GTextureManager.getTexture(p_asset + "_n");
+                tileAsset_l = GTextureManager.getTexture(p_asset + "_l");
+                tileAsset_s = GTextureManager.getTexture(p_asset + "_s");
+            }
             // just to  re-render the tile with new graphics
             zoomChanged(currentZoom);
             asset = p_asset;
@@ -156,5 +162,14 @@ class TileRenderer {
     public function render(p_context:IGContext, p_x:Float, p_y:Float, p_frameId:Int, p_time:Float, p_blendMode:GBlendMode): Void {
         gTile.render(p_context, p_x, p_y, p_frameId, p_time, p_blendMode);
         renderSeparators(p_context, p_x, p_y, p_blendMode);
+    }
+
+    public function getRandomLargeDefaultAsset(): String {
+        var rnd: Float = Math.random();
+        if(rnd < 0.8) return "default_l_1";
+        if(rnd < 0.85) return "default_l_2";
+        if(rnd < 0.9) return "default_l_3";
+        if(rnd < 0.95) return "default_l_4";
+        return "default_l_5";
     }
 }

@@ -2361,6 +2361,11 @@ com_dinox_model_AssetsWrapper.prototype = {
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/default_s.png","default_s");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/default_n.png","default_n");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/default_l.png","default_l");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/default_l_1.png","default_l_1");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/default_l_2.png","default_l_2");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/default_l_3.png","default_l_3");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/default_l_4.png","default_l_4");
+		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/default_l_5.png","default_l_5");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/ui.png","ui");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/dev.png","dev");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/dev_black.png","dev_black");
@@ -5045,9 +5050,15 @@ com_dinox_view_TileRenderer.prototype = {
 	}
 	,setNewTileAssets: function(p_asset) {
 		if(p_asset != this.asset) {
-			this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture(p_asset + "_n");
-			this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture(p_asset + "_l");
-			this.tileAsset_s = com_genome2d_textures_GTextureManager.getTexture(p_asset + "_s");
+			if(p_asset == "default") {
+				this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture(p_asset + "_n");
+				this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture(this.getRandomLargeDefaultAsset());
+				this.tileAsset_s = com_genome2d_textures_GTextureManager.getTexture(p_asset + "_s");
+			} else {
+				this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture(p_asset + "_n");
+				this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture(p_asset + "_l");
+				this.tileAsset_s = com_genome2d_textures_GTextureManager.getTexture(p_asset + "_s");
+			}
 			this.zoomChanged(this.currentZoom);
 			this.asset = p_asset;
 		}
@@ -5082,6 +5093,22 @@ com_dinox_view_TileRenderer.prototype = {
 			_this.g2d_lastFrameRendered = p_frameId;
 		}
 		this.renderSeparators(p_context,p_x,p_y,p_blendMode);
+	}
+	,getRandomLargeDefaultAsset: function() {
+		var rnd = Math.random();
+		if(rnd < 0.8) {
+			return "default_l_1";
+		}
+		if(rnd < 0.85) {
+			return "default_l_2";
+		}
+		if(rnd < 0.9) {
+			return "default_l_3";
+		}
+		if(rnd < 0.95) {
+			return "default_l_4";
+		}
+		return "default_l_5";
 	}
 	,__class__: com_dinox_view_TileRenderer
 };
@@ -51523,8 +51550,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "e3373cca185cf30527bab23a282e9c2d";
-com_genome2d_Genome2D.DATE = "2022-06-20 09:13:31";
+com_genome2d_Genome2D.BUILD = "20eb98efea643f0a256254f1c1d39d56";
+com_genome2d_Genome2D.DATE = "2022-06-21 16:19:37";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

@@ -53,6 +53,11 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/default_s.png", "default_s");
         GStaticAssetManager.addFromUrl("assets/default_n.png", "default_n");
         GStaticAssetManager.addFromUrl("assets/default_l.png", "default_l");
+        GStaticAssetManager.addFromUrl("assets/default_l_1.png", "default_l_1");
+        GStaticAssetManager.addFromUrl("assets/default_l_2.png", "default_l_2");
+        GStaticAssetManager.addFromUrl("assets/default_l_3.png", "default_l_3");
+        GStaticAssetManager.addFromUrl("assets/default_l_4.png", "default_l_4");
+        GStaticAssetManager.addFromUrl("assets/default_l_5.png", "default_l_5");
         GStaticAssetManager.addFromUrl("assets/ui.png", "ui");
         GStaticAssetManager.addFromUrl("assets/dev.png", "dev");
         GStaticAssetManager.addFromUrl("assets/dev_black.png", "dev_black");

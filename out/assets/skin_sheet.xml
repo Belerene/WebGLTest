@@ -7,6 +7,11 @@
     <textureSkin id="tile_n" texture="@tile_n"/>
     <textureSkin id="tile_l" texture="@tile_l"/>
     <textureSkin id="tile_s" texture="@tile_s"/>
+<!--    <textureSkin id="default_l_1" texture="@default_l_1"/>-->
+<!--    <textureSkin id="default_l_2" texture="@default_l_2"/>-->
+<!--    <textureSkin id="default_l_3" texture="@default_l_3"/>-->
+<!--    <textureSkin id="default_l_4" texture="@default_l_4"/>-->
+<!--    <textureSkin id="default_l_5" texture="@default_l_5"/>-->
     <textureSkin id="font_png" texture="@font_png"/>
     <textureSkin id="separator_h" texture="@separator_h"/>
     <textureSkin id="separator_v" texture="@separator_v"/>
