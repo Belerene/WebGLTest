@@ -6,15 +6,17 @@ class Land {
     private var y: Int;
     private var size: Int;
     private var rarity: String;
+    private var ownedBy: String;
     private var assets: Array<String>;
     private var tiles: Array<Tile>;
 
-    public function new(p_id: Int, p_x: Int, p_y: Int, p_size: Int, p_rarity: String, p_assets: Array<String>, p_tiles: Array<Tile>) {
+    public function new(p_id: Int, p_x: Int, p_y: Int, p_size: Int, p_rarity: String, p_ownedBy: String, p_assets: Array<String>, p_tiles: Array<Tile>) {
         id = p_id;
         x = p_x;
         y = p_y;
         size = p_size;
         rarity = p_rarity;
+        ownedBy = p_ownedBy;
         processAssets(p_assets);
         tiles = p_tiles;
 
@@ -29,6 +31,7 @@ class Land {
                 tiles[index].setTileAssetData(TrimAssetString(assets[assetIndex]));
                 tiles[index].setTileLandRarity(p_rarity);
                 tiles[index].setTileLandSize(size);
+                tiles[index].setOwnedBy(ownedBy);
                 index++;
                 assetIndex++;
             }
@@ -77,6 +80,10 @@ class Land {
         return rarity;
     }
 
+    public function getOwner(): String {
+        return ownedBy;
+    }
+
     public function getX(): Int {
         return x;
     }
@@ -94,7 +101,7 @@ class Land {
         var defaultTile: Tile;
         var originalTiles: Array<Tile> = tiles.copy();
         for(i in 0...tiles.length) {
-            defaultTile = new Tile(tiles[i].getGTile().mapX, tiles[i].getGTile().mapY, TileRarityType.COMMON, size);
+            defaultTile = new Tile(tiles[i].getGTile().mapX, tiles[i].getGTile().mapY, TileRarityType.COMMON, size, ownedBy);
             tiles[i] = defaultTile;
         }
         var index: Int = 0;
@@ -178,7 +185,7 @@ class Land {
     }
 
     public function clone(): Land {
-        var res: Land = new Land(id, x, y, size, rarity, assets, tiles.copy());
+        var res: Land = new Land(id, x, y, size, rarity, ownedBy, assets, tiles.copy());
         return res;
     }
 }

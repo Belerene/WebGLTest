@@ -8,6 +8,7 @@ import com.dinox.view.TileRenderer;
 class Tile {
 
     private var rarity: String;
+    private var ownedBy: String;
     private var asset: String;
     private var landSize: Int;
     public var id: Int;
@@ -28,19 +29,19 @@ class Tile {
 
 
     private var tileRenderer: TileRenderer;
-    public function new(p_x: Int, p_y: Int, p_rarity: String, p_size: Int) {
+    public function new(p_x: Int, p_y: Int, p_rarity: String, p_size: Int, p_ownedBy: String) {
         tileRenderer = new TileRenderer(p_x, p_y);
 
         rarity = p_rarity;
         landSize = p_size;
-        _userData = ["rarity"=> p_rarity, "size"=> p_size, "x"=>  p_x, "y"=> p_y, "asset"=> "default"];
+        ownedBy = p_ownedBy;
+        _userData = ["rarity"=> p_rarity, "size"=> p_size, "x"=>  p_x, "y"=> p_y, "asset"=> "default", "ownedBy"=> p_ownedBy];
 
 
     }
 
     public function setTileAssetData(p_asset: String): Void {
         p_asset = TMP_generaterRandomAssetName();
-        GDebug.info("setTileAsset p_asset: " + p_asset);
         if(p_asset != null) {
             p_asset = Land.TrimAssetString(p_asset);
             if(p_asset != "") {
@@ -63,6 +64,13 @@ class Tile {
         if(p_size != null) {
             landSize = p_size;
             _userData.set("size", landSize);
+        }
+    }
+
+    public function setOwnedBy(p_ownedBy: String): Void {
+        if(p_ownedBy != "" || p_ownedBy != null) {
+            ownedBy = p_ownedBy;
+            _userData.set("ownedBy", ownedBy);
         }
     }
 
@@ -105,7 +113,7 @@ class Tile {
         if(p_filters.length == 0) { tileRenderer.resetHighlight(); return; }
         var highlight: Bool = false;
         for(filter  in p_filters) {
-            if(filter == rarity || filter == getSizeAsString()) {
+            if(filter == rarity || filter == getSizeAsString() || filter == getOwnership()) {
                 highlight = true;
             }
         }
@@ -114,6 +122,15 @@ class Tile {
         } else {
             tileRenderer.dimHighlight();
         }
+    }
+
+    private function getOwnership(): String {
+        if(ownedBy == "Unowned") {
+            return "unowned";
+        } else if(ownedBy != "") {
+            return "owned";
+        }
+        return "";
     }
 
     private function getSizeAsString(): String {
@@ -143,7 +160,7 @@ class Tile {
     }
 
     public function clone(): Tile {
-        var res: Tile = new Tile(tileRenderer.getGTile().mapX, tileRenderer.getGTile().mapY, rarity, landSize);
+        var res: Tile = new Tile(tileRenderer.getGTile().mapX, tileRenderer.getGTile().mapY, rarity, landSize, ownedBy);
         res.set_userData(_userData);
         return res;
     }

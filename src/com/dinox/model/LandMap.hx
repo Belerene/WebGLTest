@@ -41,6 +41,7 @@ class LandMap {
     // when filter is used as radiobutton
     private var rarityFilterSelected: String = "";
     private var sizeFilterSelected: String = "";
+    private var ownedFilterSelected: String = "";
     private var filterAsRadioButtons: Bool = false;
 
     private var DEVMoveEnabled: Bool = false;
@@ -64,7 +65,7 @@ class LandMap {
         mapGui.node.addChild(gtileMap.node);
         controller = new MainController(p_core);
         controller.addMapScreenListeners(mapDragged_handler, infoPopupOpen_handler, zoomChanged_handler);
-        controller.addUiFilterListeners(mainMapScreen.getUiElement().getGuiElement(), sizeFilterClicked_handler, rarityFilterClicked_handler, devUiClicked_handler);
+        controller.addUiFilterListeners(mainMapScreen.getUiElement().getGuiElement(), sizeFilterClicked_handler, rarityFilterClicked_handler, ownershipFilterClicked_handler, devUiClicked_handler);
 
         if(Main.IS_DEV) {
             controller.addDevMapScreenListeners(DEV_mapDragged_handler, DEV_mapMouseDown_handler);
@@ -87,7 +88,17 @@ class LandMap {
                         Reflect.getProperty(landElement, "y"),
                         Reflect.getProperty(landElement, "size"),
                         Reflect.getProperty(landElement, "rarity"),
+                        tmpGetRandomOwnership(),
+//                        Reflect.getProperty(landElement, "ownedBy"),
                         assets.split(",")));
+        }
+    }
+
+    private function tmpGetRandomOwnership(): String {
+        if(Math.random() > 0.5) {
+            return "Unowned";
+        } else {
+            return "abadadsfasdf";
         }
     }
 
@@ -97,7 +108,7 @@ class LandMap {
         var tile: Tile;
         for(i in 0...TILE_COUNT) {
             for(j in 0...LandMap.TILE_COUNT) {
-                tile = new Tile(j, i, addDefaultRarity(), addDefaultSize());
+                tile = new Tile(j, i, addDefaultRarity(), addDefaultSize(), addDefaultOwnership());
                 tiles.push(tile);
             }
         }
@@ -120,9 +131,13 @@ class LandMap {
 //        if(rnd < 0.9) return TileSizeType.THREEXTHREE;
         return TileSizeType.DEFAULT;
     }
+
+    private function addDefaultOwnership(): String {
+        return "";
+    }
     //TMP
 
-    public function setupLand(p_id: Int, p_i: Int, p_j: Int, p_size: Int, p_rarity: String, p_assets: Array<String>): Land {
+    public function setupLand(p_id: Int, p_i: Int, p_j: Int, p_size: Int, p_rarity: String, p_ownedBy: String, p_assets: Array<String>): Land {
         if(p_i + p_size <= LandMap.TILE_COUNT &&
             p_j + p_size <= LandMap.TILE_COUNT) {
             var canAddTileGroup: Bool = true;
@@ -136,7 +151,7 @@ class LandMap {
                 }
             }
             if(canAddTileGroup) {
-                var res: Land = new Land(p_id, p_i, p_j, p_size, p_rarity, p_assets,tilesForGroup);
+                var res: Land = new Land(p_id, p_i, p_j, p_size, p_rarity, p_ownedBy, p_assets, tilesForGroup);
                 return res;
             } else {
                 GDebug.warning("Cannot add land at x: " + Std.string(p_i) + " y: " + Std.string(p_j) + " of size: " + Std.string(p_size) + ", tiles are already in another land!");
@@ -149,6 +164,7 @@ class LandMap {
 
     private function invalidateTilesHighlight(): Void {
         handleFilterRadioButtons();
+        GDebug.info("SELECTED FILTER: " + Std.string(selectedFilters));
         for(i in 0...tiles.length) {
             tiles[i].handleFilter(selectedFilters);
         }
@@ -203,7 +219,7 @@ class LandMap {
         for(i in 0...tiles.length) {
             tile = tiles[i];
             newTiles.push(tile);
-            defaultTile = new Tile(tile.getGTile().mapX, tile.getGTile().mapY, TileRarityType.COMMON, TileSizeType.ONEXONE);
+            defaultTile = new Tile(tile.getGTile().mapX, tile.getGTile().mapY, TileRarityType.COMMON, TileSizeType.ONEXONE, "");
             gtileMap.setTile(Tile.getIndexFromCoordinates(tile.getGTile().mapX, tile.getGTile().mapY), defaultTile);
             newTiles[i].getGTile().mapX += p_moveByX;
             newTiles[i].getGTile().mapY += p_moveByY;
@@ -220,17 +236,35 @@ class LandMap {
             if(sizeFilterSelected == p_target) {
                 // size filter is already selected, unselect it
                 sizeFilterSelected = "";
+                mainMapScreen.getUiElement().getGuiElement().getChildByName("filters_size", true).setState("default");
             } else {
                 // size filter is not yet slected, select it
                 sizeFilterSelected = p_target;
+                mainMapScreen.getUiElement().getGuiElement().getChildByName("filters_size", true).setState("default");
+                mainMapScreen.getUiElement().getGuiElement().getChildByName(p_target, true).setState("checked");
             }
+
+        } else if(p_target == "owned" || p_target == "unowned") {
+            // owned filter is already selected, unselect it
+            if(ownedFilterSelected == p_target) {
+                ownedFilterSelected = "";
+                mainMapScreen.getUiElement().getGuiElement().getChildByName("filters_owner", true).setState("default");
+            } else {
+                ownedFilterSelected = p_target;
+                mainMapScreen.getUiElement().getGuiElement().getChildByName("filters_owner", true).setState("default");
+                mainMapScreen.getUiElement().getGuiElement().getChildByName(p_target, true).setState("checked");
+            }
+            GDebug.info("OWNED FILTER SLECTED: " + ownedFilterSelected);
         } else {
             if(rarityFilterSelected == p_target) {
                 // rarity filter is already selected, unselect it
                 rarityFilterSelected = "";
+                mainMapScreen.getUiElement().getGuiElement().getChildByName("filters_rarity", true).setState("default");
             } else {
                 // rarity filter is not yet slected, select it
                 rarityFilterSelected = p_target;
+                mainMapScreen.getUiElement().getGuiElement().getChildByName("filters_rarity", true).setState("default");
+                mainMapScreen.getUiElement().getGuiElement().getChildByName(p_target, true).setState("checked");
             }
         }
     }
@@ -243,6 +277,9 @@ class LandMap {
             }
             if(sizeFilterSelected != "") {
                 selectedFilters.push(sizeFilterSelected);
+            }
+            if(ownedFilterSelected != "") {
+                selectedFilters.push(ownedFilterSelected);
             }
         }
     }
@@ -262,7 +299,7 @@ class LandMap {
                 if(p_land.getTiles().length != lands[i].getTiles().length){
                     var defaultTile: Tile;
                     for(j in 0...lands[i].getTiles().length) {
-                        defaultTile = new Tile(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY, TileRarityType.COMMON, lands[i].getSize());
+                        defaultTile = new Tile(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY, TileRarityType.COMMON, lands[i].getSize(), lands[i].getOwner());
                         gtileMap.setTile(Tile.getIndexFromCoordinates(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY), defaultTile);
                     }
                 }
@@ -278,7 +315,7 @@ class LandMap {
                     for(j in startXIndex...endXIndex) {
                         for(k in startYIndex...endYIndex) {
                             if(land.getTiles()[index] == null) {
-                                tile = new Tile(j, k, TileRarityType.COMMON, 1);
+                                tile = new Tile(j, k, TileRarityType.COMMON, 1, "");
                             } else {
                                 tile = land.getTiles()[index];
                             }
@@ -367,6 +404,12 @@ class LandMap {
     }
 
     private function rarityFilterClicked_handler(signal: GMouseInput): Void {
+        var target: GUIElement = cast signal.target;
+        GDebug.info(target.name);
+        handleFilterClick(target.name);
+    }
+
+    private function ownershipFilterClicked_handler(signal: GMouseInput): Void {
         var target: GUIElement = cast signal.target;
         GDebug.info(target.name);
         handleFilterClick(target.name);

@@ -19,7 +19,6 @@ class AssetsWrapper {
         // add more assets here - path + their id
 
         // ASSETS
-        GStaticAssetManager.addFromUrl("assets/2048.png", "dinos");
         GStaticAssetManager.addFromUrl("assets/tile_n.png", "tile_n");
         GStaticAssetManager.addFromUrl("assets/tile_l.png", "tile_l");
         GStaticAssetManager.addFromUrl("assets/tile_s.png", "tile_s");
@@ -71,6 +70,10 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/separator_v_rare.png", "separator_v_rare");
         GStaticAssetManager.addFromUrl("assets/separator_v_legendary.png", "separator_v_legendary");
         GStaticAssetManager.addFromUrl("assets/separator_v_mythical.png", "separator_v_mythical");
+        GStaticAssetManager.addFromUrl("assets/checkbox.png", "checkbox");
+        GStaticAssetManager.addFromUrl("assets/checkbox_checked.png", "checkbox_checked");
+        GStaticAssetManager.addFromUrl("assets/icon_close.png", "icon_close");
+        GStaticAssetManager.addFromUrl("assets/semitransparent_bg.png", "semitransparent_bg");
 
         // FONTS
         GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");
@@ -95,12 +98,19 @@ class AssetsWrapper {
         // create fonts
         GFontManager.createTextureFont("font_fnt", GTextureManager.getTexture("font_png"), GStaticAssetManager.getXmlAssetById("font_fnt").xml);
         GFontManager.createTextureFont("font_normal", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
+        GFontManager.createTextureFont("font_smaller", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
+//        GFontManager.createTextureFont("font_normal_common", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
+//        GFontManager.createTextureFont("font_normal_uncommon", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
+//        GFontManager.createTextureFont("font_normal_rare", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
+//        GFontManager.createTextureFont("font_normal_legendary", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
+//        GFontManager.createTextureFont("font_normal_mythical", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
         GFontManager.createTextureFont("font_semibold", GTextureManager.getTexture("font_semibold_png"), GStaticAssetManager.getXmlAssetById("font_semibold").xml);
 
         // create skins to be used with GUIElements
         var skinSheetXml: Xml = GStaticAssetManager.getXmlAssetById("skin_sheet").xml;
         GXmlPrototypeParser.createPrototypeFromXmlString(skinSheetXml.toString());
 
+//        GFontManager.getFont("font_smaller").
         assetsLoaded_handler();
     }
 

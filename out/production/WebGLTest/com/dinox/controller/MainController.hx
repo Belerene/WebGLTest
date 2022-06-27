@@ -73,9 +73,10 @@ class MainController {
         }
     }
 
-    public function addUiFilterListeners(p_uiElement: GUIElement, p_sizeFilterHandler: GMouseInput->Void, p_rarityFilterHandler: GMouseInput->Void, p_devUiHandler: GMouseInput->Void = null): Void {
+    public function addUiFilterListeners(p_uiElement: GUIElement, p_sizeFilterHandler: GMouseInput->Void, p_rarityFilterHandler: GMouseInput->Void, p_ownershipFilterHandler: GMouseInput->Void, p_devUiHandler: GMouseInput->Void = null): Void {
         addSizeFilterListeners(p_sizeFilterHandler, p_uiElement);
         addRarityFilterListeners(p_rarityFilterHandler, p_uiElement);
+        addOwnershipFilterListeners(p_rarityFilterHandler, p_uiElement);
     }
 
     public function addSizeFilterListeners(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {
@@ -91,6 +92,11 @@ class MainController {
         p_uiElement.getChildByName(TileRarityType.RARE, true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName(TileRarityType.LEGENDARY, true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName(TileRarityType.MYTHICAL, true).onMouseDown.add(p_handler);
+    }
+
+    public function addOwnershipFilterListeners(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {
+        p_uiElement.getChildByName("owned", true).onMouseDown.add(p_handler);
+        p_uiElement.getChildByName("unowned", true).onMouseDown.add(p_handler);
     }
 
     public function addDevUIListener(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {

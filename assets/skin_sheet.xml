@@ -2,18 +2,31 @@
 <!--textures-->
     <textureSkin id="dev" texture="@dev" sliceLeft="2" sliceTop="2" sliceRight="3" sliceBottom="3"/>
     <textureSkin id="dev_black" texture="@dev_black" sliceLeft="2" sliceTop="2" sliceRight="3" sliceBottom="3"/>
+    <textureSkin id="semitransparent_bg" texture="@semitransparent_bg" sliceLeft="100" sliceTop="28" sliceRight="103" sliceBottom="32"/>
     <textureSkin id="ui" texture="@ui"/>
 <!--    <textureSkin id="ui" texture="@ui" sliceTop="230" sliceBottom="232" sliceLeft="109" sliceRigt="111"/>-->
     <textureSkin id="tile_n" texture="@tile_n"/>
     <textureSkin id="tile_l" texture="@tile_l"/>
     <textureSkin id="tile_s" texture="@tile_s"/>
+    <textureSkin id="checkbox" texture="@checkbox" scaleX="1.47" scaleY="1.47"/>
+    <textureSkin id="checkbox_checked" texture="@checkbox_checked" scaleX="1.47" scaleY="1.47"/>
     <textureSkin id="font_png" texture="@font_png"/>
     <textureSkin id="separator_h" texture="@separator_h"/>
     <textureSkin id="separator_v" texture="@separator_v"/>
+    <textureSkin id="icon_close" texture="@icon_close"/>
 
 <!--fonts-->
     <fontSkin id="font_fnt" font="@font_fnt" color="0xFFFFFF" autoSize="true"/>
     <fontSkin id="font_normal" font="@font_normal" color="0xFFFFFF" autoSize="true"/>
-    <fontSkin id="font_semibold" font="@font_semibold" color="0xFFFFFF" autoSize="true"/>
+    <fontSkin id="font_mid" font="@font_normal" color="0xFFFFFF" autoSize="true" fontScale="0.85"/>
+<!--    <fontSkin id="font_smaller" font="@font_normal" autoSize="true" fontScale="0.7"/>-->
+    <fontSkin id="font_smaller" font="@font_normal" color="0xFFFFFF" autoSize="true" fontScale="0.7"/>
+    <fontSkin id="font_smallest" font="@font_normal" color="0xFFFFFF" autoSize="true" fontScale="0.6"/>
+<!--    <fontSkin id="font_normal_mythical" font="@font_normal_mythical" color="0x9E58A3" autoSize="true" fontScale="0.7"/>-->
+<!--    <fontSkin id="font_normal_legendary" font="@font_normal_legendary" color="0xC78830" autoSize="true" fontScale="0.7"/>-->
+<!--    <fontSkin id="font_normal_rare" font="@font_normal_rare" color="0x4176BB" autoSize="true" fontScale="0.7"/>-->
+<!--    <fontSkin id="font_normal_uncommon" font="@font_normal_uncommon" color="0x139D48" autoSize="true" fontScale="0.7"/>-->
+<!--    <fontSkin id="font_normal_common" font="@font_normal_common" color="0x5E5F5F" autoSize="true" fontScale="0.7"/>-->
+    <fontSkin id="font_semibold" font="@font_semibold" color="0xFFFFFF" autoSize="true" fontScale="0.7"/>
 
 </skinSheet>
