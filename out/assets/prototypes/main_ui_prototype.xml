@@ -1,21 +1,49 @@
 <element name="uiHolder" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" mouseEnabled="false">
     <element name="ui" skin="@ui" flushBatch="true" mouseEnabled="false"/>
-    <element name="filters_rarity" preferredWidth="200" preferredHeight="50" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" skin="@dev" anchorX="-150" anchorY="-50" mouseEnabled="true">
-        <element name="common" preferredWidth="15" preferredHeight="15" anchorX="-90" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
-        <element name="uncommon" preferredWidth="15" preferredHeight="15" anchorX="-45" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
-        <element name="rare" preferredWidth="15" preferredHeight="15" anchorX="0" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
-        <element name="legendary" preferredWidth="15" preferredHeight="15" anchorX="45" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
-        <element name="mythical" preferredWidth="15" preferredHeight="15" anchorX="90" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+    <element name="filters_rarity" preferredWidth="660" preferredHeight="90" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" skin="@semitransparent_bg" anchorX="-310" anchorY="-50" mouseEnabled="true">
+        <element name="common" preferredWidth="15" preferredHeight="15" anchorX="-260" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="common_label" preferredWidth="100" preferredHeight="20" anchorX="5" anchorY="33" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="Common"/>
+        </element>
+        <element name="uncommon" preferredWidth="15" preferredHeight="15" anchorX="-130" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="uncommon_label" preferredWidth="100" preferredHeight="20" anchorY="33" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="Uncommon"/>
+        </element>
+        <element name="rare" preferredWidth="15" preferredHeight="15" anchorX="0" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="rare_label" preferredWidth="100" preferredHeight="20" anchorX="27" anchorY="33" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="Rare"/>
+        </element>
+        <element name="legendary" preferredWidth="15" preferredHeight="15" anchorX="130" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="legendary_label" preferredWidth="100" preferredHeight="20" anchorY="33" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="Legendary"/>
+        </element>
+        <element name="mythical" preferredWidth="15" preferredHeight="15" anchorX="260" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="mythical_label" preferredWidth="100" preferredHeight="20" anchorX="5" anchorY="33" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="Mythical"/>
+        </element>
     </element>
 
-    <element name="filters_size" preferredWidth="200" preferredHeight="50" skin="@dev" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" anchorX="150" anchorY="-50" mouseEnabled="true">
-        <element name="one" preferredWidth="20" preferredHeight="20" anchorX="-85" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
-        <element name="two" preferredWidth="20" preferredHeight="20" anchorX="-30" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
-        <element name="three" preferredWidth="20" preferredHeight="20" anchorX="30" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
-        <element name="four" preferredWidth="20" preferredHeight="20" anchorX="85" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
+
+    <element name="filters_size" preferredWidth="350" preferredHeight="90" skin="@semitransparent_bg" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" anchorX="210" anchorY="-50" mouseEnabled="true">
+        <element name="one" preferredWidth="20" preferredHeight="20" anchorX="-120" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="one_label" preferredWidth="100" preferredHeight="20" anchorY="33" anchorX="34" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="1x1"/>
+        </element>
+        <element name="two" preferredWidth="20" preferredHeight="20" anchorX="-40" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="one_label" preferredWidth="100" preferredHeight="20" anchorY="33" anchorX="32" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="2x2"/>
+        </element>
+        <element name="three" preferredWidth="20" preferredHeight="20" anchorX="40" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="one_label" preferredWidth="100" preferredHeight="20" anchorY="33" anchorX="32" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="3x3"/>
+        </element>
+        <element name="four" preferredWidth="20" preferredHeight="20" anchorX="120" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="one_label" preferredWidth="100" preferredHeight="20" anchorY="33" anchorX="32" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="4x4"/>
+        </element>
     </element>
 
-    <element name="dev_tools" visible="true" visible.dev="true" preferredWidth="50" preferredHeight="50" skin="@dev" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" anchorX="400" anchorY="-50" mouseEnabled="true">
+    <element name="filters_owner" preferredWidth="240" preferredHeight="90" skin="@semitransparent_bg" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" anchorX="520" anchorY="-50" mouseEnabled="true">
+        <element name="owned" preferredWidth="20" preferredHeight="20" anchorX="-50" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="owned_label" preferredWidth="100" preferredHeight="20" anchorY="33" anchorX="15xe" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="Owned"/>
+        </element>
+        <element name="unowned" preferredWidth="20" preferredHeight="20" anchorX="50" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
+            <element name="unowned_label" preferredWidth="100" preferredHeight="20" anchorY="33" anchorX="0" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="Unowned"/>
+        </element>
+    </element>
+
+    <element name="dev_tools" visible="false" visible.dev="false" preferredWidth="50" preferredHeight="50" skin="@dev" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" anchorX="500" anchorY="-50" mouseEnabled="true">
         <element name="move_enabled" preferredWidth="20" preferredHeight="20" anchorX="0" skin="@dev_black" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true"/>
     </element>
 </element>

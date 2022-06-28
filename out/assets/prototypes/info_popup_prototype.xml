@@ -1,21 +1,25 @@
-<element name="info_popup" preferredWidth="400" preferredHeight="320" skin="@dev_black" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT">
-    <element name="infoPopup_title_holder" skin="@dev" preferredWidth="380" preferredHeight="100" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="10">
-        <element name="info_popup_title" skin="@font_normal" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" model="123"/>
+<element name="info_popup" preferredWidth="400" preferredHeight="280" skin="@semitransparent_bg" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT">
+    <element name="infoPopup_title_holder" preferredWidth="380" preferredHeight="100" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="10">
+        <element name="info_popup_title" skin="@font_mid" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" model="123"/>
     </element>
-    <element name="info_popup_body" skin="@dev" preferredHeight="190" preferredWidth="380" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="120">
-        <element name="info_popup_rarity" skin="@font_normal" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="10"/>
-        <element name="info_popup_rarity_l" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="12" anchorX="10" model="<="/>
-        <element name="info_popup_rarity_r" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="12" anchorX="-10" model="=>"/>
+    <element name="info_popup_body" preferredHeight="180" preferredWidth="380" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="100">
+        <element name="info_pupup_rarity_label" skin="@font_smaller" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="17" anchorX="20" model="Rarity: " color="0x929292"/>
+        <element name="info_popup_rarity" skin="@font_mid" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="10" anchorX="110"/>
+        <element name="info_popup_rarity_l" visible="false" visible.dev="false" skin="@font_normal" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="12" anchorX="10" model="<="/>
+        <element name="info_popup_rarity_r" visible="false" visible.dev="false" skin="@font_normal" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="12" anchorX="-10" model="=>"/>
 
-        <element name="info_popup_size" skin="@font_normal" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="120"/>
-        <element name="info_popup_size_l" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="122" anchorX="10" model="<="/>
-        <element name="info_popup_size_r" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="122" anchorX="-10" model="=>"/>
+        <element name="info_popup_size_label" skin="@font_smaller" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="67" anchorX="20" model="Size: " color="0x929292"/>
+        <element name="info_popup_size" skin="@font_mid" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="60" anchorX="80"/>
+        <element name="info_popup_size_l" visible="false" visible.dev="false" skin="@font_normal" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="80" anchorX="10" model="<="/>
+        <element name="info_popup_size_r" visible="false" visible.dev="false" skin="@font_normal" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="80" anchorX="-10" model="=>"/>
 
+        <element name="info_popup_owner_label" skin="@font_smaller" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="117" anchorX="20" model="Owned by: " color="0x929292"/>
+        <element name="info_popup_owner" skin="@font_mid" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="110" anchorX="150"/>
 <!--        <element name="info_popup_asset" skin="@font_normal" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="230"/>-->
 <!--        <element name="info_popup_asset_l" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="232" anchorX="10" model="<="/>-->
 <!--        <element name="info_popup_asset_r" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="232" anchorX="-10" model="=>"/>-->
     </element>
-    <element name="infoPopup_closeBtn" skin="@dev_black" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="5" anchorX="40" preferredWidth="160" preferredHeight="60">
-        <element name="infoPopup_closeBtn_X" model="X" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" skin="@font_semibold"/>
+    <element name="infoPopup_closeBtn" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="5" anchorX="40" preferredWidth="160" preferredHeight="60">
+        <element name="infoPopup_closeBtn_X" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" skin="@icon_close"/>
     </element>
 </element>
