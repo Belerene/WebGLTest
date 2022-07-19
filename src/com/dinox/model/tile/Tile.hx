@@ -7,13 +7,14 @@ import com.genome2d.tilemap.GTile;
 import com.dinox.view.TileRenderer;
 class Tile {
 
-    private var rarity: String;
+    private var rarity: Int;
     private var ownedBy: String;
     private var asset: String;
     private var landSize: Int;
     public var id: Int;
 
     private var _userData:Map<String, Dynamic>;
+    private var separators:Array<Int> = new Array<Int>();
     public var userData(get, set):Map<String, Dynamic>;
     inline private function get_userData():Map<String, Dynamic> {
         if (_userData == null) _userData = new Map<String,Dynamic>();
@@ -29,7 +30,11 @@ class Tile {
 
 
     private var tileRenderer: TileRenderer;
-    public function new(p_x: Int, p_y: Int, p_rarity: String, p_size: Int, p_ownedBy: String) {
+    public function new(p_x: Int, p_y: Int, p_rarity: Int, p_size: Int, p_ownedBy: String) {
+        separators.push(0);
+        separators.push(0);
+        separators.push(0);
+        separators.push(0);
         tileRenderer = new TileRenderer(p_x, p_y);
 
         rarity = p_rarity;
@@ -40,15 +45,13 @@ class Tile {
 
     }
 
-    public function setTileAssetData(p_asset: String): Void {
-        p_asset = TMP_generaterRandomAssetName();
-        if(p_asset != null) {
-            p_asset = Land.TrimAssetString(p_asset);
-            if(p_asset != "") {
-                tileRenderer.setNewTileAssets(p_asset);
-                _userData.set("asset", p_asset);
-            }
-        }
+    public function setTileAssetData(p_int_asset: Int): Void {
+        var p_asset:String = "";
+
+        p_asset = "tile_" + p_int_asset;
+        tileRenderer.setNewTileAssets(p_asset);
+        _userData.set("asset", p_asset);
+        _userData.set("asset_id", p_int_asset);
     }
 
     private function TMP_generaterRandomAssetName(): String {
@@ -58,6 +61,10 @@ class Tile {
 
     public function getAsset(): String {
         return  _userData.get("asset");
+    }
+
+    public function getAssetId(): Int {
+        return  _userData.get("asset_id");
     }
 
     public function setTileLandSize(p_size: Int): Void {
@@ -74,12 +81,10 @@ class Tile {
         }
     }
 
-    public function setTileLandRarity(p_rarity: String): Void {
+    public function setTileLandRarity(p_rarity: Int): Void {
         if(p_rarity != null) {
-            if(p_rarity != "") {
-                rarity = p_rarity;
-                _userData.set("rarity", rarity);
-            }
+            rarity = p_rarity;
+            _userData.set("rarity", rarity);
         }
     }
 
@@ -94,31 +99,39 @@ class Tile {
     }
 
     public function addTopSeparator(): Void {
-        tileRenderer.addTopSeparator(rarity);
+        //tileRenderer.addTopSeparator(rarity);
+        separators[0] = 1;
+        tileRenderer.updateSeparators(getRarityAsString().toLowerCase(), separators[0],separators[1],separators[2],separators[3]);
     }
 
     public function addBottomSeparator(): Void {
-        tileRenderer.addBottomSeparator(rarity);
+        //tileRenderer.addBottomSeparator(rarity);
+        separators[2] = 1;
+        tileRenderer.updateSeparators(getRarityAsString().toLowerCase(), separators[0],separators[1],separators[2],separators[3]);
     }
 
     public function addLeftSeparator(): Void {
-        tileRenderer.addLeftSeparator(rarity);
+        //tileRenderer.addLeftSeparator(rarity);
+        separators[3] = 1;
+        tileRenderer.updateSeparators(getRarityAsString().toLowerCase(), separators[0],separators[1],separators[2],separators[3]);
     }
 
     public function addRightSeparator(): Void {
-        tileRenderer.addRightSeparator(rarity);
+        //tileRenderer.addRightSeparator(rarity);
+        separators[1] = 1;
+        tileRenderer.updateSeparators(getRarityAsString().toLowerCase(), separators[0],separators[1],separators[2],separators[3]);
     }
 
     public function handleFilter(p_filters: Array<String>): Void {
         if(p_filters.length == 0) { tileRenderer.resetHighlight(); return; }
         var highlight: Bool = false;
         for(filter  in p_filters) {
-            if(filter == rarity || filter == getSizeAsString() || filter == getOwnership()) {
+            if(filter == getRarityAsString() || filter == getSizeAsString() || filter == getOwnership()) {
                 highlight = true;
             }
         }
         if(highlight) {
-            tileRenderer.highlightTile(rarity);
+            tileRenderer.highlightTile(getRarityAsString());
         } else {
             tileRenderer.dimHighlight();
         }
@@ -139,6 +152,16 @@ class Tile {
             case TileSizeType.TWOXTWO: return "two";
             case TileSizeType.THREEXTHREE: return "three";
             case TileSizeType.FOURXFOUR: return "four";
+        }
+        return "";
+    }
+    private function getRarityAsString(): String {
+        switch(rarity) {
+            case 1: return "common";
+            case 2: return "uncommon";
+            case 3: return "rare";
+            case 4: return "legendary";
+            case 5: return "mythical";
         }
         return "";
     }

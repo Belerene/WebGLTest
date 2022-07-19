@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:adc1d1234fdd32a31b91951a768d1de8:5f5dba735bfcfa2b656c123b6c306235:cde709370900f12288f3449eded86f07$ -->
+<TextureAtlas imagePath="atlas.png" width="1012" height="825">
+    <SubTexture name="checkbox" x="985" y="754" rotated="true" width="17" height="18"/>
+    <SubTexture name="checkbox_checked" x="985" y="792" rotated="true" width="17" height="18"/>
+    <SubTexture name="default_l_1" x="850" y="10" width="60" height="60"/>
+    <SubTexture name="default_l_2" x="10" y="572" width="60" height="60"/>
+    <SubTexture name="default_l_3" x="236" y="492" width="60" height="60"/>
+    <SubTexture name="default_l_4" x="850" y="90" width="60" height="60"/>
+    <SubTexture name="default_l_5" x="930" y="10" width="60" height="60"/>
+    <SubTexture name="default_n" x="10" y="652" width="60" height="60"/>
+    <SubTexture name="default_s" x="90" y="572" width="60" height="60"/>
+    <SubTexture name="dev" x="986" y="686" width="5" height="5"/>
+    <SubTexture name="dev_black" x="986" y="711" width="5" height="5"/>
+    <SubTexture name="icon_close" x="986" y="650" width="16" height="16"/>
+    <SubTexture name="semitransparent_bg" x="10" y="492" width="206" height="60"/>
+    <SubTexture name="separator_common_nesw" x="316" y="492" width="60" height="60"/>
+    <SubTexture name="separator_h" x="10" y="812" width="60" height="3"/>
+    <SubTexture name="separator_h_common" x="90" y="812" width="60" height="3"/>
+    <SubTexture name="separator_h_legendary" x="170" y="812" width="60" height="3"/>
+    <SubTexture name="separator_h_mythical" x="250" y="812" width="60" height="3"/>
+    <SubTexture name="separator_h_rare" x="330" y="812" width="60" height="3"/>
+    <SubTexture name="separator_h_uncommon" x="410" y="812" width="60" height="3"/>
+    <SubTexture name="separator_legendary_e" x="956" y="490" width="4" height="60" frameX="-56" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_legendary_es" x="850" y="170" width="60" height="60"/>
+    <SubTexture name="separator_legendary_n" x="890" y="650" width="60" height="4" frameX="0" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_legendary_ne" x="930" y="90" width="60" height="60"/>
+    <SubTexture name="separator_legendary_s" x="914" y="754" rotated="true" width="4" height="60" frameX="0" frameY="-56" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_legendary_sw" x="10" y="732" width="60" height="60"/>
+    <SubTexture name="separator_legendary_w" x="980" y="490" width="4" height="60" frameX="0" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_legendary_wn" x="90" y="652" width="60" height="60"/>
+    <SubTexture name="separator_mythical_e" x="970" y="570" width="4" height="60" frameX="-56" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_mythical_es" x="170" y="572" width="60" height="60"/>
+    <SubTexture name="separator_mythical_n" x="938" y="674" rotated="true" width="4" height="60" frameX="0" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_mythical_ne" x="396" y="492" width="60" height="60"/>
+    <SubTexture name="separator_mythical_s" x="938" y="754" rotated="true" width="4" height="60" frameX="0" frameY="-56" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_mythical_sw" x="850" y="250" width="60" height="60"/>
+    <SubTexture name="separator_mythical_w" x="890" y="674" width="4" height="60" frameX="0" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_mythical_wn" x="930" y="170" width="60" height="60"/>
+    <SubTexture name="separator_rare_e" x="890" y="754" width="4" height="60" frameX="-56" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_rare_es" x="90" y="732" width="60" height="60"/>
+    <SubTexture name="separator_rare_n" x="994" y="570" rotated="true" width="4" height="60" frameX="0" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_rare_ne" x="170" y="652" width="60" height="60"/>
+    <SubTexture name="separator_rare_s" x="962" y="674" rotated="true" width="4" height="60" frameX="0" frameY="-56" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_rare_sw" x="250" y="572" width="60" height="60"/>
+    <SubTexture name="separator_rare_w" x="914" y="674" width="4" height="60" frameX="0" frameY="0" frameWidth="60" frameHeight="60"/>
+    <SubTexture name="separator_rare_wn" x="476" y="492" width="60" height="60"/>
+    <SubTexture name="separator_uncommon_es" x="850" y="330" width="60" height="60"/>
+    <SubTexture name="separator_uncommon_ne" x="930" y="250" width="60" height="60"/>
+    <SubTexture name="separator_uncommon_nesw" x="170" y="732" width="60" height="60"/>
+    <SubTexture name="separator_uncommon_sw" x="250" y="652" width="60" height="60"/>
+    <SubTexture name="separator_uncommon_wn" x="330" y="572" width="60" height="60"/>
+    <SubTexture name="separator_v" x="490" y="812" rotated="true" width="60" height="3"/>
+    <SubTexture name="separator_v_common" x="570" y="812" rotated="true" width="60" height="3"/>
+    <SubTexture name="separator_v_legendary" x="650" y="812" rotated="true" width="60" height="3"/>
+    <SubTexture name="separator_v_mythical" x="730" y="812" rotated="true" width="60" height="3"/>
+    <SubTexture name="separator_v_rare" x="810" y="812" rotated="true" width="60" height="3"/>
+    <SubTexture name="separator_v_uncommon" x="962" y="754" width="3" height="60"/>
+    <SubTexture name="tile_1_l" x="556" y="492" width="60" height="60"/>
+    <SubTexture name="tile_1_n" x="850" y="410" width="60" height="60"/>
+    <SubTexture name="tile_1_s" x="930" y="330" width="60" height="60"/>
+    <SubTexture name="tile_2_l" x="250" y="732" width="60" height="60"/>
+    <SubTexture name="tile_2_n" x="330" y="652" width="60" height="60"/>
+    <SubTexture name="tile_2_s" x="410" y="572" width="60" height="60"/>
+    <SubTexture name="tile_3_l" x="636" y="492" width="60" height="60"/>
+    <SubTexture name="tile_3_n" x="930" y="410" width="60" height="60"/>
+    <SubTexture name="tile_3_s" x="330" y="732" width="60" height="60"/>
+    <SubTexture name="tile_4_l" x="410" y="652" width="60" height="60"/>
+    <SubTexture name="tile_4_n" x="490" y="572" width="60" height="60"/>
+    <SubTexture name="tile_4_s" x="716" y="492" width="60" height="60"/>
+    <SubTexture name="tile_5_l" x="410" y="732" width="60" height="60"/>
+    <SubTexture name="tile_5_n" x="490" y="652" width="60" height="60"/>
+    <SubTexture name="tile_5_s" x="570" y="572" width="60" height="60"/>
+    <SubTexture name="tile_6_l" x="490" y="732" width="60" height="60"/>
+    <SubTexture name="tile_6_n" x="570" y="652" width="60" height="60"/>
+    <SubTexture name="tile_6_s" x="650" y="572" width="60" height="60"/>
+    <SubTexture name="tile_7_l" x="570" y="732" width="60" height="60"/>
+    <SubTexture name="tile_7_n" x="650" y="652" width="60" height="60"/>
+    <SubTexture name="tile_7_s" x="650" y="732" width="60" height="60"/>
+    <SubTexture name="tile_8_l" x="730" y="572" width="60" height="60"/>
+    <SubTexture name="tile_8_n" x="730" y="652" width="60" height="60"/>
+    <SubTexture name="tile_8_s" x="730" y="732" width="60" height="60"/>
+    <SubTexture name="tile_9_l" x="796" y="492" width="60" height="60"/>
+    <SubTexture name="tile_9_n" x="876" y="490" width="60" height="60"/>
+    <SubTexture name="tile_9_s" x="810" y="572" width="60" height="60"/>
+    <SubTexture name="tile_l" x="810" y="652" width="60" height="60"/>
+    <SubTexture name="tile_n" x="810" y="732" width="60" height="60"/>
+    <SubTexture name="tile_s" x="890" y="570" width="60" height="60"/>
+    <SubTexture name="ui" x="10" y="10" width="820" height="462"/>
+</TextureAtlas>

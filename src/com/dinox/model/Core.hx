@@ -51,7 +51,7 @@ class Core {
 
     private function parseJson(p_data: String): Void {
         var json: Dynamic  = JsonParser.parse(p_data);
-        landMap.addTileGroupsFromJson(json);
+        landMap.addTileGroupsFromJson(json.lands);
     }
 
 

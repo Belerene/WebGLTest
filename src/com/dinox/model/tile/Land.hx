@@ -5,12 +5,12 @@ class Land {
     private var x: Int;
     private var y: Int;
     private var size: Int;
-    private var rarity: String;
+    private var rarity: Int;
     private var ownedBy: String;
-    private var assets: Array<String>;
+    private var assets: Array<Int>;
     private var tiles: Array<Tile>;
 
-    public function new(p_id: Int, p_x: Int, p_y: Int, p_size: Int, p_rarity: String, p_ownedBy: String, p_assets: Array<String>, p_tiles: Array<Tile>) {
+    public function new(p_id: Int, p_x: Int, p_y: Int, p_size: Int, p_rarity: Int, p_ownedBy: String, p_assets: Array<Int>, p_tiles: Array<Tile>) {
         id = p_id;
         x = p_x;
         y = p_y;
@@ -28,7 +28,7 @@ class Land {
                 tiles[index].tileIsInLand = true;
                 tiles[index].userData = cast dataToPropagate;
                 tiles[index].id = p_id;
-                tiles[index].setTileAssetData(TrimAssetString(assets[assetIndex]));
+                tiles[index].setTileAssetData(assets[assetIndex]);
                 tiles[index].setTileLandRarity(p_rarity);
                 tiles[index].setTileLandSize(size);
                 tiles[index].setOwnedBy(ownedBy);
@@ -39,10 +39,10 @@ class Land {
         invalidateSeparators();
     }
 
-    private function processAssets(p_assets: Array<String>): Void {
-        assets = new Array<String>();
+    private function processAssets(p_assets: Array<Int>): Void {
+        assets = new Array<Int>();
         for(i in 0...p_assets.length) {
-            assets.push(TrimAssetString(p_assets[i]));
+            assets.push(cast(p_assets[i], Int));
         }
     }
 
@@ -67,7 +67,7 @@ class Land {
         }
     }
 
-    public function setRarity(p_rarity: String): Void {
+    public function setRarity(p_rarity: Int): Void {
         if(p_rarity == rarity) return;
         rarity = p_rarity;
         for(i in 0...tiles.length) {
@@ -76,7 +76,7 @@ class Land {
         invalidateSeparators();
     }
 
-    public function getRarity(): String {
+    public function getRarity(): Int {
         return rarity;
     }
 
@@ -94,19 +94,19 @@ class Land {
 
     public function setSize(p_size: Int): Void {
         if(p_size == size) return;
-        var originalAssets: Array<String> = assets;
+        var originalAssets: Array<Int> = assets;
         var originalSize: Int = size;
         size = p_size;
         var sizeDiff: Int = originalSize - size;
         var defaultTile: Tile;
         var originalTiles: Array<Tile> = tiles.copy();
         for(i in 0...tiles.length) {
-            defaultTile = new Tile(tiles[i].getGTile().mapX, tiles[i].getGTile().mapY, TileRarityType.COMMON, size, ownedBy);
+            defaultTile = new Tile(tiles[i].getGTile().mapX, tiles[i].getGTile().mapY, 1, size, ownedBy);
             tiles[i] = defaultTile;
         }
         var index: Int = 0;
         var originalIndex: Int = 0;
-        assets = new Array<String>();
+        assets = new Array<Int>();
         tiles = new Array<Tile>();
         for(i in x...x+size) {
             for(j in y...y+size) {
@@ -119,7 +119,7 @@ class Land {
                 } else {
                     tiles.push(originalTiles[originalIndex].clone());
                     assets.push(originalAssets[originalIndex]);
-                    tiles[index].setTileAssetData(originalTiles[originalIndex].getAsset());
+                    tiles[index].setTileAssetData(originalTiles[originalIndex].getAssetId());
                     originalIndex++;
                 }
                 tiles[index].setTileLandSize(size);
@@ -140,7 +140,7 @@ class Land {
         return size;
     }
 
-    public function getAssets(): Array<String> {
+    public function getAssets(): Array<Int> {
         return assets;
     }
 
@@ -188,4 +188,15 @@ class Land {
         var res: Land = new Land(id, x, y, size, rarity, ownedBy, assets, tiles.copy());
         return res;
     }
+    public function getRarityAsString(): String {
+        switch(rarity) {
+            case 1: return "common";
+            case 2: return "uncommon";
+            case 3: return "rare";
+            case 4: return "legendary";
+            case 5: return "mythical";
+        }
+        return "";
+    }
+
 }

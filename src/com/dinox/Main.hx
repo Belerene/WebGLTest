@@ -1,4 +1,5 @@
 package com.dinox;
+import com.genome2d.context.stats.GStats;
 import com.genome2d.components.GCameraController;
 import com.genome2d.node.GNode;
 import com.dinox.model.Core;
@@ -30,6 +31,7 @@ class Main extends GProject{
         stageHeight = contextConfig.nativeStage.height;
         var config:GProjectConfig = new GProjectConfig(contextConfig);
         config.initGenome = true;
+        GStats.visible = true;
         super(config);
     }
 

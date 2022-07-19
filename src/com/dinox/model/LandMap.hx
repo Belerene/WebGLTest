@@ -82,15 +82,15 @@ class LandMap {
     public function addTileGroupsFromJson(p_json: Dynamic): Void {
         for(field in Reflect.fields(p_json)) {
             var landElement: Dynamic = Reflect.getProperty(p_json, field);
-            var assets: String = Std.string(Reflect.getProperty(landElement, "assets"));
+            var assets: Array<Int> = Reflect.getProperty(landElement, "a");
             lands.push(setupLand(Reflect.getProperty(landElement, "_id"),
                         Reflect.getProperty(landElement, "x"),
                         Reflect.getProperty(landElement, "y"),
-                        Reflect.getProperty(landElement, "size"),
-                        Reflect.getProperty(landElement, "rarity"),
+                        Reflect.getProperty(landElement, "s"),
+                        Reflect.getProperty(landElement, "r"),
                         tmpGetRandomOwnership(),
 //                        Reflect.getProperty(landElement, "ownedBy"),
-                        assets.split(",")));
+                        assets));
         }
     }
 
@@ -115,13 +115,13 @@ class LandMap {
     }
 
     //TMP
-    private function addDefaultRarity(): String {
+    private function addDefaultRarity(): Int {
 //        var rnd: Float = Math.random();
 //        if(rnd < 0.5) return TileRarityType.COMMON;
 //        if(rnd < 0.7) return TileRarityType.UNCOMMON;
 //        if(rnd < 0.8) return TileRarityType.RARE;
 //        if(rnd < 0.9) return TileRarityType.LEGENDARY;
-        return TileRarityType.DEFAULT;
+        return 1;
     }
 
     private function addDefaultSize(): Int {
@@ -137,7 +137,7 @@ class LandMap {
     }
     //TMP
 
-    public function setupLand(p_id: Int, p_i: Int, p_j: Int, p_size: Int, p_rarity: String, p_ownedBy: String, p_assets: Array<String>): Land {
+    public function setupLand(p_id: Int, p_i: Int, p_j: Int, p_size: Int, p_rarity: Int, p_ownedBy: String, p_assets: Array<Int>): Land {
         if(p_i + p_size <= LandMap.TILE_COUNT &&
             p_j + p_size <= LandMap.TILE_COUNT) {
             var canAddTileGroup: Bool = true;
@@ -219,7 +219,7 @@ class LandMap {
         for(i in 0...tiles.length) {
             tile = tiles[i];
             newTiles.push(tile);
-            defaultTile = new Tile(tile.getGTile().mapX, tile.getGTile().mapY, TileRarityType.COMMON, TileSizeType.ONEXONE, "");
+            defaultTile = new Tile(tile.getGTile().mapX, tile.getGTile().mapY, 1, TileSizeType.ONEXONE, "");
             gtileMap.setTile(Tile.getIndexFromCoordinates(tile.getGTile().mapX, tile.getGTile().mapY), defaultTile);
             newTiles[i].getGTile().mapX += p_moveByX;
             newTiles[i].getGTile().mapY += p_moveByY;
@@ -299,7 +299,7 @@ class LandMap {
                 if(p_land.getTiles().length != lands[i].getTiles().length){
                     var defaultTile: Tile;
                     for(j in 0...lands[i].getTiles().length) {
-                        defaultTile = new Tile(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY, TileRarityType.COMMON, lands[i].getSize(), lands[i].getOwner());
+                        defaultTile = new Tile(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY, 1, lands[i].getSize(), lands[i].getOwner());
                         gtileMap.setTile(Tile.getIndexFromCoordinates(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY), defaultTile);
                     }
                 }
@@ -315,7 +315,7 @@ class LandMap {
                     for(j in startXIndex...endXIndex) {
                         for(k in startYIndex...endYIndex) {
                             if(land.getTiles()[index] == null) {
-                                tile = new Tile(j, k, TileRarityType.COMMON, 1, "");
+                                tile = new Tile(j, k, 1, 1, "");
                             } else {
                                 tile = land.getTiles()[index];
                             }
@@ -369,10 +369,10 @@ class LandMap {
         GDebug.info(cast(signal.target, GUIElement).name);
         switch(cast(signal.target, GUIElement).name) {
             case "info_popup_rarity_l":
-                land.setRarity(TileRarityType.lowerRarity(land.getRarity()));
+                land.setRarity(TileRarityType.lowerRarity(land.getRarityAsString()));
                 openInfoPopup.invalidate(land);
             case "info_popup_rarity_r":
-                land.setRarity(TileRarityType.higherRarity(land.getRarity()));
+                land.setRarity(TileRarityType.higherRarity(land.getRarityAsString()));
                 openInfoPopup.invalidate(land);
         }
 

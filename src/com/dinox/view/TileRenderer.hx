@@ -25,6 +25,7 @@ class TileRenderer {
     private var r_separator: GTexture = null;
     private var t_separator: GTexture = null;
     private var b_separator: GTexture = null;
+    private var full_separator: GTexture = null;
 
     private var currentZoom: Float = 1;
 
@@ -39,6 +40,15 @@ class TileRenderer {
         gTile = new GTile(BASE_TILE_SIZE, BASE_TILE_SIZE, p_x, p_y);
 
         setNewTileAssets("default");
+
+    }
+
+    public function updateSeparators(p_rarity:String, p_top:Int, p_right:Int, p_bottom:Int, p_left:Int): Void {
+        var separatorString: String = p_top == 1? "n" : "";
+        separatorString += p_right == 1? "e" : "";
+        separatorString += p_bottom == 1? "s" : "";
+        separatorString += p_left == 1? "w" : "";
+        full_separator = GTextureManager.getTexture('assets/atlas.png_separator_' + p_rarity + '_' + separatorString);
     }
 
     public function addTopSeparator(p_rarity: String): Void {
@@ -66,7 +76,10 @@ class TileRenderer {
     }
 
     public function renderSeparators(p_context:IGContext, p_x:Float, p_y:Float, p_blendMode:GBlendMode): Void {
-        if(l_separator != null) {
+        if (full_separator != null) {
+            p_context.draw(full_separator, p_blendMode, p_x, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+        }
+        /*if(l_separator != null) {
             p_context.draw(l_separator, p_blendMode, (p_x + 2) - BASE_TILE_SIZE/2, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
         }
         if(r_separator != null) {
@@ -77,7 +90,7 @@ class TileRenderer {
         }
         if(b_separator != null) {
             p_context.draw(b_separator, p_blendMode, p_x, p_y + BASE_TILE_SIZE/2, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
-        }
+        }*/
     }
 
     public function dimHighlight(): Void {
@@ -141,13 +154,13 @@ class TileRenderer {
     public function setNewTileAssets(p_asset: String): Void {
         if(p_asset != asset) {
             if(p_asset == "default") {
-                tileAsset_n = GTextureManager.getTexture(p_asset + "_n");
-                tileAsset_l = GTextureManager.getTexture(getRandomLargeDefaultAsset());
-                tileAsset_s = GTextureManager.getTexture(p_asset + "_s");
+                tileAsset_n = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_n");
+                tileAsset_l = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_l");
+                tileAsset_s = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_s");
             } else {
-                tileAsset_n = GTextureManager.getTexture(p_asset + "_n");
-                tileAsset_l = GTextureManager.getTexture(p_asset + "_l");
-                tileAsset_s = GTextureManager.getTexture(p_asset + "_s");
+                tileAsset_n = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_n");
+                tileAsset_l = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_l");
+                tileAsset_s = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_s");
             }
             // just to  re-render the tile with new graphics
             zoomChanged(currentZoom);
@@ -166,10 +179,10 @@ class TileRenderer {
 
     public function getRandomLargeDefaultAsset(): String {
         var rnd: Float = Math.random();
-        if(rnd < 0.8) return "default_l_1";
-        if(rnd < 0.85) return "default_l_2";
-        if(rnd < 0.9) return "default_l_3";
-        if(rnd < 0.95) return "default_l_4";
-        return "default_l_5";
+        if(rnd < 0.8) return "assets/atlas.png_default_l_1";
+        if(rnd < 0.85) return "assets/atlas.png_default_l_2";
+        if(rnd < 0.9) return "assets/atlas.png_default_l_3";
+        if(rnd < 0.95) return "assets/atlas.png_default_l_4";
+        return "assets/atlas.png_default_l_5";
     }
 }

@@ -22,8 +22,8 @@ class InfoPopupElement {
     public function invalidate(p_land: Land): Void {
         land = p_land;
         popupElement.getChildByName("info_popup_title", true).model = "X:" + land.getX() + "      Y:" + land.getY();
-        popupElement.getChildByName("info_popup_rarity", true).model = land.getRarity().charAt(0).toUpperCase() + land.getRarity().substr(1);
-        popupElement.getChildByName("info_popup_rarity", true).skin.color = TileRarityType.getColorForRarity(land.getRarity());
+        popupElement.getChildByName("info_popup_rarity", true).model = land.getRarityAsString().charAt(0).toUpperCase() + land.getRarityAsString().substr(1);
+        popupElement.getChildByName("info_popup_rarity", true).skin.color = TileRarityType.getColorForRarity(land.getRarityAsString());
         popupElement.getChildByName("info_popup_size", true).model = TileSizeType.sizeToString(land.getSize());
         popupElement.getChildByName("info_popup_owner", true).model = processOwnerName(land.getOwner());
 //        popupElement.getChildByName("info_popup_asset", true).model = "asset: " + Std.string(land.getAssets());

@@ -15,16 +15,16 @@ class TileRarityType {
 
     private static var rarityList: Array<String> = [COMMON, UNCOMMON, RARE, LEGENDARY, MYTHICAL];
 
-    public static function lowerRarity(p_current: String): String {
+    public static function lowerRarity(p_current: String): Int {
         var index: Int = rarityList.indexOf(p_current);
-        if(index == 0) return p_current;
-        return rarityList[index-1];
+        if(index == 0) return 0;
+        return index-1;
     }
 
-    public static function higherRarity(p_current: String): String {
+    public static function higherRarity(p_current: String): Int {
         var index: Int = rarityList.indexOf(p_current);
-        if(index == rarityList.length-1) return p_current;
-        return rarityList[index+1];
+        if(index == rarityList.length-1) return rarityList.length-1;
+        return index+1;
     }
 
     public static function getColorForRarity(p_rarity: String): Int {
