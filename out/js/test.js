@@ -4532,104 +4532,6 @@ com_dinox_model_tile_Land.prototype = {
 	}
 	,invalidateSeparators: function() {
 		var index = 0;
-		var p_arg1 = "SEPARATORS SIZE: " + Std.string(this.size);
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/tile/Land.hx", lineNumber : 51, className : "com.dinox.model.tile.Land", methodName : "invalidateSeparators"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
 		var _g = this.x;
 		var _g1 = this.x + this.size;
 		while(_g < _g1) {
@@ -4639,407 +4541,15 @@ com_dinox_model_tile_Land.prototype = {
 			while(_g2 < _g11) {
 				var j = _g2++;
 				if(i == this.x) {
-					var p_arg110 = "SEPARATORS ADDING TOP I: " + i + " J: " + j;
-					var p_arg21 = null;
-					var p_arg31 = null;
-					var p_arg41 = null;
-					var p_arg51 = null;
-					var p_arg61 = null;
-					var p_arg71 = null;
-					var p_arg81 = null;
-					var p_arg91 = null;
-					var p_arg101 = null;
-					var p_arg111 = null;
-					var p_arg121 = null;
-					var p_arg131 = null;
-					var p_arg141 = null;
-					var p_arg151 = null;
-					var p_arg161 = null;
-					var p_arg171 = null;
-					var p_arg181 = null;
-					var p_arg191 = null;
-					var p_arg201 = null;
-					var pos1 = { fileName : "src/com/dinox/model/tile/Land.hx", lineNumber : 55, className : "com.dinox.model.tile.Land", methodName : "invalidateSeparators"};
-					if(com_genome2d_debug_GDebug.showPriority <= 3) {
-						var args1 = [];
-						if(p_arg110 != null) {
-							args1.push(p_arg110);
-						}
-						if(p_arg21 != null) {
-							args1.push(p_arg21);
-						}
-						if(p_arg31 != null) {
-							args1.push(p_arg31);
-						}
-						if(p_arg41 != null) {
-							args1.push(p_arg41);
-						}
-						if(p_arg51 != null) {
-							args1.push(p_arg51);
-						}
-						if(p_arg61 != null) {
-							args1.push(p_arg61);
-						}
-						if(p_arg71 != null) {
-							args1.push(p_arg71);
-						}
-						if(p_arg81 != null) {
-							args1.push(p_arg81);
-						}
-						if(p_arg91 != null) {
-							args1.push(p_arg91);
-						}
-						if(p_arg101 != null) {
-							args1.push(p_arg101);
-						}
-						if(p_arg111 != null) {
-							args1.push(p_arg111);
-						}
-						if(p_arg121 != null) {
-							args1.push(p_arg121);
-						}
-						if(p_arg131 != null) {
-							args1.push(p_arg131);
-						}
-						if(p_arg141 != null) {
-							args1.push(p_arg141);
-						}
-						if(p_arg151 != null) {
-							args1.push(p_arg151);
-						}
-						if(p_arg161 != null) {
-							args1.push(p_arg161);
-						}
-						if(p_arg171 != null) {
-							args1.push(p_arg171);
-						}
-						if(p_arg181 != null) {
-							args1.push(p_arg181);
-						}
-						if(p_arg191 != null) {
-							args1.push(p_arg191);
-						}
-						if(p_arg201 != null) {
-							args1.push(p_arg201);
-						}
-						if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-							com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos1,args1);
-						}
-						var msg1 = "INFO: ";
-						if(pos1 != null) {
-							msg1 += pos1.fileName + ":" + pos1.lineNumber + " : " + pos1.methodName + " : ";
-						}
-						if(args1.length > 0) {
-							msg1 += args1.toString();
-						}
-						com_genome2d_debug_GDebug.g2d_log += msg1;
-						if(com_genome2d_debug_GDebug.useNativeTrace) {
-							window.console.log(msg1);
-						}
-					}
 					this.tiles[index].addLeftSeparator();
 				}
 				if(i == this.x + this.size - 1) {
-					var p_arg112 = "SEPARATORS ADDING BOTTOM I: " + i + " J: " + j;
-					var p_arg22 = null;
-					var p_arg32 = null;
-					var p_arg42 = null;
-					var p_arg52 = null;
-					var p_arg62 = null;
-					var p_arg72 = null;
-					var p_arg82 = null;
-					var p_arg92 = null;
-					var p_arg102 = null;
-					var p_arg113 = null;
-					var p_arg122 = null;
-					var p_arg132 = null;
-					var p_arg142 = null;
-					var p_arg152 = null;
-					var p_arg162 = null;
-					var p_arg172 = null;
-					var p_arg182 = null;
-					var p_arg192 = null;
-					var p_arg202 = null;
-					var pos2 = { fileName : "src/com/dinox/model/tile/Land.hx", lineNumber : 60, className : "com.dinox.model.tile.Land", methodName : "invalidateSeparators"};
-					if(com_genome2d_debug_GDebug.showPriority <= 3) {
-						var args2 = [];
-						if(p_arg112 != null) {
-							args2.push(p_arg112);
-						}
-						if(p_arg22 != null) {
-							args2.push(p_arg22);
-						}
-						if(p_arg32 != null) {
-							args2.push(p_arg32);
-						}
-						if(p_arg42 != null) {
-							args2.push(p_arg42);
-						}
-						if(p_arg52 != null) {
-							args2.push(p_arg52);
-						}
-						if(p_arg62 != null) {
-							args2.push(p_arg62);
-						}
-						if(p_arg72 != null) {
-							args2.push(p_arg72);
-						}
-						if(p_arg82 != null) {
-							args2.push(p_arg82);
-						}
-						if(p_arg92 != null) {
-							args2.push(p_arg92);
-						}
-						if(p_arg102 != null) {
-							args2.push(p_arg102);
-						}
-						if(p_arg113 != null) {
-							args2.push(p_arg113);
-						}
-						if(p_arg122 != null) {
-							args2.push(p_arg122);
-						}
-						if(p_arg132 != null) {
-							args2.push(p_arg132);
-						}
-						if(p_arg142 != null) {
-							args2.push(p_arg142);
-						}
-						if(p_arg152 != null) {
-							args2.push(p_arg152);
-						}
-						if(p_arg162 != null) {
-							args2.push(p_arg162);
-						}
-						if(p_arg172 != null) {
-							args2.push(p_arg172);
-						}
-						if(p_arg182 != null) {
-							args2.push(p_arg182);
-						}
-						if(p_arg192 != null) {
-							args2.push(p_arg192);
-						}
-						if(p_arg202 != null) {
-							args2.push(p_arg202);
-						}
-						if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-							com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos2,args2);
-						}
-						var msg2 = "INFO: ";
-						if(pos2 != null) {
-							msg2 += pos2.fileName + ":" + pos2.lineNumber + " : " + pos2.methodName + " : ";
-						}
-						if(args2.length > 0) {
-							msg2 += args2.toString();
-						}
-						com_genome2d_debug_GDebug.g2d_log += msg2;
-						if(com_genome2d_debug_GDebug.useNativeTrace) {
-							window.console.log(msg2);
-						}
-					}
 					this.tiles[index].addRightSeparator();
 				}
 				if(j == this.y) {
-					var p_arg114 = "SEPARATORS ADDING LEFT I: " + i + " J: " + j;
-					var p_arg23 = null;
-					var p_arg33 = null;
-					var p_arg43 = null;
-					var p_arg53 = null;
-					var p_arg63 = null;
-					var p_arg73 = null;
-					var p_arg83 = null;
-					var p_arg93 = null;
-					var p_arg103 = null;
-					var p_arg115 = null;
-					var p_arg123 = null;
-					var p_arg133 = null;
-					var p_arg143 = null;
-					var p_arg153 = null;
-					var p_arg163 = null;
-					var p_arg173 = null;
-					var p_arg183 = null;
-					var p_arg193 = null;
-					var p_arg203 = null;
-					var pos3 = { fileName : "src/com/dinox/model/tile/Land.hx", lineNumber : 65, className : "com.dinox.model.tile.Land", methodName : "invalidateSeparators"};
-					if(com_genome2d_debug_GDebug.showPriority <= 3) {
-						var args3 = [];
-						if(p_arg114 != null) {
-							args3.push(p_arg114);
-						}
-						if(p_arg23 != null) {
-							args3.push(p_arg23);
-						}
-						if(p_arg33 != null) {
-							args3.push(p_arg33);
-						}
-						if(p_arg43 != null) {
-							args3.push(p_arg43);
-						}
-						if(p_arg53 != null) {
-							args3.push(p_arg53);
-						}
-						if(p_arg63 != null) {
-							args3.push(p_arg63);
-						}
-						if(p_arg73 != null) {
-							args3.push(p_arg73);
-						}
-						if(p_arg83 != null) {
-							args3.push(p_arg83);
-						}
-						if(p_arg93 != null) {
-							args3.push(p_arg93);
-						}
-						if(p_arg103 != null) {
-							args3.push(p_arg103);
-						}
-						if(p_arg115 != null) {
-							args3.push(p_arg115);
-						}
-						if(p_arg123 != null) {
-							args3.push(p_arg123);
-						}
-						if(p_arg133 != null) {
-							args3.push(p_arg133);
-						}
-						if(p_arg143 != null) {
-							args3.push(p_arg143);
-						}
-						if(p_arg153 != null) {
-							args3.push(p_arg153);
-						}
-						if(p_arg163 != null) {
-							args3.push(p_arg163);
-						}
-						if(p_arg173 != null) {
-							args3.push(p_arg173);
-						}
-						if(p_arg183 != null) {
-							args3.push(p_arg183);
-						}
-						if(p_arg193 != null) {
-							args3.push(p_arg193);
-						}
-						if(p_arg203 != null) {
-							args3.push(p_arg203);
-						}
-						if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-							com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos3,args3);
-						}
-						var msg3 = "INFO: ";
-						if(pos3 != null) {
-							msg3 += pos3.fileName + ":" + pos3.lineNumber + " : " + pos3.methodName + " : ";
-						}
-						if(args3.length > 0) {
-							msg3 += args3.toString();
-						}
-						com_genome2d_debug_GDebug.g2d_log += msg3;
-						if(com_genome2d_debug_GDebug.useNativeTrace) {
-							window.console.log(msg3);
-						}
-					}
 					this.tiles[index].addTopSeparator();
 				}
 				if(j == this.y + this.size - 1) {
-					var p_arg116 = "SEPARATORS ADDING RIGHT I: " + i + " J: " + j;
-					var p_arg24 = null;
-					var p_arg34 = null;
-					var p_arg44 = null;
-					var p_arg54 = null;
-					var p_arg64 = null;
-					var p_arg74 = null;
-					var p_arg84 = null;
-					var p_arg94 = null;
-					var p_arg104 = null;
-					var p_arg117 = null;
-					var p_arg124 = null;
-					var p_arg134 = null;
-					var p_arg144 = null;
-					var p_arg154 = null;
-					var p_arg164 = null;
-					var p_arg174 = null;
-					var p_arg184 = null;
-					var p_arg194 = null;
-					var p_arg204 = null;
-					var pos4 = { fileName : "src/com/dinox/model/tile/Land.hx", lineNumber : 71, className : "com.dinox.model.tile.Land", methodName : "invalidateSeparators"};
-					if(com_genome2d_debug_GDebug.showPriority <= 3) {
-						var args4 = [];
-						if(p_arg116 != null) {
-							args4.push(p_arg116);
-						}
-						if(p_arg24 != null) {
-							args4.push(p_arg24);
-						}
-						if(p_arg34 != null) {
-							args4.push(p_arg34);
-						}
-						if(p_arg44 != null) {
-							args4.push(p_arg44);
-						}
-						if(p_arg54 != null) {
-							args4.push(p_arg54);
-						}
-						if(p_arg64 != null) {
-							args4.push(p_arg64);
-						}
-						if(p_arg74 != null) {
-							args4.push(p_arg74);
-						}
-						if(p_arg84 != null) {
-							args4.push(p_arg84);
-						}
-						if(p_arg94 != null) {
-							args4.push(p_arg94);
-						}
-						if(p_arg104 != null) {
-							args4.push(p_arg104);
-						}
-						if(p_arg117 != null) {
-							args4.push(p_arg117);
-						}
-						if(p_arg124 != null) {
-							args4.push(p_arg124);
-						}
-						if(p_arg134 != null) {
-							args4.push(p_arg134);
-						}
-						if(p_arg144 != null) {
-							args4.push(p_arg144);
-						}
-						if(p_arg154 != null) {
-							args4.push(p_arg154);
-						}
-						if(p_arg164 != null) {
-							args4.push(p_arg164);
-						}
-						if(p_arg174 != null) {
-							args4.push(p_arg174);
-						}
-						if(p_arg184 != null) {
-							args4.push(p_arg184);
-						}
-						if(p_arg194 != null) {
-							args4.push(p_arg194);
-						}
-						if(p_arg204 != null) {
-							args4.push(p_arg204);
-						}
-						if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-							com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos4,args4);
-						}
-						var msg4 = "INFO: ";
-						if(pos4 != null) {
-							msg4 += pos4.fileName + ":" + pos4.lineNumber + " : " + pos4.methodName + " : ";
-						}
-						if(args4.length > 0) {
-							msg4 += args4.toString();
-						}
-						com_genome2d_debug_GDebug.g2d_log += msg4;
-						if(com_genome2d_debug_GDebug.useNativeTrace) {
-							window.console.log(msg4);
-						}
-					}
 					this.tiles[index].addBottomSeparator();
 				}
 				++index;
@@ -5174,7 +4684,7 @@ com_dinox_model_tile_Land.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/tile/Land.hx", lineNumber : 183, className : "com.dinox.model.tile.Land", methodName : "moveTiles"};
+		var pos = { fileName : "src/com/dinox/model/tile/Land.hx", lineNumber : 188, className : "com.dinox.model.tile.Land", methodName : "moveTiles"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -5855,105 +5365,107 @@ com_dinox_view_TileRenderer.prototype = {
 		separatorString += p_right == 1 ? "e" : "";
 		separatorString += p_bottom == 1 ? "s" : "";
 		separatorString += p_left == 1 ? "w" : "";
-		var p_arg1 = "SEPARATOR:: " + separatorString + " RARITY: " + p_rarity;
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/view/TileRenderer.hx", lineNumber : 52, className : "com.dinox.view.TileRenderer", methodName : "updateSeparators"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
+		this.full_separator = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_separator_" + p_rarity + "_" + separatorString);
+		if(separatorString == "w" && this.full_separator != null) {
+			var p_arg1 = "SEPARATOR STRING: W RARITY: " + p_rarity + " FULL SEPARATOR: " + this.full_separator.toString();
+			var p_arg2 = null;
+			var p_arg3 = null;
+			var p_arg4 = null;
+			var p_arg5 = null;
+			var p_arg6 = null;
+			var p_arg7 = null;
+			var p_arg8 = null;
+			var p_arg9 = null;
+			var p_arg10 = null;
+			var p_arg11 = null;
+			var p_arg12 = null;
+			var p_arg13 = null;
+			var p_arg14 = null;
+			var p_arg15 = null;
+			var p_arg16 = null;
+			var p_arg17 = null;
+			var p_arg18 = null;
+			var p_arg19 = null;
+			var p_arg20 = null;
+			var pos = { fileName : "src/com/dinox/view/TileRenderer.hx", lineNumber : 56, className : "com.dinox.view.TileRenderer", methodName : "updateSeparators"};
+			if(com_genome2d_debug_GDebug.showPriority <= 3) {
+				var args = [];
+				if(p_arg1 != null) {
+					args.push(p_arg1);
+				}
+				if(p_arg2 != null) {
+					args.push(p_arg2);
+				}
+				if(p_arg3 != null) {
+					args.push(p_arg3);
+				}
+				if(p_arg4 != null) {
+					args.push(p_arg4);
+				}
+				if(p_arg5 != null) {
+					args.push(p_arg5);
+				}
+				if(p_arg6 != null) {
+					args.push(p_arg6);
+				}
+				if(p_arg7 != null) {
+					args.push(p_arg7);
+				}
+				if(p_arg8 != null) {
+					args.push(p_arg8);
+				}
+				if(p_arg9 != null) {
+					args.push(p_arg9);
+				}
+				if(p_arg10 != null) {
+					args.push(p_arg10);
+				}
+				if(p_arg11 != null) {
+					args.push(p_arg11);
+				}
+				if(p_arg12 != null) {
+					args.push(p_arg12);
+				}
+				if(p_arg13 != null) {
+					args.push(p_arg13);
+				}
+				if(p_arg14 != null) {
+					args.push(p_arg14);
+				}
+				if(p_arg15 != null) {
+					args.push(p_arg15);
+				}
+				if(p_arg16 != null) {
+					args.push(p_arg16);
+				}
+				if(p_arg17 != null) {
+					args.push(p_arg17);
+				}
+				if(p_arg18 != null) {
+					args.push(p_arg18);
+				}
+				if(p_arg19 != null) {
+					args.push(p_arg19);
+				}
+				if(p_arg20 != null) {
+					args.push(p_arg20);
+				}
+				if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+					com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+				}
+				var msg = "INFO: ";
+				if(pos != null) {
+					msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+				}
+				if(args.length > 0) {
+					msg += args.toString();
+				}
+				com_genome2d_debug_GDebug.g2d_log += msg;
+				if(com_genome2d_debug_GDebug.useNativeTrace) {
+					window.console.log(msg);
+				}
 			}
 		}
-		this.full_separator = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_separator_" + p_rarity + "_" + separatorString);
 	}
 	,addTopSeparator: function(p_rarity) {
 		this.l_separator = com_genome2d_textures_GTextureManager.getTexture("separator_v_" + p_rarity);
@@ -5984,7 +5496,7 @@ com_dinox_view_TileRenderer.prototype = {
 		_this1.g2d_pivotY = 1 / _this1.g2d_scaleFactor;
 	}
 	,renderSeparators: function(p_context,p_x,p_y,p_blendMode) {
-		if(this.full_separator != null) {
+		if(this.full_separator != null && this.currentZoom >= 0.2) {
 			p_context.draw(this.full_separator,p_blendMode,p_x,p_y,this.gTile.scaleX,this.gTile.scaleY,this.gTile.rotation,this.gTile.red,this.gTile.green,this.gTile.blue,this.gTile.alpha,null);
 		}
 	}
@@ -6039,9 +5551,9 @@ com_dinox_view_TileRenderer.prototype = {
 	,zoomChanged: function(p_zoom) {
 		this.currentZoom = p_zoom;
 		if(this.currentZoom <= com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL) {
-			this.gTile.texture = this.tileAsset_s;
+			this.gTile.texture = this.tileAsset_l;
 		} else if(this.currentZoom > com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL && this.currentZoom < com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE) {
-			this.gTile.texture = this.tileAsset_n;
+			this.gTile.texture = this.tileAsset_l;
 		} else if(this.currentZoom >= com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE) {
 			this.gTile.texture = this.tileAsset_l;
 		}
@@ -6049,9 +5561,9 @@ com_dinox_view_TileRenderer.prototype = {
 	,setNewTileAssets: function(p_asset) {
 		if(p_asset != this.asset) {
 			if(p_asset == "default") {
-				this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_n");
-				this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_l");
-				this.tileAsset_s = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_s");
+				this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture(this.getRandomLargeDefaultAsset());
+				this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture(this.getRandomLargeDefaultAsset());
+				this.tileAsset_s = com_genome2d_textures_GTextureManager.getTexture(this.getRandomLargeDefaultAsset());
 			} else {
 				this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_n");
 				this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_l");
@@ -53428,7 +52940,7 @@ com_dinox_model_Core.MAP_CAMERA_GROUP = 2;
 com_dinox_model_Core.UI_NODE_NAME = "ui_node";
 com_dinox_model_Core.MAP_NODE_NAME = "map_node";
 com_dinox_model_DevHandler.instance = null;
-com_dinox_model_LandLoader.LandJsonPath = "./tmp_lands.json";
+com_dinox_model_LandLoader.LandJsonPath = "./tmp_lands.json?v=1";
 com_dinox_model_LandMap.ZOOM_LEVELS = [2,1.6,1.2,1,0.8,0.6,0.4,0.2,0.1,0.09,0.07,0.05,0.04,0.03];
 com_dinox_model_LandMap.TILE_COUNT = 300;
 com_dinox_model_tile_TileRarityType.DEFAULT = "default";
@@ -53457,8 +52969,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "02a0bf670e703201d1e8fa78c45e9763";
-com_genome2d_Genome2D.DATE = "2022-07-20 09:56:36";
+com_genome2d_Genome2D.BUILD = "80bfc1b79eed55d457b8039378e89cfd";
+com_genome2d_Genome2D.DATE = "2022-07-20 15:40:25";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

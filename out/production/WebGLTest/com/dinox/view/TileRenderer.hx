@@ -49,8 +49,12 @@ class TileRenderer {
         separatorString += p_right == 1? "e" : "";
         separatorString += p_bottom == 1? "s" : "";
         separatorString += p_left == 1? "w" : "";
+//        GDebug.info("SEPARATOR:: " + separatorString + " RARITY: " + p_rarity);
 
         full_separator = GTextureManager.getTexture('assets/atlas.png_separator_' + p_rarity + '_' + separatorString);
+        if(separatorString == "w" && full_separator != null) {
+            GDebug.info("SEPARATOR STRING: W RARITY: " + p_rarity + " FULL SEPARATOR: "+ full_separator.toString());
+        }
     }
 
     public function addTopSeparator(p_rarity: String): Void {

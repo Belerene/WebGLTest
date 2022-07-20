@@ -1,4 +1,5 @@
 package com.dinox.model.tile;
+import com.genome2d.debug.GDebug;
 class Land {
     private var id: Int;
     private var x: Int;
@@ -47,18 +48,34 @@ class Land {
 
     private function invalidateSeparators(): Void {
         var index: Int = 0;
+//        GDebug.info("SEPARATORS SIZE: " + Std.string(size));
+//        if(rarity==3){ GDebug.info("SEPARATORS SIZE: " + Std.string(size));}
         for(i in x...x+size) {
             for(j in y...y+size) {
                 if(i == x) {
+//                    GDebug.info("SEPARATORS ADDING TOP I: " + i + " J: " + j);
+//                    if(size==3){ GDebug.info("SEPARATORS ADDING TOP I: " + i + " J: " + j);}
                     tiles[index].addLeftSeparator();
+//                    tiles[index].addTopSeparator();
                 }
                 if(i == x+size-1) {
+//                    GDebug.info("SEPARATORS ADDING BOTTOM I: " + i + " J: " + j);
+//                    if(size==3){ GDebug.info("SEPARATORS ADDING BOTTOM I: " + i + " J: " + j);}
                     tiles[index].addRightSeparator();
+//                    tiles[index].addBottomSeparator();
                 }
                 if(j == y) {
+//                    GDebug.info("SEPARATORS ADDING LEFT I: " + i + " J: " + j);
+//                    if(size==3){ GDebug.info("SEPARATORS ADDING LEFT I: " + i + " J: " + j);}
+
+//                    tiles[index].addLeftSeparator();
                     tiles[index].addTopSeparator();
                 }
                 if(j == y+size-1) {
+//                    GDebug.info("SEPARATORS ADDING RIGHT I: " + i + " J: " + j);
+//                    if(size==3){ GDebug.info("SEPARATORS ADDING RIGHT I: " + i + " J: " + j);}
+
+//                    tiles[index].addRightSeparator();
                     tiles[index].addBottomSeparator();
                 }
                 index++;
@@ -168,6 +185,7 @@ class Land {
     }
 
     public function moveTiles(p_moveByX: Int, p_moveByY: Int): Void {
+        GDebug.info("moveByX: " + p_moveByX + " moveByY: " + p_moveByY);
         for(i in 0...tiles.length) {
             tiles[i].getGTile().mapX += p_moveByX;
             tiles[i].getGTile().mapY += p_moveByY;

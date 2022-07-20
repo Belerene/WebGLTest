@@ -94,7 +94,7 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
@@ -155,7 +155,7 @@
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
             <key>extrude</key>
-            <uint>10</uint>
+            <uint>2</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMargin</key>
@@ -173,22 +173,34 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../out/assets/checkbox.png</key>
-            <key type="filename">../out/assets/checkbox_checked.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>5,4,9,9</rect>
-                <key>scale9Paddings</key>
-                <rect>5,4,9,9</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
+            <key type="filename">separator_rare_w.png</key>
+            <key type="filename">tile_11_l.png</key>
+            <key type="filename">tile_12_l.png</key>
+            <key type="filename">tile_13_l.png</key>
+            <key type="filename">tile_21_l.png</key>
+            <key type="filename">tile_22_l.png</key>
+            <key type="filename">tile_23_l.png</key>
+            <key type="filename">tile_31_l.png</key>
+            <key type="filename">tile_32_l.png</key>
+            <key type="filename">tile_33_l.png</key>
+            <key type="filename">tile_41_l.png</key>
+            <key type="filename">tile_42_l.png</key>
+            <key type="filename">tile_43_l.png</key>
+            <key type="filename">tile_51_l.png</key>
+            <key type="filename">tile_52_l.png</key>
+            <key type="filename">tile_53_l.png</key>
+            <key type="filename">tile_61_l.png</key>
+            <key type="filename">tile_62_l.png</key>
+            <key type="filename">tile_63_l.png</key>
+            <key type="filename">tile_71_l.png</key>
+            <key type="filename">tile_72_l.png</key>
+            <key type="filename">tile_73_l.png</key>
+            <key type="filename">tile_81_l.png</key>
+            <key type="filename">tile_82_l.png</key>
+            <key type="filename">tile_83_l.png</key>
+            <key type="filename">tile_91_l.png</key>
+            <key type="filename">tile_92_l.png</key>
+            <key type="filename">tile_93_l.png</key>
             <key type="filename">../out/assets/default_l_1.png</key>
             <key type="filename">../out/assets/default_l_2.png</key>
             <key type="filename">../out/assets/default_l_3.png</key>
@@ -220,7 +232,6 @@
             <key type="filename">../out/assets/separator_rare_nw.png</key>
             <key type="filename">../out/assets/separator_rare_s.png</key>
             <key type="filename">../out/assets/separator_rare_sw.png</key>
-            <key type="filename">../out/assets/separator_rare_w.png</key>
             <key type="filename">../out/assets/separator_uncommon_es.png</key>
             <key type="filename">../out/assets/separator_uncommon_ne.png</key>
             <key type="filename">../out/assets/separator_uncommon_nesw.png</key>
@@ -264,6 +275,22 @@
                 <rect>15,15,30,30</rect>
                 <key>scale9Paddings</key>
                 <rect>15,15,30,30</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/checkbox.png</key>
+            <key type="filename">../out/assets/checkbox_checked.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,4,9,9</rect>
+                <key>scale9Paddings</key>
+                <rect>5,4,9,9</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -411,7 +438,6 @@
             <filename>../out/assets/separator_rare_ne.png</filename>
             <filename>../out/assets/separator_rare_s.png</filename>
             <filename>../out/assets/separator_rare_sw.png</filename>
-            <filename>../out/assets/separator_rare_w.png</filename>
             <filename>../out/assets/separator_uncommon_es.png</filename>
             <filename>../out/assets/separator_uncommon_ne.png</filename>
             <filename>../out/assets/separator_uncommon_nesw.png</filename>
@@ -454,6 +480,34 @@
             <filename>../out/assets/separator_mythical_nw.png</filename>
             <filename>../out/assets/separator_rare_nw.png</filename>
             <filename>../out/assets/separator_uncommon_nw.png</filename>
+            <filename>tile_11_l.png</filename>
+            <filename>tile_12_l.png</filename>
+            <filename>tile_13_l.png</filename>
+            <filename>tile_21_l.png</filename>
+            <filename>tile_22_l.png</filename>
+            <filename>tile_23_l.png</filename>
+            <filename>tile_31_l.png</filename>
+            <filename>tile_32_l.png</filename>
+            <filename>tile_33_l.png</filename>
+            <filename>tile_41_l.png</filename>
+            <filename>tile_42_l.png</filename>
+            <filename>tile_43_l.png</filename>
+            <filename>tile_51_l.png</filename>
+            <filename>tile_52_l.png</filename>
+            <filename>tile_53_l.png</filename>
+            <filename>tile_61_l.png</filename>
+            <filename>tile_62_l.png</filename>
+            <filename>tile_63_l.png</filename>
+            <filename>tile_71_l.png</filename>
+            <filename>tile_72_l.png</filename>
+            <filename>tile_73_l.png</filename>
+            <filename>tile_81_l.png</filename>
+            <filename>tile_82_l.png</filename>
+            <filename>tile_83_l.png</filename>
+            <filename>tile_91_l.png</filename>
+            <filename>tile_92_l.png</filename>
+            <filename>tile_93_l.png</filename>
+            <filename>separator_rare_w.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
