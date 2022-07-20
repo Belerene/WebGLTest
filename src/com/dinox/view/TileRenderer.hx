@@ -78,7 +78,7 @@ class TileRenderer {
     }
 
     public function renderSeparators(p_context:IGContext, p_x:Float, p_y:Float, p_blendMode:GBlendMode): Void {
-        if (full_separator != null) {
+        if (full_separator != null && currentZoom >= 0.2) {
             p_context.draw(full_separator, p_blendMode, p_x, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
         }
         /*if(l_separator != null) {
@@ -145,9 +145,9 @@ class TileRenderer {
     public function zoomChanged(p_zoom: Float): Void {
         currentZoom = p_zoom;
         if(currentZoom <= ZOOM_BREAKPOINT_SMALL) {
-            gTile.texture = tileAsset_s;
+            gTile.texture = tileAsset_l;
         } else if (currentZoom > ZOOM_BREAKPOINT_SMALL && currentZoom < ZOOM_BREAKPOINT_LARGE) {
-            gTile.texture = tileAsset_n;
+            gTile.texture = tileAsset_l;
         } else if (currentZoom >= ZOOM_BREAKPOINT_LARGE) {
             gTile.texture = tileAsset_l;
         }
@@ -156,9 +156,9 @@ class TileRenderer {
     public function setNewTileAssets(p_asset: String): Void {
         if(p_asset != asset) {
             if(p_asset == "default") {
-                tileAsset_n = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_n");
-                tileAsset_l = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_l");
-                tileAsset_s = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_s");
+                tileAsset_n = GTextureManager.getTexture(getRandomLargeDefaultAsset());
+                tileAsset_l = GTextureManager.getTexture(getRandomLargeDefaultAsset());
+                tileAsset_s = GTextureManager.getTexture(getRandomLargeDefaultAsset());
             } else {
                 tileAsset_n = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_n");
                 tileAsset_l = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_l");
