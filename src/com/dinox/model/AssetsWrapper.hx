@@ -68,7 +68,7 @@ class AssetsWrapper {
 //        GStaticAssetManager.addFromUrl("assets/separator_uncommon_ne.png", "separator_uncommon_ne");
 //        GStaticAssetManager.addFromUrl("assets/separator_uncommon_nesw.png", "separator_uncommon_nesw");
 //        GStaticAssetManager.addFromUrl("assets/separator_uncommon_sw.png", "separator_uncommon_sw");
-//        GStaticAssetManager.addFromUrl("assets/separator_uncommon_wn.png", "separator_uncommon_wn");
+//        GStaticAssetManager.addFromUrl("assets/separator_uncommon_nw.png", "separator_uncommon_wn");
 //        GStaticAssetManager.addFromUrl("assets/separator_legendary_e.png", "separator_legendary_e");
 //        GStaticAssetManager.addFromUrl("assets/separator_legendary_es.png", "separator_legendary_es");
 //        GStaticAssetManager.addFromUrl("assets/separator_legendary_n.png", "separator_legendary_n");
@@ -76,7 +76,7 @@ class AssetsWrapper {
 //        GStaticAssetManager.addFromUrl("assets/separator_legendary_s.png", "separator_legendary_s");
 //        GStaticAssetManager.addFromUrl("assets/separator_legendary_sw.png", "separator_legendary_sw");
 //        GStaticAssetManager.addFromUrl("assets/separator_legendary_w.png", "separator_legendary_w");
-//        GStaticAssetManager.addFromUrl("assets/separator_legendary_wn.png", "separator_legendary_wn");
+//        GStaticAssetManager.addFromUrl("assets/separator_legendary_nw.png", "separator_legendary_wn");
 //        GStaticAssetManager.addFromUrl("assets/separator_mythical_e.png", "separator_mythical_e");
 //        GStaticAssetManager.addFromUrl("assets/separator_mythical_es.png", "separator_mythical_es");
 //        GStaticAssetManager.addFromUrl("assets/separator_mythical_n.png", "separator_mythical_n");
@@ -84,7 +84,7 @@ class AssetsWrapper {
 //        GStaticAssetManager.addFromUrl("assets/separator_mythical_s.png", "separator_mythical_s");
 //        GStaticAssetManager.addFromUrl("assets/separator_mythical_sw.png", "separator_mythical_sw");
 //        GStaticAssetManager.addFromUrl("assets/separator_mythical_w.png", "separator_mythical_w");
-//        GStaticAssetManager.addFromUrl("assets/separator_mythical_wn.png", "separator_mythical_wn");
+//        GStaticAssetManager.addFromUrl("assets/separator_mythical_nw.png", "separator_mythical_wn");
 //        GStaticAssetManager.addFromUrl("assets/separator_rare_e.png", "separator_rare_e");
 //        GStaticAssetManager.addFromUrl("assets/separator_rare_es.png", "separator_rare_es");
 //        GStaticAssetManager.addFromUrl("assets/separator_rare_n.png", "separator_rare_n");
@@ -92,7 +92,7 @@ class AssetsWrapper {
 //        GStaticAssetManager.addFromUrl("assets/separator_rare_s.png", "separator_rare_s");
 //        GStaticAssetManager.addFromUrl("assets/separator_rare_sw.png", "separator_rare_sw");
 //        GStaticAssetManager.addFromUrl("assets/separator_rare_w.png", "separator_rare_w");
-//        GStaticAssetManager.addFromUrl("assets/separator_rare_wn.png", "separator_rare_wn");
+//        GStaticAssetManager.addFromUrl("assets/separator_rare_nw.png", "separator_rare_wn");
 //        GStaticAssetManager.addFromUrl("assets/checkbox.png", "checkbox");
 //        GStaticAssetManager.addFromUrl("assets/checkbox_checked.png", "checkbox_checked");
 //        GStaticAssetManager.addFromUrl("assets/icon_close.png", "icon_close");

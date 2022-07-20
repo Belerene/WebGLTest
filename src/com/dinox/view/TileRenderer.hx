@@ -1,4 +1,5 @@
 package com.dinox.view;
+import com.genome2d.debug.GDebug;
 import com.dinox.model.tile.TileRarityType;
 import com.genome2d.context.GBlendMode;
 import com.genome2d.context.IGContext;
@@ -48,6 +49,7 @@ class TileRenderer {
         separatorString += p_right == 1? "e" : "";
         separatorString += p_bottom == 1? "s" : "";
         separatorString += p_left == 1? "w" : "";
+        GDebug.info("SEPARATOR:: " + separatorString + " RARITY: " + p_rarity);
         full_separator = GTextureManager.getTexture('assets/atlas.png_separator_' + p_rarity + '_' + separatorString);
     }
 

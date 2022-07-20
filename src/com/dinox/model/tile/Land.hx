@@ -48,19 +48,30 @@ class Land {
 
     private function invalidateSeparators(): Void {
         var index: Int = 0;
+        GDebug.info("SEPARATORS SIZE: " + Std.string(size));
         for(i in x...x+size) {
             for(j in y...y+size) {
                 if(i == x) {
-                    tiles[index].addTopSeparator();
+                    GDebug.info("SEPARATORS ADDING TOP I: " + i + " J: " + j);
+                    tiles[index].addLeftSeparator();
+//                    tiles[index].addTopSeparator();
                 }
                 if(i == x+size-1) {
-                    tiles[index].addBottomSeparator();
+                    GDebug.info("SEPARATORS ADDING BOTTOM I: " + i + " J: " + j);
+                    tiles[index].addRightSeparator();
+//                    tiles[index].addBottomSeparator();
                 }
                 if(j == y) {
-                    tiles[index].addLeftSeparator();
+                    GDebug.info("SEPARATORS ADDING LEFT I: " + i + " J: " + j);
+
+//                    tiles[index].addLeftSeparator();
+                    tiles[index].addTopSeparator();
                 }
                 if(j == y+size-1) {
-                    tiles[index].addRightSeparator();
+                    GDebug.info("SEPARATORS ADDING RIGHT I: " + i + " J: " + j);
+
+//                    tiles[index].addRightSeparator();
+                    tiles[index].addBottomSeparator();
                 }
                 index++;
             }
