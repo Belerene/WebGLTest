@@ -5275,7 +5275,7 @@ com_dinox_view_TileRenderer.prototype = {
 		_this.g2d_pivotY = 1 / _this.g2d_scaleFactor;
 	}
 	,renderSeparators: function(p_context,p_x,p_y,p_blendMode) {
-		if(this.full_separator != null) {
+		if(this.full_separator != null && this.currentZoom >= 0.2) {
 			p_context.draw(this.full_separator,p_blendMode,p_x,p_y,this.gTile.scaleX,this.gTile.scaleY,this.gTile.rotation,this.gTile.red,this.gTile.green,this.gTile.blue,this.gTile.alpha,null);
 		}
 	}
@@ -5330,9 +5330,9 @@ com_dinox_view_TileRenderer.prototype = {
 	,zoomChanged: function(p_zoom) {
 		this.currentZoom = p_zoom;
 		if(this.currentZoom <= com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL) {
-			this.gTile.texture = this.tileAsset_s;
+			this.gTile.texture = this.tileAsset_l;
 		} else if(this.currentZoom > com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL && this.currentZoom < com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE) {
-			this.gTile.texture = this.tileAsset_n;
+			this.gTile.texture = this.tileAsset_l;
 		} else if(this.currentZoom >= com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE) {
 			this.gTile.texture = this.tileAsset_l;
 		}
@@ -5340,9 +5340,9 @@ com_dinox_view_TileRenderer.prototype = {
 	,setNewTileAssets: function(p_asset) {
 		if(p_asset != this.asset) {
 			if(p_asset == "default") {
-				this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_n");
-				this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_l");
-				this.tileAsset_s = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_s");
+				this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture(this.getRandomLargeDefaultAsset());
+				this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture(this.getRandomLargeDefaultAsset());
+				this.tileAsset_s = com_genome2d_textures_GTextureManager.getTexture(this.getRandomLargeDefaultAsset());
 			} else {
 				this.tileAsset_n = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_n");
 				this.tileAsset_l = com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + p_asset + "_l");
@@ -52130,7 +52130,7 @@ com_dinox_model_Core.MAP_CAMERA_GROUP = 2;
 com_dinox_model_Core.UI_NODE_NAME = "ui_node";
 com_dinox_model_Core.MAP_NODE_NAME = "map_node";
 com_dinox_model_DevHandler.instance = null;
-com_dinox_model_LandLoader.LandJsonPath = "./tmp_lands.json";
+com_dinox_model_LandLoader.LandJsonPath = "./tmp_lands.json?v=1";
 com_dinox_model_LandMap.ZOOM_LEVELS = [2,1.6,1.2,1,0.8,0.6,0.4,0.2,0.1,0.09,0.07,0.05,0.04,0.03];
 com_dinox_model_LandMap.TILE_COUNT = 300;
 com_dinox_model_tile_TileRarityType.DEFAULT = "default";
@@ -52159,8 +52159,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "d7c7c11d522b095bdfeae306df0d458a";
-com_genome2d_Genome2D.DATE = "2022-07-19 12:49:10";
+com_genome2d_Genome2D.BUILD = "1c92dd3e08e027ce7f5b2957153580ac";
+com_genome2d_Genome2D.DATE = "2022-07-20 09:05:22";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

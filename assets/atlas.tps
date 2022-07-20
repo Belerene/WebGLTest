@@ -80,9 +80,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>1024</int>
+            <int>2048</int>
             <key>height</key>
-            <int>1024</int>
+            <int>2048</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -173,22 +173,33 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../out/assets/checkbox.png</key>
-            <key type="filename">../out/assets/checkbox_checked.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>5,4,9,9</rect>
-                <key>scale9Paddings</key>
-                <rect>5,4,9,9</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
+            <key type="filename">tile_11_l.png</key>
+            <key type="filename">tile_12_l.png</key>
+            <key type="filename">tile_13_l.png</key>
+            <key type="filename">tile_21_l.png</key>
+            <key type="filename">tile_22_l.png</key>
+            <key type="filename">tile_23_l.png</key>
+            <key type="filename">tile_31_l.png</key>
+            <key type="filename">tile_32_l.png</key>
+            <key type="filename">tile_33_l.png</key>
+            <key type="filename">tile_41_l.png</key>
+            <key type="filename">tile_42_l.png</key>
+            <key type="filename">tile_43_l.png</key>
+            <key type="filename">tile_51_l.png</key>
+            <key type="filename">tile_52_l.png</key>
+            <key type="filename">tile_53_l.png</key>
+            <key type="filename">tile_61_l.png</key>
+            <key type="filename">tile_62_l.png</key>
+            <key type="filename">tile_63_l.png</key>
+            <key type="filename">tile_71_l.png</key>
+            <key type="filename">tile_72_l.png</key>
+            <key type="filename">tile_73_l.png</key>
+            <key type="filename">tile_81_l.png</key>
+            <key type="filename">tile_82_l.png</key>
+            <key type="filename">tile_83_l.png</key>
+            <key type="filename">tile_91_l.png</key>
+            <key type="filename">tile_92_l.png</key>
+            <key type="filename">tile_93_l.png</key>
             <key type="filename">../out/assets/default_l_1.png</key>
             <key type="filename">../out/assets/default_l_2.png</key>
             <key type="filename">../out/assets/default_l_3.png</key>
@@ -267,6 +278,22 @@
                 <rect>15,15,30,30</rect>
                 <key>scale9Paddings</key>
                 <rect>15,15,30,30</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/checkbox.png</key>
+            <key type="filename">../out/assets/checkbox_checked.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,4,9,9</rect>
+                <key>scale9Paddings</key>
+                <rect>5,4,9,9</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -460,6 +487,33 @@
             <filename>../out/assets/tile_n.png</filename>
             <filename>../out/assets/tile_s.png</filename>
             <filename>../out/assets/ui.png</filename>
+            <filename>tile_11_l.png</filename>
+            <filename>tile_12_l.png</filename>
+            <filename>tile_13_l.png</filename>
+            <filename>tile_21_l.png</filename>
+            <filename>tile_22_l.png</filename>
+            <filename>tile_23_l.png</filename>
+            <filename>tile_31_l.png</filename>
+            <filename>tile_32_l.png</filename>
+            <filename>tile_33_l.png</filename>
+            <filename>tile_41_l.png</filename>
+            <filename>tile_42_l.png</filename>
+            <filename>tile_43_l.png</filename>
+            <filename>tile_51_l.png</filename>
+            <filename>tile_52_l.png</filename>
+            <filename>tile_53_l.png</filename>
+            <filename>tile_61_l.png</filename>
+            <filename>tile_62_l.png</filename>
+            <filename>tile_63_l.png</filename>
+            <filename>tile_71_l.png</filename>
+            <filename>tile_72_l.png</filename>
+            <filename>tile_73_l.png</filename>
+            <filename>tile_81_l.png</filename>
+            <filename>tile_82_l.png</filename>
+            <filename>tile_83_l.png</filename>
+            <filename>tile_91_l.png</filename>
+            <filename>tile_92_l.png</filename>
+            <filename>tile_93_l.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
