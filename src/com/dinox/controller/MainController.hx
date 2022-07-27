@@ -1,6 +1,5 @@
 package com.dinox.controller;
 import com.dinox.model.LandMap;
-import com.genome2d.debug.GDebug;
 import com.genome2d.context.GCamera;
 import com.genome2d.tween.GTween;
 import com.genome2d.tween.easing.GLinear;
@@ -32,6 +31,7 @@ class MainController {
     private var core: Core;
     private var mouseDragHandler: Float->Float->Void;
     private var infoPopupHandler: Float->Float->GCamera->Void;
+    private var tileMouseOverHandler: Float->Float->GCamera->Void;
 
     private var DEV_mouseDragHandler: Float->Float->GCamera->Void;
     private var DEV_mouseDownHandler: Float->Float->GCamera->Void;
@@ -41,9 +41,10 @@ class MainController {
         core = p_core;
     }
 
-    public function addMapScreenListeners(p_mouseDragHandler: Float->Float->Void, p_infoPopupHandler: Float->Float->GCamera->Void, p_zoomCompletedHandler: Float->Void): Void {
+    public function addMapScreenListeners(p_mouseDragHandler: Float->Float->Void, p_tileMouseOverHandler: Float->Float->GCamera->Void, p_infoPopupHandler: Float->Float->GCamera->Void, p_zoomCompletedHandler: Float->Void): Void {
         mouseDragHandler = p_mouseDragHandler;
         infoPopupHandler = p_infoPopupHandler;
+        tileMouseOverHandler = p_tileMouseOverHandler;
         zoomCompletedHandler = p_zoomCompletedHandler;
         core.getMapCamera().onMouseInput.add(handleMapCameraMouseInput);
     }
@@ -126,7 +127,9 @@ class MainController {
     }
 
     private function mouseOver_handler(signal: GMouseInput): Void {
-
+        var x: Float = signal.worldX;
+        var y: Float = signal.worldY;
+        tileMouseOverHandler(x, y, signal.camera.contextCamera);
     }
 
     private function mouseOut_handler(signal: GMouseInput): Void {
@@ -162,29 +165,16 @@ class MainController {
     }
 
     private function mouseWheel_handler(signal: GMouseInput): Void {
-//        var change: Float = signal.delta/15;
         var change: Float = 0;
         var diff: Int = 0;
         (signal.delta > 0)? diff = -1: diff = 1;
         if(canChangeZoom) {
 
-//            trace(core.getMapCamera().zoom);
-//            if (core.getMapCamera().zoom < 0.21) {
-//                change = change/10;
-//            }
             change = LandMap.getChangedZoomLevel(diff, core.getMapCamera().zoom);
-//            trace(change);
-//            if(core.getMapCamera().zoom + change < MAX_SCALE &&
-//            core.getMapCamera().zoom + change > MIN_SCALE) {
-                if(change <= MAX_SCALE &&
-                    change >= MIN_SCALE) {
-                canChangeZoom = false;
-//                var changedScale: Float = core.getMapCamera().zoom / change;
-                var changedScale: Float = change;
-//                var changedScale: Float = core.getMapCamera().zoom + change;
-//                trace(changedScale);
-                var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", change, 0.1, false).onComplete(onCompleteZoom, [change]);
-//                var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", core.getMapCamera().zoom + change, 0.1, false).onComplete(onCompleteZoom, [changedScale]);
+                if(change <= MAX_SCALE && change >= MIN_SCALE) {
+                    canChangeZoom = false;
+                    var changedScale: Float = change;
+                    var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", change, 0.1, false).onComplete(onCompleteZoom, [change]);
             }
         }
     }
@@ -206,6 +196,8 @@ class MainController {
                     DEV_mouseDragHandler(signal.worldX, signal.worldY, signal.camera.contextCamera);
                 }
             }
+        } else {
+            mouseOver_handler(signal);
         }
     }
 
@@ -219,7 +211,6 @@ class MainController {
     }
 
     private function onCompleteZoom(scaleAfterChange: Float):Void {
-        GDebug.info(scaleAfterChange);
         zoomCompletedHandler(scaleAfterChange);
         canChangeZoom = true;
     }

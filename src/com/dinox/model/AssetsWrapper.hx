@@ -45,6 +45,8 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/prototypes/map_prototype.xml", "map_element");
         GStaticAssetManager.addFromUrl("assets/prototypes/tile_prototype.xml", "tile");
         GStaticAssetManager.addFromUrl("assets/prototypes/info_popup_prototype.xml", "popup_element");
+        GStaticAssetManager.addFromUrl("assets/prototypes/tile_mouseover_holder_prototype.xml", "tileHighlightsHolder_element");
+        GStaticAssetManager.addFromUrl("assets/prototypes/tile_mouseover_element_prototype.xml", "tileMouseOver_element");
         GStaticAssetManager.addFromUrl("assets/skin_sheet.xml", "skin_sheet");
     }
 

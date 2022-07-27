@@ -55,7 +55,7 @@ class GTileMap extends GComponent implements IGRenderable
 
     public function setTile(p_tileIndex:Int, p_tile:Tile):Void {
         if (p_tileIndex<0 || p_tileIndex>= g2d_tiles.length) GDebug.error("Tile index out of bounds.");
-        if (p_tile != null && (p_tile.getGTile().mapX!=-1 || p_tile.getGTile().mapY!=-1) && (p_tile.getGTile().mapX+p_tile.getGTile().mapY*g2d_width != p_tileIndex)) GDebug.error("Tile map position doesn't match its index. MapX: " + p_tile.getGTile().mapX + " mapY: " +p_tile.getGTile().mapY);
+        if (p_tile != null && (p_tile.getGTile().mapX!=-1 || p_tile.getGTile().mapY!=-1) && (p_tile.getGTile().mapX+p_tile.getGTile().mapY*g2d_width != p_tileIndex)) GDebug.error("Tile map position doesn't match its index. MapX: " + p_tile.getGTile().mapX + " mapY: " +p_tile.getGTile().mapY + " p_index: " + p_tileIndex + " calculated Index: " + Std.string(p_tile.getGTile().mapX+p_tile.getGTile().mapY*g2d_width));
 
         if (p_tile != null) {
             if (g2d_tiles[p_tileIndex] != null) {
@@ -157,32 +157,30 @@ class GTileMap extends GComponent implements IGRenderable
         return res;
     }
 
-//    public function getTileAt(p_x:Float, p_y:Float, p_camera:GCamera = null):Tile {
-//        if (p_camera == null) p_camera = node.core.getContext().getDefaultCamera();
-//
-//        var viewRect:GRectangle = node.core.getContext().getStageViewRect();
-//        var cameraX:Float = viewRect.width*p_camera.normalizedViewX;
-//        var cameraY:Float = viewRect.height*p_camera.normalizedViewY;
-//        var cameraWidth:Float = viewRect.width*p_camera.normalizedViewWidth;
-//        var cameraHeight:Float = viewRect.height*p_camera.normalizedViewHeight;
-//        p_x -= cameraX + cameraWidth*.5;
-//        p_y -= cameraY + cameraHeight*.5;
-//
-//        var mapHalfWidth:Float = (g2d_tileWidth * p_camera.scaleX) * g2d_width * .5;
-//        var mapHalfHeight:Float = (g2d_tileHeight * p_camera.scaleY) * g2d_height * (g2d_iso ? .25 : .5);
-//
-//        var firstX:Float = -mapHalfWidth + (g2d_iso ? (g2d_tileWidth * p_camera.scaleX) / 2 : 0);
-//        var firstY:Float = -mapHalfHeight + (g2d_iso ? (g2d_tileHeight * p_camera.scaleY) / 2 : 0);
-//
-//        var tx:Float = p_camera.x*p_camera.scaleX - g2d_node.g2d_worldX + p_x;
-//        var ty:Float = p_camera.y*p_camera.scaleY - g2d_node.g2d_worldY + p_y;
-//
-//        var indexX:Int = Math.floor((tx - firstX) / (g2d_tileWidth * p_camera.scaleX));
-//        var indexY:Int = Math.floor((ty - firstY) / (g2d_tileHeight * p_camera.scaleY));
-//
-//        if (indexX<0 || indexX>=g2d_width || indexY<0 || indexY>=g2d_height) return null;
-//        return g2d_tiles[indexY*g2d_width+indexX];
-//    }
+    /**
+    * return Map of screen coordinates from "x" and "y" coordinates on GTileMap
+    **/
+    public function getScreenCoordsFromMapCoords(p_x: Float, p_y: Float, p_camera:  GCamera = null): Map<String, Float> {
+        if (p_camera == null) p_camera = node.core.getContext().getDefaultCamera();
+
+        var nodeOffsetX: Float = (g2d_width / 2) * g2d_tileWidth;
+        var nodeOffsetY: Float = (g2d_height / 2) * g2d_tileHeight;
+
+        var viewRect:GRectangle = node.core.getContext().getStageViewRect();
+        var cameraWidth:Float = (viewRect.width*p_camera.normalizedViewWidth) / p_camera.scaleX;
+        var cameraHeight:Float = (viewRect.height*p_camera.normalizedViewHeight) / p_camera.scaleY;
+
+        var adjustedX: Float = (-node.x + nodeOffsetX - cameraWidth*0.5) * p_camera.scaleX;
+        var adjustedY: Float = (-node.y + nodeOffsetY - cameraHeight*0.5) * p_camera.scaleY;
+
+        var tileWorldX: Float = (p_x * g2d_tileWidth) * p_camera.scaleX;
+        var tileWorldY: Float = (p_y * g2d_tileHeight) * p_camera.scaleY;
+
+        var res: Map<String, Float> = new Map<String, Float>();
+        res.set("x", tileWorldX - adjustedX);
+        res.set("y", tileWorldY - adjustedY);
+        return res;
+    }
 
     public function getTileAt(p_x:Float, p_y:Float, p_camera:GCamera = null):Tile {
         var coords: Map<String, Float> = getMapCoordinatesAt(p_x, p_y, p_camera);
