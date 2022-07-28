@@ -1,0 +1,3 @@
+<element name="tileMouseoverHolder" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" mouseEnabled="false">
+    <element name="elementHolder"/>
+</element>

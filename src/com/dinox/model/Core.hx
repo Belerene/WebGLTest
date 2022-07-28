@@ -19,6 +19,7 @@ class Core {
     private var uiNode: GNode;
     private var mapGui: GUI;
     private var uiGui: GUI;
+    private var tileHighlightGui: GUI;
 
     private var mapCamera: GCameraController;
     private var uiCamera: GCameraController;
@@ -30,6 +31,7 @@ class Core {
         rootNode.setPosition((Main.stageWidth/2), (Main.stageHeight/2));
 
         setupMapGUI();
+        setupTileHighlightGUI();
         setupUIGUI();
         initMapCamera();
         initUICamera();
@@ -65,6 +67,16 @@ class Core {
         rootNode.getChildAt(rootNode.getChildIndex(mapGui.node)).setPosition(0,0);
     }
 
+    private function setupTileHighlightGUI(): Void {
+        tileHighlightGui = cast(GNode.createWithComponent(GUI), GUI);
+        tileHighlightGui.node.mouseEnabled = true;
+        tileHighlightGui.root.mouseEnabled = true;
+        tileHighlightGui.setBounds(new GRectangle(0,0, Main.stageWidth,Main.stageHeight));
+        tileHighlightGui.node.cameraGroup = UI_CAMERA_GROUP;
+        rootNode.addChild(tileHighlightGui.node);
+        rootNode.getChildAt(rootNode.getChildIndex(tileHighlightGui.node)).setPosition(0,0);
+    }
+
     private function setupUIGUI(): Void {
         uiGui = cast(GNode.createWithComponent(GUI), GUI);
         uiGui.node.mouseEnabled = true;
@@ -98,7 +110,7 @@ class Core {
     }
 
     private function initLandMap(): Void {
-        landMap = new LandMap(uiGui, mapGui, this);
+        landMap = new LandMap(uiGui, tileHighlightGui, mapGui, this);
     }
 
     public function getUICamera(): GCameraController {

@@ -8,20 +8,29 @@ class MainMapScreen {
 
     private var tilesState: String;
     private var ui: UIElement;
+    private var tileHighlightsHolder: TileHighlightsHolderElement;
     private var map: MapElement;
     private var  uiContainer: GUI;
+    private var  tileHighlightContainer: GUI;
     private var  mapContainer: GUI;
 
-    public function new(p_uiGui: GUI, p_mapGui: GUI) {
+    public function new(p_uiGui: GUI, p_tileHighlightGui: GUI, p_mapGui: GUI) {
         uiContainer = p_uiGui;
+        tileHighlightContainer = p_tileHighlightGui;
         mapContainer = p_mapGui;
         setupUI();
+        setupTileHighlightContainer();
         setupMap();
     }
 
     private function setupUI(): Void {
         ui = new UIElement();
         uiContainer.root.addChild(ui.getGuiElement());
+    }
+
+    private function setupTileHighlightContainer(): Void {
+        tileHighlightsHolder = new TileHighlightsHolderElement();
+        tileHighlightContainer.root.addChild(tileHighlightsHolder.getGuiElement());
     }
 
     private function setupMap(): Void {

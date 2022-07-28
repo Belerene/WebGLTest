@@ -1,4 +1,4 @@
-<element name="info_popup" preferredWidth="400" preferredHeight="280" skin="@semitransparent_bg" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT">
+<element name="info_popup" preferredWidth="400" preferredHeight="280" skin="@semitransparent_bg" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" mouseEnabled="false">
     <element name="infoPopup_title_holder" preferredWidth="380" preferredHeight="100" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="10">
         <element name="info_popup_title" skin="@font_mid" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" model="123"/>
     </element>
@@ -19,7 +19,7 @@
 <!--        <element name="info_popup_asset_l" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="232" anchorX="10" model="<="/>-->
 <!--        <element name="info_popup_asset_r" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="232" anchorX="-10" model="=>"/>-->
     </element>
-    <element name="infoPopup_closeBtn" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="5" anchorX="40" preferredWidth="160" preferredHeight="60">
+    <element name="infoPopup_closeBtn" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="5" anchorX="40" preferredWidth="160" preferredHeight="60" mouseEnabled="true">
         <element name="infoPopup_closeBtn_X" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" skin="@icon_close"/>
     </element>
 </element>
