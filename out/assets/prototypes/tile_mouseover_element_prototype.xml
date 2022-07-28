@@ -1,5 +1,4 @@
 <element name="info_popup" mouseEnabled="false" preferredWidth="60" preferredWidth.one="60" preferredWidth.two="120" preferredWidth.three="180" preferredWidth.four="240"
          preferredHeight="60" preferredHeight.one="60" preferredHeight.two="120" preferredHeight.three="180" preferredHeight.four="240"
-         skin="@dev" skin.one="@dev" skin.two="@dev" skin.three="@dev" skin.four="@dev"
-         anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT">
-</element>
+         skin="@hover9s"
+         anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT"/>

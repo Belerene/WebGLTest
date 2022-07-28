@@ -3,6 +3,7 @@
     <textureSkin id="dev" texture="@dev" sliceLeft="2" sliceTop="2" sliceRight="3" sliceBottom="3"/>
     <textureSkin id="dev_black" texture="@dev_black" sliceLeft="2" sliceTop="2" sliceRight="3" sliceBottom="3"/>
     <textureSkin id="semitransparent_bg" texture="@semitransparent_bg" sliceLeft="100" sliceTop="28" sliceRight="103" sliceBottom="32"/>
+    <textureSkin id="hover9s" texture="@hover9s" sliceLeft="4" sliceTop="4" sliceRight="5" sliceBottom="5"/>
     <textureSkin id="ui" texture="@ui"/>
 <!--    <textureSkin id="ui" texture="@ui" sliceTop="230" sliceBottom="232" sliceLeft="109" sliceRigt="111"/>-->
     <textureSkin id="tile_n" texture="@tile_n"/>

@@ -31,6 +31,8 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/checkbox_checked.png", "checkbox_checked");
         GStaticAssetManager.addFromUrl("assets/icon_close.png", "icon_close");
         GStaticAssetManager.addFromUrl("assets/semitransparent_bg.png", "semitransparent_bg");
+//        GStaticAssetManager.addFromUrl("assets/hover_60.png", "hover_60");
+        GStaticAssetManager.addFromUrl("assets/hover9s.png", "hover9s");
 
         // FONTS
         GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");
@@ -58,11 +60,6 @@ class AssetsWrapper {
         GFontManager.createTextureFont("font_fnt", GTextureManager.getTexture("font_png"), GStaticAssetManager.getXmlAssetById("font_fnt").xml);
         GFontManager.createTextureFont("font_normal", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
         GFontManager.createTextureFont("font_smaller", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
-//        GFontManager.createTextureFont("font_normal_common", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
-//        GFontManager.createTextureFont("font_normal_uncommon", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
-//        GFontManager.createTextureFont("font_normal_rare", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
-//        GFontManager.createTextureFont("font_normal_legendary", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
-//        GFontManager.createTextureFont("font_normal_mythical", GTextureManager.getTexture("font_normal_png"), GStaticAssetManager.getXmlAssetById("font_normal").xml);
         GFontManager.createTextureFont("font_semibold", GTextureManager.getTexture("font_semibold_png"), GStaticAssetManager.getXmlAssetById("font_semibold").xml);
 
         // create skins to be used with GUIElements
