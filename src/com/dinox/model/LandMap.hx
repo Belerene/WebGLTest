@@ -54,6 +54,8 @@ class LandMap {
     private var lands: Array<Land>;
     private var controller: MainController;
     private var zoomLevel: Float = 1;
+    private static var mouseOverMinimalZoom: Float = 0.2;
+    private var mouseOverCamera: GCamera;
 
 
     public function new(p_uiGui: GUI, p_tileHighlightGui: GUI, p_mapGui: GUI, p_core: Core) {
@@ -179,10 +181,13 @@ class LandMap {
         for(i in 0...tiles.length) {
             tiles[i].zoomChanged(p_scale);
         }
+        var zoomDelta: Float = p_scale - zoomLevel;
         zoomLevel = p_scale;
         if(tileMouseOverElement != null){
-            tileMouseOverElement.getGuiElement().preferredHeight *= zoomLevel;
-            tileMouseOverElement.getGuiElement().preferredWidth *= zoomLevel;
+            invalidateTileMouseOverElement(zoomDelta);
+            if(zoomLevel < mouseOverMinimalZoom) {
+                disposeTileMouseOverElement();
+            }
         }
     }
 
@@ -223,29 +228,36 @@ class LandMap {
         if(p_tile == null) return;
         var land: Land = getLandByTile(p_tile);
         if(tileMouseOverElement != null) {
-//            GDebug.info("MOUSEOVER ---- element NOT NULL ID: " + land.getId() + " ELEMENT ID: " + Std.string(tileMouseOverElement.getLand().getId()) + " LAND IDS: " + Std.string(land.getIdsOfTiles()));
             if(land.getId() != tileMouseOverElement.getLand().getId()) {
-//                GDebug.info("MOUSEOVER ----element NOT NULL NEW LAND");
-                tileHighlightGui.root.removeChild(tileMouseOverElement.getGuiElement());
-//                mapGui.root.removeChild(tileMouseOverElement.getGuiElement());
-//                gtileMap.node.removeChild(tileMouseOverElement.getGuiElement());
-                tileMouseOverElement.getGuiElement().dispose();
-                tileMouseOverElement = null;
+                disposeTileMouseOverElement();
             }
         } else {
-
-            tileMouseOverElement = new TileMouseOverElement(land);
-            var screenCoords: Map<String, Float> = gtileMap.getScreenCoordsFromMapCoords(land.getX(), land.getY(), p_camera);
-            tileMouseOverElement.getGuiElement().anchorX = screenCoords.get("x");
-//            tileMouseOverElement.getGuiElement().anchorX = land.getX();
-//            tileMouseOverElement.getGuiElement().anchorX = calculateWorldToScreenX(land.getX());
-            tileMouseOverElement.getGuiElement().anchorY = screenCoords.get("y");
-//            tileMouseOverElement.getGuiElement().anchorY = (land.getY());
-            tileMouseOverElement.getGuiElement().preferredHeight *= zoomLevel;
-            tileMouseOverElement.getGuiElement().preferredWidth *= zoomLevel;
-//            GDebug.info("MOUSEOVER POS X: " + Std.string(land.getX() ) + " POS Y: " + Std.string(land.getY()));
-            tileHighlightGui.root.addChild(tileMouseOverElement.getGuiElement());
+            if(zoomLevel >= mouseOverMinimalZoom) {
+                tileMouseOverElement = new TileMouseOverElement(land);
+                invalidateTileMouseOverElement();
+                tileHighlightGui.root.addChild(tileMouseOverElement.getGuiElement());
+            }
         }
+    }
+
+    private function invalidateTileMouseOverElement(p_zoomDelta: Float = 0): Void {
+        if(tileMouseOverElement != null) {
+            var screenCoords: Map<String, Float> = gtileMap.getScreenCoordsFromMapCoords(tileMouseOverElement.getLand().getX(), tileMouseOverElement.getLand().getY(), mouseOverCamera);
+            tileMouseOverElement.getGuiElement().anchorX = screenCoords.get("x");
+            tileMouseOverElement.getGuiElement().anchorY = screenCoords.get("y");
+            if(p_zoomDelta != 0) {
+                tileMouseOverElement.invalidate(tileMouseOverElement.getLand());
+            }
+            tileMouseOverElement.getGuiElement().preferredHeight *= mouseOverCamera.scaleX;
+            tileMouseOverElement.getGuiElement().preferredWidth *= mouseOverCamera.scaleY;
+        }
+
+    }
+
+    private function disposeTileMouseOverElement(): Void {
+        tileHighlightGui.root.removeChild(tileMouseOverElement.getGuiElement());
+        tileMouseOverElement.getGuiElement().dispose();
+        tileMouseOverElement = null;
     }
 
     private function handleDevLandMove(p_moveByX: Int, p_moveByY: Int): Void {
@@ -374,6 +386,7 @@ class LandMap {
     **/
 
     private function tileMouseOver_handler(p_x: Float, p_y: Float, p_contextCamera: GCamera): Void {
+        mouseOverCamera = p_contextCamera;
         var tile: Tile = gtileMap.getTileAt(p_x, p_y, p_contextCamera);
 
         if(tile != null) {
