@@ -14,7 +14,7 @@ class CloudsElement {
     private var cloudsElement: GUIElement;
     private var elementVisible: Bool = false;
 
-    private static var cloudsNumber: Int = 100;
+    private static var cloudsNumber: Int = 400;
 
 
     public function new() {
@@ -27,11 +27,10 @@ class CloudsElement {
 
     private function generateCloudElements(): Void {
         var cloud: Cloud;
-        var mapHeight: Int = TileRenderer.BASE_TILE_SIZE * LandMap.TILE_COUNT;
         var clouds: Array<String> = [cloud1, cloud2, cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9];
         for(i in 0...cloudsNumber) {
             var element: GUIElement = cast GXmlPrototypeParser.createPrototypeFromXmlString(clouds[Std.random(9)].toString());
-            cloud = new Cloud(element, (Std.random(mapHeight) - Std.int(mapHeight/2)) - 200);
+            cloud = new Cloud(element);
             cloudsElement.addChild(cloud.getElement());
         }
     }

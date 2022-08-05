@@ -2301,17 +2301,17 @@ com_dinox_model_AssetsWrapper.prototype = {
 	}
 	,__class__: com_dinox_model_AssetsWrapper
 };
-var com_dinox_model_Cloud = function(p_cloudElement,p_y) {
+var com_dinox_model_Cloud = function(p_cloudElement) {
 	this.speed = 3;
 	this.change = 180;
 	this.element = p_cloudElement;
-	this.y = p_y;
+	this.mapDimension = Math.round(com_dinox_view_TileRenderer.BASE_TILE_SIZE * com_dinox_model_LandMap.TILE_COUNT * 4);
+	var mapDimensionY = com_dinox_view_TileRenderer.BASE_TILE_SIZE * com_dinox_model_LandMap.TILE_COUNT * 2;
 	var _this = this.element;
-	_this.g2d_anchorY = this.y;
+	_this.g2d_anchorX = Std.random(this.mapDimension) - (this.mapDimension / 2 | 0);
 	_this.setDirty();
-	this.mapWidth = com_dinox_view_TileRenderer.BASE_TILE_SIZE * com_dinox_model_LandMap.TILE_COUNT;
 	var _this1 = this.element;
-	_this1.g2d_anchorX = Std.random(this.mapWidth) - (this.mapWidth / 2 | 0);
+	_this1.g2d_anchorY = Std.random(mapDimensionY) - (mapDimensionY / 2 | 0) - 200;
 	_this1.setDirty();
 	this.speed -= Std.random(150) / 100 + 1;
 	if(this.element.g2d_anchorX >= 0) {
@@ -2340,14 +2340,13 @@ $hxClasses["com.dinox.model.Cloud"] = com_dinox_model_Cloud;
 com_dinox_model_Cloud.__name__ = "com.dinox.model.Cloud";
 com_dinox_model_Cloud.prototype = {
 	element: null
-	,y: null
 	,step: null
-	,mapWidth: null
+	,mapDimension: null
 	,change: null
 	,speed: null
 	,target: null
 	,moveComplete: function() {
-		if(this.element.g2d_anchorX >= this.mapWidth / 2) {
+		if(this.element.g2d_anchorX >= this.mapDimension / 2) {
 			this.moveToStartOfMapFadeOut();
 		} else if(this.step != null) {
 			if(this.element.g2d_anchorX >= 0) {
@@ -2406,7 +2405,7 @@ com_dinox_model_Cloud.prototype = {
 			this.disposeStep();
 		}
 		var _this = this.element;
-		_this.g2d_anchorX = -this.mapWidth / 2 - 1000;
+		_this.g2d_anchorX = -this.mapDimension / 2 - 1000;
 		_this.setDirty();
 		var _this1 = com_genome2d_tween_GTween.create(this.element,true);
 		var p_ease = com_genome2d_tween_easing_GLinear.none;
@@ -4837,14 +4836,13 @@ com_dinox_view_CloudsElement.prototype = {
 	,elementVisible: null
 	,generateCloudElements: function() {
 		var cloud;
-		var mapHeight = com_dinox_view_TileRenderer.BASE_TILE_SIZE * com_dinox_model_LandMap.TILE_COUNT;
 		var clouds = [this.cloud1,this.cloud2,this.cloud3,this.cloud4,this.cloud5,this.cloud6,this.cloud7,this.cloud8,this.cloud9];
 		var _g = 0;
 		var _g1 = com_dinox_view_CloudsElement.cloudsNumber;
 		while(_g < _g1) {
 			var i = _g++;
 			var element = com_genome2d_proto_parsers_GXmlPrototypeParser.createPrototypeFromXmlString(clouds[Std.random(9)].toString());
-			cloud = new com_dinox_model_Cloud(element,Std.random(mapHeight) - (mapHeight / 2 | 0) - 200);
+			cloud = new com_dinox_model_Cloud(element);
 			this.cloudsElement.addChild(cloud.getElement());
 		}
 	}
@@ -52043,7 +52041,7 @@ com_dinox_model_tile_TileSizeType.TWOXTWO = 2;
 com_dinox_model_tile_TileSizeType.THREEXTHREE = 3;
 com_dinox_model_tile_TileSizeType.FOURXFOUR = 4;
 com_dinox_model_tile_TileSizeType.sizeStringList = ["1x1","2x2","3x3","4x4"];
-com_dinox_view_CloudsElement.cloudsNumber = 100;
+com_dinox_view_CloudsElement.cloudsNumber = 400;
 com_dinox_view_InfoPopupElement.MAX_OWNER_NAME_LEN = 10;
 com_dinox_view_TileRenderer.NORMAL_STATE = "normal";
 com_dinox_view_TileRenderer.SMALL_STATE = "small";
@@ -52052,8 +52050,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "ddc7c26ac83cd96f03d6414b0ec295a4";
-com_genome2d_Genome2D.DATE = "2022-08-05 16:24:36";
+com_genome2d_Genome2D.BUILD = "128ba32d0714e239823c4eb1e8b4e3ee";
+com_genome2d_Genome2D.DATE = "2022-08-05 16:31:55";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

@@ -7,19 +7,18 @@ import com.genome2d.tween.GTweenStep;
 import com.genome2d.ui.element.GUIElement;
 class Cloud {
     private var element: GUIElement;
-    private var y: Int;
     private var step: GTweenStep;
-    private var mapWidth: Int;
+    private var mapDimension: Int;
     private var change: Int = 180;
     private var speed: Float = 3;
     public var target: Float;
 
-    public function new(p_cloudElement: GUIElement, p_y: Int) {
+    public function new(p_cloudElement: GUIElement) {
         element = p_cloudElement;
-        y = p_y;
-        element.anchorY = y;
-        mapWidth = TileRenderer.BASE_TILE_SIZE * LandMap.TILE_COUNT;
-        element.anchorX = Std.random(mapWidth) - Std.int(mapWidth/2);
+        mapDimension = Math.round((TileRenderer.BASE_TILE_SIZE * LandMap.TILE_COUNT) * 4);
+        var mapDimensionY:Int = (TileRenderer.BASE_TILE_SIZE * LandMap.TILE_COUNT)*2;
+        element.anchorX = Std.random(mapDimension) - Std.int(mapDimension/2);
+        element.anchorY = (Std.random(mapDimensionY) - Std.int(mapDimensionY/2)) - 200;
         speed -= (Std.random(150)/100)+1;
         if(element.anchorX >= 0) {
             target = element.anchorX + change;
@@ -31,7 +30,7 @@ class Cloud {
     }
 
     private function moveComplete(): Void {
-        if(element.anchorX >= mapWidth/2) {
+        if(element.anchorX >= mapDimension/2) {
             moveToStartOfMapFadeOut();
         } else {
             if(step != null) {
@@ -64,7 +63,7 @@ class Cloud {
         if(step != null) {
             disposeStep();
         }
-        element.anchorX = -mapWidth/2 - 1000;
+        element.anchorX = -mapDimension/2 - 1000;
         step = GTween.create(element, true).ease(GLinear.none).propF("alpha", 1, 0.5, false).onComplete(moveComplete);
     }
 
