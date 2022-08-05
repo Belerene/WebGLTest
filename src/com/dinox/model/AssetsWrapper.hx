@@ -35,6 +35,15 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/semitransparent_bg.png", "semitransparent_bg");
 //        GStaticAssetManager.addFromUrl("assets/hover_60.png", "hover_60");
         GStaticAssetManager.addFromUrl("assets/hover9s.png", "hover9s");
+        GStaticAssetManager.addFromUrl("assets/cloud1.png", "cloud1");
+        GStaticAssetManager.addFromUrl("assets/cloud2.png", "cloud2");
+        GStaticAssetManager.addFromUrl("assets/cloud3.png", "cloud3");
+        GStaticAssetManager.addFromUrl("assets/cloud4.png", "cloud4");
+        GStaticAssetManager.addFromUrl("assets/cloud5.png", "cloud5");
+        GStaticAssetManager.addFromUrl("assets/cloud6.png", "cloud6");
+        GStaticAssetManager.addFromUrl("assets/cloud7.png", "cloud7");
+        GStaticAssetManager.addFromUrl("assets/cloud8.png", "cloud8");
+        GStaticAssetManager.addFromUrl("assets/cloud9.png", "cloud9");
 
         // FONTS
         GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");
@@ -47,6 +56,7 @@ class AssetsWrapper {
         // PROTOTYPES
         GStaticAssetManager.addFromUrl("assets/prototypes/main_ui_prototype.xml", "ui_element");
         GStaticAssetManager.addFromUrl("assets/prototypes/map_prototype.xml", "map_element");
+        GStaticAssetManager.addFromUrl("assets/prototypes/clouds_prototype.xml", "clouds_element");
         GStaticAssetManager.addFromUrl("assets/prototypes/tile_prototype.xml", "tile");
         GStaticAssetManager.addFromUrl("assets/prototypes/info_popup_prototype.xml", "popup_element");
         GStaticAssetManager.addFromUrl("assets/prototypes/tile_mouseover_holder_prototype.xml", "tileHighlightsHolder_element");

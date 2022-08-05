@@ -18,6 +18,7 @@ class Core {
     private var mapNode: GNode;
     private var uiNode: GNode;
     private var mapGui: GUI;
+    private var cloudsGui: GUI;
     private var uiGui: GUI;
     private var tileHighlightGui: GUI;
 
@@ -31,6 +32,7 @@ class Core {
         rootNode.setPosition((Main.stageWidth/2), (Main.stageHeight/2));
 
         setupMapGUI();
+        setupCloudsGUI();
         setupTileHighlightGUI();
         setupUIGUI();
         initMapCamera();
@@ -65,6 +67,16 @@ class Core {
         mapGui.node.cameraGroup = MAP_CAMERA_GROUP;
         rootNode.addChild(mapGui.node);
         rootNode.getChildAt(rootNode.getChildIndex(mapGui.node)).setPosition(0,0);
+    }
+
+    private function setupCloudsGUI(): Void {
+        cloudsGui = cast(GNode.createWithComponent(GUI), GUI);
+        cloudsGui.node.mouseEnabled = true;
+        cloudsGui.root.mouseEnabled = true;
+        cloudsGui.setBounds(new GRectangle(0,0, Main.stageWidth,Main.stageHeight));
+        cloudsGui.node.cameraGroup = MAP_CAMERA_GROUP;
+        rootNode.addChild(cloudsGui.node);
+        rootNode.getChildAt(rootNode.getChildIndex(cloudsGui.node)).setPosition(0,0);
     }
 
     private function setupTileHighlightGUI(): Void {
@@ -110,7 +122,7 @@ class Core {
     }
 
     private function initLandMap(): Void {
-        landMap = new LandMap(uiGui, tileHighlightGui, mapGui, this);
+        landMap = new LandMap(uiGui, tileHighlightGui, mapGui, cloudsGui, this);
     }
 
     public function getUICamera(): GCameraController {
@@ -123,6 +135,10 @@ class Core {
 
     public function getMapGUI(): GUI {
         return mapGui;
+    }
+
+    public function getCloudsGUI(): GUI {
+        return cloudsGui;
     }
 
     // HANDLERS //
