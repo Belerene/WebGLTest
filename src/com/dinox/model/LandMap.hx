@@ -1,6 +1,12 @@
 package com.dinox.model;
 import com.dinox.view.TileMouseOverElement;
 import haxe.Json;
+import com.genome2d.Genome2D;
+import com.genome2d.context.filters.GFilter;
+import com.genome2d.context.filters.GDisplacementFilter;
+import com.genome2d.textures.GTextureManager;
+import com.genome2d.components.renderable.GSprite;
+
 import com.dinox.controller.MainController;
 import com.genome2d.context.GCamera;
 import com.dinox.view.TileRenderer;
@@ -53,6 +59,11 @@ class LandMap {
     private var gtileMap: GTileMap;
     private var lands: Array<Land>;
     private var controller: MainController;
+
+
+    private var disp:GDisplacementFilter;
+    private var gOcean:GSprite;
+
     private var zoomLevel: Float = 1;
     private static var mouseOverMinimalZoom: Float = 0.2;
     private var mouseOverCamera: GCamera;
@@ -67,6 +78,20 @@ class LandMap {
         filterAsRadioButtons = true;
         setupTiles();
         lands = new Array<Land>();
+
+        gOcean = cast(GNode.createWithGSpriteComponent("ocean_sprite"), GSprite);
+        gOcean.texture = GTextureManager.getTexture("ocean");
+//        gOcean.texture = GTextureManager.getTexture("noise");
+        gOcean.node.scaleX = gOcean.node.scaleY = 60;
+
+        Genome2D.getInstance().getContext().onFrame.add(onTick);
+
+        disp = new GDisplacementFilter(0.055,0.055);
+        disp.displacementMap = GTextureManager.getTexture("noise");
+//        gOcean.filter = cast(disp, GFilter);
+        gOcean.filter = cast(disp, GFilter);
+        mapGui.node.addChild(gOcean.node);
+
         gtileMap = cast(GNode.createWithComponent(GTileMap), GTileMap);
         gtileMap.setTiles(TILE_COUNT, TILE_COUNT, TileRenderer.BASE_TILE_SIZE, TileRenderer.BASE_TILE_SIZE, tiles);
         mapGui.node.addChild(gtileMap.node);
@@ -84,6 +109,13 @@ class LandMap {
 
         // TMP
 //        setupTileGroup(3,3,4, ["tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile"], TileRarityType.MYTHICAL, 123);
+    }
+
+    public function onTick(f:Float): Void {
+        disp.offset += 0.0004;
+        if (disp.offset > 1) {
+            disp.offset = 0;
+        }
     }
 
     public function addTileGroupsFromJson(p_json: Dynamic): Void {
@@ -407,6 +439,7 @@ class LandMap {
     private function mapDragged_handler(p_deltaX: Float, p_deltaY: Float): Void {
         if(DEVMoveEnabled == false) {
             gtileMap.node.setPosition(gtileMap.node.x - p_deltaX, gtileMap.node.y - p_deltaY);
+            gOcean.node.setPosition(gOcean.node.x - p_deltaX, gOcean.node.y - p_deltaY);
             if(tileMouseOverElement != null) {
                 tileMouseOverElement.getGuiElement().anchorX -= p_deltaX * zoomLevel;
                 tileMouseOverElement.getGuiElement().anchorY -= p_deltaY * zoomLevel;

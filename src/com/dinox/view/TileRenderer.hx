@@ -1,4 +1,5 @@
 package com.dinox.view;
+import com.genome2d.context.filters.GFilter;
 import com.genome2d.debug.GDebug;
 import com.dinox.model.tile.TileRarityType;
 import com.genome2d.context.GBlendMode;
@@ -44,13 +45,18 @@ class TileRenderer {
 
     }
 
+    private var separatorTextureBig:GTexture;
+    private var separatorTextureSmall:GTexture;
+
     public function updateSeparators(p_rarity:String, p_top:Int, p_right:Int, p_bottom:Int, p_left:Int): Void {
         var separatorString: String = p_top == 1? "n" : "";
         separatorString += p_right == 1? "e" : "";
         separatorString += p_bottom == 1? "s" : "";
         separatorString += p_left == 1? "w" : "";
 
-        full_separator = GTextureManager.getTexture('assets/atlas.png_separator_' + p_rarity + '_' + separatorString);
+        separatorTextureBig = GTextureManager.getTexture('assets/atlas.png_separator_' + p_rarity + '_' + separatorString);
+        separatorTextureSmall = GTextureManager.getTexture('assets/atlas.png_separator_' + p_rarity + '_' + separatorString + '_02');
+        full_separator = separatorTextureBig;
     }
 
     public function addTopSeparator(p_rarity: String): Void {
@@ -79,7 +85,7 @@ class TileRenderer {
 
     public function renderSeparators(p_context:IGContext, p_x:Float, p_y:Float, p_blendMode:GBlendMode): Void {
         if (full_separator != null && currentZoom >= 0.2) {
-            p_context.draw(full_separator, p_blendMode, p_x, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
+            p_context.draw(full_separator, p_blendMode, p_x, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null );
         }
         /*if(l_separator != null) {
             p_context.draw(l_separator, p_blendMode, (p_x + 2) - BASE_TILE_SIZE/2, p_y, gTile.scaleX, gTile.scaleY, gTile.rotation, gTile.red, gTile.green, gTile.blue, gTile.alpha, null);
@@ -151,14 +157,20 @@ class TileRenderer {
         } else if (currentZoom >= ZOOM_BREAKPOINT_LARGE) {
             gTile.texture = tileAsset_l;
         }
+
+        if (currentZoom <= 0.2) {
+            full_separator = separatorTextureSmall;
+        } else {
+            full_separator = separatorTextureBig;
+        }
     }
 
     public function setNewTileAssets(p_asset: String): Void {
         if(p_asset != asset) {
             if(p_asset == "default") {
-                tileAsset_n = GTextureManager.getTexture(getRandomLargeDefaultAsset());
+                /*tileAsset_n = GTextureManager.getTexture(getRandomLargeDefaultAsset());
                 tileAsset_l = GTextureManager.getTexture(getRandomLargeDefaultAsset());
-                tileAsset_s = GTextureManager.getTexture(getRandomLargeDefaultAsset());
+                tileAsset_s = GTextureManager.getTexture(getRandomLargeDefaultAsset());*/
             } else {
                 tileAsset_n = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_n");
                 tileAsset_l = GTextureManager.getTexture('assets/atlas.png_'+p_asset + "_l");

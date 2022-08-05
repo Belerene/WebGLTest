@@ -31,11 +31,12 @@ class Main extends GProject{
         stageHeight = contextConfig.nativeStage.height;
         var config:GProjectConfig = new GProjectConfig(contextConfig);
         config.initGenome = true;
-        GStats.visible = true;
+//        GStats.visible = true;
         super(config);
     }
 
     override private function init():Void {
+        getGenome().getContext().setBackgroundColor(0x10466a,1);
         core = new Core(getGenome().root);
     }
 }

@@ -28,6 +28,8 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/dev.png", "dev");
         GStaticAssetManager.addFromUrl("assets/dev_black.png", "dev_black");
         GStaticAssetManager.addFromUrl("assets/checkbox.png", "checkbox");
+        GStaticAssetManager.addFromUrl("assets/noise.png", "noise");
+        GStaticAssetManager.addFromUrl("assets/ocean.png", "ocean");
         GStaticAssetManager.addFromUrl("assets/checkbox_checked.png", "checkbox_checked");
         GStaticAssetManager.addFromUrl("assets/icon_close.png", "icon_close");
         GStaticAssetManager.addFromUrl("assets/semitransparent_bg.png", "semitransparent_bg");

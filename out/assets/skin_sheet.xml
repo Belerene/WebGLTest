@@ -2,7 +2,7 @@
 <!--textures-->
     <textureSkin id="dev" texture="@dev" sliceLeft="2" sliceTop="2" sliceRight="3" sliceBottom="3"/>
     <textureSkin id="dev_black" texture="@dev_black" sliceLeft="2" sliceTop="2" sliceRight="3" sliceBottom="3"/>
-    <textureSkin id="semitransparent_bg" texture="@semitransparent_bg" sliceLeft="100" sliceTop="28" sliceRight="103" sliceBottom="32"/>
+    <textureSkin id="semitransparent_bg" texture="@semitransparent_bg" sliceLeft="20" sliceTop="20" sliceRight="40" sliceBottom="40"/>
     <textureSkin id="hover9s" texture="@hover9s" sliceLeft="4" sliceTop="4" sliceRight="5" sliceBottom="5"/>
     <textureSkin id="ui" texture="@ui"/>
 <!--    <textureSkin id="ui" texture="@ui" sliceTop="230" sliceBottom="232" sliceLeft="109" sliceRigt="111"/>-->
@@ -22,7 +22,7 @@
     <fontSkin id="font_mid" font="@font_normal" color="0xFFFFFF" autoSize="true" fontScale="0.85"/>
 <!--    <fontSkin id="font_smaller" font="@font_normal" autoSize="true" fontScale="0.7"/>-->
     <fontSkin id="font_smaller" font="@font_normal" color="0xFFFFFF" autoSize="true" fontScale="0.7"/>
-    <fontSkin id="font_smallest" font="@font_normal" color="0xFFFFFF" autoSize="true" fontScale="0.6"/>
+    <fontSkin id="font_smallest" font="@font_normal" color="0xFFFFFF" autoSize="true" fontScale="0.54"/>
 <!--    <fontSkin id="font_normal_mythical" font="@font_normal_mythical" color="0x9E58A3" autoSize="true" fontScale="0.7"/>-->
 <!--    <fontSkin id="font_normal_legendary" font="@font_normal_legendary" color="0xC78830" autoSize="true" fontScale="0.7"/>-->
 <!--    <fontSkin id="font_normal_rare" font="@font_normal_rare" color="0x4176BB" autoSize="true" fontScale="0.7"/>-->

@@ -80,9 +80,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>1024</int>
+            <int>2048</int>
             <key>height</key>
-            <int>1024</int>
+            <int>2048</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -173,7 +173,111 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">hover9s.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,5,5</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,5,5</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">noise.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>100,100,200,200</rect>
+                <key>scale9Paddings</key>
+                <rect>100,100,200,200</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">ocean.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>75,75,150,150</rect>
+                <key>scale9Paddings</key>
+                <rect>75,75,150,150</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">separator_common_nesw.png</key>
+            <key type="filename">separator_common_nesw_02.png</key>
+            <key type="filename">separator_legendary_e.png</key>
+            <key type="filename">separator_legendary_e_02.png</key>
+            <key type="filename">separator_legendary_es.png</key>
+            <key type="filename">separator_legendary_es_02.png</key>
+            <key type="filename">separator_legendary_n.png</key>
+            <key type="filename">separator_legendary_n_02.png</key>
+            <key type="filename">separator_legendary_ne.png</key>
+            <key type="filename">separator_legendary_ne_02.png</key>
+            <key type="filename">separator_legendary_nw.png</key>
+            <key type="filename">separator_legendary_nw_02.png</key>
+            <key type="filename">separator_legendary_s.png</key>
+            <key type="filename">separator_legendary_s_02.png</key>
+            <key type="filename">separator_legendary_sw.png</key>
+            <key type="filename">separator_legendary_sw_02.png</key>
+            <key type="filename">separator_legendary_w.png</key>
+            <key type="filename">separator_legendary_w_02.png</key>
+            <key type="filename">separator_mythical_e.png</key>
+            <key type="filename">separator_mythical_e_02.png</key>
+            <key type="filename">separator_mythical_es.png</key>
+            <key type="filename">separator_mythical_es_02.png</key>
+            <key type="filename">separator_mythical_n.png</key>
+            <key type="filename">separator_mythical_n_02.png</key>
+            <key type="filename">separator_mythical_ne.png</key>
+            <key type="filename">separator_mythical_ne_02.png</key>
+            <key type="filename">separator_mythical_nw.png</key>
+            <key type="filename">separator_mythical_nw_02.png</key>
+            <key type="filename">separator_mythical_s.png</key>
+            <key type="filename">separator_mythical_s_02.png</key>
+            <key type="filename">separator_mythical_sw.png</key>
+            <key type="filename">separator_mythical_sw_02.png</key>
+            <key type="filename">separator_mythical_w.png</key>
+            <key type="filename">separator_mythical_w_02.png</key>
+            <key type="filename">separator_rare_e.png</key>
+            <key type="filename">separator_rare_e_02.png</key>
+            <key type="filename">separator_rare_es.png</key>
+            <key type="filename">separator_rare_es_02.png</key>
+            <key type="filename">separator_rare_n.png</key>
+            <key type="filename">separator_rare_n_02.png</key>
+            <key type="filename">separator_rare_ne.png</key>
+            <key type="filename">separator_rare_ne_02.png</key>
+            <key type="filename">separator_rare_nw.png</key>
+            <key type="filename">separator_rare_nw_02.png</key>
+            <key type="filename">separator_rare_s.png</key>
+            <key type="filename">separator_rare_s_02.png</key>
+            <key type="filename">separator_rare_sw.png</key>
+            <key type="filename">separator_rare_sw_02.png</key>
             <key type="filename">separator_rare_w.png</key>
+            <key type="filename">separator_rare_w_02.png</key>
+            <key type="filename">separator_uncommon_es.png</key>
+            <key type="filename">separator_uncommon_es_02.png</key>
+            <key type="filename">separator_uncommon_ne.png</key>
+            <key type="filename">separator_uncommon_ne_02.png</key>
+            <key type="filename">separator_uncommon_nesw.png</key>
+            <key type="filename">separator_uncommon_nesw_02.png</key>
+            <key type="filename">separator_uncommon_nw.png</key>
+            <key type="filename">separator_uncommon_nw_02.png</key>
+            <key type="filename">separator_uncommon_sw.png</key>
+            <key type="filename">separator_uncommon_sw_02.png</key>
             <key type="filename">tile_11_l.png</key>
             <key type="filename">tile_12_l.png</key>
             <key type="filename">tile_13_l.png</key>
@@ -208,35 +312,6 @@
             <key type="filename">../out/assets/default_l_5.png</key>
             <key type="filename">../out/assets/default_n.png</key>
             <key type="filename">../out/assets/default_s.png</key>
-            <key type="filename">../out/assets/separator_common_nesw.png</key>
-            <key type="filename">../out/assets/separator_legendary_e.png</key>
-            <key type="filename">../out/assets/separator_legendary_es.png</key>
-            <key type="filename">../out/assets/separator_legendary_n.png</key>
-            <key type="filename">../out/assets/separator_legendary_ne.png</key>
-            <key type="filename">../out/assets/separator_legendary_nw.png</key>
-            <key type="filename">../out/assets/separator_legendary_s.png</key>
-            <key type="filename">../out/assets/separator_legendary_sw.png</key>
-            <key type="filename">../out/assets/separator_legendary_w.png</key>
-            <key type="filename">../out/assets/separator_mythical_e.png</key>
-            <key type="filename">../out/assets/separator_mythical_es.png</key>
-            <key type="filename">../out/assets/separator_mythical_n.png</key>
-            <key type="filename">../out/assets/separator_mythical_ne.png</key>
-            <key type="filename">../out/assets/separator_mythical_nw.png</key>
-            <key type="filename">../out/assets/separator_mythical_s.png</key>
-            <key type="filename">../out/assets/separator_mythical_sw.png</key>
-            <key type="filename">../out/assets/separator_mythical_w.png</key>
-            <key type="filename">../out/assets/separator_rare_e.png</key>
-            <key type="filename">../out/assets/separator_rare_es.png</key>
-            <key type="filename">../out/assets/separator_rare_n.png</key>
-            <key type="filename">../out/assets/separator_rare_ne.png</key>
-            <key type="filename">../out/assets/separator_rare_nw.png</key>
-            <key type="filename">../out/assets/separator_rare_s.png</key>
-            <key type="filename">../out/assets/separator_rare_sw.png</key>
-            <key type="filename">../out/assets/separator_uncommon_es.png</key>
-            <key type="filename">../out/assets/separator_uncommon_ne.png</key>
-            <key type="filename">../out/assets/separator_uncommon_nesw.png</key>
-            <key type="filename">../out/assets/separator_uncommon_nw.png</key>
-            <key type="filename">../out/assets/separator_uncommon_sw.png</key>
             <key type="filename">../out/assets/tile_1_l.png</key>
             <key type="filename">../out/assets/tile_1_n.png</key>
             <key type="filename">../out/assets/tile_1_s.png</key>
@@ -340,46 +415,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../out/assets/separator_h.png</key>
-            <key type="filename">../out/assets/separator_h_common.png</key>
-            <key type="filename">../out/assets/separator_h_legendary.png</key>
-            <key type="filename">../out/assets/separator_h_mythical.png</key>
-            <key type="filename">../out/assets/separator_h_rare.png</key>
-            <key type="filename">../out/assets/separator_h_uncommon.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>15,1,30,1</rect>
-                <key>scale9Paddings</key>
-                <rect>15,1,30,1</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../out/assets/separator_v.png</key>
-            <key type="filename">../out/assets/separator_v_common.png</key>
-            <key type="filename">../out/assets/separator_v_legendary.png</key>
-            <key type="filename">../out/assets/separator_v_mythical.png</key>
-            <key type="filename">../out/assets/separator_v_rare.png</key>
-            <key type="filename">../out/assets/separator_v_uncommon.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>1,15,1,30</rect>
-                <key>scale9Paddings</key>
-                <rect>1,15,1,30</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">../out/assets/ui.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -411,43 +446,6 @@
             <filename>../out/assets/dev_black.png</filename>
             <filename>../out/assets/icon_close.png</filename>
             <filename>../out/assets/semitransparent_bg.png</filename>
-            <filename>../out/assets/separator_common_nesw.png</filename>
-            <filename>../out/assets/separator_h.png</filename>
-            <filename>../out/assets/separator_h_common.png</filename>
-            <filename>../out/assets/separator_h_legendary.png</filename>
-            <filename>../out/assets/separator_h_mythical.png</filename>
-            <filename>../out/assets/separator_h_rare.png</filename>
-            <filename>../out/assets/separator_h_uncommon.png</filename>
-            <filename>../out/assets/separator_legendary_e.png</filename>
-            <filename>../out/assets/separator_legendary_es.png</filename>
-            <filename>../out/assets/separator_legendary_n.png</filename>
-            <filename>../out/assets/separator_legendary_ne.png</filename>
-            <filename>../out/assets/separator_legendary_s.png</filename>
-            <filename>../out/assets/separator_legendary_sw.png</filename>
-            <filename>../out/assets/separator_legendary_w.png</filename>
-            <filename>../out/assets/separator_mythical_e.png</filename>
-            <filename>../out/assets/separator_mythical_es.png</filename>
-            <filename>../out/assets/separator_mythical_n.png</filename>
-            <filename>../out/assets/separator_mythical_ne.png</filename>
-            <filename>../out/assets/separator_mythical_s.png</filename>
-            <filename>../out/assets/separator_mythical_sw.png</filename>
-            <filename>../out/assets/separator_mythical_w.png</filename>
-            <filename>../out/assets/separator_rare_e.png</filename>
-            <filename>../out/assets/separator_rare_es.png</filename>
-            <filename>../out/assets/separator_rare_n.png</filename>
-            <filename>../out/assets/separator_rare_ne.png</filename>
-            <filename>../out/assets/separator_rare_s.png</filename>
-            <filename>../out/assets/separator_rare_sw.png</filename>
-            <filename>../out/assets/separator_uncommon_es.png</filename>
-            <filename>../out/assets/separator_uncommon_ne.png</filename>
-            <filename>../out/assets/separator_uncommon_nesw.png</filename>
-            <filename>../out/assets/separator_uncommon_sw.png</filename>
-            <filename>../out/assets/separator_v.png</filename>
-            <filename>../out/assets/separator_v_common.png</filename>
-            <filename>../out/assets/separator_v_legendary.png</filename>
-            <filename>../out/assets/separator_v_mythical.png</filename>
-            <filename>../out/assets/separator_v_rare.png</filename>
-            <filename>../out/assets/separator_v_uncommon.png</filename>
             <filename>../out/assets/tile_1_l.png</filename>
             <filename>../out/assets/tile_1_n.png</filename>
             <filename>../out/assets/tile_1_s.png</filename>
@@ -476,10 +474,6 @@
             <filename>../out/assets/tile_9_n.png</filename>
             <filename>../out/assets/tile_9_s.png</filename>
             <filename>../out/assets/ui.png</filename>
-            <filename>../out/assets/separator_legendary_nw.png</filename>
-            <filename>../out/assets/separator_mythical_nw.png</filename>
-            <filename>../out/assets/separator_rare_nw.png</filename>
-            <filename>../out/assets/separator_uncommon_nw.png</filename>
             <filename>tile_11_l.png</filename>
             <filename>tile_12_l.png</filename>
             <filename>tile_13_l.png</filename>
@@ -507,7 +501,69 @@
             <filename>tile_91_l.png</filename>
             <filename>tile_92_l.png</filename>
             <filename>tile_93_l.png</filename>
+            <filename>separator_common_nesw.png</filename>
+            <filename>separator_legendary_e.png</filename>
+            <filename>separator_legendary_es.png</filename>
+            <filename>separator_legendary_n.png</filename>
+            <filename>separator_legendary_ne.png</filename>
+            <filename>separator_legendary_nw.png</filename>
+            <filename>separator_legendary_s.png</filename>
+            <filename>separator_legendary_sw.png</filename>
+            <filename>separator_legendary_w.png</filename>
+            <filename>separator_mythical_e.png</filename>
+            <filename>separator_mythical_es.png</filename>
+            <filename>separator_mythical_n.png</filename>
+            <filename>separator_mythical_ne.png</filename>
+            <filename>separator_mythical_nw.png</filename>
+            <filename>separator_mythical_s.png</filename>
+            <filename>separator_mythical_sw.png</filename>
+            <filename>separator_mythical_w.png</filename>
+            <filename>separator_rare_e.png</filename>
+            <filename>separator_rare_es.png</filename>
+            <filename>separator_rare_n.png</filename>
+            <filename>separator_rare_ne.png</filename>
+            <filename>separator_rare_nw.png</filename>
+            <filename>separator_rare_s.png</filename>
+            <filename>separator_rare_sw.png</filename>
             <filename>separator_rare_w.png</filename>
+            <filename>separator_uncommon_es.png</filename>
+            <filename>separator_uncommon_ne.png</filename>
+            <filename>separator_uncommon_nesw.png</filename>
+            <filename>separator_uncommon_nw.png</filename>
+            <filename>separator_uncommon_sw.png</filename>
+            <filename>noise.png</filename>
+            <filename>ocean.png</filename>
+            <filename>separator_common_nesw_02.png</filename>
+            <filename>separator_legendary_e_02.png</filename>
+            <filename>separator_legendary_es_02.png</filename>
+            <filename>separator_legendary_n_02.png</filename>
+            <filename>separator_legendary_ne_02.png</filename>
+            <filename>separator_legendary_nw_02.png</filename>
+            <filename>separator_legendary_s_02.png</filename>
+            <filename>separator_legendary_sw_02.png</filename>
+            <filename>separator_legendary_w_02.png</filename>
+            <filename>separator_mythical_e_02.png</filename>
+            <filename>separator_mythical_es_02.png</filename>
+            <filename>separator_mythical_n_02.png</filename>
+            <filename>separator_mythical_ne_02.png</filename>
+            <filename>separator_mythical_nw_02.png</filename>
+            <filename>separator_mythical_s_02.png</filename>
+            <filename>separator_mythical_sw_02.png</filename>
+            <filename>separator_mythical_w_02.png</filename>
+            <filename>separator_rare_e_02.png</filename>
+            <filename>separator_rare_es_02.png</filename>
+            <filename>separator_rare_n_02.png</filename>
+            <filename>separator_rare_ne_02.png</filename>
+            <filename>separator_rare_nw_02.png</filename>
+            <filename>separator_rare_s_02.png</filename>
+            <filename>separator_rare_sw_02.png</filename>
+            <filename>separator_rare_w_02.png</filename>
+            <filename>separator_uncommon_es_02.png</filename>
+            <filename>separator_uncommon_ne_02.png</filename>
+            <filename>separator_uncommon_nesw_02.png</filename>
+            <filename>separator_uncommon_nw_02.png</filename>
+            <filename>separator_uncommon_sw_02.png</filename>
+            <filename>hover9s.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

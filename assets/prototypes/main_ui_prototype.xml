@@ -1,6 +1,6 @@
 <element name="uiHolder" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" mouseEnabled="false">
-    <element name="ui" skin="@ui" flushBatch="true" mouseEnabled="false"/>
-    <element name="filters_rarity" preferredWidth="660" preferredHeight="90" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" skin="@semitransparent_bg" anchorX="-310" anchorY="-50" mouseEnabled="true">
+    <element name="ui" flushBatch="true" mouseEnabled="false"/>
+    <element name="filters_rarity" preferredWidth="220" preferredHeight="500" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" skin="@semitransparent_bg" anchorX="0" anchorY="0" mouseEnabled="true">
         <element name="common" preferredWidth="15" preferredHeight="15" anchorX="-260" anchorY="-15" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="MIDDLE_CENTER" anchorAlign="MIDDLE_CENTER" mouseEnabled="true">
             <element name="common_label" preferredWidth="100" preferredHeight="20" anchorX="5" anchorY="33" skin="@font_smallest" flushBatch="true" pivotAlign="BOTTOM_CENTER" anchorAlign="BOTTOM_CENTER" model="Common"/>
         </element>
