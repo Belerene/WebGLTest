@@ -471,6 +471,15 @@ class LandMap {
 
     private function mapDragged_handler(p_deltaX: Float, p_deltaY: Float): Void {
         if(DEVMoveEnabled == false) {
+            var mapDimension: Int = TileRenderer.BASE_TILE_SIZE * LandMap.TILE_COUNT;
+            var maxDistanceX = (mapDimension/3)*2;
+            var maxDistanceY = mapDimension/4;
+            if(gtileMap.node.x - p_deltaX > maxDistanceX || gtileMap.node.x - p_deltaX < -maxDistanceX) {
+                p_deltaX = 0;
+            }
+            if(gtileMap.node.y - p_deltaY > maxDistanceY || gtileMap.node.y - p_deltaY < -maxDistanceY) {
+                p_deltaY = 0;
+            }
             gtileMap.node.setPosition(gtileMap.node.x - p_deltaX, gtileMap.node.y - p_deltaY);
             gOcean.node.setPosition(gOcean.node.x - p_deltaX, gOcean.node.y - p_deltaY);
             if(tileMouseOverElement != null) {

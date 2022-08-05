@@ -3944,6 +3944,15 @@ com_dinox_model_LandMap.prototype = {
 	}
 	,mapDragged_handler: function(p_deltaX,p_deltaY) {
 		if(this.DEVMoveEnabled == false) {
+			var mapDimension = com_dinox_view_TileRenderer.BASE_TILE_SIZE * com_dinox_model_LandMap.TILE_COUNT;
+			var maxDistanceX = mapDimension / 3 * 2;
+			var maxDistanceY = mapDimension / 4;
+			if(this.gtileMap.g2d_node.g2d_localX - p_deltaX > maxDistanceX || this.gtileMap.g2d_node.g2d_localX - p_deltaX < -maxDistanceX) {
+				p_deltaX = 0;
+			}
+			if(this.gtileMap.g2d_node.g2d_localY - p_deltaY > maxDistanceY || this.gtileMap.g2d_node.g2d_localY - p_deltaY < -maxDistanceY) {
+				p_deltaY = 0;
+			}
 			this.gtileMap.g2d_node.setPosition(this.gtileMap.g2d_node.g2d_localX - p_deltaX,this.gtileMap.g2d_node.g2d_localY - p_deltaY);
 			this.gOcean.g2d_node.setPosition(this.gOcean.g2d_node.g2d_localX - p_deltaX,this.gOcean.g2d_node.g2d_localY - p_deltaY);
 			if(this.tileMouseOverElement != null) {
@@ -4001,7 +4010,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 506, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupRarity_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 515, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupRarity_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -4113,7 +4122,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 521, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupSize_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 530, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupSize_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -52043,8 +52052,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "ffec22d32f84c38f65629fcbc3aa54b2";
-com_genome2d_Genome2D.DATE = "2022-08-05 16:09:13";
+com_genome2d_Genome2D.BUILD = "ddc7c26ac83cd96f03d6414b0ec295a4";
+com_genome2d_Genome2D.DATE = "2022-08-05 16:24:36";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];
