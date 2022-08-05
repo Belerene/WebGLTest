@@ -1,4 +1,5 @@
 package com.dinox.model;
+import com.dinox.view.CloudsElement;
 import com.dinox.view.TileMouseOverElement;
 import haxe.Json;
 import com.dinox.controller.MainController;
@@ -32,10 +33,12 @@ class LandMap {
     private var core: Core;
     private var openInfoPopup: InfoPopupElement = null;
     private var tileMouseOverElement: TileMouseOverElement = null;
+    private var cloudsElement: CloudsElement = null;
 
     private var uiGui: GUI;
     private var tileHighlightGui: GUI;
     private var mapGui: GUI;
+    private var cloudsGui: GUI;
 
     private var tiles: Array<Tile>;
 
@@ -58,11 +61,12 @@ class LandMap {
     private var mouseOverCamera: GCamera;
 
 
-    public function new(p_uiGui: GUI, p_tileHighlightGui: GUI, p_mapGui: GUI, p_core: Core) {
+    public function new(p_uiGui: GUI, p_tileHighlightGui: GUI, p_mapGui: GUI, p_cloudsGui: GUI, p_core: Core) {
         core = p_core;
         uiGui = p_uiGui;
         tileHighlightGui = p_tileHighlightGui;
         mapGui = p_mapGui;
+        cloudsGui = p_cloudsGui;
         mainMapScreen = new MainMapScreen(uiGui, tileHighlightGui, mapGui);
         filterAsRadioButtons = true;
         setupTiles();
@@ -171,7 +175,6 @@ class LandMap {
 
     private function invalidateTilesHighlight(): Void {
         handleFilterRadioButtons();
-        GDebug.info("SELECTED FILTER: " + Std.string(selectedFilters));
         for(i in 0...tiles.length) {
             tiles[i].handleFilter(selectedFilters);
         }
@@ -186,8 +189,16 @@ class LandMap {
         if(tileMouseOverElement != null){
             invalidateTileMouseOverElement(zoomDelta);
             if(zoomLevel < mouseOverMinimalZoom) {
-                disposeTileMouseOverElement();
+                changeTileMouseOverElementVisibility(false);
+            } else {
+                changeTileMouseOverElementVisibility(true);
             }
+        }
+        if(cloudsElement != null) {
+            cloudsElement.handleZoomChange(zoomLevel, mouseOverMinimalZoom);
+        } else {
+            cloudsElement = new CloudsElement();
+            cloudsGui.root.addChild(cloudsElement.getGuiElement());
         }
     }
 
@@ -206,10 +217,12 @@ class LandMap {
 
     private function handleInfoPopupOpen(p_tile: Tile): Void {
         if(p_tile == null) return;
+
         if(openInfoPopup != null) {
             // infoPopup already open, close it first!
             var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup, [true, p_tile]);
         } else {
+            handleTileMouseOver(p_tile, mouseOverCamera);
             openInfoPopup = new InfoPopupElement(getLandByTile(p_tile));
             openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
             openInfoPopup.getGuiElement().anchorY = 0;
@@ -221,21 +234,38 @@ class LandMap {
                 controller.addDevInfoPopupHandlers(DEV_infoPopupRarity_handler, DEV_infoPopupSize_handler, DEV_infoPopupAsset_handler, openInfoPopup.getGuiElement());
             }
             var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 1, 0.1, false).onComplete(controller.onCompleteShowInfoPopup);
+
         }
+
     }
 
     private function handleTileMouseOver(p_tile: Tile, p_camera: GCamera): Void {
         if(p_tile == null) return;
         var land: Land = getLandByTile(p_tile);
         if(tileMouseOverElement != null) {
-            if(land.getId() != tileMouseOverElement.getLand().getId()) {
-                disposeTileMouseOverElement();
+            if(openInfoPopup == null) {
+                if(land.getId() != tileMouseOverElement.getLand().getId()) {
+                    disposeTileMouseOverElement();
+
+                }
             }
-        } else {
-            if(zoomLevel >= mouseOverMinimalZoom) {
-                tileMouseOverElement = new TileMouseOverElement(land);
-                invalidateTileMouseOverElement();
-                tileHighlightGui.root.addChild(tileMouseOverElement.getGuiElement());
+        }
+        if(zoomLevel >= mouseOverMinimalZoom) {
+            if(tileMouseOverElement != null) {
+
+                if(land.getId() != tileMouseOverElement.getLand().getId()) {
+                    if(openInfoPopup == null) {
+                        tileMouseOverElement = new TileMouseOverElement(land);
+                        invalidateTileMouseOverElement();
+                        tileHighlightGui.root.addChild(tileMouseOverElement.getGuiElement());
+                    }
+                }
+            } else {
+                if(openInfoPopup == null) {
+                    tileMouseOverElement = new TileMouseOverElement(land);
+                    invalidateTileMouseOverElement();
+                    tileHighlightGui.root.addChild(tileMouseOverElement.getGuiElement());
+                }
             }
         }
     }
@@ -258,6 +288,12 @@ class LandMap {
         tileHighlightGui.root.removeChild(tileMouseOverElement.getGuiElement());
         tileMouseOverElement.getGuiElement().dispose();
         tileMouseOverElement = null;
+    }
+
+    private function changeTileMouseOverElementVisibility(p_visible: Bool): Void {
+        if(tileMouseOverElement.getGuiElement().visible != p_visible) {
+            tileMouseOverElement.getGuiElement().visible = p_visible;
+        }
     }
 
     private function handleDevLandMove(p_moveByX: Int, p_moveByY: Int): Void {
@@ -305,7 +341,6 @@ class LandMap {
                 mainMapScreen.getUiElement().getGuiElement().getChildByName("filters_owner", true).setState("default");
                 mainMapScreen.getUiElement().getGuiElement().getChildByName(p_target, true).setState("checked");
             }
-            GDebug.info("OWNED FILTER SLECTED: " + ownedFilterSelected);
         } else {
             if(rarityFilterSelected == p_target) {
                 // rarity filter is already selected, unselect it
@@ -390,7 +425,6 @@ class LandMap {
         var tile: Tile = gtileMap.getTileAt(p_x, p_y, p_contextCamera);
 
         if(tile != null) {
-//            GDebug.info("MOUSEOVER is in land: " + Std.string(tile.tileIsInLand));
             if(tile.tileIsInLand) {
                 handleTileMouseOver(tile, p_contextCamera);
             }
@@ -410,6 +444,10 @@ class LandMap {
             if(tileMouseOverElement != null) {
                 tileMouseOverElement.getGuiElement().anchorX -= p_deltaX * zoomLevel;
                 tileMouseOverElement.getGuiElement().anchorY -= p_deltaY * zoomLevel;
+            }
+            if(cloudsElement != null) {
+                cloudsElement.getGuiElement().anchorX -= p_deltaX;
+                cloudsElement.getGuiElement().anchorY -= p_deltaY;
             }
         }
     }
@@ -466,19 +504,16 @@ class LandMap {
 
     private function sizeFilterClicked_handler(signal: GMouseInput): Void {
         var target: GUIElement = cast signal.target;
-        GDebug.info(target.name);
         handleFilterClick(target.name);
     }
 
     private function rarityFilterClicked_handler(signal: GMouseInput): Void {
         var target: GUIElement = cast signal.target;
-        GDebug.info(target.name);
         handleFilterClick(target.name);
     }
 
     private function ownershipFilterClicked_handler(signal: GMouseInput): Void {
         var target: GUIElement = cast signal.target;
-        GDebug.info(target.name);
         handleFilterClick(target.name);
     }
 

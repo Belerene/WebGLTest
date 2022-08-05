@@ -1,0 +1,11 @@
+<element name="cloudsHolder" anchorLeft="0" anchorRight="1" anchorTop="0" anchorBottom="1" anchorY="0" anchorX="0" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" mouseEnabled="true">
+<!--    <element name="cloud1" skin="@cloud1"/>-->
+<!--    <element name="cloud2" skin="@cloud2"/>-->
+<!--    <element name="cloud3" skin="@cloud3"/>-->
+<!--    <element name="cloud4" skin="@cloud4"/>-->
+<!--    <element name="cloud5" skin="@cloud5"/>-->
+<!--    <element name="cloud6" skin="@cloud6"/>-->
+<!--    <element name="cloud7" skin="@cloud7"/>-->
+<!--    <element name="cloud8" skin="@cloud8"/>-->
+<!--    <element name="cloud9" skin="@cloud9"/>-->
+</element>
