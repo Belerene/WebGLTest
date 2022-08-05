@@ -39,6 +39,7 @@ class LandMap {
     private var core: Core;
     private var openInfoPopup: InfoPopupElement = null;
     private var tileMouseOverElement: TileMouseOverElement = null;
+    private var infoPopupTileHighlightElement: TileMouseOverElement = null;
     private var cloudsElement: CloudsElement = null;
 
     private var uiGui: GUI;
@@ -107,11 +108,8 @@ class LandMap {
             controller.addDevUIListener(devUiClicked_handler, mainMapScreen.getUiElement().getGuiElement());
         }
 
-        // TMP
         core.tmpTest();
 
-        // TMP
-//        setupTileGroup(3,3,4, ["tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile","tile"], TileRarityType.MYTHICAL, 123);
     }
 
     public function onTick(f:Float): Void {
@@ -218,11 +216,19 @@ class LandMap {
         var zoomDelta: Float = p_scale - zoomLevel;
         zoomLevel = p_scale;
         if(tileMouseOverElement != null){
-            invalidateTileMouseOverElement(zoomDelta);
+            invalidateTileMouseoverElement(zoomDelta);
             if(zoomLevel < mouseOverMinimalZoom) {
                 changeTileMouseOverElementVisibility(false);
             } else {
                 changeTileMouseOverElementVisibility(true);
+            }
+        }
+        if(infoPopupTileHighlightElement != null) {
+            invalidateInfoPopupTileHighlightElement(zoomDelta);
+            if(zoomLevel < mouseOverMinimalZoom) {
+                changeInfoPopupTileHighlightElementVisibility(false);
+            } else {
+                changeInfoPopupTileHighlightElementVisibility(true);
             }
         }
         if(cloudsElement != null) {
@@ -234,6 +240,7 @@ class LandMap {
     }
 
     private function onCompleteHideInfoPopup(p_openNewPopupAfterClosing: Bool = false, p_tile: Tile = null): Void {
+        disposeInfoPopupTileHighlightElement();
         if(openInfoPopup != null) {
             openInfoPopup.getGuiElement().visible = false;
             controller.removeDevInfoPopupHandlers(openInfoPopup.getGuiElement());
@@ -253,7 +260,7 @@ class LandMap {
             // infoPopup already open, close it first!
             var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup, [true, p_tile]);
         } else {
-            handleTileMouseOver(p_tile, mouseOverCamera);
+            handleInfoPopupTileHighlight(p_tile, mouseOverCamera);
             openInfoPopup = new InfoPopupElement(getLandByTile(p_tile));
             openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
             openInfoPopup.getGuiElement().anchorY = 0;
@@ -270,38 +277,63 @@ class LandMap {
 
     }
 
+    private function handleInfoPopupTileHighlight(p_tile: Tile, p_camera: GCamera): Void {
+        if(p_tile == null) return;
+        var land: Land = getLandByTile(p_tile);
+        if(infoPopupTileHighlightElement != null) {
+            if(land.getId() != infoPopupTileHighlightElement.getLand().getId()) {
+                disposeInfoPopupTileHighlightElement();
+
+            }
+        }
+        if(infoPopupTileHighlightElement != null) {
+
+            if(land.getId() != infoPopupTileHighlightElement.getLand().getId()) {
+                infoPopupTileHighlightElement = new TileMouseOverElement(land);
+                invalidateInfoPopupTileHighlightElement();
+                tileHighlightGui.root.addChild(infoPopupTileHighlightElement.getGuiElement());
+            }
+        } else {
+            infoPopupTileHighlightElement = new TileMouseOverElement(land);
+            invalidateInfoPopupTileHighlightElement();
+            tileHighlightGui.root.addChild(infoPopupTileHighlightElement.getGuiElement());
+        }
+        if(zoomLevel < mouseOverMinimalZoom) {
+            changeInfoPopupTileHighlightElementVisibility(false);
+        }
+
+    }
+
     private function handleTileMouseOver(p_tile: Tile, p_camera: GCamera): Void {
         if(p_tile == null) return;
         var land: Land = getLandByTile(p_tile);
-        if(tileMouseOverElement != null) {
-            if(openInfoPopup == null) {
-                if(land.getId() != tileMouseOverElement.getLand().getId()) {
-                    disposeTileMouseOverElement();
-
-                }
-            }
-        }
         if(zoomLevel >= mouseOverMinimalZoom) {
             if(tileMouseOverElement != null) {
-
                 if(land.getId() != tileMouseOverElement.getLand().getId()) {
-                    if(openInfoPopup == null) {
-                        tileMouseOverElement = new TileMouseOverElement(land);
-                        invalidateTileMouseOverElement();
-                        tileHighlightGui.root.addChild(tileMouseOverElement.getGuiElement());
-                    }
+                    disposeTileMouseOverElement();
                 }
             } else {
-                if(openInfoPopup == null) {
-                    tileMouseOverElement = new TileMouseOverElement(land);
-                    invalidateTileMouseOverElement();
-                    tileHighlightGui.root.addChild(tileMouseOverElement.getGuiElement());
-                }
+                tileMouseOverElement = new TileMouseOverElement(land);
+                invalidateTileMouseoverElement();
+                tileHighlightGui.root.addChild(tileMouseOverElement.getGuiElement());
             }
         }
     }
 
-    private function invalidateTileMouseOverElement(p_zoomDelta: Float = 0): Void {
+    private function invalidateInfoPopupTileHighlightElement(p_zoomDelta: Float = 0): Void {
+        if(infoPopupTileHighlightElement != null) {
+            var screenCoords: Map<String, Float> = gtileMap.getScreenCoordsFromMapCoords(infoPopupTileHighlightElement.getLand().getX(), infoPopupTileHighlightElement.getLand().getY(), mouseOverCamera);
+            infoPopupTileHighlightElement.getGuiElement().anchorX = screenCoords.get("x");
+            infoPopupTileHighlightElement.getGuiElement().anchorY = screenCoords.get("y");
+            if(p_zoomDelta != 0) {
+                infoPopupTileHighlightElement.invalidate(infoPopupTileHighlightElement.getLand());
+            }
+            infoPopupTileHighlightElement.getGuiElement().preferredHeight *= mouseOverCamera.scaleX;
+            infoPopupTileHighlightElement.getGuiElement().preferredWidth *= mouseOverCamera.scaleY;
+        }
+    }
+
+    private function invalidateTileMouseoverElement(p_zoomDelta: Float = 0): Void {
         if(tileMouseOverElement != null) {
             var screenCoords: Map<String, Float> = gtileMap.getScreenCoordsFromMapCoords(tileMouseOverElement.getLand().getX(), tileMouseOverElement.getLand().getY(), mouseOverCamera);
             tileMouseOverElement.getGuiElement().anchorX = screenCoords.get("x");
@@ -312,13 +344,28 @@ class LandMap {
             tileMouseOverElement.getGuiElement().preferredHeight *= mouseOverCamera.scaleX;
             tileMouseOverElement.getGuiElement().preferredWidth *= mouseOverCamera.scaleY;
         }
-
     }
 
     private function disposeTileMouseOverElement(): Void {
-        tileHighlightGui.root.removeChild(tileMouseOverElement.getGuiElement());
-        tileMouseOverElement.getGuiElement().dispose();
-        tileMouseOverElement = null;
+        if(tileMouseOverElement != null) {
+            tileHighlightGui.root.removeChild(tileMouseOverElement.getGuiElement());
+            tileMouseOverElement.getGuiElement().dispose();
+            tileMouseOverElement = null;
+        }
+    }
+
+    private function disposeInfoPopupTileHighlightElement(): Void {
+        if(infoPopupTileHighlightElement != null) {
+            tileHighlightGui.root.removeChild(infoPopupTileHighlightElement.getGuiElement());
+            infoPopupTileHighlightElement.getGuiElement().dispose();
+            infoPopupTileHighlightElement = null;
+        }
+    }
+
+    private function changeInfoPopupTileHighlightElementVisibility(p_visible: Bool): Void {
+        if(infoPopupTileHighlightElement.getGuiElement().visible != p_visible) {
+            infoPopupTileHighlightElement.getGuiElement().visible = p_visible;
+        }
     }
 
     private function changeTileMouseOverElementVisibility(p_visible: Bool): Void {
@@ -485,6 +532,10 @@ class LandMap {
             if(tileMouseOverElement != null) {
                 tileMouseOverElement.getGuiElement().anchorX -= p_deltaX * zoomLevel;
                 tileMouseOverElement.getGuiElement().anchorY -= p_deltaY * zoomLevel;
+            }
+            if(infoPopupTileHighlightElement != null) {
+                infoPopupTileHighlightElement.getGuiElement().anchorX -= p_deltaX * zoomLevel;
+                infoPopupTileHighlightElement.getGuiElement().anchorY -= p_deltaY * zoomLevel;
             }
             if(cloudsElement != null) {
                 cloudsElement.getGuiElement().anchorX -= p_deltaX;
