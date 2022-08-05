@@ -369,6 +369,141 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../out/assets/cloud1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>42,26,83,51</rect>
+                <key>scale9Paddings</key>
+                <rect>42,26,83,51</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/cloud2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>44,31,88,61</rect>
+                <key>scale9Paddings</key>
+                <rect>44,31,88,61</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/cloud3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>19,19,39,37</rect>
+                <key>scale9Paddings</key>
+                <rect>19,19,39,37</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/cloud4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>21,20,43,39</rect>
+                <key>scale9Paddings</key>
+                <rect>21,20,43,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/cloud5.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>15,17,29,35</rect>
+                <key>scale9Paddings</key>
+                <rect>15,17,29,35</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/cloud6.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>18,18,37,37</rect>
+                <key>scale9Paddings</key>
+                <rect>18,18,37,37</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/cloud7.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>36,24,71,47</rect>
+                <key>scale9Paddings</key>
+                <rect>36,24,71,47</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/cloud8.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>28,22,56,43</rect>
+                <key>scale9Paddings</key>
+                <rect>28,22,56,43</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../out/assets/cloud9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>47,24,93,48</rect>
+                <key>scale9Paddings</key>
+                <rect>47,24,93,48</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../out/assets/dev.png</key>
             <key type="filename">../out/assets/dev_black.png</key>
             <struct type="IndividualSpriteSettings">
@@ -564,6 +699,15 @@
             <filename>separator_uncommon_nw_02.png</filename>
             <filename>separator_uncommon_sw_02.png</filename>
             <filename>hover9s.png</filename>
+            <filename>../out/assets/cloud1.png</filename>
+            <filename>../out/assets/cloud2.png</filename>
+            <filename>../out/assets/cloud3.png</filename>
+            <filename>../out/assets/cloud4.png</filename>
+            <filename>../out/assets/cloud5.png</filename>
+            <filename>../out/assets/cloud6.png</filename>
+            <filename>../out/assets/cloud7.png</filename>
+            <filename>../out/assets/cloud8.png</filename>
+            <filename>../out/assets/cloud9.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
