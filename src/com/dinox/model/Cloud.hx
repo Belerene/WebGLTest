@@ -14,11 +14,9 @@ class Cloud {
     private var speed: Float = 3;
     public var target: Float;
 
-    private var tmp: Int;
-    public function new(p_cloudElement: GUIElement, p_y: Int, p_tmp: Int) {
+    public function new(p_cloudElement: GUIElement, p_y: Int) {
         element = p_cloudElement;
         y = p_y;
-        tmp = p_tmp;
         element.anchorY = y;
         mapWidth = TileRenderer.BASE_TILE_SIZE * LandMap.TILE_COUNT;
         element.anchorX = Std.random(mapWidth) - Std.int(mapWidth/2);
@@ -27,9 +25,6 @@ class Cloud {
             target = element.anchorX + change;
         } else {
             target = element.anchorX + change;
-        }
-        if(tmp == 0) {
-            GDebug.info(" CHANGE: " + change + " X: " + element.anchorX + " TARGET: " + target);
         }
 
         step = GTween.create(element, true).ease(GLinear.none).propF("anchorX", target, speed, false).onComplete(moveComplete);
@@ -44,9 +39,6 @@ class Cloud {
                     target = element.anchorX + change;
                 } else {
                     target = element.anchorX + change;
-                }
-                if(tmp == 0) {
-                    GDebug.info(" CHANGE: " + change + " X: " + element.anchorX + " TARGET: " + target);
                 }
                 disposeStep();
                 step = GTween.create(element, true).ease(GLinear.none).propF("anchorX", target, speed, false).onComplete(moveComplete);

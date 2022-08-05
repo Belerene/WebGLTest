@@ -85,7 +85,6 @@ class LandMap {
 
         gOcean = cast(GNode.createWithGSpriteComponent("ocean_sprite"), GSprite);
         gOcean.texture = GTextureManager.getTexture("ocean");
-//        gOcean.texture = GTextureManager.getTexture("noise");
         gOcean.node.scaleX = gOcean.node.scaleY = 60;
 
         Genome2D.getInstance().getContext().onFrame.add(onTick);
