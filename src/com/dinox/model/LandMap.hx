@@ -473,7 +473,7 @@ class LandMap {
         if(DEVMoveEnabled == false) {
             var mapDimension: Int = TileRenderer.BASE_TILE_SIZE * LandMap.TILE_COUNT;
             var maxDistanceX = (mapDimension/3)*2;
-            var maxDistanceY = mapDimension/4;
+            var maxDistanceY = mapDimension/2;
             if(gtileMap.node.x - p_deltaX > maxDistanceX || gtileMap.node.x - p_deltaX < -maxDistanceX) {
                 p_deltaX = 0;
             }
