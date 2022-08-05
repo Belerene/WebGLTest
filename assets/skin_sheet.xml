@@ -5,19 +5,6 @@
     <textureSkin id="semitransparent_bg" texture="@semitransparent_bg" sliceLeft="20" sliceTop="20" sliceRight="40" sliceBottom="40"/>
     <textureSkin id="hover9s" texture="@hover9s" sliceLeft="4" sliceTop="4" sliceRight="5" sliceBottom="5"/>
     <textureSkin id="ui" texture="@ui"/>
-    <textureSkin id="cloud1" texture="@cloud1" scaleX="20" scaleY="20"/>
-    <textureSkin id="cloud2" texture="@cloud2" scaleX="20" scaleY="20"/>
-    <textureSkin id="cloud3" texture="@cloud3" scaleX="20" scaleY="20"/>
-    <textureSkin id="cloud4" texture="@cloud4" scaleX="20" scaleY="20"/>
-    <textureSkin id="cloud5" texture="@cloud5" scaleX="20" scaleY="20"/>
-    <textureSkin id="cloud6" texture="@cloud6" scaleX="20" scaleY="20"/>
-    <textureSkin id="cloud7" texture="@cloud7" scaleX="20" scaleY="20"/>
-    <textureSkin id="cloud8" texture="@cloud8" scaleX="20" scaleY="20"/>
-    <textureSkin id="cloud9" texture="@cloud9" scaleX="20" scaleY="20"/>
-<!--    <textureSkin id="ui" texture="@ui" sliceTop="230" sliceBottom="232" sliceLeft="109" sliceRigt="111"/>-->
-    <textureSkin id="tile_n" texture="@tile_n"/>
-    <textureSkin id="tile_l" texture="@tile_l"/>
-    <textureSkin id="tile_s" texture="@tile_s"/>
     <textureSkin id="checkbox" texture="@checkbox" scaleX="1.47" scaleY="1.47"/>
     <textureSkin id="checkbox_checked" texture="@checkbox_checked" scaleX="1.47" scaleY="1.47"/>
     <textureSkin id="font_png" texture="@font_png"/>

@@ -33,17 +33,7 @@ class AssetsWrapper {
         GStaticAssetManager.addFromUrl("assets/checkbox_checked.png", "checkbox_checked");
         GStaticAssetManager.addFromUrl("assets/icon_close.png", "icon_close");
         GStaticAssetManager.addFromUrl("assets/semitransparent_bg.png", "semitransparent_bg");
-//        GStaticAssetManager.addFromUrl("assets/hover_60.png", "hover_60");
         GStaticAssetManager.addFromUrl("assets/hover9s.png", "hover9s");
-        GStaticAssetManager.addFromUrl("assets/cloud1.png", "cloud1");
-        GStaticAssetManager.addFromUrl("assets/cloud2.png", "cloud2");
-        GStaticAssetManager.addFromUrl("assets/cloud3.png", "cloud3");
-        GStaticAssetManager.addFromUrl("assets/cloud4.png", "cloud4");
-        GStaticAssetManager.addFromUrl("assets/cloud5.png", "cloud5");
-        GStaticAssetManager.addFromUrl("assets/cloud6.png", "cloud6");
-        GStaticAssetManager.addFromUrl("assets/cloud7.png", "cloud7");
-        GStaticAssetManager.addFromUrl("assets/cloud8.png", "cloud8");
-        GStaticAssetManager.addFromUrl("assets/cloud9.png", "cloud9");
 
         // FONTS
         GStaticAssetManager.addFromUrl("assets/fonts/font.png", "font_png");

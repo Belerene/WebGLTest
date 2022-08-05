@@ -2262,15 +2262,6 @@ com_dinox_model_AssetsWrapper.prototype = {
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/icon_close.png","icon_close");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/semitransparent_bg.png","semitransparent_bg");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/hover9s.png","hover9s");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud1.png","cloud1");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud2.png","cloud2");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud3.png","cloud3");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud4.png","cloud4");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud5.png","cloud5");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud6.png","cloud6");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud7.png","cloud7");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud8.png","cloud8");
-		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/cloud9.png","cloud9");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/font.png","font_png");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/font.fnt","font_fnt");
 		com_genome2d_assets_GStaticAssetManager.addFromUrl("assets/fonts/chopin_medium.fnt","font_normal");
@@ -3946,104 +3937,6 @@ com_dinox_model_LandMap.prototype = {
 			var mapDimension = com_dinox_view_TileRenderer.BASE_TILE_SIZE * com_dinox_model_LandMap.TILE_COUNT;
 			var maxDistanceX = mapDimension / 3 * 2;
 			var maxDistanceY = mapDimension / 2;
-			var p_arg1 = "MAX X: " + maxDistanceX + " X: " + (this.gtileMap.g2d_node.g2d_localX - p_deltaX) + " MAX Y: " + maxDistanceY + " Y: " + (this.gtileMap.g2d_node.g2d_localY - p_deltaY);
-			var p_arg2 = null;
-			var p_arg3 = null;
-			var p_arg4 = null;
-			var p_arg5 = null;
-			var p_arg6 = null;
-			var p_arg7 = null;
-			var p_arg8 = null;
-			var p_arg9 = null;
-			var p_arg10 = null;
-			var p_arg11 = null;
-			var p_arg12 = null;
-			var p_arg13 = null;
-			var p_arg14 = null;
-			var p_arg15 = null;
-			var p_arg16 = null;
-			var p_arg17 = null;
-			var p_arg18 = null;
-			var p_arg19 = null;
-			var p_arg20 = null;
-			var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 477, className : "com.dinox.model.LandMap", methodName : "mapDragged_handler"};
-			if(com_genome2d_debug_GDebug.showPriority <= 3) {
-				var args = [];
-				if(p_arg1 != null) {
-					args.push(p_arg1);
-				}
-				if(p_arg2 != null) {
-					args.push(p_arg2);
-				}
-				if(p_arg3 != null) {
-					args.push(p_arg3);
-				}
-				if(p_arg4 != null) {
-					args.push(p_arg4);
-				}
-				if(p_arg5 != null) {
-					args.push(p_arg5);
-				}
-				if(p_arg6 != null) {
-					args.push(p_arg6);
-				}
-				if(p_arg7 != null) {
-					args.push(p_arg7);
-				}
-				if(p_arg8 != null) {
-					args.push(p_arg8);
-				}
-				if(p_arg9 != null) {
-					args.push(p_arg9);
-				}
-				if(p_arg10 != null) {
-					args.push(p_arg10);
-				}
-				if(p_arg11 != null) {
-					args.push(p_arg11);
-				}
-				if(p_arg12 != null) {
-					args.push(p_arg12);
-				}
-				if(p_arg13 != null) {
-					args.push(p_arg13);
-				}
-				if(p_arg14 != null) {
-					args.push(p_arg14);
-				}
-				if(p_arg15 != null) {
-					args.push(p_arg15);
-				}
-				if(p_arg16 != null) {
-					args.push(p_arg16);
-				}
-				if(p_arg17 != null) {
-					args.push(p_arg17);
-				}
-				if(p_arg18 != null) {
-					args.push(p_arg18);
-				}
-				if(p_arg19 != null) {
-					args.push(p_arg19);
-				}
-				if(p_arg20 != null) {
-					args.push(p_arg20);
-				}
-				if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-					com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-				}
-				var msg = "INFO: ";
-				if(pos != null) {
-					msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-				}
-				if(args.length > 0) {
-					msg += args.toString();
-				}
-				com_genome2d_debug_GDebug.g2d_log += msg;
-				if(com_genome2d_debug_GDebug.useNativeTrace) {
-					window.console.log(msg);
-				}
-			}
 			if(this.gtileMap.g2d_node.g2d_localX - p_deltaX > maxDistanceX || this.gtileMap.g2d_node.g2d_localX - p_deltaX < -maxDistanceX) {
 				p_deltaX = 0;
 			}
@@ -4107,7 +4000,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 516, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupRarity_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 515, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupRarity_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -4219,7 +4112,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 531, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupSize_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 530, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupSize_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -4909,15 +4802,15 @@ com_dinox_model_tile_TileSizeType.sizeToString = function(p_size) {
 	return com_dinox_model_tile_TileSizeType.sizeStringList[p_size - 1];
 };
 var com_dinox_view_CloudsElement = function() {
-	this.cloud9 = "<element name=\"cloud9\" skin=\"@cloud9\"/>";
-	this.cloud8 = "<element name=\"cloud8\" skin=\"@cloud8\"/>";
-	this.cloud7 = "<element name=\"cloud7\" skin=\"@cloud7\"/>";
-	this.cloud6 = "<element name=\"cloud6\" skin=\"@cloud6\"/>";
-	this.cloud5 = "<element name=\"cloud5\" skin=\"@cloud5\"/>";
-	this.cloud4 = "<element name=\"cloud4\" skin=\"@cloud4\"/>";
-	this.cloud3 = "<element name=\"cloud3\" skin=\"@cloud3\"/>";
-	this.cloud2 = "<element name=\"cloud2\" skin=\"@cloud2\"/>";
-	this.cloud1 = "<element name=\"cloud1\" skin=\"@cloud1\"/>";
+	this.cloud9 = "<element name=\"cloud9\"/>";
+	this.cloud8 = "<element name=\"cloud8\"/>";
+	this.cloud7 = "<element name=\"cloud7\"/>";
+	this.cloud6 = "<element name=\"cloud6\"/>";
+	this.cloud5 = "<element name=\"cloud5\"/>";
+	this.cloud4 = "<element name=\"cloud4\"/>";
+	this.cloud3 = "<element name=\"cloud3\"/>";
+	this.cloud2 = "<element name=\"cloud2\"/>";
+	this.cloud1 = "<element name=\"cloud1\"/>";
 	this.elementVisible = false;
 	this.cloudsXml = com_genome2d_assets_GStaticAssetManager.getXmlAssetById("clouds_element").xml;
 	this.cloudsElement = new com_genome2d_ui_element_GUIElement();
@@ -4935,13 +4828,141 @@ com_dinox_view_CloudsElement.prototype = {
 	,generateCloudElements: function() {
 		var cloud;
 		var clouds = [this.cloud1,this.cloud2,this.cloud3,this.cloud4,this.cloud5,this.cloud6,this.cloud7,this.cloud8,this.cloud9];
+		var cloudElements = [];
 		var _g = 0;
-		var _g1 = com_dinox_view_CloudsElement.cloudsNumber;
-		while(_g < _g1) {
-			var i = _g++;
-			var element = com_genome2d_proto_parsers_GXmlPrototypeParser.createPrototypeFromXmlString(clouds[Std.random(9)].toString());
-			cloud = new com_dinox_model_Cloud(element);
+		while(_g < clouds.length) {
+			var c = clouds[_g];
+			++_g;
+			var element = com_genome2d_proto_parsers_GXmlPrototypeParser.createPrototypeFromXmlString(c);
+			var texture = new com_genome2d_ui_skin_GUITextureSkin(element.name,com_genome2d_textures_GTextureManager.getTexture("assets/atlas.png_" + element.name));
+			if(texture == null || element.g2d_skin == null || texture != element.g2d_skin) {
+				if(element.g2d_skin != null) {
+					element.g2d_skin.remove();
+				}
+				element.g2d_skin = texture != null ? texture.attach(element) : texture;
+				element.g2d_activeSkin = element.g2d_skin;
+				element.setDirty();
+				if(element.g2d_skin != null && !element.g2d_skinListenerAdded) {
+					element.g2d_skinListenerAdded = true;
+					com_genome2d_ui_skin_GUISkinManager.g2d_onSkinChanged.addUnsafe($bind(element,element.skinChanged_handler));
+				}
+			}
+			cloudElements.push(element);
+		}
+		var _g1 = 0;
+		var _g2 = com_dinox_view_CloudsElement.cloudsNumber;
+		while(_g1 < _g2) {
+			var i = _g1++;
+			var element1 = com_genome2d_proto_GPrototypeFactory.createInstance(cloudElements[Std.random(9)].getPrototype());
+			(js_Boot.__cast(element1.g2d_skin , com_genome2d_ui_skin_GUITextureSkin)).scaleX = 20;
+			(js_Boot.__cast(element1.g2d_skin , com_genome2d_ui_skin_GUITextureSkin)).scaleY = 20;
+			cloud = new com_dinox_model_Cloud(element1);
 			this.cloudsElement.addChild(cloud.getElement());
+		}
+	}
+	,tmp: function() {
+		var key = com_genome2d_ui_skin_GUISkinManager.getAllSkins().keys();
+		while(key.hasNext()) {
+			var key1 = key.next();
+			var _this = js_Boot.__cast(com_genome2d_ui_skin_GUISkinManager.getSkin(key1) , com_genome2d_ui_skin_GUISkin);
+			var p_arg1 = "KEY: " + key1 + " VALUE: " + (_this.g2d_origin == null ? _this.g2d_id : _this.g2d_origin.g2d_id);
+			var p_arg2 = null;
+			var p_arg3 = null;
+			var p_arg4 = null;
+			var p_arg5 = null;
+			var p_arg6 = null;
+			var p_arg7 = null;
+			var p_arg8 = null;
+			var p_arg9 = null;
+			var p_arg10 = null;
+			var p_arg11 = null;
+			var p_arg12 = null;
+			var p_arg13 = null;
+			var p_arg14 = null;
+			var p_arg15 = null;
+			var p_arg16 = null;
+			var p_arg17 = null;
+			var p_arg18 = null;
+			var p_arg19 = null;
+			var p_arg20 = null;
+			var pos = { fileName : "src/com/dinox/view/CloudsElement.hx", lineNumber : 51, className : "com.dinox.view.CloudsElement", methodName : "tmp"};
+			if(com_genome2d_debug_GDebug.showPriority <= 3) {
+				var args = [];
+				if(p_arg1 != null) {
+					args.push(p_arg1);
+				}
+				if(p_arg2 != null) {
+					args.push(p_arg2);
+				}
+				if(p_arg3 != null) {
+					args.push(p_arg3);
+				}
+				if(p_arg4 != null) {
+					args.push(p_arg4);
+				}
+				if(p_arg5 != null) {
+					args.push(p_arg5);
+				}
+				if(p_arg6 != null) {
+					args.push(p_arg6);
+				}
+				if(p_arg7 != null) {
+					args.push(p_arg7);
+				}
+				if(p_arg8 != null) {
+					args.push(p_arg8);
+				}
+				if(p_arg9 != null) {
+					args.push(p_arg9);
+				}
+				if(p_arg10 != null) {
+					args.push(p_arg10);
+				}
+				if(p_arg11 != null) {
+					args.push(p_arg11);
+				}
+				if(p_arg12 != null) {
+					args.push(p_arg12);
+				}
+				if(p_arg13 != null) {
+					args.push(p_arg13);
+				}
+				if(p_arg14 != null) {
+					args.push(p_arg14);
+				}
+				if(p_arg15 != null) {
+					args.push(p_arg15);
+				}
+				if(p_arg16 != null) {
+					args.push(p_arg16);
+				}
+				if(p_arg17 != null) {
+					args.push(p_arg17);
+				}
+				if(p_arg18 != null) {
+					args.push(p_arg18);
+				}
+				if(p_arg19 != null) {
+					args.push(p_arg19);
+				}
+				if(p_arg20 != null) {
+					args.push(p_arg20);
+				}
+				if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
+					com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
+				}
+				var msg = "INFO: ";
+				if(pos != null) {
+					msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
+				}
+				if(args.length > 0) {
+					msg += args.toString();
+				}
+				com_genome2d_debug_GDebug.g2d_log += msg;
+				if(com_genome2d_debug_GDebug.useNativeTrace) {
+					window.console.log(msg);
+				}
+			}
 		}
 	}
 	,handleZoomChange: function(p_currentZoom,p_zoomBreakpoint) {
@@ -52148,8 +52169,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "27017707af248f76c603f2e0a153d301";
-com_genome2d_Genome2D.DATE = "2022-08-05 16:40:44";
+com_genome2d_Genome2D.BUILD = "61f7b10bad3c509357a1f408c0f2b59d";
+com_genome2d_Genome2D.DATE = "2022-08-05 21:25:48";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];
