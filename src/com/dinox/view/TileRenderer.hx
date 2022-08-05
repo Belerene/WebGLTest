@@ -102,10 +102,10 @@ class TileRenderer {
     }
 
     public function dimHighlight(): Void {
-        gTile.alpha = 0.5;
-        gTile.red = 1;
-        gTile.blue = 1;
-        gTile.green = 1;
+        gTile.alpha = 1;
+        gTile.red = 0.3;
+        gTile.blue = 0.3;
+        gTile.green = 0.3;
     }
 
     public function highlightTile(p_rarity: String): Void {

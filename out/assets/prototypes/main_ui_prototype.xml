@@ -16,6 +16,10 @@
         <element name="mythical" preferredWidth="15" preferredHeight="15" anchorX="10" anchorY="150" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" mouseEnabled="true">
             <element name="mythical_label" preferredWidth="100" preferredHeight="20" anchorX="35" anchorY="2" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="Mythical"/>
         </element>
+    </element>
+
+    <element name="filters_size" anchorX="10" anchorY="10" mouseEnabled="true">
+
         <element name="one" preferredWidth="15" preferredHeight="15" anchorX="10" anchorY="240" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" mouseEnabled="true">
             <element name="one_label" preferredWidth="100" preferredHeight="20" anchorY="2" anchorX="35" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="1x1"/>
         </element>
@@ -28,6 +32,9 @@
         <element name="four" preferredWidth="15" preferredHeight="15" anchorX="10" anchorY="345" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" mouseEnabled="true">
             <element name="one_label" preferredWidth="100" preferredHeight="20" anchorY="2" anchorX="35" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="4x4"/>
         </element>
+    </element>
+
+    <element name="filters_owner" anchorX="10" anchorY="10" mouseEnabled="true">
         <element name="owned" preferredWidth="20" preferredHeight="20" anchorX="10" anchorY="435" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" mouseEnabled="true">
             <element name="owned_label" preferredWidth="100" preferredHeight="20" anchorY="2" anchorX="35" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="Owned"/>
         </element>
