@@ -14,6 +14,7 @@
         <h2 style="margin: 0; letter-spacing:5px; line-height:3.5rem; font-size:3rem; font-family: Tahoma; color: #ffffff; margin-bottom: 2rem;">WORLD MAP</h2>
         <canvas tabindex="0" id="canvas" height="550" style="outline: none; width: 100%; max-width: 1200px; min-width:640px; height: 550px; cursor: auto;"></canvas>
 
+        <script>
         window.worldMapInitialized = function() {
 
             var mapw = $('#canvas').width();
@@ -29,6 +30,7 @@
             window.setUsersTickets([59,61,61,62,63]);
             window.setMyLands([5,6,1447,5410,2234]);
         }
+        </script>
         <script crossorigin="anonymous" type="text/javascript" src="js/test.js"></script>
         <script>
            $(document).ready(function(){
