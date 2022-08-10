@@ -58,6 +58,11 @@ class Main extends GProject{
         userTickets = user_tickets;
     }
 
+
+    @:expose("setMyLands") static function setMyLands(user_lands:Array<Int>) {
+        trace(user_lands);
+//        userTickets = user_tickets;
+    }
     override private function init():Void {
         getGenome().getContext().setBackgroundColor(0x10466a,1);
         core = new Core(getGenome().root);

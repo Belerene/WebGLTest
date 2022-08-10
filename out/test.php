@@ -28,6 +28,7 @@
             window.resizeMap(mapw,650);
 
             window.setUsersTickets([59,61,61,62,63]);
+            window.setMyLands([5,6,1447,5410,2234]);
         });
         $(window).resize(function(){
             var mapw = $('#canvas').width();
