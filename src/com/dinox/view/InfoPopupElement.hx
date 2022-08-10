@@ -1,4 +1,6 @@
 package com.dinox.view;
+import com.genome2d.debug.GDebug;
+import haxe.format.JsonParser;
 import com.genome2d.ui.skin.GUITextureSkin;
 import com.genome2d.textures.GTextureManager;
 import com.genome2d.assets.GAsset;
@@ -31,7 +33,12 @@ class InfoPopupElement {
         popupElement.getChildByName("info_popup_rarity", true).model = land.getRarityAsString().charAt(0).toUpperCase() + land.getRarityAsString().substr(1);
         popupElement.getChildByName("info_popup_rarity", true).skin.color = TileRarityType.getColorForRarity(land.getRarityAsString());
         popupElement.getChildByName("info_popup_size", true).model = TileSizeType.sizeToString(land.getSize());
-        popupElement.getChildByName("info_popup_owner", true).model = processOwnerName(land.getOwner());
+
+        request = new Http("https://api.dinox.io/land/metadata/" + land.getId());
+        request.onData = onLandOwnerReceived;
+        request.request(false);
+
+        popupElement.getChildByName("info_popup_owner", true).model = processOwnerName("...");
         if(Main.IS_DEV) popupElement.setState("dev");
         popupElement.flushBatch = true;
         var url: String = "http://storage.googleapis.com/dinox-static-prod/lands/land_" + land.getId() + ".png";
@@ -69,4 +76,14 @@ class InfoPopupElement {
         popupElement.getChildByName("info_popup_land_asset", true).skin = texture;
     }
 
+    private function onLandOwnerReceived(p_data: String): Void {
+        var json: Dynamic  = JsonParser.parse(p_data);
+
+        var owned: String = Reflect.getProperty(json, "owned");
+        if(owned == "0") {
+            popupElement.getChildByName("info_popup_owner", true).model = "Claimable";
+        } else {
+            popupElement.getChildByName("info_popup_owner", true).model = "Owned";
+        }
+    }
 }

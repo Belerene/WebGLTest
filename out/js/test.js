@@ -5281,8 +5281,11 @@ com_dinox_view_InfoPopupElement.prototype = {
 		}
 		_this4.g2d_model = Std.string(p_value4);
 		_this4.g2d_onModelChanged.dispatch(_this4);
+		this.request = new haxe_http_HttpJs("https://api.dinox.io/land/metadata/" + this.land.getId());
+		this.request.onData = $bind(this,this.onLandOwnerReceived);
+		this.request.request(false);
 		var _this5 = this.popupElement.getChildByName("info_popup_owner",true);
-		var p_value5 = this.processOwnerName(this.land.getOwner());
+		var p_value5 = this.processOwnerName("...");
 		if(com_genome2d_ui_element_GUIElement.setModelHook != null) {
 			p_value5 = com_genome2d_ui_element_GUIElement.setModelHook(p_value5);
 		}
@@ -5342,6 +5345,27 @@ com_dinox_view_InfoPopupElement.prototype = {
 				_this.g2d_skinListenerAdded = true;
 				com_genome2d_ui_skin_GUISkinManager.g2d_onSkinChanged.addUnsafe($bind(_this,_this.skinChanged_handler));
 			}
+		}
+	}
+	,onLandOwnerReceived: function(p_data) {
+		var json = new haxe_format_JsonParser(p_data).doParse();
+		var owned = Reflect.getProperty(json,"owned");
+		if(owned == "0") {
+			var _this = this.popupElement.getChildByName("info_popup_owner",true);
+			var p_value = "Claimable";
+			if(com_genome2d_ui_element_GUIElement.setModelHook != null) {
+				p_value = com_genome2d_ui_element_GUIElement.setModelHook(p_value);
+			}
+			_this.g2d_model = Std.string(p_value);
+			_this.g2d_onModelChanged.dispatch(_this);
+		} else {
+			var _this1 = this.popupElement.getChildByName("info_popup_owner",true);
+			var p_value1 = "Owned";
+			if(com_genome2d_ui_element_GUIElement.setModelHook != null) {
+				p_value1 = com_genome2d_ui_element_GUIElement.setModelHook(p_value1);
+			}
+			_this1.g2d_model = Std.string(p_value1);
+			_this1.g2d_onModelChanged.dispatch(_this1);
 		}
 	}
 	,__class__: com_dinox_view_InfoPopupElement
@@ -52377,8 +52401,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "fb4a7be6dff368f04b1538cca062f85d";
-com_genome2d_Genome2D.DATE = "2022-08-10 15:01:17";
+com_genome2d_Genome2D.BUILD = "f130912881dc31875a6e0abcbd341505";
+com_genome2d_Genome2D.DATE = "2022-08-10 15:22:28";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];
