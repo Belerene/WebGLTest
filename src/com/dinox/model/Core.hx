@@ -1,4 +1,5 @@
 package com.dinox.model;
+import js.Syntax;
 import haxe.Http;
 import haxe.format.JsonParser;
 import haxe.Json;
@@ -42,6 +43,7 @@ class Core {
 
         initAssetsWrapper();
 
+        Syntax.code("window.worldMapInitialized();");
 
     }
 
