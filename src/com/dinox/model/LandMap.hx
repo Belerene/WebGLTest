@@ -32,7 +32,6 @@ class LandMap {
     public static var ZOOM_LEVELS: Array<Float> = [2, 1.6, 1.2, 1, 0.8, 0.6, 0.4, 0.2, 0.1, 0.09, 0.07, 0.05, 0.04, 0.03];
 
     public static var TILE_COUNT: Int = 300; // real tile count is TILE_COUNT x TILE_COUNT
-//    public static var TILE_COUNT: Int = 256; // real tile count is TILE_COUNT x TILE_COUNT
 
     private var mainMapScreen: MainMapScreen;
 
@@ -144,7 +143,7 @@ class LandMap {
                         Reflect.getProperty(landElement, "y"),
                         Reflect.getProperty(landElement, "s"),
                         Reflect.getProperty(landElement, "r"),
-                        "Claimable",
+                        "Owned",
                         assets));
         }
     }
@@ -153,7 +152,7 @@ class LandMap {
         for(field in Reflect.fields(p_json)) {
             var landId: String = Reflect.getProperty(p_json, field);
             var id: String = Reflect.getProperty(landId, "land_id");
-            lands[Std.parseInt(id)].setOwner("Owned");
+            lands[Std.parseInt(id)].setOwner("Claimable");
         }
     }
 
@@ -170,19 +169,10 @@ class LandMap {
 
     //TMP
     private function addDefaultRarity(): Int {
-//        var rnd: Float = Math.random();
-//        if(rnd < 0.5) return TileRarityType.COMMON;
-//        if(rnd < 0.7) return TileRarityType.UNCOMMON;
-//        if(rnd < 0.8) return TileRarityType.RARE;
-//        if(rnd < 0.9) return TileRarityType.LEGENDARY;
         return 1;
     }
 
     private function addDefaultSize(): Int {
-//        var rnd: Float = Math.random();
-//        if(rnd < 0.5) return TileSizeType.ONEXONE;
-//        if(rnd < 0.75) return TileSizeType.TWOXTWO;
-//        if(rnd < 0.9) return TileSizeType.THREEXTHREE;
         return TileSizeType.DEFAULT;
     }
 
@@ -279,6 +269,7 @@ class LandMap {
 //            openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
 //            openInfoPopup.getGuiElement().anchorY = 0;
             openInfoPopup.getGuiElement().getChildByName("infoPopup_closeBtn", true).onMouseUp.add(onCloseInfoPopup_handler);
+            openInfoPopup.getGuiElement().getChildByName("info_popup_claim_land_btn", true).onMouseUp.add(onClaimLandInfoPopup_handler);
             uiGui.root.addChild(openInfoPopup.getGuiElement());
             openInfoPopup.getGuiElement().alpha = 0;
             controller.canHideInfoPopup = false;
@@ -633,6 +624,15 @@ class LandMap {
         var target: GUIElement = cast signal.target;
         switch(target.name) {
             case "move_enabled": DEV_moveEnabledToggle();
+        }
+    }
+
+    private function onClaimLandInfoPopup_handler(signal: GMouseInput): Void {
+        if(openInfoPopup != null) {
+            if(openInfoPopup.getCanClaimSelectedLand()) {
+                Syntax.code("window.claimSelectedLand()");
+                openInfoPopup.landClaimed();
+            }
         }
     }
 

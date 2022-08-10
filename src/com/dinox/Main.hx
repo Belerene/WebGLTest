@@ -3,8 +3,6 @@ import com.genome2d.callbacks.GCallback;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.Genome2D;
 import com.genome2d.debug.GDebug;
-import js.Browser;
-import com.genome2d.context.stats.GStats;
 import com.genome2d.components.GCameraController;
 import com.genome2d.node.GNode;
 import com.dinox.model.Core;
@@ -18,6 +16,7 @@ class Main extends GProject{
     public static var IS_DEV: Bool = true;
     public static var onResizeCallback: GCallback2<Int, Int> = new GCallback2<Int, Int>();
     public static var INITIAL_ZOOM: Float = 0.04;
+    public static var userTickets: Array<Int> = new Array<Int>();
 
     private var initType:Int = 0;
 
@@ -56,6 +55,7 @@ class Main extends GProject{
 
     @:expose("setUsersTickets") static function setUsersTickets(user_tickets:Array<Int>) {
         trace(user_tickets);
+        userTickets = user_tickets;
     }
 
     override private function init():Void {

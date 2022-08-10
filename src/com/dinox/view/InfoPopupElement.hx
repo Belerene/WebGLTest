@@ -18,6 +18,7 @@ class InfoPopupElement {
     private var popupElement: GUIElement;
     private var land: Land;
     private var request: Http = null;
+    private var canClaimSelectedLand: Bool = false;
 
 
     public function new(p_land: Land) {
@@ -50,15 +51,40 @@ class InfoPopupElement {
             texture.scaleY = texture.scaleX = 0.5;
             popupElement.getChildByName("info_popup_land_asset", true).skin = texture;
         }
+        var texture: GUITextureSkin = new GUITextureSkin("claim_button", GTextureManager.getTexture('assets/atlas.png_claim_button'));
+        popupElement.getChildByName("info_popup_claim_land_btn", true).skin = texture;
+        resolveClaimableSelectedLand();
+        if(canClaimSelectedLand) {
+            popupElement.setState("claimable");
+        } else {
+            popupElement.setState("owned");
+        }
     }
 
-
+    private function resolveClaimableSelectedLand() {
+        if(Main.userTickets.indexOf(land.getTicket()) >= 0 &&
+            land.getOwner() == "Claimable") {
+            canClaimSelectedLand = true;
+        } else {
+            canClaimSelectedLand = false;
+        }
+    }
 
     private function processOwnerName(p_name: String): String {
         if(p_name.length > MAX_OWNER_NAME_LEN) {
             return p_name.substr(0, 5) + "..." + p_name.substr(p_name.length-3, p_name.length);
         }
         return p_name;
+    }
+
+    public function landClaimed(): Void {
+        canClaimSelectedLand = false;
+        land.setOwner("Owned");
+        popupElement.setState("owned");
+    }
+
+    public function getCanClaimSelectedLand(): Bool {
+        return canClaimSelectedLand;
     }
 
     public function getLand(): Land {

@@ -1,4 +1,4 @@
-<element name="info_popup" preferredWidth="350" preferredHeight="400" skin="@semitransparent_bg" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" mouseEnabled="false" anchorX="-5" anchorY="5">
+<element name="info_popup" preferredWidth="350" preferredHeight="400" preferredHeight.claimable="445" preferredHeight.owned="400" skin="@semitransparent_bg" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" mouseEnabled="false" anchorX="-5" anchorY="5">
 <!--<element name="info_popup" preferredWidth="400" preferredHeight="280" skin="@semitransparent_bg" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" mouseEnabled="false" anchorX="-5" anchorY="5">-->
     <element name="infoPopup_title_holder" preferredWidth="330" preferredHeight="100" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="10">
         <element name="info_popup_land_asset" skin="@asset" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="10" preferredHeight="170" preferredWidth="170"/>
@@ -21,6 +21,7 @@
         <!--        <element name="info_popup_asset" skin="@font_normal" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="230"/>-->
         <!--        <element name="info_popup_asset_l" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_LEFT" pivotAlign="TOP_LEFT" anchorY="232" anchorX="10" model="<="/>-->
         <!--        <element name="info_popup_asset_r" visible="false" visible.dev="true" skin="@font_normal" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="232" anchorX="-10" model="=>"/>-->
+        <element name="info_popup_claim_land_btn" visible="false" visible.owned="false" visible.claimable="true" anchorAlign="TOP_CENTER" pivotAlign="TOP_CENTER" anchorY="110" mouseEnabled="true"/>
     </element>
     <element name="infoPopup_closeBtn" anchorAlign="TOP_RIGHT" pivotAlign="TOP_RIGHT" anchorY="5" anchorX="40" preferredWidth="160" preferredHeight="60" mouseEnabled="true">
         <element name="infoPopup_closeBtn_X" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" skin="@icon_close"/>

@@ -8,6 +8,7 @@ class Land {
     private var ownedBy: String;
     private var assets: Array<Int>;
     private var tiles: Array<Tile>;
+    private var ticket: Int;
 
     public function new(p_id: Int, p_x: Int, p_y: Int, p_size: Int, p_rarity: Int, p_ownedBy: String, p_assets: Array<Int>, p_tiles: Array<Tile>) {
         id = p_id;
@@ -18,6 +19,7 @@ class Land {
         ownedBy = p_ownedBy;
         processAssets(p_assets);
         tiles = p_tiles;
+        resolveTicket();
 
         var dataToPropagate: Map<String, Dynamic>  = tiles[0].userData;
         var index: Int = 0;
@@ -36,6 +38,38 @@ class Land {
             }
         }
         invalidateSeparators();
+    }
+
+    private function resolveTicket(): Void {
+        switch(rarity) {
+            case 1:  // common
+                ticket = 59;
+                return;
+            case 2: // uncommon
+                if(size == 1) {
+                    ticket = 60;
+                } else if(size == 2) {
+                    ticket = 61;
+                }
+                return;
+            case 3: // rare
+                if(size == 2) {
+                    ticket = 62;
+                } else if(size == 3) {
+                    ticket = 63;
+                }
+                return;
+            case 4: // legendary
+                if(size == 3) {
+                    ticket = 64;
+                } else if (size == 4){
+                    ticket = 65;
+                }
+                return;
+            case 5: // mythical
+                ticket = 66;
+                return;
+        }
     }
 
     private function processAssets(p_assets: Array<Int>): Void {
@@ -77,6 +111,10 @@ class Land {
 
     public function getRarity(): Int {
         return rarity;
+    }
+
+    public function getTicket(): Int {
+        return ticket;
     }
 
     public function getOwner(): String {
