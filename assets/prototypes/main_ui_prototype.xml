@@ -39,7 +39,7 @@
             <element name="owned_label" preferredWidth="100" preferredHeight="20" anchorY="2" anchorX="35" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="Owned"/>
         </element>
         <element name="unowned" preferredWidth="20" preferredHeight="20" anchorX="10" anchorY="470" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" mouseEnabled="true">
-            <element name="unowned_label" preferredWidth="100" preferredHeight="20" anchorY="2" anchorX="35" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="Unowned"/>
+            <element name="unowned_label" preferredWidth="100" preferredHeight="20" anchorY="2" anchorX="35" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="Claimable"/>
         </element>
     </element>
 

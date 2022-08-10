@@ -1,4 +1,5 @@
 package com.dinox.model;
+import haxe.Http;
 import haxe.format.JsonParser;
 import haxe.Json;
 import com.genome2d.debug.GDebug;
@@ -62,9 +63,20 @@ class Core {
         tmp.makeRequest();
     }
 
+    public function getListOfOwnedLands(): Void {
+        var request: Http = new Http("https://api.dinox.io/land/claimable");
+        request.onData = parseOwnedLands;
+        request.request(false);
+    }
+
     private function parseJson(p_data: String): Void {
         var json: Dynamic  = JsonParser.parse(p_data);
         landMap.addTileGroupsFromJson(json.lands);
+    }
+
+    private function parseOwnedLands(p_data: String): Void {
+        var json: Dynamic = JsonParser.parse(p_data);
+        landMap.addOwnedLands(json.result);
     }
 
 

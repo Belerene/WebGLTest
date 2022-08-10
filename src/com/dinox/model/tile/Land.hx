@@ -83,6 +83,10 @@ class Land {
         return ownedBy;
     }
 
+    public function setOwner(p_owner): Void {
+        ownedBy = p_owner;
+    }
+
     public function getX(): Int {
         return x;
     }

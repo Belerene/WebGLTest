@@ -62,7 +62,8 @@ class LandMap {
     private var DEVClickedTile: Tile;
 
     private var gtileMap: GTileMap;
-    private var lands: Array<Land>;
+    private var lands: Map<Int, Land>;
+//    private var lands: Array<Land>;
     private var controller: MainController;
 
 
@@ -84,7 +85,8 @@ class LandMap {
         mainMapScreen = new MainMapScreen(uiGui, tileHighlightGui, mapGui);
         filterAsRadioButtons = true;
         setupTiles();
-        lands = new Array<Land>();
+        lands = new Map<Int, Land>();
+//        lands = new Array<Land>();
 
         gOcean = cast(GNode.createWithGSpriteComponent("ocean_sprite"), GSprite);
         gOcean.texture = GTextureManager.getTexture("ocean");
@@ -113,6 +115,7 @@ class LandMap {
         }
 
         core.tmpTest();
+        core.getListOfOwnedLands();
 
 
         Main.onResizeCallback.add(onResize);
@@ -136,25 +139,23 @@ class LandMap {
         for(field in Reflect.fields(p_json)) {
             var landElement: Dynamic = Reflect.getProperty(p_json, field);
             var assets: Array<Int> = Reflect.getProperty(landElement, "a");
-            lands.push(setupLand(Reflect.getProperty(landElement, "_id"),
+            lands.set(Reflect.getProperty(landElement, "_id"), setupLand(Reflect.getProperty(landElement, "_id"),
                         Reflect.getProperty(landElement, "x"),
                         Reflect.getProperty(landElement, "y"),
                         Reflect.getProperty(landElement, "s"),
                         Reflect.getProperty(landElement, "r"),
-                        tmpGetRandomOwnership(),
-//                        Reflect.getProperty(landElement, "ownedBy"),
+                        "Claimable",
                         assets));
         }
     }
 
-    private function tmpGetRandomOwnership(): String {
-        if(Math.random() > 0.5) {
-            return "Unowned";
-        } else {
-            return "abadadsfasdf";
+    public function addOwnedLands(p_json: Dynamic): Void {
+        for(field in Reflect.fields(p_json)) {
+            var landId: String = Reflect.getProperty(p_json, field);
+            var id: String = Reflect.getProperty(landId, "land_id");
+            lands[Std.parseInt(id)].setOwner("Owned");
         }
     }
-
 
     public function setupTiles(): Void {
         tiles = new Array<Tile>();
@@ -462,22 +463,24 @@ class LandMap {
     }
 
     private function getLandByTile(p_tile: Tile): Land {
-        for(i in 0...lands.length) {
-            if(lands[i].containsTile(p_tile)) {
-                return lands[i];
+        for(land in lands) {
+//        for(i in 0...lands.length) {
+            if(land.containsTile(p_tile)) {
+                return land;
             }
         }
         return null;
     }
 
     private function updateLand(p_land: Land, p_gtileMapIsDirty: Bool = false, p_originalSize: Int = 0): Void {
-        for(i in 0...lands.length) {
-            if(lands[i].getId() == p_land.getId()) {
-                if(p_land.getTiles().length != lands[i].getTiles().length){
+        for(land in lands) {
+//        for(i in 0...lands.length) {
+            if(land.getId() == p_land.getId()) {
+                if(p_land.getTiles().length != land.getTiles().length){
                     var defaultTile: Tile;
-                    for(j in 0...lands[i].getTiles().length) {
-                        defaultTile = new Tile(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY, 1, lands[i].getSize(), lands[i].getOwner());
-                        gtileMap.setTile(Tile.getIndexFromCoordinates(lands[i].getTiles()[j].getGTile().mapX, lands[i].getTiles()[j].getGTile().mapY), defaultTile);
+                    for(j in 0...land.getTiles().length) {
+                        defaultTile = new Tile(land.getTiles()[j].getGTile().mapX, land.getTiles()[j].getGTile().mapY, 1, land.getSize(), land.getOwner());
+                        gtileMap.setTile(Tile.getIndexFromCoordinates(land.getTiles()[j].getGTile().mapX, land.getTiles()[j].getGTile().mapY), defaultTile);
                     }
                 }
 
@@ -501,7 +504,7 @@ class LandMap {
                         }
                     }
                 }
-                lands[i] = p_land.clone();
+                land = p_land.clone();
                 return;
             }
         }
