@@ -1,4 +1,8 @@
 package com.dinox.view;
+import com.genome2d.ui.skin.GUITextureSkin;
+import com.genome2d.textures.GTextureManager;
+import com.genome2d.assets.GAsset;
+import haxe.Http;
 import com.dinox.model.tile.TileSizeType;
 import com.dinox.model.tile.TileRarityType;
 import com.dinox.model.tile.Land;
@@ -11,6 +15,7 @@ class InfoPopupElement {
     private var popupXml: Xml = GStaticAssetManager.getXmlAssetById("popup_element").xml;
     private var popupElement: GUIElement;
     private var land: Land;
+    private var request: Http = null;
 
 
     public function new(p_land: Land) {
@@ -27,10 +32,20 @@ class InfoPopupElement {
         popupElement.getChildByName("info_popup_rarity", true).skin.color = TileRarityType.getColorForRarity(land.getRarityAsString());
         popupElement.getChildByName("info_popup_size", true).model = TileSizeType.sizeToString(land.getSize());
         popupElement.getChildByName("info_popup_owner", true).model = processOwnerName(land.getOwner());
-//        popupElement.getChildByName("info_popup_asset", true).model = "asset: " + Std.string(land.getAssets());
         if(Main.IS_DEV) popupElement.setState("dev");
         popupElement.flushBatch = true;
+        var url: String = "http://storage.googleapis.com/dinox-static-prod/lands/land_" + land.getId() + ".png";
+        if(GTextureManager.getTexture("land_" + land.getId()) == null) {
+            var asset: GAsset = GStaticAssetManager.addFromUrl(url, "land_" + land.getId());
+            GStaticAssetManager.loadQueue(assetsLoaded);
+        } else {
+            var texture: GUITextureSkin = new GUITextureSkin("land_" + land.getId(), GTextureManager.getTexture("land_" + land.getId()));
+            texture.scaleY = texture.scaleX = 0.5;
+            popupElement.getChildByName("info_popup_land_asset", true).skin = texture;
+        }
     }
+
+
 
     private function processOwnerName(p_name: String): String {
         if(p_name.length > MAX_OWNER_NAME_LEN) {
@@ -45,6 +60,13 @@ class InfoPopupElement {
 
     public function getGuiElement(): GUIElement {
         return  popupElement;
+    }
+
+    private function assetsLoaded(): Void {
+        GTextureManager.createTexture(GStaticAssetManager.getImageAssetById("land_" + land.getId()).id, cast GStaticAssetManager.getImageAssetById("land_" + land.getId()));
+        var texture: GUITextureSkin = new GUITextureSkin("land_" + land.getId(), GTextureManager.getTexture("land_" + land.getId()));
+        texture.scaleY = texture.scaleX = 0.5;
+        popupElement.getChildByName("info_popup_land_asset", true).skin = texture;
     }
 
 }
