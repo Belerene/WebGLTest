@@ -12,8 +12,23 @@
     </div>
     <div class="contentright" style="width: calc(100% - 96px); padding: 2rem;">
         <h2 style="margin: 0; letter-spacing:5px; line-height:3.5rem; font-size:3rem; font-family: Tahoma; color: #ffffff; margin-bottom: 2rem;">WORLD MAP</h2>
-        <canvas tabindex="0" id="canvas" height="650" style="outline: none; width: 100%; max-width: 1200px; min-width:640px; height: 650px; cursor: auto;"></canvas>
+        <canvas tabindex="0" id="canvas" height="550" style="outline: none; width: 100%; max-width: 1200px; min-width:640px; height: 550px; cursor: auto;"></canvas>
 
+        window.worldMapInitialized = function() {
+
+            var mapw = $('#canvas').width();
+            if (mapw > 1200) {
+                mapw = 1200;
+            }
+            if (mapw < 640) {
+                mapw = 640;
+            }
+            $('#canvas').attr("width", mapw);
+            window.resizeMap(mapw,550);
+
+            window.setUsersTickets([59,61,61,62,63]);
+            window.setMyLands([5,6,1447,5410,2234]);
+        }
         <script crossorigin="anonymous" type="text/javascript" src="js/test.js"></script>
         <script>
            $(document).ready(function(){
@@ -25,10 +40,8 @@
                 mapw = 640;
             }
             $('#canvas').attr("width", mapw);
-            window.resizeMap(mapw,650);
+            window.resizeMap(mapw,550);
 
-            window.setUsersTickets([59,61,61,62,63]);
-            window.setMyLands([5,6,1447,5410,2234]);
         });
         $(window).resize(function(){
             var mapw = $('#canvas').width();
@@ -39,7 +52,7 @@
                 mapw = 640;
             }
             $('#canvas').attr("width", mapw);
-            window.resizeMap(mapw,650);
+            window.resizeMap(mapw,550);
         });
         </script>
         
