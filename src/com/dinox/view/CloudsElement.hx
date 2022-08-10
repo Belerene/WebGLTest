@@ -20,12 +20,17 @@ class CloudsElement {
     private static var cloudsNumber: Int = 400;
 
 
-    public function new() {
+    public function new(p_mouseOverMinimalZoom: Float) {
         cloudsElement = new GUIElement();
         cloudsElement = cast GXmlPrototypeParser.createPrototypeFromXmlString(cloudsXml.toString());
         cloudsElement.alpha = 0;
         elementVisible = false;
         generateCloudElements();
+        if(Main.INITIAL_ZOOM < p_mouseOverMinimalZoom) {
+            showElement();
+        } else {
+            hideElement();
+        }
     }
 
     private function generateCloudElements(): Void {

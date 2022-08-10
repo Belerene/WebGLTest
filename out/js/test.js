@@ -3574,7 +3574,7 @@ com_dinox_model_LandMap.prototype = {
 				var p_arg18 = null;
 				var p_arg19 = null;
 				var p_arg20 = null;
-				var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 211, className : "com.dinox.model.LandMap", methodName : "setupLand"};
+				var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 210, className : "com.dinox.model.LandMap", methodName : "setupLand"};
 				if(com_genome2d_debug_GDebug.showPriority <= 4) {
 					var args = [];
 					if(p_arg1 != null) {
@@ -3674,7 +3674,7 @@ com_dinox_model_LandMap.prototype = {
 			var p_arg181 = null;
 			var p_arg191 = null;
 			var p_arg201 = null;
-			var pos1 = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 214, className : "com.dinox.model.LandMap", methodName : "setupLand"};
+			var pos1 = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 213, className : "com.dinox.model.LandMap", methodName : "setupLand"};
 			if(com_genome2d_debug_GDebug.showPriority <= 4) {
 				var args1 = [];
 				if(p_arg110 != null) {
@@ -3765,104 +3765,6 @@ com_dinox_model_LandMap.prototype = {
 		}
 	}
 	,zoomChanged_handler: function(p_scale) {
-		var p_arg1 = "ZOOOOOOOM------------------------ : " + p_scale;
-		var p_arg2 = null;
-		var p_arg3 = null;
-		var p_arg4 = null;
-		var p_arg5 = null;
-		var p_arg6 = null;
-		var p_arg7 = null;
-		var p_arg8 = null;
-		var p_arg9 = null;
-		var p_arg10 = null;
-		var p_arg11 = null;
-		var p_arg12 = null;
-		var p_arg13 = null;
-		var p_arg14 = null;
-		var p_arg15 = null;
-		var p_arg16 = null;
-		var p_arg17 = null;
-		var p_arg18 = null;
-		var p_arg19 = null;
-		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 227, className : "com.dinox.model.LandMap", methodName : "zoomChanged_handler"};
-		if(com_genome2d_debug_GDebug.showPriority <= 3) {
-			var args = [];
-			if(p_arg1 != null) {
-				args.push(p_arg1);
-			}
-			if(p_arg2 != null) {
-				args.push(p_arg2);
-			}
-			if(p_arg3 != null) {
-				args.push(p_arg3);
-			}
-			if(p_arg4 != null) {
-				args.push(p_arg4);
-			}
-			if(p_arg5 != null) {
-				args.push(p_arg5);
-			}
-			if(p_arg6 != null) {
-				args.push(p_arg6);
-			}
-			if(p_arg7 != null) {
-				args.push(p_arg7);
-			}
-			if(p_arg8 != null) {
-				args.push(p_arg8);
-			}
-			if(p_arg9 != null) {
-				args.push(p_arg9);
-			}
-			if(p_arg10 != null) {
-				args.push(p_arg10);
-			}
-			if(p_arg11 != null) {
-				args.push(p_arg11);
-			}
-			if(p_arg12 != null) {
-				args.push(p_arg12);
-			}
-			if(p_arg13 != null) {
-				args.push(p_arg13);
-			}
-			if(p_arg14 != null) {
-				args.push(p_arg14);
-			}
-			if(p_arg15 != null) {
-				args.push(p_arg15);
-			}
-			if(p_arg16 != null) {
-				args.push(p_arg16);
-			}
-			if(p_arg17 != null) {
-				args.push(p_arg17);
-			}
-			if(p_arg18 != null) {
-				args.push(p_arg18);
-			}
-			if(p_arg19 != null) {
-				args.push(p_arg19);
-			}
-			if(p_arg20 != null) {
-				args.push(p_arg20);
-			}
-			if(com_genome2d_debug_GDebug.g2d_onDebug != null) {
-				com_genome2d_debug_GDebug.g2d_onDebug.dispatch(3,pos,args);
-			}
-			var msg = "INFO: ";
-			if(pos != null) {
-				msg += pos.fileName + ":" + pos.lineNumber + " : " + pos.methodName + " : ";
-			}
-			if(args.length > 0) {
-				msg += args.toString();
-			}
-			com_genome2d_debug_GDebug.g2d_log += msg;
-			if(com_genome2d_debug_GDebug.useNativeTrace) {
-				window.console.log(msg);
-			}
-		}
 		var _g = 0;
 		var _g1 = this.tiles.length;
 		while(_g < _g1) {
@@ -3890,7 +3792,7 @@ com_dinox_model_LandMap.prototype = {
 		if(this.cloudsElement != null) {
 			this.cloudsElement.handleZoomChange(this.zoomLevel,com_dinox_model_LandMap.mouseOverMinimalZoom);
 		} else {
-			this.cloudsElement = new com_dinox_view_CloudsElement();
+			this.cloudsElement = new com_dinox_view_CloudsElement(com_dinox_model_LandMap.mouseOverMinimalZoom);
 			this.cloudsGui.root.addChild(this.cloudsElement.getGuiElement());
 		}
 	}
@@ -4306,7 +4208,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 585, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupRarity_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 583, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupRarity_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -4418,7 +4320,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 600, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupSize_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 598, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupSize_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -5108,7 +5010,7 @@ com_dinox_model_tile_TileSizeType.higherSize = function(p_size) {
 com_dinox_model_tile_TileSizeType.sizeToString = function(p_size) {
 	return com_dinox_model_tile_TileSizeType.sizeStringList[p_size - 1];
 };
-var com_dinox_view_CloudsElement = function() {
+var com_dinox_view_CloudsElement = function(p_mouseOverMinimalZoom) {
 	this.cloud9 = "<element name=\"cloud9\"/>";
 	this.cloud8 = "<element name=\"cloud8\"/>";
 	this.cloud7 = "<element name=\"cloud7\"/>";
@@ -5125,6 +5027,11 @@ var com_dinox_view_CloudsElement = function() {
 	this.cloudsElement.alpha = 0;
 	this.elementVisible = false;
 	this.generateCloudElements();
+	if(com_dinox_Main.INITIAL_ZOOM < p_mouseOverMinimalZoom) {
+		this.showElement();
+	} else {
+		this.hideElement();
+	}
 };
 $hxClasses["com.dinox.view.CloudsElement"] = com_dinox_view_CloudsElement;
 com_dinox_view_CloudsElement.__name__ = "com.dinox.view.CloudsElement";
@@ -5192,7 +5099,7 @@ com_dinox_view_CloudsElement.prototype = {
 			var p_arg18 = null;
 			var p_arg19 = null;
 			var p_arg20 = null;
-			var pos = { fileName : "src/com/dinox/view/CloudsElement.hx", lineNumber : 51, className : "com.dinox.view.CloudsElement", methodName : "tmp"};
+			var pos = { fileName : "src/com/dinox/view/CloudsElement.hx", lineNumber : 56, className : "com.dinox.view.CloudsElement", methodName : "tmp"};
 			if(com_genome2d_debug_GDebug.showPriority <= 3) {
 				var args = [];
 				if(p_arg1 != null) {
@@ -52470,8 +52377,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "508b8e179a694acd96319c78a9e4ac90";
-com_genome2d_Genome2D.DATE = "2022-08-10 14:56:21";
+com_genome2d_Genome2D.BUILD = "fb4a7be6dff368f04b1538cca062f85d";
+com_genome2d_Genome2D.DATE = "2022-08-10 15:01:17";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

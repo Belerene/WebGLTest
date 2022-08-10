@@ -247,7 +247,7 @@ class LandMap {
         if(cloudsElement != null) {
             cloudsElement.handleZoomChange(zoomLevel, mouseOverMinimalZoom);
         } else {
-            cloudsElement = new CloudsElement();
+            cloudsElement = new CloudsElement(mouseOverMinimalZoom);
             cloudsGui.root.addChild(cloudsElement.getGuiElement());
         }
     }
