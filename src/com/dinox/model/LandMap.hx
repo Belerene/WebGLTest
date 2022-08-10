@@ -114,7 +114,6 @@ class LandMap {
         }
 
         core.tmpTest();
-        core.getListOfOwnedLands();
 
 
         Main.onResizeCallback.add(onResize);
