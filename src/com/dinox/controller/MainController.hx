@@ -174,6 +174,7 @@ class MainController {
                 if(change <= MAX_SCALE && change >= MIN_SCALE) {
                     canChangeZoom = false;
                     var changedScale: Float = change;
+                    trace(change);
                     var step: GTweenStep = GTween.create(core.getMapCamera(), true).ease(GLinear.none).propF("zoom", change, 0.1, false).onComplete(onCompleteZoom, [change]);
             }
         }
