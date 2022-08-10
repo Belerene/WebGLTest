@@ -1,6 +1,6 @@
 <element name="uiHolder" anchorAlign="MIDDLE_CENTER" pivotAlign="MIDDLE_CENTER" mouseEnabled="false">
     <element name="ui" flushBatch="true" mouseEnabled="false"/>
-    <element name="filters_rarity" preferredWidth="200" preferredHeight="500" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" skin="@semitransparent_bg" anchorX="10" anchorY="10" mouseEnabled="true">
+    <element name="filters_rarity" preferredWidth="200" preferredHeight="540" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" skin="@semitransparent_bg" anchorX="10" anchorY="10" mouseEnabled="true">
         <element name="common" preferredWidth="15" preferredHeight="15" anchorX="10" anchorY="10" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" mouseEnabled="true">
             <element name="common_label" preferredWidth="100" preferredHeight="20" anchorX="35" anchorY="2" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="Common"/>
         </element>
@@ -40,6 +40,9 @@
         </element>
         <element name="unowned" preferredWidth="20" preferredHeight="20" anchorX="10" anchorY="470" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" mouseEnabled="true">
             <element name="unowned_label" preferredWidth="100" preferredHeight="20" anchorY="2" anchorX="35" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="Claimable"/>
+        </element>
+        <element name="mine" preferredWidth="20" preferredHeight="20" anchorX="10" anchorY="505" skin="@checkbox" skin.checked="@checkbox_checked" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" mouseEnabled="true">
+            <element name="mine_label" preferredWidth="100" preferredHeight="20" anchorY="2" anchorX="35" skin="@font_smallest" flushBatch="true" pivotAlign="TOP_LEFT" anchorAlign="TOP_LEFT" model="My Lands"/>
         </element>
     </element>
 

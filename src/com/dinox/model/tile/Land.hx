@@ -122,6 +122,9 @@ class Land {
     }
 
     public function setOwner(p_owner): Void {
+        for(i in 0...tiles.length) {
+            tiles[i].setOwnedBy(p_owner);
+        }
         ownedBy = p_owner;
     }
 

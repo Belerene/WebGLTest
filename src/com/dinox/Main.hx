@@ -17,6 +17,7 @@ class Main extends GProject{
     public static var onResizeCallback: GCallback2<Int, Int> = new GCallback2<Int, Int>();
     public static var INITIAL_ZOOM: Float = 0.04;
     public static var userTickets: Array<Int> = new Array<Int>();
+    public static var userLands: Array<Int> = new Array<Int>();
 
     private var initType:Int = 0;
 
@@ -61,7 +62,7 @@ class Main extends GProject{
 
     @:expose("setMyLands") static function setMyLands(user_lands:Array<Int>) {
         trace(user_lands);
-//        userTickets = user_tickets;
+        userLands = user_lands;
     }
     override private function init():Void {
         getGenome().getContext().setBackgroundColor(0x10466a,1);

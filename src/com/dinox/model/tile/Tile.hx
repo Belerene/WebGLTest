@@ -126,7 +126,7 @@ class Tile {
         if(p_filters.length == 0) { tileRenderer.resetHighlight(); return; }
         var highlight: Bool = false;
         for(filter  in p_filters) {
-            if(filter == getRarityAsString() || filter == getSizeAsString() || filter == getOwnership()) {
+            if(filter == getRarityAsString() || filter == getSizeAsString() || filter == getOwnership(filter)) {
                 highlight = true;
             }
         }
@@ -137,10 +137,17 @@ class Tile {
         }
     }
 
-    private function getOwnership(): String {
+    private function getOwnership(p_filter: String = ""): String {
+        if(p_filter != "") {
+            if(p_filter == "owned") {
+                if(ownedBy == "mine") {
+                    return "owned"; // if filtering for owned lands - return my lands as owned as well
+                }
+            }
+        }
         if(ownedBy == "Claimable") {
             return "unowned";
-        } else if(ownedBy == "Mine") {
+        } else if(ownedBy == "mine") {
             return "mine";
         } else if(ownedBy != "") {
             return "owned";

@@ -153,6 +153,9 @@ class LandMap {
             var landId: String = Reflect.getProperty(p_json, field);
             var id: String = Reflect.getProperty(landId, "land_id");
             lands[Std.parseInt(id)].setOwner("Claimable");
+            if(Main.userLands.indexOf(Std.parseInt(id)) >= 0) {
+                lands[Std.parseInt(id)].setOwner("mine");
+            }
         }
     }
 
