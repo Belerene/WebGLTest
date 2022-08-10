@@ -1,4 +1,5 @@
 package com.dinox.model;
+import js.Syntax;
 import com.dinox.view.CloudsElement;
 import com.dinox.view.TileMouseOverElement;
 import haxe.Json;
@@ -512,6 +513,10 @@ class LandMap {
     private function infoPopupOpen_handler(p_x: Float, p_y: Float, p_contextCamera: GCamera): Void {
         var tile: Tile = gtileMap.getTileAt(p_x, p_y, p_contextCamera);
         if(tile.tileIsInLand) {
+
+            var land: Land = getLandByTile(tile);
+            Syntax.code("window.selectedClaimingLandId = {0};",land.getId());
+
             handleInfoPopupOpen(tile);
         }
     }
@@ -620,6 +625,9 @@ class LandMap {
         if(controller.canHideInfoPopup) {
             if(openInfoPopup != null) {
                 var step: GTweenStep = GTween.create(openInfoPopup.getGuiElement(), true).ease(GLinear.none).propF("alpha", 0, 0.1, false).onComplete(onCompleteHideInfoPopup);
+
+                Syntax.code("window.selectedClaimingLandId = {0};",0);
+
             }
         }
     }
