@@ -12,9 +12,17 @@ class TileHighlightsHolderElement {
         tileHighlightsHolderElement.getChildByName("elementHolder", true).preferredWidth = Main.stageWidth;
         tileHighlightsHolderElement.preferredHeight = Main.stageHeight;
         tileHighlightsHolderElement.getChildByName("elementHolder", true).preferredHeight = Main.stageHeight;
+        Main.onResizeCallback.add(onResize);
     }
 
     public function getGuiElement(): GUIElement {
         return  tileHighlightsHolderElement;
+    }
+
+    private function onResize(diffW: Int, diffH: Int): Void {
+        tileHighlightsHolderElement.preferredWidth = Main.stageWidth;
+        tileHighlightsHolderElement.getChildByName("elementHolder", true).preferredWidth = Main.stageWidth;
+        tileHighlightsHolderElement.preferredHeight = Main.stageHeight;
+        tileHighlightsHolderElement.getChildByName("elementHolder", true).preferredHeight = Main.stageHeight;
     }
 }

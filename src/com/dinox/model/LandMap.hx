@@ -111,6 +111,14 @@ class LandMap {
 
         core.tmpTest();
 
+        Main.onResizeCallback.add(onResize);
+    }
+
+    private function onResize(diffW: Int, diffH: Int): Void {
+        if(infoPopupTileHighlightElement != null) {
+            infoPopupTileHighlightElement.getGuiElement().anchorX -= diffW/2;
+            infoPopupTileHighlightElement.getGuiElement().anchorY -= diffH/2;
+        }
     }
 
     public function onTick(f:Float): Void {

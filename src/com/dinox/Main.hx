@@ -1,4 +1,5 @@
 package com.dinox;
+import com.genome2d.callbacks.GCallback;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.Genome2D;
 import com.genome2d.debug.GDebug;
@@ -15,6 +16,7 @@ class Main extends GProject{
     public static var stageWidth: Int = 0;
     public static var stageHeight: Int = 0;
     public static var IS_DEV: Bool = true;
+    public static var onResizeCallback: GCallback2<Int, Int> = new GCallback2<Int, Int>();
 
     private var initType:Int = 0;
 
@@ -32,7 +34,7 @@ class Main extends GProject{
     public function new(?p_init:Int = 0) {
         initType = p_init;
         var contextConfig:GContextConfig = new GContextConfig(null);
-        Browser.document.getElementById("canvas").addEventListener("resize", test);
+//        Browser.document.getElementById("canvas").addEventListener("resize", test);
         stageWidth = contextConfig.nativeStage.width;
         stageHeight = contextConfig.nativeStage.height;
         trace(stageWidth, stageHeight);
@@ -44,6 +46,11 @@ class Main extends GProject{
 
     @:expose("resizeMap") static function resizeMap(w,h) {
         Genome2D.getInstance().getContext().resize(new GRectangle(0,0,w,h));
+        var diffW: Int = stageWidth - Math.round(w);
+        var diffH: Int = stageHeight - Math.round(h);
+        stageWidth = Math.round(w);
+        stageHeight = Math.round(h);
+        onResizeCallback.dispatch(diffW, diffH);
     }
 
     override private function init():Void {
@@ -51,7 +58,12 @@ class Main extends GProject{
         core = new Core(getGenome().root);
     }
 
-    private function test(): Void {
-        GDebug.info("TEST________________________________________2");
-    }
+
+//    public static function getOnResizeCa(): Void {
+//        GDebug.info("TEST________________________________________2");
+//        GCallback()
+//    }
+//    private function test(): Void {
+//        GDebug.info("TEST________________________________________2");
+//    }
 }

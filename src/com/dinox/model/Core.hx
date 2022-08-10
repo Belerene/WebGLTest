@@ -30,6 +30,7 @@ class Core {
     public function new(p_root: GNode) {
         rootNode = p_root;
         rootNode.setPosition((Main.stageWidth/2), (Main.stageHeight/2));
+        Main.onResizeCallback.add(onResize);
 
         setupMapGUI();
         setupCloudsGUI();
@@ -41,6 +42,14 @@ class Core {
         initAssetsWrapper();
 
 
+    }
+
+    private function onResize(diffW: Int, diffH: Int): Void {
+        rootNode.setPosition((Main.stageWidth/2), (Main.stageHeight/2));
+        mapGui.setBounds(new GRectangle(0,0, Main.stageWidth,Main.stageHeight));
+        cloudsGui.setBounds(new GRectangle(0,0, Main.stageWidth,Main.stageHeight));
+        tileHighlightGui.setBounds(new GRectangle(0,0, Main.stageWidth,Main.stageHeight));
+        uiGui.setBounds(new GRectangle(0,0, Main.stageWidth,Main.stageHeight));
     }
 
     public function tmpTest(): Void {

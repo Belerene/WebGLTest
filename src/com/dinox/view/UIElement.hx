@@ -29,10 +29,19 @@ class UIElement {
         uiElement.getChildByName("mythical_label", true).skin.color = TileRarityType.MYTHICAL_COLOR;
 
         if(Main.IS_DEV) uiElement.setState("dev");
+
+        Main.onResizeCallback.add(onResize);
     }
 
     public function getGuiElement(): GUIElement {
         return  uiElement;
+    }
+
+    private function onResize(diffW: Int, diffH: Int): Void {
+        uiElement.preferredWidth = Main.stageWidth;
+        uiElement.getChildByName("ui", true).preferredWidth = Main.stageWidth;
+        uiElement.preferredHeight = Main.stageHeight;
+        uiElement.getChildByName("ui", true).preferredHeight = Main.stageHeight;
     }
 
 }
