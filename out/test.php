@@ -26,6 +26,8 @@
             }
             $('#canvas').attr("width", mapw);
             window.resizeMap(mapw,650);
+
+            window.setUsersTickets([59,61,61,62,63]);
         });
         $(window).resize(function(){
             var mapw = $('#canvas').width();

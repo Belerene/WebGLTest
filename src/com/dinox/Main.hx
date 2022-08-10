@@ -54,6 +54,10 @@ class Main extends GProject{
         onResizeCallback.dispatch(diffW, diffH);
     }
 
+    @:expose("setUsersTickets") static function setUsersTickets(user_tickets:Array<Int>) {
+        trace(user_tickets);
+    }
+
     override private function init():Void {
         getGenome().getContext().setBackgroundColor(0x10466a,1);
         core = new Core(getGenome().root);

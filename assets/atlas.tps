@@ -173,6 +173,21 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">claim_button.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,11,86,22</rect>
+                <key>scale9Paddings</key>
+                <rect>43,11,86,22</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">hover9s.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -708,6 +723,7 @@
             <filename>../out/assets/cloud7.png</filename>
             <filename>../out/assets/cloud8.png</filename>
             <filename>../out/assets/cloud9.png</filename>
+            <filename>claim_button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
