@@ -114,6 +114,7 @@ class Core {
         mapCamera.node.name = "mapCamera";
         mapCamera.setView(0, 0, 1, 1);
         mapCamera.contextCamera.group = MAP_CAMERA_GROUP;
+        mapCamera.zoom = Main.INITIAL_ZOOM;
         rootNode.addChild(mapCamera.node);
     }
 

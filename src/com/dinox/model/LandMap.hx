@@ -75,6 +75,7 @@ class LandMap {
 
 
     public function new(p_uiGui: GUI, p_tileHighlightGui: GUI, p_mapGui: GUI, p_cloudsGui: GUI, p_core: Core) {
+        zoomLevel = Main.INITIAL_ZOOM;
         core = p_core;
         uiGui = p_uiGui;
         tileHighlightGui = p_tileHighlightGui;
@@ -104,12 +105,15 @@ class LandMap {
         controller.addMapScreenListeners(mapDragged_handler, tileMouseOver_handler, infoPopupOpen_handler, zoomChanged_handler);
         controller.addUiFilterListeners(mainMapScreen.getUiElement().getGuiElement(), sizeFilterClicked_handler, rarityFilterClicked_handler, ownershipFilterClicked_handler, devUiClicked_handler);
 
+        zoomChanged_handler(Main.INITIAL_ZOOM);
+
         if(Main.IS_DEV) {
             controller.addDevMapScreenListeners(DEV_mapDragged_handler, DEV_mapMouseDown_handler);
             controller.addDevUIListener(devUiClicked_handler, mainMapScreen.getUiElement().getGuiElement());
         }
 
         core.tmpTest();
+
 
         Main.onResizeCallback.add(onResize);
     }

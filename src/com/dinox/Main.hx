@@ -17,6 +17,7 @@ class Main extends GProject{
     public static var stageHeight: Int = 0;
     public static var IS_DEV: Bool = true;
     public static var onResizeCallback: GCallback2<Int, Int> = new GCallback2<Int, Int>();
+    public static var INITIAL_ZOOM: Float = 0.04;
 
     private var initType:Int = 0;
 
