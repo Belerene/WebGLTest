@@ -262,8 +262,8 @@ class LandMap {
         } else {
             handleInfoPopupTileHighlight(p_tile, mouseOverCamera);
             openInfoPopup = new InfoPopupElement(getLandByTile(p_tile));
-            openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
-            openInfoPopup.getGuiElement().anchorY = 0;
+//            openInfoPopup.getGuiElement().anchorX = Main.stageWidth - openInfoPopup.getGuiElement().preferredWidth;
+//            openInfoPopup.getGuiElement().anchorY = 0;
             openInfoPopup.getGuiElement().getChildByName("infoPopup_closeBtn", true).onMouseUp.add(onCloseInfoPopup_handler);
             uiGui.root.addChild(openInfoPopup.getGuiElement());
             openInfoPopup.getGuiElement().alpha = 0;

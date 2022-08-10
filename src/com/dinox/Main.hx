@@ -1,4 +1,6 @@
 package com.dinox;
+import com.genome2d.debug.GDebug;
+import js.Browser;
 import com.genome2d.context.stats.GStats;
 import com.genome2d.components.GCameraController;
 import com.genome2d.node.GNode;
@@ -27,6 +29,7 @@ class Main extends GProject{
     public function new(?p_init:Int = 0) {
         initType = p_init;
         var contextConfig:GContextConfig = new GContextConfig(null);
+//        Browser.document.getElementById("canvas").addEventListener("resize", test);
         stageWidth = contextConfig.nativeStage.width;
         stageHeight = contextConfig.nativeStage.height;
         var config:GProjectConfig = new GProjectConfig(contextConfig);
@@ -39,4 +42,8 @@ class Main extends GProject{
         getGenome().getContext().setBackgroundColor(0x10466a,1);
         core = new Core(getGenome().root);
     }
+//
+//    private function test(): Void {
+//        GDebug.info("TEST________________________________________2");
+//    }
 }
