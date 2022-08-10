@@ -43,7 +43,6 @@ class Core {
 
         initAssetsWrapper();
 
-        Syntax.code("window.worldMapInitialized();");
 
     }
 
@@ -170,6 +169,7 @@ class Core {
 
     private function assetsLoader_handler(): Void {
         initLandMap();
+        Syntax.code("window.worldMapInitialized();");
     }
 
     private function assetsFailed_hanled(p_asset: GAsset): Void {

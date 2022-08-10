@@ -150,10 +150,10 @@ class LandMap {
     public function addOwnedLands(p_json: Dynamic): Void {
         for(field in Reflect.fields(p_json)) {
             var landId: String = Reflect.getProperty(p_json, field);
-            var id: String = Reflect.getProperty(landId, "land_id");
-            lands[Std.parseInt(id)].setOwner("Claimable");
-            if(Main.userLands.indexOf(Std.parseInt(id)) >= 0) {
-                lands[Std.parseInt(id)].setOwner("mine");
+            var id: Int = Reflect.getProperty(landId, "land_id");
+            lands[id].setOwner("Claimable");
+            if(Main.userLands.indexOf(id) >= 0) {
+                lands[id].setOwner("mine");
             }
         }
     }
