@@ -414,7 +414,7 @@ class LandMap {
                 mainMapScreen.getUiElement().getGuiElement().getChildByName(p_target, true).setState("checked");
             }
 
-        } else if(p_target == "owned" || p_target == "unowned") {
+        } else if(p_target == "owned" || p_target == "unowned" || p_target == "mine") {
             // owned filter is already selected, unselect it
             if(ownedFilterSelected == p_target) {
                 ownedFilterSelected = "";

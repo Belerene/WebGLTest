@@ -98,6 +98,7 @@ class MainController {
     public function addOwnershipFilterListeners(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {
         p_uiElement.getChildByName("owned", true).onMouseDown.add(p_handler);
         p_uiElement.getChildByName("unowned", true).onMouseDown.add(p_handler);
+        p_uiElement.getChildByName("mine", true).onMouseDown.add(p_handler);
     }
 
     public function addDevUIListener(p_handler: GMouseInput->Void, p_uiElement: GUIElement): Void {

@@ -140,6 +140,8 @@ class Tile {
     private function getOwnership(): String {
         if(ownedBy == "Claimable") {
             return "unowned";
+        } else if(ownedBy == "Mine") {
+            return "mine";
         } else if(ownedBy != "") {
             return "owned";
         }
