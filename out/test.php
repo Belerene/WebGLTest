@@ -28,7 +28,7 @@
             window.resizeMap(mapw,550);
 
             window.setUsersTickets([59,61,61,62,63]);
-            window.setMyLands([5,6,1447,5410,2234]);
+            window.setMyLands([226,3095,6,5]);
         }
         </script>
         <script crossorigin="anonymous" type="text/javascript" src="js/test.js"></script>
