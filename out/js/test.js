@@ -2562,7 +2562,6 @@ var com_dinox_model_Core = function(p_root) {
 	this.initMapCamera();
 	this.initUICamera();
 	this.initAssetsWrapper();
-	window.worldMapInitialized();
 };
 $hxClasses["com.dinox.model.Core"] = com_dinox_model_Core;
 com_dinox_model_Core.__name__ = "com.dinox.model.Core";
@@ -2606,7 +2605,7 @@ com_dinox_model_Core.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/Core.hx", lineNumber : 59, className : "com.dinox.model.Core", methodName : "tmpTest"};
+		var pos = { fileName : "src/com/dinox/model/Core.hx", lineNumber : 58, className : "com.dinox.model.Core", methodName : "tmpTest"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -2778,6 +2777,7 @@ com_dinox_model_Core.prototype = {
 	}
 	,assetsLoader_handler: function() {
 		this.initLandMap();
+		window.worldMapInitialized();
 	}
 	,assetsFailed_hanled: function(p_asset) {
 		var p_arg1 = "Core.assetsFailed_hanlder: failed to load asset ";
@@ -3521,10 +3521,14 @@ com_dinox_model_LandMap.prototype = {
 			++_g;
 			var landElement = Reflect.getProperty(p_json,field);
 			var assets = Reflect.getProperty(landElement,"a");
+			var id = Reflect.getProperty(landElement,"_id");
+			var owner = "Owned";
+			if(com_dinox_Main.userLands.indexOf(id) >= 0) {
+				owner = "mine";
+			}
 			var this1 = this.lands;
-			var key = Reflect.getProperty(landElement,"_id");
-			var value = this.setupLand(Reflect.getProperty(landElement,"_id"),Reflect.getProperty(landElement,"x"),Reflect.getProperty(landElement,"y"),Reflect.getProperty(landElement,"s"),Reflect.getProperty(landElement,"r"),"Owned",assets);
-			this1.h[key] = value;
+			var value = this.setupLand(id,Reflect.getProperty(landElement,"x"),Reflect.getProperty(landElement,"y"),Reflect.getProperty(landElement,"s"),Reflect.getProperty(landElement,"r"),owner,assets);
+			this1.h[id] = value;
 		}
 	}
 	,addOwnedLands: function(p_json) {
@@ -3535,9 +3539,10 @@ com_dinox_model_LandMap.prototype = {
 			++_g;
 			var landId = Reflect.getProperty(p_json,field);
 			var id = Reflect.getProperty(landId,"land_id");
-			this.lands.h[Std.parseInt(id)].setOwner("Claimable");
-			if(com_dinox_Main.userLands.indexOf(Std.parseInt(id)) >= 0) {
-				this.lands.h[Std.parseInt(id)].setOwner("mine");
+			if(com_dinox_Main.userLands.indexOf(id) >= 0) {
+				this.lands.h[id].setOwner("mine");
+			} else {
+				this.lands.h[id].setOwner("Claimable");
 			}
 		}
 	}
@@ -3608,7 +3613,7 @@ com_dinox_model_LandMap.prototype = {
 				var p_arg18 = null;
 				var p_arg19 = null;
 				var p_arg20 = null;
-				var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 203, className : "com.dinox.model.LandMap", methodName : "setupLand"};
+				var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 209, className : "com.dinox.model.LandMap", methodName : "setupLand"};
 				if(com_genome2d_debug_GDebug.showPriority <= 4) {
 					var args = [];
 					if(p_arg1 != null) {
@@ -3708,7 +3713,7 @@ com_dinox_model_LandMap.prototype = {
 			var p_arg181 = null;
 			var p_arg191 = null;
 			var p_arg201 = null;
-			var pos1 = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 206, className : "com.dinox.model.LandMap", methodName : "setupLand"};
+			var pos1 = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 212, className : "com.dinox.model.LandMap", methodName : "setupLand"};
 			if(com_genome2d_debug_GDebug.showPriority <= 4) {
 				var args1 = [];
 				if(p_arg110 != null) {
@@ -4245,7 +4250,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 579, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupRarity_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 585, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupRarity_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -4357,7 +4362,7 @@ com_dinox_model_LandMap.prototype = {
 		var p_arg18 = null;
 		var p_arg19 = null;
 		var p_arg20 = null;
-		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 594, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupSize_handler"};
+		var pos = { fileName : "src/com/dinox/model/LandMap.hx", lineNumber : 600, className : "com.dinox.model.LandMap", methodName : "DEV_infoPopupSize_handler"};
 		if(com_genome2d_debug_GDebug.showPriority <= 3) {
 			var args = [];
 			if(p_arg1 != null) {
@@ -52542,8 +52547,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "2944b672d6756fd17146ffd0b3603402";
-com_genome2d_Genome2D.DATE = "2022-08-10 17:41:22";
+com_genome2d_Genome2D.BUILD = "8e47a420cd62e34a4d35fb608dab25ca";
+com_genome2d_Genome2D.DATE = "2022-08-11 09:51:16";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

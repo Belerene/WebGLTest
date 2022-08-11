@@ -137,12 +137,17 @@ class LandMap {
         for(field in Reflect.fields(p_json)) {
             var landElement: Dynamic = Reflect.getProperty(p_json, field);
             var assets: Array<Int> = Reflect.getProperty(landElement, "a");
-            lands.set(Reflect.getProperty(landElement, "_id"), setupLand(Reflect.getProperty(landElement, "_id"),
+            var id: Int = Reflect.getProperty(landElement, "_id");
+            var owner: String = "Owned";
+            if(Main.userLands.indexOf(id) >= 0) {
+                owner = "mine";
+            }
+            lands.set(id, setupLand(id,
                         Reflect.getProperty(landElement, "x"),
                         Reflect.getProperty(landElement, "y"),
                         Reflect.getProperty(landElement, "s"),
                         Reflect.getProperty(landElement, "r"),
-                        "Owned",
+                        owner,
                         assets));
         }
     }
@@ -151,9 +156,10 @@ class LandMap {
         for(field in Reflect.fields(p_json)) {
             var landId: String = Reflect.getProperty(p_json, field);
             var id: Int = Reflect.getProperty(landId, "land_id");
-            lands[id].setOwner("Claimable");
             if(Main.userLands.indexOf(id) >= 0) {
                 lands[id].setOwner("mine");
+            } else {
+                lands[id].setOwner("Claimable");
             }
         }
     }
