@@ -117,6 +117,15 @@ class LandMap {
 
 
         Main.onResizeCallback.add(onResize);
+        Main.onMyLandsLoadedCallback.add(onMyLandsLoaded);
+    }
+
+    private function onMyLandsLoaded(): Void {
+        if(lands != null) {
+            for(i in 0...Main.userLands.length) {
+                lands[Main.userLands[i]].setOwner("mine");
+            }
+        }
     }
 
     private function onResize(diffW: Int, diffH: Int): Void {

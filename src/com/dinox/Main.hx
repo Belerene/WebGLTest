@@ -15,6 +15,7 @@ class Main extends GProject{
     public static var stageHeight: Int = 0;
     public static var IS_DEV: Bool = true;
     public static var onResizeCallback: GCallback2<Int, Int> = new GCallback2<Int, Int>();
+    public static var onMyLandsLoadedCallback: GCallback0 = new GCallback0();
     public static var INITIAL_ZOOM: Float = 0.04;
     public static var userTickets: Array<Int> = new Array<Int>();
     public static var userLands: Array<Int> = new Array<Int>();
@@ -63,6 +64,7 @@ class Main extends GProject{
     @:expose("setMyLands") static function setMyLands(user_lands:Array<Int>) {
         trace(user_lands);
         userLands = user_lands;
+        onMyLandsLoadedCallback.dispatch();
     }
     override private function init():Void {
         getGenome().getContext().setBackgroundColor(0x10466a,1);
