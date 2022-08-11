@@ -4510,7 +4510,6 @@ com_dinox_model_LandMap.prototype = {
 	,onClaimLandInfoPopup_handler: function(signal) {
 		if(this.openInfoPopup != null) {
 			if(this.openInfoPopup.getCanClaimSelectedLand()) {
-				window.claimSelectedLand();
 				this.openInfoPopup.landClaimed();
 			}
 		}
@@ -5496,7 +5495,6 @@ com_dinox_view_InfoPopupElement.prototype = {
 	}
 	,landClaimed: function() {
 		this.canClaimSelectedLand = false;
-		this.land.setOwner("Owned");
 		this.popupElement.setState("owned");
 	}
 	,getCanClaimSelectedLand: function() {
@@ -52560,8 +52558,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "cdaffc0ae0877fef90f90d626cf6a43c";
-com_genome2d_Genome2D.DATE = "2022-08-11 10:38:48";
+com_genome2d_Genome2D.BUILD = "df5009fd81a82df0cdf9908f631c1aff";
+com_genome2d_Genome2D.DATE = "2022-08-11 10:54:10";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

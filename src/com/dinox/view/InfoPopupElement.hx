@@ -79,7 +79,7 @@ class InfoPopupElement {
 
     public function landClaimed(): Void {
         canClaimSelectedLand = false;
-        land.setOwner("Owned");
+//        land.setOwner("Owned");
         popupElement.setState("owned");
     }
 
