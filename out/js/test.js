@@ -5018,13 +5018,13 @@ com_dinox_model_tile_Tile.prototype = {
 			this.tileRenderer.resetHighlight();
 			return;
 		}
-		var highlight = false;
+		var highlight = true;
 		var _g = 0;
 		while(_g < p_filters.length) {
 			var filter = p_filters[_g];
 			++_g;
-			if(filter == this.getRarityAsString() || filter == this.getSizeAsString() || filter == this.getOwnership(filter)) {
-				highlight = true;
+			if(filter != this.getRarityAsString() && filter != this.getSizeAsString() && filter != this.getOwnership(filter)) {
+				highlight = false;
 			}
 		}
 		if(highlight) {
@@ -52560,8 +52560,8 @@ com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_SMALL = 0.25;
 com_dinox_view_TileRenderer.ZOOM_BREAKPOINT_LARGE = 1.25;
 com_dinox_view_TileRenderer.BASE_TILE_SIZE = 60;
 com_genome2d_Genome2D.VERSION = "1.2";
-com_genome2d_Genome2D.BUILD = "8bc7e9f48fe4209a12ae95c04644b548";
-com_genome2d_Genome2D.DATE = "2022-08-11 10:21:21";
+com_genome2d_Genome2D.BUILD = "cdaffc0ae0877fef90f90d626cf6a43c";
+com_genome2d_Genome2D.DATE = "2022-08-11 10:38:48";
 com_genome2d_Genome2D.g2d_instantiable = false;
 com_genome2d_animation_GFrameAnimation.__meta__ = { fields : { timeDilation : { prototype : null}, repeatable : { prototype : null}, reversed : { prototype : null}, frameRate : { prototype : null}}};
 com_genome2d_animation_GFrameAnimation.PROTOTYPE_PROPERTY_DEFAULTS = [1,true,false,0];

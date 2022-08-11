@@ -124,10 +124,14 @@ class Tile {
 
     public function handleFilter(p_filters: Array<String>): Void {
         if(p_filters.length == 0) { tileRenderer.resetHighlight(); return; }
-        var highlight: Bool = false;
+        // UNCOMMENT these if you want the filters to behave as OR rather than AND
+        var highlight: Bool = true;
+//        var highlight: Bool = false;
         for(filter  in p_filters) {
-            if(filter == getRarityAsString() || filter == getSizeAsString() || filter == getOwnership(filter)) {
-                highlight = true;
+            if(filter != getRarityAsString() && filter != getSizeAsString() && filter != getOwnership(filter)) {
+//            if(filter == getRarityAsString() || filter == getSizeAsString() || filter == getOwnership(filter)) {
+                highlight = false;
+//                highlight = true;
             }
         }
         if(highlight) {
